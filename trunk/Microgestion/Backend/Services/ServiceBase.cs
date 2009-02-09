@@ -10,7 +10,7 @@ namespace Blackspot.Microgestion.Backend.Services
     {
         protected ServiceBase() { }
 
-        public static MicrogestionDataContext DataContext
+        protected static MicrogestionDataContext DataContext
         {
             get
             {

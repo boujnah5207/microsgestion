@@ -66,7 +66,7 @@ namespace Backend.Tests
         ///A test for SetupDatabase
         ///</summary>
         [TestMethod]
-        [Ignore]
+        //[Ignore]
         public void SetupDatabaseTest()
         {
             DatabaseService.SetupDatabase();

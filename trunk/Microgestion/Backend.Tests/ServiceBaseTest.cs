@@ -63,16 +63,5 @@ namespace Backend.Tests
         //
         #endregion
 
-
-        /// <summary>
-        ///A test for DataContext
-        ///</summary>
-        [TestMethod()]
-        public void DataContextTest()
-        {
-            MicrogestionDataContext actual;
-            actual = ServiceBase.DataContext;
-            Assert.IsNotNull(actual);
-        }
     }
 }

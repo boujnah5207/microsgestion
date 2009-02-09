@@ -12,7 +12,10 @@ namespace Blackspot.Microgestion.Backend.Services
         private const string AdministratorName = "admin";
         private const string AdministratorPass = "admin";
 
-        private UserService() { }
+        private UserService()
+        {
+            LoggedInUser = CreateNullUser();
+        }
 
         public static User LoggedInUser {get; set;}
 
@@ -25,6 +28,18 @@ namespace Blackspot.Microgestion.Backend.Services
                 Password = AdministratorPass,
                 Name = AdministratorName,
                 LastName = AdministratorName
+            };
+        }
+
+        internal static User CreateNullUser()
+        {
+            return new User
+            {
+                ID = Guid.Empty,
+                Username = null,
+                Password = null,
+                Name = null,
+                LastName = null
             };
         }
 
