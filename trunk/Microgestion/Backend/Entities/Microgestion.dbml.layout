@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Microgestion">
+  <DataContextMoniker Name="/MicrogestionDataContext" />
+  <nestedChildShapes>
+    <classShape Id="091a6a0c-0e4a-4c58-9504-61dc8d1b70a3" absoluteBounds="1.5, 1.25, 2, 1.5891951497395831">
+      <DataClassMoniker Name="/MicrogestionDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7ed96bd4-d20a-4b42-9a17-792e904062e2" absoluteBounds="1.5150000000000001, 1.71, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Class="MicrogestionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Username" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
