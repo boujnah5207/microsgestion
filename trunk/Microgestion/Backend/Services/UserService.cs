@@ -12,6 +12,7 @@ namespace Blackspot.Microgestion.Backend.Services
         private const string AdministratorName = "admin";
         private const string AdministratorPass = "admin";
 
+        private UserService() { }
 
         public static User LoggedInUser {get; set;}
 

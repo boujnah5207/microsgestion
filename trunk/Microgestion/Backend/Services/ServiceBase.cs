@@ -22,7 +22,7 @@ namespace Blackspot.Microgestion.Backend.Services
         public static T GetByID<T>(Guid id)
             where T :class, IIdentificableEntity
         {
-            using (MicrogestionDataContext dc = ServiceBase.DataContext)
+            using (MicrogestionDataContext dc = DataContext)
             {
                 return (from u in dc.GetTable<T>()
                         where u.ID == id
@@ -33,7 +33,7 @@ namespace Blackspot.Microgestion.Backend.Services
         public static List<T> GetAll<T>()
             where T : class, IIdentificableEntity
         {
-            using (MicrogestionDataContext dc = ServiceBase.DataContext)
+            using (MicrogestionDataContext dc = DataContext)
             {
                 return dc.GetTable<T>().ToList();
             }
@@ -45,7 +45,7 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 instance.ID = Guid.NewGuid();
 
-            using (MicrogestionDataContext dc = ServiceBase.DataContext)
+            using (MicrogestionDataContext dc = DataContext)
             {
                 dc.GetTable<T>().InsertOnSubmit(instance);
                 dc.SubmitChanges();
@@ -58,7 +58,7 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 Save(instance);
 
-            using (MicrogestionDataContext dc = ServiceBase.DataContext)
+            using (MicrogestionDataContext dc = DataContext)
             {
                 T original = GetByID<T>(instance.ID);
 
@@ -73,7 +73,7 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 return;
 
-            using (MicrogestionDataContext dc = ServiceBase.DataContext)
+            using (MicrogestionDataContext dc = DataContext)
             {
                 dc.GetTable<T>().Attach(instance);
                 dc.GetTable<T>().DeleteOnSubmit(instance);
