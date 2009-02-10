@@ -9,8 +9,10 @@ namespace Blackspot.Microgestion.Backend.Services
     public class UserService : ServiceBase
     {
         private const string AdministratorID = "{8A886DB5-D154-4a15-A8C9-F3AF69CBD703}";
-        private const string AdministratorName = "admin";
-        private const string AdministratorPass = "admin";
+        private const string AdministratorName = "Administrador";
+        private const string AdministratorLastName = "";
+        private const string AdministratorUsername = "admin";
+        private const string AdministratorPassword = "admin";
 
         private UserService() { }
 
@@ -26,10 +28,10 @@ namespace Blackspot.Microgestion.Backend.Services
             return new User
             {
                 ID = new Guid(AdministratorID),
-                Username = AdministratorName,
-                Password = AdministratorPass,
+                Username = AdministratorUsername,
+                Password = AdministratorPassword,
                 Name = AdministratorName,
-                LastName = AdministratorName
+                LastName = AdministratorLastName
             };
         }
 

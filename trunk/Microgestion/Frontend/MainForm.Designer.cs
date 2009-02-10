@@ -30,6 +30,7 @@ namespace Blackspot.Microgestion.Frontend
         {
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblLoggedInUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,9 +46,18 @@ namespace Blackspot.Microgestion.Frontend
             // 
             // lblLoggedInUser
             // 
+            this.lblLoggedInUser.BackColor = System.Drawing.SystemColors.Control;
             this.lblLoggedInUser.Name = "lblLoggedInUser";
-            this.lblLoggedInUser.Size = new System.Drawing.Size(80, 17);
+            this.lblLoggedInUser.Size = new System.Drawing.Size(74, 17);
             this.lblLoggedInUser.Text = "LoggedInUser";
+            // 
+            // mainMenu
+            // 
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(632, 24);
+            this.mainMenu.TabIndex = 3;
+            this.mainMenu.Text = "menuStrip1";
             // 
             // MainForm
             // 
@@ -55,7 +65,9 @@ namespace Blackspot.Microgestion.Frontend
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.mainMenu);
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.Text = "MicroGestion";
@@ -71,5 +83,6 @@ namespace Blackspot.Microgestion.Frontend
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblLoggedInUser;
+        private System.Windows.Forms.MenuStrip mainMenu;
     }
 }

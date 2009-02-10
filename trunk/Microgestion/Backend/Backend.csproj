@@ -49,7 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\IIdentificableEntity.cs" />
+    <Compile Include="Entities\MenuOption.cs" />
+    <Compile Include="Entities\RoleAction.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enumerations\Enumerations.cs" />
     <Compile Include="Properties\BackendSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

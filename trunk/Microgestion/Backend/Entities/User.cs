@@ -41,7 +41,7 @@ namespace Blackspot.Microgestion.Backend.Entities
             if (this.IsNullUser())
                 return "Anónimo";
             else
-                return this.Username;
+                return String.Format("{0} {1} ({2})", this.Name, this.LastName, this.Username);
         }
     }
 }
