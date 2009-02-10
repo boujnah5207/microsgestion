@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Blackspot.Microgestion.Backend.Entities;
+using Blackspot.Microgestion.Backend.Services;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -14,22 +16,20 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void LogUser()
         {
-            try
-            {
-                LoginForm login = new LoginForm();
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
+        }
 
-                DialogResult dr = login.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                }
-                else
-                {
-                }
-            }
-            catch
-            {
-                throw;
-            }
+        internal void InitializeForm()
+        {
+            LogUser();
+            ShowUserInfo();
+        }
+
+        private void ShowUserInfo()
+        {
+            string info = UserService.LoggedInUser.GetUserInfo();
+            Form.UserInfo = info;
         }
     }
 }

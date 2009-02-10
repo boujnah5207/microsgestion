@@ -20,15 +20,58 @@ namespace Blackspot.Microgestion.Frontend
             Controller = new LoginFormController(this);
         }
 
+        Boolean validateLogin = false;
         LoginFormController Controller { get; set; }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username
+        {
+            get
+            {
+                return this.txtUsername.Text;
+            }
+            set
+            {
+                this.txtUsername.Text = value;
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return this.txtPassword.Text;
+            }
+            set
+            {
+                this.txtPassword.Text = value;
+            }
+        }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
             Controller.InitializeForm();
         }
 
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (validateLogin)
+            {
+                e.Cancel = !Controller.ValidateLogIn();
+            }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            validateLogin = true;
+        }
+
+        internal void FocusUsername()
+        {
+            this.txtUsername.Focus();
+        }
+
+        internal void FocusPassword()
+        {
+            this.txtPassword.Focus();
+        }
     }
 }

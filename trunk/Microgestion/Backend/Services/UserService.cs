@@ -12,7 +12,9 @@ namespace Blackspot.Microgestion.Backend.Services
         private const string AdministratorName = "admin";
         private const string AdministratorPass = "admin";
 
-        private UserService()
+        private UserService() { }
+
+        static UserService()
         {
             LoggedInUser = CreateNullUser();
         }
@@ -48,5 +50,27 @@ namespace Blackspot.Microgestion.Backend.Services
             return GetByID<User>(new Guid(AdministratorID));
         }
 
+        public static User GetUserByUsername(string username)
+        {
+            using (MicrogestionDataContext dc = DataContext)
+            {
+                return dc.Users
+                         .Where(u => u.Username.ToLower().Trim() == username.ToLower().Trim())
+                         .SingleOrDefault();
+            }
+        }
+        
+        public static bool ValidateUser(string username, string password)
+        {
+            User user = GetUserByUsername(username);
+            if (user == null)
+                return false;
+            else if (!user.Password.Equals(password))
+                return false;
+            else
+                LoggedInUser = user;
+
+            return true;
+        }
     }
 }

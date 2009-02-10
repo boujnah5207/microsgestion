@@ -21,9 +21,21 @@ namespace Blackspot.Microgestion.Frontend
 
         private MainFormController Controller { get; set; }
 
+        internal string UserInfo
+        {
+            get
+            {
+                return this.lblLoggedInUser.Text;
+            }
+            set
+            {
+                this.lblLoggedInUser.Text = value;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Controller.LogUser();
+            Controller.InitializeForm();
         }
     }
 }
