@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Entities\IIdentificableEntity.cs" />
     <Compile Include="Entities\MenuOption.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleAction.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\Enumerations.cs" />

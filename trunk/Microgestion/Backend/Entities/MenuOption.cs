@@ -6,7 +6,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class MenuOption
+    public partial class MenuOption : IIdentificableEntity
     {
         public SystemAction Action
         {
