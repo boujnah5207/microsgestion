@@ -52,6 +52,16 @@ namespace Blackspot.Microgestion.Backend.Services
             }
         }
 
+        public static void SaveAll<T>(IEnumerable<T> collection)
+            where T : class, IIdentificableEntity
+        {
+            using (MicrogestionDataContext dc = DataContext)
+            {
+                dc.GetTable<T>().InsertAllOnSubmit(collection);
+                dc.SubmitChanges();
+            }
+        }
+
         public static void Update<T>(T instance)
             where T :class, IIdentificableEntity
         {

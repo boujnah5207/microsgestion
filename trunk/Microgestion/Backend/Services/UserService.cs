@@ -23,16 +23,18 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static User LoggedInUser {get; set;}
 
-        internal static User CreateAdminUser()
+        internal static void CreateAdminUser()
         {
-            return new User
-            {
-                ID = new Guid(AdministratorID),
-                Username = AdministratorUsername,
-                Password = AdministratorPassword,
-                Name = AdministratorName,
-                LastName = AdministratorLastName
-            };
+            User admin = new User
+                {
+                    ID = new Guid(AdministratorID),
+                    Username = AdministratorUsername,
+                    Password = AdministratorPassword,
+                    Name = AdministratorName,
+                    LastName = AdministratorLastName
+                };
+
+            Save(admin);
         }
 
         internal static User CreateNullUser()
