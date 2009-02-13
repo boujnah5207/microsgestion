@@ -17,5 +17,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         }
 
         protected T Form { get; set; }
+
+        internal virtual void InitializeForm(){}
     }
 }

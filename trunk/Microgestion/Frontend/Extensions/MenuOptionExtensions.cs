@@ -40,6 +40,7 @@ namespace Blackspot.Microgestion.Frontend.Extensions
             (
                 (from opt in option.Childs
                 where UserService.CanPerform(user, opt.Action)
+                orderby opt.Order ascending
                 select opt.CreateMenuItem()).ToArray()
             );
 

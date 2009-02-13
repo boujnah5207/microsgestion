@@ -77,6 +77,11 @@ namespace Blackspot.Microgestion.Backend.Services
             return true;
         }
 
+        public static bool CanPerform(SystemAction action)
+        {
+            return CanPerform(LoggedInUser, action);
+        }
+
         public static bool CanPerform(User user, SystemAction action)
         {
             if (action == SystemAction.Null)

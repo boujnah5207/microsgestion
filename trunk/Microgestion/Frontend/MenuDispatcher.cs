@@ -34,6 +34,10 @@ namespace Blackspot.Microgestion.Frontend
                         DatabaseService.SetupDatabase();
                         MessageBox.Show("OK");
                     } break;
+                case SystemAction.AdminUsers:
+                    {
+                        MainForm.Current.ShowUsers();
+                    } break;
                 default:
                     return;
             }

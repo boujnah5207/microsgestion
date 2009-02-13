@@ -311,6 +311,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private int _ActionID;
 		
+		private int _Order;
+		
 		private EntitySet<MenuOption> _Childs;
 		
 		private EntityRef<MenuOption> _Parent;
@@ -327,6 +329,8 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnTextChanged();
     partial void OnActionIDChanging(int value);
     partial void OnActionIDChanged();
+    partial void OnOrderChanging(int value);
+    partial void OnOrderChanged();
     #endregion
 		
 		public MenuOption()
@@ -416,6 +420,26 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._ActionID = value;
 					this.SendPropertyChanged("ActionID");
 					this.OnActionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Order")]
+		public int Order
+		{
+			get
+			{
+				return this._Order;
+			}
+			set
+			{
+				if ((this._Order != value))
+				{
+					this.OnOrderChanging(value);
+					this.SendPropertyChanging();
+					this._Order = value;
+					this.SendPropertyChanged("Order");
+					this.OnOrderChanged();
 				}
 			}
 		}

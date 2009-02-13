@@ -14,12 +14,28 @@ namespace Blackspot.Microgestion.Frontend
     {
         public static MainForm Current { get; private set; }
 
+        private UsersForm usersForm;
+        private UsersForm UsersForm
+        {
+            get
+            {
+                if (usersForm == null)
+                {
+                    usersForm = new UsersForm();
+                    usersForm.MdiParent = this;
+                }
+                return usersForm;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
 
             Dispatcher = new MenuDispatcher(this);
             Controller = new MainFormController(this);
+
+            this.Load += (s, e) => Controller.InitializeForm();
 
             Current = this;
         }
@@ -39,11 +55,6 @@ namespace Blackspot.Microgestion.Frontend
             }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            Controller.InitializeForm();
-        }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -54,6 +65,11 @@ namespace Blackspot.Microgestion.Frontend
                 MessageBoxDefaultButton.Button2);
 
             e.Cancel = (result == DialogResult.No);
+        }
+
+        internal void ShowUsers()
+        {
+            this.UsersForm.Show();
         }
     }
 }

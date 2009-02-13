@@ -21,12 +21,16 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             login.ShowDialog();
         }
 
-        internal void InitializeForm()
+        internal override void InitializeForm()
         {
-            LogUser();
+            //LogUser();
+            UserService.LoggedInUser = UserService.GetAdminUser();
+
             ShowUserInfo();
 
             BuildMenu();
+
+            base.InitializeForm();
         }
 
         private void BuildMenu()

@@ -16,6 +16,7 @@
       <Column Name="ParentID" Type="System.Guid" CanBeNull="true" />
       <Column Name="Text" Type="System.String" DbType="nvarchar(20)" CanBeNull="false" />
       <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Order" Type="System.Int32" CanBeNull="false" />
       <Association Name="MenuOption_MenuOption" Member="Childs" ThisKey="ID" OtherKey="ParentID" Type="MenuOption" />
       <Association Name="MenuOption_MenuOption" Member="Parent" ThisKey="ParentID" OtherKey="ID" Type="MenuOption" IsForeignKey="true" />
     </Type>

@@ -13,10 +13,12 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         public LoginFormController(LoginForm form)
             :base(form){}
 
-        internal void InitializeForm()
+        internal override void InitializeForm()
         {
             Form.Username = UserService.LoggedInUser.Name;
             Form.Password = UserService.LoggedInUser.Password;
+
+            base.InitializeForm();
         }
 
         internal bool ValidateLogIn()

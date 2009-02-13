@@ -10,28 +10,29 @@ namespace Blackspot.Microgestion.Backend.Services
     public class MenuService : ServiceBase
     {
 
-        static Guid menuFile = Guid.NewGuid();
-        static Guid menuExit = Guid.NewGuid();
-        static Guid menuResetDB = Guid.NewGuid();
-
         internal static void CreateMenu()
         {
             List<MenuOption> options = new List<MenuOption>();
 
+            // Archivo
             options.Add(new MenuOption
             {
-                ID = menuFile, Action = SystemAction.Null, Text = "&Archivo", 
+                ID = Guid.NewGuid(), Action = SystemAction.Null, Text = "&Archivo", Order = 1,
                 Childs = 
                 {
-                    new MenuOption {ID = menuExit, Action = SystemAction.Exit, ParentID = menuFile, Text = "&Salir" }
+                    new MenuOption {ID = Guid.NewGuid(), Action = SystemAction.Exit, Text = "&Salir", Order = 1 }
                 }
             });
 
+            // Administration
             options.Add(new MenuOption
             {
-                ID = menuResetDB,
-                Action = SystemAction.ResetDB,
-                Text = "&Resest DB"
+                ID = Guid.NewGuid(), Action = SystemAction.Null, Text = "A&dministración", Order = 2,
+                Childs =
+                {
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ResetDB, Text = "&Resest DB", Order = 1 },
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminUsers, Text = "&Usuarios", Order = 2 }
+                }
             });
 
             SaveAll(options);
@@ -39,9 +40,10 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static List<MenuOption> GetRoots()
         {
-            return DB.MenuOptions
-                     .Where(m => m.Parent == null)
-                     .ToList();
+            return (from m in DB.MenuOptions
+                    where m.Parent == null
+                    orderby m.Order ascending
+                    select m).ToList();
         }
 
     }
