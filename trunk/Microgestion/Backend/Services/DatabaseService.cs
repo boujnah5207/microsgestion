@@ -14,19 +14,18 @@ namespace Blackspot.Microgestion.Backend.Services
         {
             try
             {
-                using (MicrogestionDataContext dc = DataContext)
-                {
-                    if (dc.DatabaseExists())
-                        dc.DeleteDatabase();
+                if (DB.DatabaseExists())
+                    DB.DeleteDatabase();
 
-                    dc.CreateDatabase();
+                dataContext = null; // force to create a new instance
 
-                    // Create Admin User
-                    UserService.CreateAdminUser();
+                DB.CreateDatabase();
 
-                    // Create MenuOptions
-                    MenuService.CreateMenu();
-                }
+                // Create Admin User
+                UserService.CreateAdminUser();
+
+                // Create MenuOptions
+                MenuService.CreateMenu();
             }
             catch (Exception ex)
             {

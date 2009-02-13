@@ -39,7 +39,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             else if (String.IsNullOrEmpty(pass))
             {
                 MessageBox.Show(
-                    "Ingrese su nombre de usuario.",
+                    "Ingrese su contraseña.",
                     "Datos inválidos",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,

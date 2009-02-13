@@ -72,6 +72,7 @@ namespace Blackspot.Microgestion.Frontend
             this.Name = "MainForm";
             this.Text = "MicroGestion";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

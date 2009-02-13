@@ -54,6 +54,7 @@
     <Compile Include="Entities\RoleAction.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enumerations\Enumerations.cs" />
+    <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Properties\BackendSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

@@ -7,6 +7,8 @@ namespace Blackspot.Microgestion.Backend.Enumerations
 {
     public enum SystemAction
     {
-        Null = 0
+        Null = 0,
+        Exit = 1,
+        ResetDB = 999
     }
 }

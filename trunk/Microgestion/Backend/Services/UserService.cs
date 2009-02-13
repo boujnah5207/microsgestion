@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Blackspot.Microgestion.Backend.Entities;
+using Blackspot.Microgestion.Backend.Enumerations;
+using Blackspot.Microgestion.Backend.Exceptions;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
@@ -12,7 +14,8 @@ namespace Blackspot.Microgestion.Backend.Services
         private const string AdministratorName = "Administrador";
         private const string AdministratorLastName = "";
         private const string AdministratorUsername = "admin";
-        private const string AdministratorPassword = "admin";
+        private const string AdministratorPassword = "a";
+        private static Guid AdministratorGuid = new Guid(AdministratorID);
 
         private UserService() { }
 
@@ -21,7 +24,7 @@ namespace Blackspot.Microgestion.Backend.Services
             LoggedInUser = CreateNullUser();
         }
 
-        public static User LoggedInUser {get; set;}
+        public static User LoggedInUser { get; set; }
 
         internal static void CreateAdminUser()
         {
@@ -42,10 +45,10 @@ namespace Blackspot.Microgestion.Backend.Services
             return new User
             {
                 ID = Guid.Empty,
-                Username = null,
-                Password = null,
-                Name = null,
-                LastName = null
+                Username = string.Empty,
+                Password = string.Empty,
+                Name = string.Empty,
+                LastName = string.Empty
             };
         }
 
@@ -56,25 +59,38 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static User GetUserByUsername(string username)
         {
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                return dc.Users
-                         .Where(u => u.Username.ToLower().Trim() == username.ToLower().Trim())
-                         .SingleOrDefault();
-            }
+            return DB.Users
+                     .Where(u => u.Username.ToLower().Trim() == username.ToLower().Trim())
+                     .SingleOrDefault();
         }
-        
+
         public static bool ValidateUser(string username, string password)
         {
             User user = GetUserByUsername(username);
             if (user == null)
                 return false;
             else if (!user.Password.Equals(password))
-                return false;
+                throw new InvalidPasswordException();
             else
                 LoggedInUser = user;
 
             return true;
+        }
+
+        public static bool CanPerform(User user, SystemAction action)
+        {
+            if (action == SystemAction.Null)
+                return true;
+            if (user.ID == AdministratorGuid)
+                return true;
+
+            return user.UserRoles.Any
+                (
+                    ur => ur.Role.Actions.Any
+                        (
+                            a => a.Action == action
+                        )
+                );
         }
     }
 }

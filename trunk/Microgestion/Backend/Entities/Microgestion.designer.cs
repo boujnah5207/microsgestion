@@ -305,7 +305,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private System.Guid _ID;
 		
-		private System.Guid _ParentID;
+		private System.Nullable<System.Guid> _ParentID;
 		
 		private string _Text;
 		
@@ -321,7 +321,7 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnCreated();
     partial void OnIDChanging(System.Guid value);
     partial void OnIDChanged();
-    partial void OnParentIDChanging(System.Guid value);
+    partial void OnParentIDChanging(System.Nullable<System.Guid> value);
     partial void OnParentIDChanged();
     partial void OnTextChanging(string value);
     partial void OnTextChanged();
@@ -357,7 +357,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		}
 		
 		[Column(Storage="_ParentID")]
-		public System.Guid ParentID
+		public System.Nullable<System.Guid> ParentID
 		{
 			get
 			{
@@ -460,7 +460,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 					}
 					else
 					{
-						this._ParentID = default(System.Guid);
+						this._ParentID = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Parent");
 				}

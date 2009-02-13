@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Blackspot.Microgestion.Frontend.Controllers;
+using Blackspot.Microgestion.Backend.Exceptions;
 
 namespace Blackspot.Microgestion.Frontend
 {
@@ -53,9 +54,17 @@ namespace Blackspot.Microgestion.Frontend
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (validateLogin)
+            try
             {
-                e.Cancel = !Controller.ValidateLogIn();
+                if (validateLogin)
+                {
+                    e.Cancel = !Controller.ValidateLogIn();
+                }
+            }
+            catch (InvalidPasswordException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
             }
         }
 

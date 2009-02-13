@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -24,6 +25,18 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         {
             LogUser();
             ShowUserInfo();
+
+            BuildMenu();
+        }
+
+        private void BuildMenu()
+        {
+            IEnumerable<MenuOption> roots = MenuService.GetRoots();
+            User user = UserService.LoggedInUser;
+
+            var items = roots.CreateMenuItems();
+
+            this.Form.MainMenuStrip.Items.AddRange(items);
         }
 
         private void ShowUserInfo()

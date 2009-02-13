@@ -10,33 +10,32 @@ namespace Blackspot.Microgestion.Backend.Services
     {
         protected ServiceBase() { }
 
-        protected static MicrogestionDataContext DataContext
+        protected static MicrogestionDataContext dataContext;
+        protected static MicrogestionDataContext DB
         {
             get
             {
-                string connString = Microgestion.Backend.Properties.BackendSettings.Default.MicrogestionConnectionString;
-                return new MicrogestionDataContext(connString);
+                if (dataContext == null)
+                {
+                    string connString = Microgestion.Backend.Properties.BackendSettings.Default.MicrogestionConnectionString;
+                    dataContext = new MicrogestionDataContext(connString);
+                }
+                return dataContext;
             }
         }
 
         public static T GetByID<T>(Guid id)
             where T :class, IIdentificableEntity
         {
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                return (from u in dc.GetTable<T>()
+            return (from u in DB.GetTable<T>()
                         where u.ID == id
                         select u).SingleOrDefault<T>();
-            }
         }
 
         public static List<T> GetAll<T>()
             where T : class, IIdentificableEntity
         {
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                return dc.GetTable<T>().ToList();
-            }
+            return DB.GetTable<T>().ToList();
         }
 
         public static void Save<T>(T instance)
@@ -45,21 +44,15 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 instance.ID = Guid.NewGuid();
 
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                dc.GetTable<T>().InsertOnSubmit(instance);
-                dc.SubmitChanges();
-            }
+            DB.GetTable<T>().InsertOnSubmit(instance);
+            DB.SubmitChanges();
         }
 
         public static void SaveAll<T>(IEnumerable<T> collection)
             where T : class, IIdentificableEntity
         {
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                dc.GetTable<T>().InsertAllOnSubmit(collection);
-                dc.SubmitChanges();
-            }
+            DB.GetTable<T>().InsertAllOnSubmit(collection);
+            DB.SubmitChanges();
         }
 
         public static void Update<T>(T instance)
@@ -68,13 +61,10 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 Save(instance);
 
-            using (MicrogestionDataContext dc = DataContext)
-            {
                 T original = GetByID<T>(instance.ID);
 
-                dc.GetTable<T>().Attach(instance, original);
-                dc.SubmitChanges();
-            }
+                DB.GetTable<T>().Attach(instance, original);
+                DB.SubmitChanges();
         }
 
         public static void Delete<T>(T instance)
@@ -83,12 +73,9 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 return;
 
-            using (MicrogestionDataContext dc = DataContext)
-            {
-                dc.GetTable<T>().Attach(instance);
-                dc.GetTable<T>().DeleteOnSubmit(instance);
-                dc.SubmitChanges();
-            }
+            DB.GetTable<T>().Attach(instance);
+            DB.GetTable<T>().DeleteOnSubmit(instance);
+            DB.SubmitChanges();
         }
 
 

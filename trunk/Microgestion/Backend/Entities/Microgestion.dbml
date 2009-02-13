@@ -13,9 +13,9 @@
   <Table Name="" Member="MenuOptions">
     <Type Name="MenuOption">
       <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
-      <Column Member="ParentID" Type="System.Guid" CanBeNull="false" />
-      <Column Member="Text" Type="System.String" DbType="nvarchar(20)" CanBeNull="false" />
-      <Column Member="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.Guid" CanBeNull="true" />
+      <Column Name="Text" Type="System.String" DbType="nvarchar(20)" CanBeNull="false" />
+      <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
       <Association Name="MenuOption_MenuOption" Member="Childs" ThisKey="ID" OtherKey="ParentID" Type="MenuOption" />
       <Association Name="MenuOption_MenuOption" Member="Parent" ThisKey="ParentID" OtherKey="ID" Type="MenuOption" IsForeignKey="true" />
     </Type>
@@ -23,22 +23,22 @@
   <Table Name="" Member="Roles">
     <Type Name="Role">
       <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
-      <Column Member="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Association Name="Role_RoleAction" Member="Actions" ThisKey="ID" OtherKey="RoleID" Type="RoleAction" />
       <Association Name="Role_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="RoleID" Type="UserRoles" />
     </Type>
   </Table>
   <Table Name="" Member="RoleActions">
     <Type Name="RoleAction">
-      <Column Member="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Member="ActionID" AccessModifier="Private" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Role_RoleAction" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="UserRoles">
     <Type Name="UserRoles">
-      <Column Member="UserID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Member="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="User_UserRoles" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
       <Association Name="Role_UserRoles" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
     </Type>
