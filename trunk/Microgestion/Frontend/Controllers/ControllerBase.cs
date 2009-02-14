@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Blackspot.Microgestion.Backend.Services;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -19,5 +20,11 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         protected T Form { get; set; }
 
         internal virtual void InitializeForm(){}
+
+        internal virtual void SaveChanges()
+        {
+            ServiceBase.SubmitChanges();
+        }
+
     }
 }

@@ -8,6 +8,14 @@ namespace Blackspot.Microgestion.Backend.Entities
 {
     public partial class User : IIdentificableEntity
     {
+        partial void OnCreated()
+        {
+            this.Name = string.Empty;
+            this.LastName = string.Empty;
+            this.Username = string.Empty;
+            this.Password = string.Empty;
+        }
+
         public override bool Equals(object obj)
         {
             User user = obj as User;

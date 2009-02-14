@@ -25,11 +25,11 @@ namespace Blackspot.Microgestion.Backend.Services
         }
 
         public static T GetByID<T>(Guid id)
-            where T :class, IIdentificableEntity
+            where T : class, IIdentificableEntity
         {
             return (from u in DB.GetTable<T>()
-                        where u.ID == id
-                        select u).SingleOrDefault<T>();
+                    where u.ID == id
+                    select u).SingleOrDefault<T>();
         }
 
         public static List<T> GetAll<T>()
@@ -39,7 +39,7 @@ namespace Blackspot.Microgestion.Backend.Services
         }
 
         public static void Save<T>(T instance)
-            where T :class, IIdentificableEntity
+            where T : class, IIdentificableEntity
         {
             if (instance.ID == Guid.Empty)
                 instance.ID = Guid.NewGuid();
@@ -56,28 +56,31 @@ namespace Blackspot.Microgestion.Backend.Services
         }
 
         public static void Update<T>(T instance)
-            where T :class, IIdentificableEntity
+            where T : class, IIdentificableEntity
         {
             if (instance.ID == Guid.Empty)
                 Save(instance);
 
-                T original = GetByID<T>(instance.ID);
+            //T original = GetByID<T>(instance.ID);
 
-                DB.GetTable<T>().Attach(instance, original);
-                DB.SubmitChanges();
+            //DB.GetTable<T>().Attach(instance, original);
+            DB.SubmitChanges();
         }
 
         public static void Delete<T>(T instance)
-            where T :class, IIdentificableEntity
+            where T : class, IIdentificableEntity
         {
             if (instance.ID == Guid.Empty)
                 return;
 
-            DB.GetTable<T>().Attach(instance);
+            //DB.GetTable<T>().Attach(instance);
             DB.GetTable<T>().DeleteOnSubmit(instance);
             DB.SubmitChanges();
         }
 
-
+        public static void SubmitChanges()
+        {
+            DB.SubmitChanges();
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Blackspot.Microgestion.Frontend
     public partial class UsersForm : Form
     {
         private UsersFormController Controller;
-        
+       
         public UsersForm()
         {
             InitializeComponent();
@@ -30,12 +30,19 @@ namespace Blackspot.Microgestion.Frontend
 
         private void InitializeControlsHandlers()
         {
-            this.FormClosing += (s, e) => { ((Form)s).Hide(); ((FormClosingEventArgs)e).Cancel = true; };
-            
+            this.FormClosing += (s, e) =>
+            {
+                ((Form)s).Hide(); ((FormClosingEventArgs)e).Cancel = true;
+                Controller.SaveChanges();
+            };
             this.btnClose.Click += (s, e) => this.Close();
 
-            this.btnModify.Click += (s, e) => { Controller.IsEditing = true; this.Update(); };
-            this.btnCancel.Click += (s, e) => { Controller.IsEditing = false; this.Update(); };
+            this.TxtName.TextChanged += (s, e) => Controller.SaveChanges();
+            this.TxtLastName.TextChanged += (s, e) => Controller.SaveChanges();
+            this.TxtUsername.TextChanged += (s, e) => Controller.SaveChanges();
+
+            this.btnAdd.Click += (s, e) => Controller.AddNew();
+            this.btnDelete.Click += (s, e) => Controller.Delete();
         }
 
         private void InitializeBindings()
@@ -46,19 +53,16 @@ namespace Blackspot.Microgestion.Frontend
             this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Username", HeaderText = "Usuario" });
             this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Password", Visible = false });
 
-            this.Grid.DataSource = new BindingList<User>(Controller.Users);
+            this.Grid.DataSource = Controller.Users;
 
-            this.btnAdd.DataBindings.Add(new Binding("Enabled", Controller, "EnableAddButton"));
-            this.btnDelete.DataBindings.Add(new Binding("Enabled", Controller, "EnableDeleteButton"));
-            this.btnModify.DataBindings.Add(new Binding("Enabled", Controller, "EnableModifyButton"));
+            this.btnAdd.DataBindings.Add(new Binding("Enabled", Controller, "AllowAdd"));
+            this.btnDelete.DataBindings.Add(new Binding("Enabled", Controller, "AllowDelete"));
 
-            this.pnlEdit.DataBindings.Add(new Binding("Enabled", Controller, "IsEditing"));
+            this.pnlEdit.DataBindings.Add(new Binding("Enabled", Controller, "AllowModify"));
 
-            this.txtName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Name"));
-            this.txtLastName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "LastName"));
-            this.txtUsername.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Username"));
-            this.txtPassword.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Password"));
+            this.TxtName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Name"));
+            this.TxtLastName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "LastName"));
+            this.TxtUsername.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Username"));
         }
-
     }
 }
