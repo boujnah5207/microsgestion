@@ -28,6 +28,7 @@ namespace Blackspot.Microgestion.Frontend
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblLoggedInUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
@@ -48,7 +49,7 @@ namespace Blackspot.Microgestion.Frontend
             // 
             this.lblLoggedInUser.BackColor = System.Drawing.SystemColors.Control;
             this.lblLoggedInUser.Name = "lblLoggedInUser";
-            this.lblLoggedInUser.Size = new System.Drawing.Size(74, 17);
+            this.lblLoggedInUser.Size = new System.Drawing.Size(80, 17);
             this.lblLoggedInUser.Text = "LoggedInUser";
             // 
             // mainMenu
@@ -66,6 +67,7 @@ namespace Blackspot.Microgestion.Frontend
             this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(640, 480);
