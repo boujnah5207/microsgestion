@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Services;
+using System.ComponentModel;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
-    internal class ControllerBase<T>
+    internal class ControllerBase<T> : INotifyPropertyChanged
         where T: Form
     {
         protected ControllerBase() { }
@@ -26,5 +27,21 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             ServiceBase.SubmitChanges();
         }
 
+        #region INotifyPropertyChanged Members
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, e);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 }

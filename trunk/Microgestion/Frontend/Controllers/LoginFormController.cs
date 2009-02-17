@@ -13,6 +13,21 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         public LoginFormController(LoginForm form)
             :base(form){}
 
+        private bool userExists;
+
+        public Boolean UserExists
+        {
+            get
+            {
+                return userExists;
+            }
+            set
+            {
+                this.userExists = value;
+                OnPropertyChanged("UserExists");
+            }
+        }
+
         internal override void InitializeForm()
         {
             Form.Username = UserService.LoggedInUser.Name;
@@ -58,10 +73,12 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         {
             if (!UserService.CheckIfUserExists(Form.Username))
             {
-                Form.FocusUsername();
+                //Form.FocusUsername();
+                UserExists = false;
                 return false;
             }
-            Form.FocusPassword();
+            UserExists = true;
+            //Form.FocusPassword();
             return true;
         }
     }

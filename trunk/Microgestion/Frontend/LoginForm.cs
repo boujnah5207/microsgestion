@@ -13,9 +13,7 @@ namespace Blackspot.Microgestion.Frontend
 {
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
-
         Boolean validateLogin = false;
-        internal Boolean UserExists { get; set; }
         LoginFormController Controller { get; set; }
 
         public LoginForm()
@@ -27,9 +25,10 @@ namespace Blackspot.Microgestion.Frontend
             this.Load += (s, e) => Controller.InitializeForm();
             this.FormClosing += (s, e) => { if (validateLogin) e.Cancel = !Controller.ValidateLogIn(); };
             this.btnAccept.Click += (s, e) => validateLogin = true;
+            this.btnCancel.Click += (s, e) => validateLogin = false;
             this.txtUsername.TextChanged += (s, e) => Controller.CheckUser();
 
-            this.txtPassword.DataBindings.Add(new Binding("Enabled", this, "userExists"));
+            this.txtPassword.DataBindings.Add(new Binding("Enabled", Controller, "UserExists"));
         }
 
 
@@ -55,6 +54,7 @@ namespace Blackspot.Microgestion.Frontend
                 this.txtPassword.Text = value;
             }
         }
+        
 
         internal void FocusUsername()
         {
@@ -65,5 +65,6 @@ namespace Blackspot.Microgestion.Frontend
         {
             this.txtPassword.Focus();
         }
+
     }
 }

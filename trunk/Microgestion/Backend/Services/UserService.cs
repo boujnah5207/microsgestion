@@ -14,7 +14,7 @@ namespace Blackspot.Microgestion.Backend.Services
         private const string AdministratorName = "Administrador";
         private const string AdministratorLastName = "";
         private const string AdministratorUsername = "admin";
-        private const string AdministratorPassword = "";
+        private const string AdministratorPassword = "admin";
         private static Guid AdministratorGuid = new Guid(AdministratorID);
 
         private UserService() { }
@@ -107,6 +107,9 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static bool CheckIfUserExists(string username)
         {
+            if (username == AdministratorUsername)
+                return true;
+
             return DB.Users.Any(u => u.Username.Equals(username));
         }
 
