@@ -7,7 +7,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
-    public class MenuService : ServiceBase
+    public class MenuService : ServiceBase<MenuOption>
     {
 
         internal static void CreateMenu()
@@ -31,7 +31,8 @@ namespace Blackspot.Microgestion.Backend.Services
                 Childs =
                 {
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ResetDB, Text = "&Resest DB", Order = 1 },
-                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminUsers, Text = "&Usuarios", Order = 2 }
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminUsers, Text = "&Usuarios", Order = 2 },
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminRoles, Text = "&Perfiles", Order = 3 }
                 }
             });
 

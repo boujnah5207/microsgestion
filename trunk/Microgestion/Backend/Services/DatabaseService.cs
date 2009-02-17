@@ -21,9 +21,6 @@ namespace Blackspot.Microgestion.Backend.Services
 
                 DB.CreateDatabase();
 
-                // Create Admin User
-                UserService.CreateAdminUser();
-
                 // Create MenuOptions
                 MenuService.CreateMenu();
             }

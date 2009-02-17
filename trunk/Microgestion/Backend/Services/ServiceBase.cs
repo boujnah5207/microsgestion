@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Blackspot.Microgestion.Backend.Entities;
+using System.Data.Linq;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
@@ -24,63 +25,68 @@ namespace Blackspot.Microgestion.Backend.Services
             }
         }
 
-        public static T GetByID<T>(Guid id)
-            where T : class, IIdentificableEntity
+        public static void SubmitChanges()
+        {
+            try
+            {
+                DB.SubmitChanges(ConflictMode.ContinueOnConflict);
+            }
+            catch (ChangeConflictException ex)
+            {
+                throw ex;
+            }
+        }
+    }
+
+    public class ServiceBase<T> : ServiceBase
+        where T : class, IIdentificableEntity
+    {
+        public static T GetByID(Guid id)
         {
             return (from u in DB.GetTable<T>()
                     where u.ID == id
                     select u).SingleOrDefault<T>();
         }
 
-        public static List<T> GetAll<T>()
-            where T : class, IIdentificableEntity
+        public static List<T> GetAll()
         {
             return DB.GetTable<T>().ToList();
         }
 
-        public static void Save<T>(T instance)
-            where T : class, IIdentificableEntity
+        public static void Save(T instance)
         {
             if (instance.ID == Guid.Empty)
                 instance.ID = Guid.NewGuid();
 
             DB.GetTable<T>().InsertOnSubmit(instance);
-            DB.SubmitChanges();
+            
+            SubmitChanges();
         }
 
-        public static void SaveAll<T>(IEnumerable<T> collection)
-            where T : class, IIdentificableEntity
+        public static void SaveAll(IEnumerable<T> collection)
         {
             DB.GetTable<T>().InsertAllOnSubmit(collection);
-            DB.SubmitChanges();
+            
+            SubmitChanges();
         }
 
-        public static void Update<T>(T instance)
-            where T : class, IIdentificableEntity
+        public static void Update(T instance)
         {
             if (instance.ID == Guid.Empty)
                 Save(instance);
 
-            //T original = GetByID<T>(instance.ID);
-
-            //DB.GetTable<T>().Attach(instance, original);
-            DB.SubmitChanges();
+            SubmitChanges();
         }
 
-        public static void Delete<T>(T instance)
-            where T : class, IIdentificableEntity
+        public static void Delete(T instance)
         {
             if (instance.ID == Guid.Empty)
                 return;
 
-            //DB.GetTable<T>().Attach(instance);
             DB.GetTable<T>().DeleteOnSubmit(instance);
-            DB.SubmitChanges();
+            
+            SubmitChanges();
         }
 
-        public static void SubmitChanges()
-        {
-            DB.SubmitChanges();
-        }
     }
 }

@@ -20,7 +20,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            Users = new BindingList<User>(UserService.GetAll<User>());
+            Users = new BindingList<User>(UserService.GetAll());
 
             base.InitializeForm();
         }
@@ -31,7 +31,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         {
             get
             {
-                return UserService.CanPerform(SystemAction.ModifyUser) ||
+                return UserService.CanPerform(SystemAction.EditUser) ||
                        UserService.CanPerform(SystemAction.AddUser);
             }
             set { }

@@ -8,53 +8,52 @@ using Blackspot.Microgestion.Backend.Exceptions;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
-    public class UserService : ServiceBase
+    public class UserService : ServiceBase<User>
     {
         private const string AdministratorID = "{8A886DB5-D154-4a15-A8C9-F3AF69CBD703}";
         private const string AdministratorName = "Administrador";
         private const string AdministratorLastName = "";
         private const string AdministratorUsername = "admin";
-        private const string AdministratorPassword = "a";
+        private const string AdministratorPassword = "";
         private static Guid AdministratorGuid = new Guid(AdministratorID);
 
         private UserService() { }
 
         static UserService()
         {
-            LoggedInUser = CreateNullUser();
+            LoggedInUser = NullUser;
         }
 
         public static User LoggedInUser { get; set; }
 
-        internal static void CreateAdminUser()
+        internal static User AdminUser
         {
-            User admin = new User
-                {
-                    ID = new Guid(AdministratorID),
-                    Username = AdministratorUsername,
-                    Password = AdministratorPassword,
-                    Name = AdministratorName,
-                    LastName = AdministratorLastName
-                };
-
-            Save(admin);
-        }
-
-        internal static User CreateNullUser()
-        {
-            return new User
+            get
             {
-                ID = Guid.Empty,
-                Username = string.Empty,
-                Password = string.Empty,
-                Name = string.Empty,
-                LastName = string.Empty
-            };
+                return new User
+                    {
+                        ID = new Guid(AdministratorID),
+                        Username = AdministratorUsername,
+                        Password = AdministratorPassword,
+                        Name = AdministratorName,
+                        LastName = AdministratorLastName
+                    };
+            }
         }
 
-        public static User GetAdminUser()
+        internal static User NullUser
         {
-            return GetByID<User>(new Guid(AdministratorID));
+            get
+            {
+                return new User
+                {
+                    ID = Guid.Empty,
+                    Username = string.Empty,
+                    Password = string.Empty,
+                    Name = string.Empty,
+                    LastName = string.Empty
+                };
+            }
         }
 
         public static User GetUserByUsername(string username)
@@ -66,6 +65,14 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static bool ValidateUser(string username, string password)
         {
+            //Check if it is the admin user
+            if (AdministratorUsername == username &&
+                AdministratorPassword == password)
+            {
+                LoggedInUser = AdminUser;
+                return true;
+            }
+
             User user = GetUserByUsername(username);
             if (user == null)
                 return false;
@@ -96,6 +103,16 @@ namespace Blackspot.Microgestion.Backend.Services
                             a => a.Action == action
                         )
                 );
+        }
+
+        public static bool CheckIfUserExists(string username)
+        {
+            return DB.Users.Any(u => u.Username.Equals(username));
+        }
+
+        public static User GetAdminUser()
+        {
+            return AdminUser;
         }
     }
 }

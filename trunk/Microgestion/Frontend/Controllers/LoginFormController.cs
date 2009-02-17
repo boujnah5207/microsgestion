@@ -53,5 +53,16 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 
             return UserService.ValidateUser(user, pass);
         }
+
+        internal object CheckUser()
+        {
+            if (!UserService.CheckIfUserExists(Form.Username))
+            {
+                Form.FocusUsername();
+                return false;
+            }
+            Form.FocusPassword();
+            return true;
+        }
     }
 }

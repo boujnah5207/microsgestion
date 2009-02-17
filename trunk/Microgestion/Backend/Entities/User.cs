@@ -41,7 +41,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 
         public bool IsNullUser()
         {
-            return this.Equals(UserService.CreateNullUser());
+            return this.Equals(UserService.NullUser);
         }
 
         public string GetUserInfo()

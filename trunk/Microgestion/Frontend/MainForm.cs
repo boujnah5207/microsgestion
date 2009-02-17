@@ -27,6 +27,19 @@ namespace Blackspot.Microgestion.Frontend
                 return usersForm;
             }
         }
+        private RolesForm rolesForm;
+        private RolesForm RolesForm
+        {
+            get
+            {
+                if (rolesForm == null)
+                {
+                    rolesForm = new RolesForm();
+                    rolesForm.MdiParent = this;
+                }
+                return rolesForm;
+            }
+        }
 
         public MainForm()
         {
@@ -70,6 +83,11 @@ namespace Blackspot.Microgestion.Frontend
         internal void ShowUsers()
         {
             this.UsersForm.Show();
+        }
+
+        internal void ShowRoles()
+        {
+            this.RolesForm.Show();
         }
     }
 }

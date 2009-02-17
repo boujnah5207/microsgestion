@@ -38,6 +38,10 @@ namespace Blackspot.Microgestion.Frontend
                     {
                         MainForm.Current.ShowUsers();
                     } break;
+                case SystemAction.AdminRoles:
+                    {
+                        MainForm.Current.ShowRoles();
+                    } break;
                 default:
                     return;
             }

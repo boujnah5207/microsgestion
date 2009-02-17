@@ -14,15 +14,24 @@ namespace Blackspot.Microgestion.Frontend
     public partial class LoginForm : DevExpress.XtraEditors.XtraForm
     {
 
+        Boolean validateLogin = false;
+        internal Boolean UserExists { get; set; }
+        LoginFormController Controller { get; set; }
+
         public LoginForm()
         {
             InitializeComponent();
 
             Controller = new LoginFormController(this);
+
+            this.Load += (s, e) => Controller.InitializeForm();
+            this.FormClosing += (s, e) => { if (validateLogin) e.Cancel = !Controller.ValidateLogIn(); };
+            this.btnAccept.Click += (s, e) => validateLogin = true;
+            this.txtUsername.TextChanged += (s, e) => Controller.CheckUser();
+
+            this.txtPassword.DataBindings.Add(new Binding("Enabled", this, "userExists"));
         }
 
-        Boolean validateLogin = false;
-        LoginFormController Controller { get; set; }
 
         public string Username
         {
@@ -45,32 +54,6 @@ namespace Blackspot.Microgestion.Frontend
             {
                 this.txtPassword.Text = value;
             }
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            Controller.InitializeForm();
-        }
-
-        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (validateLogin)
-                {
-                    e.Cancel = !Controller.ValidateLogIn();
-                }
-            }
-            catch (InvalidPasswordException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                e.Cancel = true;
-            }
-        }
-
-        private void btnAccept_Click(object sender, EventArgs e)
-        {
-            validateLogin = true;
         }
 
         internal void FocusUsername()

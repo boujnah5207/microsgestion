@@ -64,7 +64,7 @@ namespace Backend.Tests
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            User admin = UserService.GetAdminUser();
+            User admin = UserService.AdminUser;
             UserService.LoggedInUser = admin;
         }
 
@@ -74,7 +74,7 @@ namespace Backend.Tests
         [TestMethod()]
         public void LoggedInUserTest()
         {
-            User expected = UserService.GetAdminUser();
+            User expected = UserService.AdminUser;
             User actual;
             UserService.LoggedInUser = expected;
             actual = UserService.LoggedInUser;
@@ -89,7 +89,7 @@ namespace Backend.Tests
         public void GetAllUsersTest()
         {
             IEnumerable<User> users;
-            users = UserService.GetAll<User>();
+            users = UserService.GetAll();
 
             foreach (User u in users)
                 Assert.IsInstanceOfType(u, typeof(User));
@@ -114,7 +114,7 @@ namespace Backend.Tests
 
             Assert.AreNotEqual(expected.ID, Guid.Empty);
 
-            User actual = UserService.GetByID<User>(expected.ID);
+            User actual = UserService.GetByID(expected.ID);
 
             Assert.AreEqual(expected.Name, actual.Name);
             Assert.AreEqual(expected.LastName, actual.LastName);
@@ -130,7 +130,7 @@ namespace Backend.Tests
 
             UserService.Update(expected);
 
-            actual = UserService.GetByID<User>(expected.ID);
+            actual = UserService.GetByID(expected.ID);
 
             Assert.AreEqual(expected.Name, actual.Name);
             Assert.AreEqual(expected.LastName, actual.LastName);
@@ -142,7 +142,7 @@ namespace Backend.Tests
 
             UserService.Delete(expected);
 
-            actual = UserService.GetByID<User>(expected.ID);
+            actual = UserService.GetByID(expected.ID);
 
             Assert.IsNull(actual);
         }

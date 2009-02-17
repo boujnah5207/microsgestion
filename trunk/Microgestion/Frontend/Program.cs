@@ -17,5 +17,6 @@ namespace Blackspot.Microgestion.Frontend
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
+
     }
 }

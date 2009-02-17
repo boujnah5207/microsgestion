@@ -68,8 +68,15 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\LoginFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
+    <Compile Include="Controllers\RolesFormController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
+    <Compile Include="RolesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RolesForm.Designer.cs">
+      <DependentUpon>RolesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RolesForm.resx">
+      <DependentUpon>RolesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
