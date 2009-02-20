@@ -2,11 +2,12 @@
 <Database Class="MicrogestionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="" Member="Users">
     <Type Name="User">
-      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Member="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="User_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="UserID" Type="UserRoles" />
     </Type>
   </Table>
@@ -16,15 +17,16 @@
       <Column Name="ParentID" Type="System.Guid" CanBeNull="true" />
       <Column Name="Text" Type="System.String" DbType="nvarchar(20)" CanBeNull="false" />
       <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
-      <Column Member="Order" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Order" Type="System.Int32" CanBeNull="false" />
       <Association Name="MenuOption_MenuOption" Member="Childs" ThisKey="ID" OtherKey="ParentID" Type="MenuOption" />
       <Association Name="MenuOption_MenuOption" Member="Parent" ThisKey="ParentID" OtherKey="ID" Type="MenuOption" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="Roles">
     <Type Name="Role">
-      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Member="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="Role_RoleAction" Member="Actions" ThisKey="ID" OtherKey="RoleID" Type="RoleAction" />
       <Association Name="Role_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="RoleID" Type="UserRoles" />
     </Type>

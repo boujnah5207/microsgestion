@@ -76,6 +76,8 @@ namespace Blackspot.Microgestion.Backend.Services
             User user = GetUserByUsername(username);
             if (user == null)
                 return false;
+            else if (String.IsNullOrEmpty(user.Password))
+                throw new MustConfirmPasswordException();
             else if (!user.Password.Equals(password))
                 throw new InvalidPasswordException();
             else

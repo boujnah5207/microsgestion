@@ -5,6 +5,7 @@ using System.Text;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Entities;
 using System.Windows.Forms;
+using Blackspot.Microgestion.Backend.Exceptions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -43,42 +44,60 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
             if (String.IsNullOrEmpty(user))
             {
-                MessageBox.Show(
-                    "Ingrese su nombre de usuario.",
-                    "Datos inválidos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
+                Form.lblMessage.Text = "Ingrese su nombre de usuario.";
 
                 Form.FocusUsername();
                 return false;
             }
             else if (String.IsNullOrEmpty(pass))
             {
-                MessageBox.Show(
-                    "Ingrese su contraseña.",
-                    "Datos inválidos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
-
+                Form.lblMessage.Text = "Ingrese su contraseña.";
                 Form.FocusPassword(); 
                 return false;
             }
-                
-            return UserService.ValidateUser(user, pass);
+
+            try
+            {
+                return UserService.ValidateUser(user, pass);
+            }
+            catch (InvalidPasswordException ex)
+            {
+                Form.lblMessage.Text = ex.Message;
+                Form.FocusPassword();
+                return false;
+            }
+            catch (MustConfirmPasswordException)
+            {
+                var confirm = new ConfirmPasswordForm();
+                var dr = confirm.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    if (pass.Equals(confirm.Password))
+                    {
+                        User u = UserService.GetUserByUsername(user);
+                        u.Password = pass;
+                        UserService.Update(u);
+
+                        return UserService.ValidateUser(user, pass);
+                    }
+                }
+
+                Form.lblMessage.Text = "Contraseña invalida. Ingresar su nueva contraseña.";
+                Form.FocusPassword();
+
+                return false;
+            }
         }
 
         internal object CheckUser()
         {
             if (!UserService.CheckIfUserExists(Form.Username))
             {
-                //Form.FocusUsername();
                 UserExists = false;
                 return false;
             }
             UserExists = true;
-            //Form.FocusPassword();
+            Form.lblMessage.Text = "Ingrese su contraseña";
             return true;
         }
     }

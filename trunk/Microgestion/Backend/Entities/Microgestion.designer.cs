@@ -127,6 +127,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private string _LastName;
 		
+		private System.Data.Linq.Binary _Timestamp;
+		
 		private EntitySet<UserRoles> _UserRoles;
 		
     #region Extensibility Method Definitions
@@ -143,6 +145,8 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnNameChanged();
     partial void OnLastNameChanging(string value);
     partial void OnLastNameChanged();
+    partial void OnTimestampChanging(System.Data.Linq.Binary value);
+    partial void OnTimestampChanged();
     #endregion
 		
 		public User()
@@ -171,7 +175,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_Username", DbType="nvarchar(50)", CanBeNull=false)]
+		[Column(Storage="_Username", DbType="nvarchar(50)", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Username
 		{
 			get
@@ -191,7 +195,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_Password", DbType="nvarchar(50)", CanBeNull=false)]
+		[Column(Storage="_Password", DbType="nvarchar(50)", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Password
 		{
 			get
@@ -211,7 +215,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false)]
+		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Name
 		{
 			get
@@ -231,7 +235,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_LastName", DbType="nvarchar(50)", CanBeNull=false)]
+		[Column(Storage="_LastName", DbType="nvarchar(50)", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string LastName
 		{
 			get
@@ -247,6 +251,26 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._LastName = value;
 					this.SendPropertyChanged("LastName");
 					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Timestamp", CanBeNull=false, IsDbGenerated=true, IsVersion=true)]
+		public System.Data.Linq.Binary Timestamp
+		{
+			get
+			{
+				return this._Timestamp;
+			}
+			set
+			{
+				if ((this._Timestamp != value))
+				{
+					this.OnTimestampChanging(value);
+					this.SendPropertyChanging();
+					this._Timestamp = value;
+					this.SendPropertyChanged("Timestamp");
+					this.OnTimestampChanged();
 				}
 			}
 		}
@@ -534,6 +558,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private string _Name;
 		
+		private System.Data.Linq.Binary _Timestamp;
+		
 		private EntitySet<RoleAction> _Actions;
 		
 		private EntitySet<UserRoles> _UserRoles;
@@ -546,6 +572,8 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnIDChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
+    partial void OnTimestampChanging(System.Data.Linq.Binary value);
+    partial void OnTimestampChanged();
     #endregion
 		
 		public Role()
@@ -575,7 +603,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false)]
+		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
 		public string Name
 		{
 			get
@@ -591,6 +619,26 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._Name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Timestamp", CanBeNull=false, IsDbGenerated=true, IsVersion=true)]
+		public System.Data.Linq.Binary Timestamp
+		{
+			get
+			{
+				return this._Timestamp;
+			}
+			set
+			{
+				if ((this._Timestamp != value))
+				{
+					this.OnTimestampChanging(value);
+					this.SendPropertyChanging();
+					this._Timestamp = value;
+					this.SendPropertyChanged("Timestamp");
+					this.OnTimestampChanged();
 				}
 			}
 		}

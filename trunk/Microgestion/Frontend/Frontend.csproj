@@ -71,6 +71,18 @@
     <Compile Include="Controllers\RolesFormController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
+    <Compile Include="ConfirmPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmPasswordForm.Designer.cs">
+      <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,12 +95,6 @@
     <Compile Include="UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="MenuDispatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfirmPasswordForm.resx">
+      <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

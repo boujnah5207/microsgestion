@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +11,7 @@ using Blackspot.Microgestion.Backend.Exceptions;
 
 namespace Blackspot.Microgestion.Frontend
 {
-    public partial class LoginForm : DevExpress.XtraEditors.XtraForm
+    public partial class LoginForm : Form
     {
         Boolean validateLogin = false;
         LoginFormController Controller { get; set; }
@@ -54,7 +54,7 @@ namespace Blackspot.Microgestion.Frontend
                 this.txtPassword.Text = value;
             }
         }
-        
+
 
         internal void FocusUsername()
         {
@@ -63,6 +63,7 @@ namespace Blackspot.Microgestion.Frontend
 
         internal void FocusPassword()
         {
+            this.txtPassword.SelectAll();
             this.txtPassword.Focus();
         }
 

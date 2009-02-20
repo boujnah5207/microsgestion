@@ -45,6 +45,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void Delete()
         {
+
             foreach (DataGridViewRow row in Form.Grid.SelectedRows)
             {
                 Role role = (Role)row.DataBoundItem;

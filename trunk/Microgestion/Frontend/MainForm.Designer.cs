@@ -49,7 +49,7 @@ namespace Blackspot.Microgestion.Frontend
             // 
             this.lblLoggedInUser.BackColor = System.Drawing.SystemColors.Control;
             this.lblLoggedInUser.Name = "lblLoggedInUser";
-            this.lblLoggedInUser.Size = new System.Drawing.Size(80, 17);
+            this.lblLoggedInUser.Size = new System.Drawing.Size(74, 17);
             this.lblLoggedInUser.Text = "LoggedInUser";
             // 
             // mainMenu
@@ -73,6 +73,7 @@ namespace Blackspot.Microgestion.Frontend
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.Text = "MicroGestion";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

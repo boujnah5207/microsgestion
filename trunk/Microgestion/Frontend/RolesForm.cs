@@ -32,6 +32,7 @@ namespace Blackspot.Microgestion.Frontend
         {
             this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
             this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Nombre" });
+            this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Timestamp", Visible = false });
 
             Grid.DataSource = Controller.Roles;
 
