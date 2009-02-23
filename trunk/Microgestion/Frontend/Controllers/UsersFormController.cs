@@ -27,7 +27,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         public bool AllowAdd { get { return UserService.CanPerform(SystemAction.UserAdd); } set { } }
         public bool AllowDelete { get { return UserService.CanPerform(SystemAction.UserDelete); } set { } }
-        public bool AllowModify
+        public bool AllowEdit
         {
             get
             {
@@ -40,22 +40,59 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void AddNew()
         {
-            User newUser = Users.AddNew();
-            UserService.Save(newUser);
+            User newUser = new User();
 
+            UserEditor editor = new UserEditor(newUser);
+
+            var result = editor.ShowDialog();
+            if (result == DialogResult.Cancel)
+                return;
+
+            Users.Add(newUser);
             Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
-            Form.TxtName.Focus();
+            UserService.Save(newUser);
         }
 
         internal void Delete()
         {
-            foreach (DataGridViewRow row in Form.Grid.SelectedRows)
+            if (Form.Grid.SelectedRows.Count != 1)
+                return;
+
+            if (UserAccepts(
+                "¿Desea eliminar el usuario seleccionado?",
+                "Eliminar usuario"))
             {
-                User user = (User)row.DataBoundItem;
+                User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
                 UserService.Delete(user);
                 Users.Remove(user);
             }
         }
 
+
+        internal void Edit()
+        {
+            if (Form.Grid.SelectedRows.Count != 1)
+                return;
+
+            User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
+
+            string userName = user.Name;
+            string userLastName = user.LastName;
+            string userUsername = user.Username;
+
+            UserEditor editor = new UserEditor(user);
+
+            var result = editor.ShowDialog(Form);
+            if (result == DialogResult.Cancel)
+            {
+                user.Name = userName;
+                user.LastName = userLastName;
+                user.Username = userUsername;
+            }
+            else
+            {
+                UserService.Update(user);
+            }
+        }
     }
 }

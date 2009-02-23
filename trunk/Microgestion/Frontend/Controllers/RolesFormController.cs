@@ -132,34 +132,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 RoleService.Update(role);
             }
         }
-
-        //internal void SaveActions()
-        //{
-        //    IEnumerable<SystemAction> checkedActions =
-        //        Form.Actions.CheckedItems
-        //        .Cast<SystemActionListBoxItem>()
-        //        .Select(item => item.Action)
-        //        .ToList();
-
-        //    //Actions to remove
-        //    IEnumerable<RoleAction> actionsToRemove =
-        //        role.Actions
-        //        .Where(ra => !checkedActions.Any(i => i.Equals(ra.Action)))
-        //        .ToList();
-
-        //    //Actions to add
-        //    IEnumerable<RoleAction> actionsToAdd =
-        //        checkedActions
-        //        .Where(a => !role.Actions.Any(ra => ra.Action.Equals(a)))
-        //        .Select(a => new RoleAction { Action = a, RoleID = role.ID })
-        //        .ToList();
-
-        //    RoleActionService.DeleteAll(actionsToRemove);
-        //    RoleActionService.SaveAll(actionsToAdd);
-
-        //    RoleService.Refresh(role, RefreshMode.OverwriteCurrentValues);
-
-        //}
     }
 
     internal class SystemActionListBoxItem

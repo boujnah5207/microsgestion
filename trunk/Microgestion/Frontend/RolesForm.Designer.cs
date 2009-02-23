@@ -31,15 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RolesForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnActions = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.Grid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Actions = new System.Windows.Forms.CheckedListBox();
-            this.btnActions = new System.Windows.Forms.Button();
-            this.btnSaveActions = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +64,14 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "&Nuevo";
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(3, 32);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(100, 23);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "&Modificar";
+            // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(3, 61);
@@ -73,13 +80,13 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "&Eliminar";
             // 
-            // btnEdit
+            // btnActions
             // 
-            this.btnEdit.Location = new System.Drawing.Point(3, 32);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 23);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "&Modificar";
+            this.btnActions.Location = new System.Drawing.Point(3, 90);
+            this.btnActions.Name = "btnActions";
+            this.btnActions.Size = new System.Drawing.Size(100, 23);
+            this.btnActions.TabIndex = 5;
+            this.btnActions.Text = "&Acciones";
             // 
             // btnClose
             // 
@@ -140,31 +147,12 @@
             this.Actions.Size = new System.Drawing.Size(301, 124);
             this.Actions.TabIndex = 6;
             // 
-            // btnActions
-            // 
-            this.btnActions.Location = new System.Drawing.Point(3, 90);
-            this.btnActions.Name = "btnActions";
-            this.btnActions.Size = new System.Drawing.Size(100, 23);
-            this.btnActions.TabIndex = 5;
-            this.btnActions.Text = "&Acciones";
-            // 
-            // btnSaveActions
-            // 
-            this.btnSaveActions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveActions.Location = new System.Drawing.Point(213, 325);
-            this.btnSaveActions.Name = "btnSaveActions";
-            this.btnSaveActions.Size = new System.Drawing.Size(100, 23);
-            this.btnSaveActions.TabIndex = 7;
-            this.btnSaveActions.Text = "&Guardar";
-            this.btnSaveActions.Visible = false;
-            // 
             // RolesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(445, 361);
-            this.Controls.Add(this.btnSaveActions);
             this.Controls.Add(this.Actions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -195,6 +183,5 @@
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.CheckedListBox Actions;
         private System.Windows.Forms.Button btnActions;
-        private System.Windows.Forms.Button btnSaveActions;
     }
 }

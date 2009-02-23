@@ -37,12 +37,9 @@ namespace Blackspot.Microgestion.Frontend
             };
             this.btnClose.Click += (s, e) => this.Close();
 
-            this.TxtName.TextChanged += (s, e) => Controller.SaveChanges();
-            this.TxtLastName.TextChanged += (s, e) => Controller.SaveChanges();
-            this.TxtUsername.TextChanged += (s, e) => Controller.SaveChanges();
-
             this.btnAdd.Click += (s, e) => Controller.AddNew();
             this.btnDelete.Click += (s, e) => Controller.Delete();
+            this.btnEdit.Click += (s, e) => Controller.Edit();
         }
 
         private void InitializeBindings()
@@ -56,14 +53,9 @@ namespace Blackspot.Microgestion.Frontend
 
             this.Grid.DataSource = Controller.Users;
 
-            this.btnAdd.DataBindings.Add(new Binding("Enabled", Controller, "AllowAdd"));
-            this.btnDelete.DataBindings.Add(new Binding("Enabled", Controller, "AllowDelete"));
-
-            this.pnlEdit.DataBindings.Add(new Binding("Enabled", Controller, "AllowModify"));
-
-            this.TxtName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Name"));
-            this.TxtLastName.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "LastName"));
-            this.TxtUsername.DataBindings.Add(new Binding("Text", this.Grid.DataSource, "Username"));
+            this.btnAdd.DataBindings.Add(new Binding("Visible", Controller, "AllowAdd"));
+            this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
+            this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
         }
     }
 }

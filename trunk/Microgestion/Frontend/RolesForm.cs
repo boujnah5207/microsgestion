@@ -40,7 +40,6 @@ namespace Blackspot.Microgestion.Frontend
             this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
             this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
             this.btnActions.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
-            //this.btnSaveActions.DataBindings.Add(new Binding("Enabled", Actions, "Enabled"));
             
         }
 
@@ -57,9 +56,6 @@ namespace Blackspot.Microgestion.Frontend
             this.btnAdd.Click += (s, e) => Controller.AddNew();
             this.btnDelete.Click += (s, e) => Controller.Delete();
             this.btnEdit.Click += (s, e) => Controller.Edit();
-
-            //this.btnActions.Click += (s, e) => { Actions.Enabled = true; };
-            //this.btnSaveActions.Click += (s, e) => { Actions.Enabled = false; Controller.SaveActions(); };
         }
     }
 }
