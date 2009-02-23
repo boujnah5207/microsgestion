@@ -36,10 +36,12 @@ namespace Blackspot.Microgestion.Frontend
 
             Grid.DataSource = Controller.Roles;
 
-            this.btnAdd.DataBindings.Add(new Binding("Enabled", Controller, "AllowAdd"));
-            this.btnDelete.DataBindings.Add(new Binding("Enabled", Controller, "AllowDelete"));
-            this.Grid.DataBindings.Add(new Binding("ReadOnly", Controller, "AllowModify"));
-
+            this.btnAdd.DataBindings.Add(new Binding("Visible", Controller, "AllowAdd"));
+            this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
+            this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
+            this.btnActions.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
+            //this.btnSaveActions.DataBindings.Add(new Binding("Enabled", Actions, "Enabled"));
+            
         }
 
         private void InitializeControlsHandlers()
@@ -54,8 +56,10 @@ namespace Blackspot.Microgestion.Frontend
 
             this.btnAdd.Click += (s, e) => Controller.AddNew();
             this.btnDelete.Click += (s, e) => Controller.Delete();
+            this.btnEdit.Click += (s, e) => Controller.Edit();
 
-            this.Grid.CellEndEdit += (s, e) => Controller.SaveChanges();
+            //this.btnActions.Click += (s, e) => { Actions.Enabled = true; };
+            //this.btnSaveActions.Click += (s, e) => { Actions.Enabled = false; Controller.SaveActions(); };
         }
     }
 }

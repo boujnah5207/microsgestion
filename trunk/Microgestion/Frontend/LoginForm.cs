@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using Blackspot.Microgestion.Frontend.Controllers;
 using Blackspot.Microgestion.Backend.Exceptions;
 

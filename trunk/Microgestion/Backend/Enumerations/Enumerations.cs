@@ -9,14 +9,14 @@ namespace Blackspot.Microgestion.Backend.Enumerations
     {
         Null = 0,
         Exit = 1,
-        AdminUsers = 2,
-        AddUser = 3,
-        DeleteUser = 4,
-        EditUser = 5,
-        AdminRoles = 6,
-        AddRole = 7,
-        DeleteRole = 8,
-        EditRole = 9,
+        UsersAdmin = 2,
+        UserAdd = 3,
+        UserDelete = 4,
+        UserEdit = 5,
+        RolesAdmin = 6,
+        RoleAdd = 7,
+        RoleDelete = 8,
+        RoleEdit = 9,
         ResetDB = 999
     }
 }

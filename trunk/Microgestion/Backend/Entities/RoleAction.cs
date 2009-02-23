@@ -6,7 +6,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class RoleAction
+    public partial class RoleAction : IIdentificableEntity
     {
         public SystemAction Action
         {

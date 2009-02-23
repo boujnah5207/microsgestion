@@ -27,6 +27,18 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             ServiceBase.SubmitChanges();
         }
 
+        internal virtual bool UserAccepts(string message, string title)
+        {
+            var result = MessageBox.Show(
+                message,
+                title,
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button3);
+
+            return result == DialogResult.Yes;
+        }
+
         #region INotifyPropertyChanged Members
 
         protected void OnPropertyChanged(string propertyName)

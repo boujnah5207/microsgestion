@@ -7,7 +7,7 @@
       <Column Name="Password" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
-      <Column Member="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="User_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="UserID" Type="UserRoles" />
     </Type>
   </Table>
@@ -26,15 +26,17 @@
     <Type Name="Role">
       <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
-      <Column Member="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="Role_RoleAction" Member="Actions" ThisKey="ID" OtherKey="RoleID" Type="RoleAction" />
       <Association Name="Role_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="RoleID" Type="UserRoles" />
     </Type>
   </Table>
   <Table Name="" Member="RoleActions">
     <Type Name="RoleAction">
-      <Column Name="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="Role_RoleAction" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>

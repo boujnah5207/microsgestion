@@ -66,27 +66,27 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 Form.FocusPassword();
                 return false;
             }
-            catch (MustConfirmPasswordException)
-            {
-                var confirm = new ConfirmPasswordForm();
-                var dr = confirm.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    if (pass.Equals(confirm.Password))
-                    {
-                        User u = UserService.GetUserByUsername(user);
-                        u.Password = pass;
-                        UserService.Update(u);
+            //catch (MustConfirmPasswordException)
+            //{
+            //    var confirm = new ConfirmPasswordForm();
+            //    var dr = confirm.ShowDialog();
+            //    if (dr == DialogResult.OK)
+            //    {
+            //        if (pass.Equals(confirm.Password))
+            //        {
+            //            User u = UserService.GetUserByUsername(user);
+            //            u.Password = pass;
+            //            UserService.Update(u);
 
-                        return UserService.ValidateUser(user, pass);
-                    }
-                }
+            //            return UserService.ValidateUser(user, pass);
+            //        }
+            //    }
 
-                Form.lblMessage.Text = "Contraseña invalida. Ingresar su nueva contraseña.";
-                Form.FocusPassword();
+            //    Form.lblMessage.Text = "Contraseña invalida. Ingresar su nueva contraseña.";
+            //    Form.FocusPassword();
 
-                return false;
-            }
+            //    return false;
+            //}
         }
 
         internal object CheckUser()

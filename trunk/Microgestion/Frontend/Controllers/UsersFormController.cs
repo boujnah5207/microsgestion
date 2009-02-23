@@ -25,14 +25,14 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             base.InitializeForm();
         }
 
-        public bool AllowAdd { get { return UserService.CanPerform(SystemAction.AddUser); } set { } }
-        public bool AllowDelete { get { return UserService.CanPerform(SystemAction.DeleteUser); } set { } }
+        public bool AllowAdd { get { return UserService.CanPerform(SystemAction.UserAdd); } set { } }
+        public bool AllowDelete { get { return UserService.CanPerform(SystemAction.UserDelete); } set { } }
         public bool AllowModify
         {
             get
             {
-                return UserService.CanPerform(SystemAction.EditUser) ||
-                       UserService.CanPerform(SystemAction.AddUser);
+                return UserService.CanPerform(SystemAction.UserEdit) ||
+                       UserService.CanPerform(SystemAction.UserAdd);
             }
             set { }
         }

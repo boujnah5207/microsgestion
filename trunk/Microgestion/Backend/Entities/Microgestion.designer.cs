@@ -724,6 +724,10 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private int _ActionID;
 		
+		private System.Guid _ID;
+		
+		private System.Data.Linq.Binary _Timestamp;
+		
 		private EntityRef<Role> _Role;
 		
     #region Extensibility Method Definitions
@@ -734,6 +738,10 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnRoleIDChanged();
     partial void OnActionIDChanging(int value);
     partial void OnActionIDChanged();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnTimestampChanging(System.Data.Linq.Binary value);
+    partial void OnTimestampChanged();
     #endregion
 		
 		public RoleAction()
@@ -742,7 +750,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			OnCreated();
 		}
 		
-		[Column(Storage="_RoleID", IsPrimaryKey=true)]
+		[Column(Storage="_RoleID", UpdateCheck=UpdateCheck.Never)]
 		public System.Guid RoleID
 		{
 			get
@@ -766,7 +774,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_ActionID", IsPrimaryKey=true)]
+		[Column(Storage="_ActionID", UpdateCheck=UpdateCheck.Never)]
 		private int ActionID
 		{
 			get
@@ -782,6 +790,46 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._ActionID = value;
 					this.SendPropertyChanged("ActionID");
 					this.OnActionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Timestamp", CanBeNull=false, IsDbGenerated=true, IsVersion=true)]
+		public System.Data.Linq.Binary Timestamp
+		{
+			get
+			{
+				return this._Timestamp;
+			}
+			set
+			{
+				if ((this._Timestamp != value))
+				{
+					this.OnTimestampChanging(value);
+					this.SendPropertyChanging();
+					this._Timestamp = value;
+					this.SendPropertyChanged("Timestamp");
+					this.OnTimestampChanged();
 				}
 			}
 		}

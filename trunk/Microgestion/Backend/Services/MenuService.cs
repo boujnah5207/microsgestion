@@ -31,8 +31,8 @@ namespace Blackspot.Microgestion.Backend.Services
                 Childs =
                 {
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ResetDB, Text = "&Resest DB", Order = 1 },
-                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminUsers, Text = "&Usuarios", Order = 2 },
-                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.AdminRoles, Text = "&Perfiles", Order = 3 }
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.UsersAdmin, Text = "&Usuarios", Order = 2 },
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.RolesAdmin, Text = "&Perfiles", Order = 3 }
                 }
             });
 

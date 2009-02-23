@@ -32,18 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v8.3, Version=8.3.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Support\DevExpress.Data.v8.3.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v8.3, Version=8.3.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Support\DevExpress.Utils.v8.3.dll</HintPath>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v8.3, Version=8.3.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Support\DevExpress.XtraEditors.v8.3.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -71,17 +59,17 @@
     <Compile Include="Controllers\RolesFormController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
-    <Compile Include="ConfirmPasswordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfirmPasswordForm.Designer.cs">
-      <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoleEditor.Designer.cs">
+      <DependentUpon>RoleEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="RolesForm.cs">
       <SubType>Form</SubType>
@@ -104,20 +92,19 @@
     <Compile Include="MenuDispatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConfirmPasswordForm.resx">
-      <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoleEditor.resx">
+      <DependentUpon>RoleEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>

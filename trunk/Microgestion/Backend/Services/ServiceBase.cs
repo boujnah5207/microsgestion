@@ -66,7 +66,24 @@ namespace Blackspot.Microgestion.Backend.Services
         public static void SaveAll(IEnumerable<T> collection)
         {
             DB.GetTable<T>().InsertAllOnSubmit(collection);
-            
+
+            SubmitChanges();
+        }
+
+        public static void Delete(T instance)
+        {
+            if (instance.ID == Guid.Empty)
+                return;
+
+            DB.GetTable<T>().DeleteOnSubmit(instance);
+
+            SubmitChanges();
+        }
+
+        public static void DeleteAll(IEnumerable<T> collection)
+        {
+            DB.GetTable<T>().DeleteAllOnSubmit(collection);
+
             SubmitChanges();
         }
 
@@ -78,14 +95,9 @@ namespace Blackspot.Microgestion.Backend.Services
             SubmitChanges();
         }
 
-        public static void Delete(T instance)
+        public static void Refresh(T instance, RefreshMode mode)
         {
-            if (instance.ID == Guid.Empty)
-                return;
-
-            DB.GetTable<T>().DeleteOnSubmit(instance);
-            
-            SubmitChanges();
+            DB.Refresh(mode, instance);
         }
 
     }

@@ -5,12 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using Blackspot.Microgestion.Frontend.Controllers;
 
 namespace Blackspot.Microgestion.Frontend
 {
-    public partial class MainForm : DevExpress.XtraEditors.XtraForm
+    public partial class MainForm : Form
     {
         public static MainForm Current { get; private set; }
 

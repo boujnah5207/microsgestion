@@ -34,11 +34,11 @@ namespace Blackspot.Microgestion.Frontend
                         DatabaseService.SetupDatabase();
                         MessageBox.Show("OK");
                     } break;
-                case SystemAction.AdminUsers:
+                case SystemAction.UsersAdmin:
                     {
                         MainForm.Current.ShowUsers();
                     } break;
-                case SystemAction.AdminRoles:
+                case SystemAction.RolesAdmin:
                     {
                         MainForm.Current.ShowRoles();
                     } break;
