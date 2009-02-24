@@ -53,6 +53,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleAction.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserRoles.cs" />
     <Compile Include="Enumerations\Enumerations.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Services\RoleActionService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

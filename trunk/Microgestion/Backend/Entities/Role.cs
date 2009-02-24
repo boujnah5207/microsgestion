@@ -29,5 +29,10 @@ namespace Blackspot.Microgestion.Backend.Entities
             RoleActionService.Delete(actionToRemove);
             this.Actions.Remove(actionToRemove);
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

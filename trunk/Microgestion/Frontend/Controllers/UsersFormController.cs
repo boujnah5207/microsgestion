@@ -42,15 +42,16 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         {
             User newUser = new User();
 
-            UserEditor editor = new UserEditor(newUser);
+            using (UserEditor editor = new UserEditor(newUser))
+            {
+                var result = editor.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
 
-            var result = editor.ShowDialog();
-            if (result == DialogResult.Cancel)
-                return;
-
-            Users.Add(newUser);
-            Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
-            UserService.Save(newUser);
+                Users.Add(newUser);
+                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
+                UserService.Save(newUser, editor.Roles);
+            }
         }
 
         internal void Delete()
@@ -79,19 +80,22 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             string userName = user.Name;
             string userLastName = user.LastName;
             string userUsername = user.Username;
+            string userPassword = user.Password;
 
-            UserEditor editor = new UserEditor(user);
-
-            var result = editor.ShowDialog(Form);
-            if (result == DialogResult.Cancel)
+            using (UserEditor editor = new UserEditor(user))
             {
-                user.Name = userName;
-                user.LastName = userLastName;
-                user.Username = userUsername;
-            }
-            else
-            {
-                UserService.Update(user);
+                var result = editor.ShowDialog(Form);
+                if (result == DialogResult.Cancel)
+                {
+                    user.Name = userName;
+                    user.LastName = userLastName;
+                    user.Username = userUsername;
+                    user.Password = userPassword;
+                }
+                else
+                {
+                    UserService.Update(user, editor.Roles);
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Enumerations;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Backend.Extensions;
+using System.Data.Linq;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
@@ -98,6 +99,8 @@ namespace Blackspot.Microgestion.Backend.Services
         {
             if (!action.RequireSecurity())
                 return true;
+            if (user.Equals(AdminUser))
+                return true;
 
             return user.UserRoles.Any
                 (
@@ -119,6 +122,67 @@ namespace Blackspot.Microgestion.Backend.Services
         public static User GetAdminUser()
         {
             return AdminUser;
+        }
+
+        public static IList<Role> GetRoles(User user)
+        {
+            return user.UserRoles
+                       .Select(u => u.Role)
+                       .ToList();
+        }
+
+        public static void Save(User user, IEnumerable<Role> roles)
+        {
+            if (user.ID != Guid.Empty)
+                Update(user, roles);
+
+            Save(user);
+
+            List<UserRoles> rolesToAdd =
+                roles
+                    .Where(r => !user.UserRoles.Any(ur => ur.Role.Equals(r)))
+                    .Select(r => new UserRoles()
+                    {
+                        UserID = user.ID,
+                        RoleID = r.ID
+                    })
+                    .ToList();
+
+
+            UserRoleService.SaveAll(rolesToAdd);
+            user.UserRoles.AddRange(rolesToAdd);
+
+            Update(user);
+        }
+
+        public static void Update(User user, IEnumerable<Role> roles)
+        {
+            if (user.ID == Guid.Empty)
+                Save(user, roles);
+
+            List<UserRoles> rolesToDelete = 
+                user.UserRoles
+                    .Where(ur => !roles.Contains(ur.Role))
+                    .ToList();
+
+            List<UserRoles> rolesToAdd = 
+                roles
+                    .Where(r => !user.UserRoles.Any(ur => ur.Role.Equals(r)))
+                    .Select(r => new UserRoles()
+                        { 
+                            UserID = user.ID, RoleID = r.ID 
+                        })
+                    .ToList();
+
+
+            UserRoleService.DeleteAll(rolesToDelete);
+            UserRoleService.SaveAll(rolesToAdd);
+
+            user.UserRoles.AddRange(rolesToAdd);
+            foreach (var r in rolesToDelete)
+                user.UserRoles.Remove(r);
+            Update(user);
+            return;
         }
     }
 }

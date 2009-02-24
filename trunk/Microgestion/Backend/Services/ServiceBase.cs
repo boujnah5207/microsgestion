@@ -99,6 +99,10 @@ namespace Blackspot.Microgestion.Backend.Services
         {
             DB.Refresh(mode, instance);
         }
+        public static void Refresh(IEnumerable<T> instance, RefreshMode mode)
+        {
+            DB.Refresh(mode, instance);
+        }
 
     }
 }

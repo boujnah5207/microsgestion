@@ -42,8 +42,10 @@
   </Table>
   <Table Name="" Member="UserRoles">
     <Type Name="UserRoles">
-      <Column Name="UserID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoleID" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
       <Association Name="User_UserRoles" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
       <Association Name="Role_UserRoles" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
     </Type>
