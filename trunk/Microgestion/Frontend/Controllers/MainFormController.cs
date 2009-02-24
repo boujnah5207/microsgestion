@@ -23,8 +23,8 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            //LogUser();
-            UserService.LoggedInUser = UserService.GetAdminUser();
+            LogUser();
+            //UserService.LoggedInUser = UserService.GetAdminUser();
 
             ShowUserInfo();
 
@@ -39,8 +39,9 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             User user = UserService.LoggedInUser;
 
             var items = roots.CreateMenuItems();
+            items.RemoveEmptyItems();
 
-            this.Form.MainMenuStrip.Items.AddRange(items);
+            this.Form.MainMenuStrip.Items.AddRange(items.ToArray());
         }
 
         private void ShowUserInfo()

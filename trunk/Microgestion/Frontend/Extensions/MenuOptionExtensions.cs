@@ -11,7 +11,7 @@ namespace Blackspot.Microgestion.Frontend.Extensions
 {
     public static class MenuOptionExtensions
     {
-        public static ToolStripMenuItem[] CreateMenuItems(this IEnumerable<MenuOption> options)
+        public static List<ToolStripMenuItem> CreateMenuItems(this IEnumerable<MenuOption> options)
         {
             User user = UserService.LoggedInUser;
 
@@ -20,7 +20,7 @@ namespace Blackspot.Microgestion.Frontend.Extensions
                     from opt in options
                     where UserService.CanPerform(user, opt.Action)
                     select opt.CreateMenuItem()
-                ).ToArray();
+                ).ToList();
 
             return items;
         }

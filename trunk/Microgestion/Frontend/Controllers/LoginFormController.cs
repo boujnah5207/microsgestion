@@ -32,7 +32,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         internal override void InitializeForm()
         {
             Form.Username = UserService.LoggedInUser.Name;
-            Form.Password = UserService.LoggedInUser.Password;
 
             base.InitializeForm();
         }
@@ -44,14 +43,14 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
             if (String.IsNullOrEmpty(user))
             {
-                Form.lblMessage.Text = "Ingrese su nombre de usuario.";
+                Form.SetStatusMessage("Ingrese su nombre de usuario.", true);
 
                 Form.FocusUsername();
                 return false;
             }
             else if (String.IsNullOrEmpty(pass))
             {
-                Form.lblMessage.Text = "Ingrese su contraseña.";
+                Form.SetStatusMessage("Ingrese su contraseña.", true);
                 Form.FocusPassword(); 
                 return false;
             }
@@ -62,8 +61,14 @@ namespace Blackspot.Microgestion.Frontend.Controllers
             }
             catch (InvalidPasswordException ex)
             {
-                Form.lblMessage.Text = ex.Message;
+                Form.SetStatusMessage(ex.Message, true);
                 Form.FocusPassword();
+                return false;
+            }
+            catch (UserNotFoundException ex)
+            {
+                Form.SetStatusMessage(ex.Message, true);
+                Form.FocusUsername();
                 return false;
             }
             catch (MustConfirmPasswordException)
@@ -82,7 +87,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                     }
                 }
 
-                Form.lblMessage.Text = "Contraseña invalida. Ingresar su nueva contraseña.";
+                Form.SetStatusMessage("Contraseña invalida. Ingresar su nueva contraseña.", true);
                 Form.FocusPassword();
 
                 return false;
@@ -97,7 +102,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 return false;
             }
             UserExists = true;
-            Form.lblMessage.Text = "Ingrese su contraseña";
+            Form.SetStatusMessage("Ingrese su contraseña");
             return true;
         }
     }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Controllers;
 using Blackspot.Microgestion.Backend.Exceptions;
+using Blackspot.Microgestion.Backend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend
 {
@@ -46,14 +47,19 @@ namespace Blackspot.Microgestion.Frontend
         {
             get
             {
-                return this.txtPassword.Text;
-            }
-            set
-            {
-                this.txtPassword.Text = value;
+                return this.txtPassword.Text.GetMD5Hash();
             }
         }
 
+        public void SetStatusMessage(string message)
+        {
+            SetStatusMessage(message, false);
+        }
+        public void SetStatusMessage(string message, bool redMessage)
+        {
+            this.lblMessage.ForeColor = redMessage ? Color.Red : Color.Black;
+            this.lblMessage.Text = message;
+        }
 
         internal void FocusUsername()
         {

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Blackspot.Microgestion.Backend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend
 {
@@ -20,11 +21,7 @@ namespace Blackspot.Microgestion.Frontend
         {
             get
             {
-                return this.txtPassword.Text;
-            }
-            set
-            {
-                this.txtPassword.Text = value;
+                return this.txtPassword.Text.GetMD5Hash();
             }
         }
     }

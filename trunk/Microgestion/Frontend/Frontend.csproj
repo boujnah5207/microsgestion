@@ -65,6 +65,7 @@
     <Compile Include="Controllers\RolesFormController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
+    <Compile Include="Extensions\ToolStripItemExtensions.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -150,6 +150,6 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        internal System.Windows.Forms.ToolStripStatusLabel lblMessage;
+        private System.Windows.Forms.ToolStripStatusLabel lblMessage;
     }
 }

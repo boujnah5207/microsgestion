@@ -5,6 +5,7 @@ using System.Text;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Enumerations;
 using Blackspot.Microgestion.Backend.Exceptions;
+using Blackspot.Microgestion.Backend.Extensions;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
@@ -66,18 +67,20 @@ namespace Blackspot.Microgestion.Backend.Services
         public static bool ValidateUser(string username, string password)
         {
             //Check if it is the admin user
-            if (AdministratorUsername == username &&
-                AdministratorPassword == password)
+            if (AdministratorUsername == username)
             {
+                if (AdministratorPassword.GetMD5Hash() != password)
+                    throw new InvalidPasswordException();
+
                 LoggedInUser = AdminUser;
                 return true;
             }
 
             User user = GetUserByUsername(username);
             if (user == null)
-                return false;
-            //else if (String.IsNullOrEmpty(user.Password))
-            //    throw new MustConfirmPasswordException();
+                throw new UserNotFoundException();
+            else if (String.IsNullOrEmpty(user.Password))
+                throw new MustConfirmPasswordException();
             else if (!user.Password.Equals(password))
                 throw new InvalidPasswordException();
             else
@@ -93,9 +96,7 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static bool CanPerform(User user, SystemAction action)
         {
-            if (action == SystemAction.Null)
-                return true;
-            if (user.ID == AdministratorGuid)
+            if (!action.RequireSecurity())
                 return true;
 
             return user.UserRoles.Any
