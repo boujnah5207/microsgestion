@@ -6,18 +6,17 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class MenuOption : IIdentificableEntity
+    public class MenuOption : IIdentificableEntity
     {
-        public SystemAction Action
+        private List<MenuOption> childs = new List<MenuOption>();
+
+        public Guid ID { get; set; }
+        public SystemAction Action { get; set; }
+        public List<MenuOption> Childs 
         {
-            get
-            {
-                return (SystemAction)Enum.Parse(typeof(SystemAction), this.ActionID.ToString());
-            }
-            set
-            {
-                this.ActionID = (int)value;
-            }
+            get { return this.childs; }
         }
+        public String Text { get; set; }
+        public Int32 Order { get; set; }
     }
 }

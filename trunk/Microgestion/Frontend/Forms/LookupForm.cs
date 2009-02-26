@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Entities;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class LookupForm<T> : Form
         where T : class, IIdentificableEntity

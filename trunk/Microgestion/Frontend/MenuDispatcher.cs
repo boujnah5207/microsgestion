@@ -5,6 +5,7 @@ using System.Text;
 using Blackspot.Microgestion.Backend.Enumerations;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Frontend.Forms;
 
 namespace Blackspot.Microgestion.Frontend
 {
@@ -41,6 +42,10 @@ namespace Blackspot.Microgestion.Frontend
                 case SystemAction.RolesAdmin:
                     {
                         MainForm.Current.ShowRoles();
+                    } break;
+                case SystemAction.MeasurementsAdmin:
+                    {
+                        MainForm.Current.ShowMeasurements();
                     } break;
                 default:
                     return;

@@ -7,11 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Controllers;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class MainForm : Form
     {
         public static MainForm Current { get; private set; }
+
+        #region MDI Childs
 
         private UsersForm usersForm;
         private UsersForm UsersForm
@@ -19,10 +21,8 @@ namespace Blackspot.Microgestion.Frontend
             get
             {
                 if (usersForm == null)
-                {
-                    usersForm = new UsersForm();
-                    usersForm.MdiParent = this;
-                }
+                    usersForm = new UsersForm() { MdiParent = this };
+
                 return usersForm;
             }
         }
@@ -32,13 +32,24 @@ namespace Blackspot.Microgestion.Frontend
             get
             {
                 if (rolesForm == null)
-                {
-                    rolesForm = new RolesForm();
-                    rolesForm.MdiParent = this;
-                }
+                    rolesForm = new RolesForm() { MdiParent = this };
+
                 return rolesForm;
             }
         }
+        private MeasurementsForm measurementsForm;
+        private MeasurementsForm MeasurementsForm
+        {
+            get
+            {
+                if (measurementsForm == null)
+                    measurementsForm = new MeasurementsForm() { MdiParent = this };
+
+                return measurementsForm;
+            }
+        }
+        
+        #endregion
 
         public MainForm()
         {
@@ -87,6 +98,11 @@ namespace Blackspot.Microgestion.Frontend
         internal void ShowRoles()
         {
             this.RolesForm.Show();
+        }
+
+        internal void ShowMeasurements()
+        {
+            this.MeasurementsForm.Show();
         }
     }
 }

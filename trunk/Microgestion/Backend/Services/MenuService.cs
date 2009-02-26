@@ -7,10 +7,11 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Services
 {
-    public class MenuService : ServiceBase<MenuOption>
+    //public class MenuService : ServiceBase<MenuOption>
+    public class MenuService
     {
 
-        internal static void CreateMenu()
+        public static List<MenuOption> GetMenuOptions()
         {
             List<MenuOption> options = new List<MenuOption>();
 
@@ -32,19 +33,12 @@ namespace Blackspot.Microgestion.Backend.Services
                 {
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ResetDB, Text = "&Resest DB", Order = 1 },
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.UsersAdmin, Text = "&Usuarios", Order = 2 },
-                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.RolesAdmin, Text = "&Perfiles", Order = 3 }
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.RolesAdmin, Text = "&Perfiles", Order = 3 },
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.MeasurementsAdmin, Text = "U&nidades de Medida", Order = 4 }
                 }
             });
 
-            SaveAll(options);
-        }
-
-        public static List<MenuOption> GetRoots()
-        {
-            return (from m in DB.MenuOptions
-                    where m.Parent == null
-                    orderby m.Order ascending
-                    select m).ToList();
+            return options;
         }
 
     }

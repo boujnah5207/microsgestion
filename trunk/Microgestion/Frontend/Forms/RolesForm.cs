@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Controllers;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class RolesForm : Form
     {
@@ -48,8 +48,8 @@ namespace Blackspot.Microgestion.Frontend
 
             this.FormClosing += (s, e) =>
             {
-                ((Form)s).Hide(); ((FormClosingEventArgs)e).Cancel = true;
-                Controller.SaveChanges();
+                ((Form)s).Hide(); 
+                ((FormClosingEventArgs)e).Cancel = true;
             };
             this.btnClose.Click += (s, e) => this.Close();
 

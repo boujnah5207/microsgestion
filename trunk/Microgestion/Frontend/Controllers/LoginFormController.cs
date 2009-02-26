@@ -6,6 +6,7 @@ using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Entities;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Exceptions;
+using Blackspot.Microgestion.Frontend.Forms;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {

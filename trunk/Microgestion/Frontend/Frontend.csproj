@@ -53,10 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfirmPasswordForm.cs">
+    <Compile Include="Controllers\MeasurementsFormController.cs" />
+    <Compile Include="Forms\ConfirmPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfirmPasswordForm.Designer.cs">
+    <Compile Include="Forms\ConfirmPasswordForm.Designer.cs">
       <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ControllerBase.cs" />
@@ -66,78 +67,87 @@
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
     <Compile Include="Extensions\ToolStripItemExtensions.cs" />
-    <Compile Include="LoginForm.cs">
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LookupForm.cs">
+    <Compile Include="Forms\LookupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LookupForm.Designer.cs">
+    <Compile Include="Forms\LookupForm.Designer.cs">
       <DependentUpon>LookupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="RoleEditor.cs">
+    <Compile Include="Forms\MeasurementsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RoleEditor.Designer.cs">
+    <Compile Include="Forms\MeasurementsForm.Designer.cs">
+      <DependentUpon>MeasurementsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RoleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RoleEditor.Designer.cs">
       <DependentUpon>RoleEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="RolesForm.cs">
+    <Compile Include="Forms\RolesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RolesForm.Designer.cs">
+    <Compile Include="Forms\RolesForm.Designer.cs">
       <DependentUpon>RolesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserEditor.cs">
+    <Compile Include="Forms\UserEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserEditor.Designer.cs">
+    <Compile Include="Forms\UserEditor.Designer.cs">
       <DependentUpon>UserEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsersForm.cs">
+    <Compile Include="Forms\UsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsersForm.Designer.cs">
+    <Compile Include="Forms\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuDispatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConfirmPasswordForm.resx">
+    <EmbeddedResource Include="Forms\ConfirmPasswordForm.resx">
       <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LookupForm.resx">
+    <EmbeddedResource Include="Forms\LookupForm.resx">
       <DependentUpon>LookupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MeasurementsForm.resx">
+      <DependentUpon>MeasurementsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RoleEditor.resx">
+    <EmbeddedResource Include="Forms\RoleEditor.resx">
       <DependentUpon>RoleEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RolesForm.resx">
+    <EmbeddedResource Include="Forms\RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserEditor.resx">
+    <EmbeddedResource Include="Forms\UserEditor.resx">
       <DependentUpon>UserEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsersForm.resx">
+    <EmbeddedResource Include="Forms\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">

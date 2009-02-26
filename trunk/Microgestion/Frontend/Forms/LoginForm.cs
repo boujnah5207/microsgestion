@@ -9,7 +9,7 @@ using Blackspot.Microgestion.Frontend.Controllers;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Backend.Extensions;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class LoginForm : Form
     {

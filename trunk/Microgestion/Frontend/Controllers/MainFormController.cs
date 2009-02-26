@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Frontend.Extensions;
+using Blackspot.Microgestion.Frontend.Forms;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -24,7 +25,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         internal override void InitializeForm()
         {
             LogUser();
-            //UserService.LoggedInUser = UserService.GetAdminUser();
 
             ShowUserInfo();
 
@@ -35,7 +35,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         private void BuildMenu()
         {
-            IEnumerable<MenuOption> roots = MenuService.GetRoots();
+            IEnumerable<MenuOption> roots = MenuService.GetMenuOptions();
             User user = UserService.LoggedInUser;
 
             var items = roots.CreateMenuItems();

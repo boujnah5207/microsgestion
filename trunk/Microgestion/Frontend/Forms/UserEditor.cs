@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Services;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class UserEditor : Form
     {

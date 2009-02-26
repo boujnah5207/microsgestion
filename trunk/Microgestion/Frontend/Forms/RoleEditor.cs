@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     public partial class RoleEditor : Form
     {

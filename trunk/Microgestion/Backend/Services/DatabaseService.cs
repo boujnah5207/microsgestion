@@ -20,9 +20,6 @@ namespace Blackspot.Microgestion.Backend.Services
                 dataContext = null; // force to create a new instance
 
                 DB.CreateDatabase();
-
-                // Create MenuOptions
-                MenuService.CreateMenu();
             }
             catch (Exception ex)
             {

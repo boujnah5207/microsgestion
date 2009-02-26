@@ -49,9 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\IIdentificableEntity.cs" />
+    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\Measurement.cs" />
     <Compile Include="Entities\MenuOption.cs" />
+    <Compile Include="Entities\Price.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\RoleAction.cs" />
+    <Compile Include="Entities\Sale.cs" />
+    <Compile Include="Entities\SaleDetail.cs" />
+    <Compile Include="Entities\StockMovement.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRoles.cs" />
     <Compile Include="Enumerations\Enumerations.cs" />

@@ -7,6 +7,7 @@ using Blackspot.Microgestion.Backend.Services;
 using System.Windows.Forms;
 using System.ComponentModel;
 using Blackspot.Microgestion.Backend.Enumerations;
+using Blackspot.Microgestion.Frontend.Forms;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {

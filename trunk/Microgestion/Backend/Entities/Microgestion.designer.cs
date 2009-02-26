@@ -32,9 +32,6 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertMenuOption(MenuOption instance);
-    partial void UpdateMenuOption(MenuOption instance);
-    partial void DeleteMenuOption(MenuOption instance);
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
@@ -44,6 +41,27 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void InsertUserRoles(UserRoles instance);
     partial void UpdateUserRoles(UserRoles instance);
     partial void DeleteUserRoles(UserRoles instance);
+    partial void InsertItem(Item instance);
+    partial void UpdateItem(Item instance);
+    partial void DeleteItem(Item instance);
+    partial void InsertMeasurement(Measurement instance);
+    partial void UpdateMeasurement(Measurement instance);
+    partial void DeleteMeasurement(Measurement instance);
+    partial void InsertMeasurementConversion(MeasurementConversion instance);
+    partial void UpdateMeasurementConversion(MeasurementConversion instance);
+    partial void DeleteMeasurementConversion(MeasurementConversion instance);
+    partial void InsertStockMovement(StockMovement instance);
+    partial void UpdateStockMovement(StockMovement instance);
+    partial void DeleteStockMovement(StockMovement instance);
+    partial void InsertSale(Sale instance);
+    partial void UpdateSale(Sale instance);
+    partial void DeleteSale(Sale instance);
+    partial void InsertSaleDetail(SaleDetail instance);
+    partial void UpdateSaleDetail(SaleDetail instance);
+    partial void DeleteSaleDetail(SaleDetail instance);
+    partial void InsertPrice(Price instance);
+    partial void UpdatePrice(Price instance);
+    partial void DeletePrice(Price instance);
     #endregion
 		
 		public MicrogestionDataContext(string connection) : 
@@ -78,14 +96,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		public System.Data.Linq.Table<MenuOption> MenuOptions
-		{
-			get
-			{
-				return this.GetTable<MenuOption>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Role> Roles
 		{
 			get
@@ -107,6 +117,62 @@ namespace Blackspot.Microgestion.Backend.Entities
 			get
 			{
 				return this.GetTable<UserRoles>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Item> Items
+		{
+			get
+			{
+				return this.GetTable<Item>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Measurement> Measurements
+		{
+			get
+			{
+				return this.GetTable<Measurement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MeasurementConversion> MeasurementConversions
+		{
+			get
+			{
+				return this.GetTable<MeasurementConversion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StockMovement> StockMovements
+		{
+			get
+			{
+				return this.GetTable<StockMovement>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Sale> Sales
+		{
+			get
+			{
+				return this.GetTable<Sale>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SaleDetail> SaleDetails
+		{
+			get
+			{
+				return this.GetTable<SaleDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Price> Prices
+		{
+			get
+			{
+				return this.GetTable<Price>();
 			}
 		}
 	}
@@ -318,233 +384,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
-		}
-	}
-	
-	[Table(Name="")]
-	public partial class MenuOption : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID;
-		
-		private System.Nullable<System.Guid> _ParentID;
-		
-		private string _Text;
-		
-		private int _ActionID;
-		
-		private int _Order;
-		
-		private EntitySet<MenuOption> _Childs;
-		
-		private EntityRef<MenuOption> _Parent;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(System.Guid value);
-    partial void OnIDChanged();
-    partial void OnParentIDChanging(System.Nullable<System.Guid> value);
-    partial void OnParentIDChanged();
-    partial void OnTextChanging(string value);
-    partial void OnTextChanged();
-    partial void OnActionIDChanging(int value);
-    partial void OnActionIDChanged();
-    partial void OnOrderChanging(int value);
-    partial void OnOrderChanged();
-    #endregion
-		
-		public MenuOption()
-		{
-			this._Childs = new EntitySet<MenuOption>(new Action<MenuOption>(this.attach_Childs), new Action<MenuOption>(this.detach_Childs));
-			this._Parent = default(EntityRef<MenuOption>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ParentID")]
-		public System.Nullable<System.Guid> ParentID
-		{
-			get
-			{
-				return this._ParentID;
-			}
-			set
-			{
-				if ((this._ParentID != value))
-				{
-					if (this._Parent.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentIDChanging(value);
-					this.SendPropertyChanging();
-					this._ParentID = value;
-					this.SendPropertyChanged("ParentID");
-					this.OnParentIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Text", DbType="nvarchar(20)", CanBeNull=false)]
-		public string Text
-		{
-			get
-			{
-				return this._Text;
-			}
-			set
-			{
-				if ((this._Text != value))
-				{
-					this.OnTextChanging(value);
-					this.SendPropertyChanging();
-					this._Text = value;
-					this.SendPropertyChanged("Text");
-					this.OnTextChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ActionID")]
-		private int ActionID
-		{
-			get
-			{
-				return this._ActionID;
-			}
-			set
-			{
-				if ((this._ActionID != value))
-				{
-					this.OnActionIDChanging(value);
-					this.SendPropertyChanging();
-					this._ActionID = value;
-					this.SendPropertyChanged("ActionID");
-					this.OnActionIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Order")]
-		public int Order
-		{
-			get
-			{
-				return this._Order;
-			}
-			set
-			{
-				if ((this._Order != value))
-				{
-					this.OnOrderChanging(value);
-					this.SendPropertyChanging();
-					this._Order = value;
-					this.SendPropertyChanged("Order");
-					this.OnOrderChanged();
-				}
-			}
-		}
-		
-		[Association(Name="MenuOption_MenuOption", Storage="_Childs", ThisKey="ID", OtherKey="ParentID")]
-		public EntitySet<MenuOption> Childs
-		{
-			get
-			{
-				return this._Childs;
-			}
-			set
-			{
-				this._Childs.Assign(value);
-			}
-		}
-		
-		[Association(Name="MenuOption_MenuOption", Storage="_Parent", ThisKey="ParentID", OtherKey="ID", IsForeignKey=true)]
-		public MenuOption Parent
-		{
-			get
-			{
-				return this._Parent.Entity;
-			}
-			set
-			{
-				MenuOption previousValue = this._Parent.Entity;
-				if (((previousValue != value) 
-							|| (this._Parent.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Parent.Entity = null;
-						previousValue.Childs.Remove(this);
-					}
-					this._Parent.Entity = value;
-					if ((value != null))
-					{
-						value.Childs.Add(this);
-						this._ParentID = value.ID;
-					}
-					else
-					{
-						this._ParentID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("Parent");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Childs(MenuOption entity)
-		{
-			this.SendPropertyChanging();
-			entity.Parent = this;
-		}
-		
-		private void detach_Childs(MenuOption entity)
-		{
-			this.SendPropertyChanging();
-			entity.Parent = null;
 		}
 	}
 	
@@ -1102,6 +941,1746 @@ namespace Blackspot.Microgestion.Backend.Entities
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class Item : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private string _InternalCode;
+		
+		private string _ExternalCode;
+		
+		private string _Name;
+		
+		private System.Guid _BaseMeasurement;
+		
+		private double _DefaultSalesAmount;
+		
+		private bool _MovesStock;
+		
+		private double _ActualStock;
+		
+		private double _MinimumStock;
+		
+		private EntitySet<StockMovement> _StockMovements;
+		
+		private EntitySet<Price> _Prices;
+		
+		private EntityRef<Measurement> _Measurement;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnInternalCodeChanging(string value);
+    partial void OnInternalCodeChanged();
+    partial void OnExternalCodeChanging(string value);
+    partial void OnExternalCodeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnBaseMeasurementChanging(System.Guid value);
+    partial void OnBaseMeasurementChanged();
+    partial void OnDefaultSalesAmountChanging(double value);
+    partial void OnDefaultSalesAmountChanged();
+    partial void OnMovesStockChanging(bool value);
+    partial void OnMovesStockChanged();
+    partial void OnActualStockChanging(double value);
+    partial void OnActualStockChanged();
+    partial void OnMinimumStockChanging(double value);
+    partial void OnMinimumStockChanged();
+    #endregion
+		
+		public Item()
+		{
+			this._StockMovements = new EntitySet<StockMovement>(new Action<StockMovement>(this.attach_StockMovements), new Action<StockMovement>(this.detach_StockMovements));
+			this._Prices = new EntitySet<Price>(new Action<Price>(this.attach_Prices), new Action<Price>(this.detach_Prices));
+			this._Measurement = default(EntityRef<Measurement>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InternalCode", CanBeNull=false)]
+		public string InternalCode
+		{
+			get
+			{
+				return this._InternalCode;
+			}
+			set
+			{
+				if ((this._InternalCode != value))
+				{
+					this.OnInternalCodeChanging(value);
+					this.SendPropertyChanging();
+					this._InternalCode = value;
+					this.SendPropertyChanged("InternalCode");
+					this.OnInternalCodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExternalCode", CanBeNull=false)]
+		public string ExternalCode
+		{
+			get
+			{
+				return this._ExternalCode;
+			}
+			set
+			{
+				if ((this._ExternalCode != value))
+				{
+					this.OnExternalCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ExternalCode = value;
+					this.SendPropertyChanged("ExternalCode");
+					this.OnExternalCodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BaseMeasurement")]
+		public System.Guid BaseMeasurement
+		{
+			get
+			{
+				return this._BaseMeasurement;
+			}
+			set
+			{
+				if ((this._BaseMeasurement != value))
+				{
+					if (this._Measurement.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBaseMeasurementChanging(value);
+					this.SendPropertyChanging();
+					this._BaseMeasurement = value;
+					this.SendPropertyChanged("BaseMeasurement");
+					this.OnBaseMeasurementChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DefaultSalesAmount")]
+		public double DefaultSalesAmount
+		{
+			get
+			{
+				return this._DefaultSalesAmount;
+			}
+			set
+			{
+				if ((this._DefaultSalesAmount != value))
+				{
+					this.OnDefaultSalesAmountChanging(value);
+					this.SendPropertyChanging();
+					this._DefaultSalesAmount = value;
+					this.SendPropertyChanged("DefaultSalesAmount");
+					this.OnDefaultSalesAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MovesStock")]
+		public bool MovesStock
+		{
+			get
+			{
+				return this._MovesStock;
+			}
+			set
+			{
+				if ((this._MovesStock != value))
+				{
+					this.OnMovesStockChanging(value);
+					this.SendPropertyChanging();
+					this._MovesStock = value;
+					this.SendPropertyChanged("MovesStock");
+					this.OnMovesStockChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ActualStock")]
+		public double ActualStock
+		{
+			get
+			{
+				return this._ActualStock;
+			}
+			set
+			{
+				if ((this._ActualStock != value))
+				{
+					this.OnActualStockChanging(value);
+					this.SendPropertyChanging();
+					this._ActualStock = value;
+					this.SendPropertyChanged("ActualStock");
+					this.OnActualStockChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MinimumStock")]
+		public double MinimumStock
+		{
+			get
+			{
+				return this._MinimumStock;
+			}
+			set
+			{
+				if ((this._MinimumStock != value))
+				{
+					this.OnMinimumStockChanging(value);
+					this.SendPropertyChanging();
+					this._MinimumStock = value;
+					this.SendPropertyChanged("MinimumStock");
+					this.OnMinimumStockChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Item_StockMovement", Storage="_StockMovements", ThisKey="ID", OtherKey="ItemID")]
+		public EntitySet<StockMovement> StockMovements
+		{
+			get
+			{
+				return this._StockMovements;
+			}
+			set
+			{
+				this._StockMovements.Assign(value);
+			}
+		}
+		
+		[Association(Name="Item_Price", Storage="_Prices", ThisKey="ID", OtherKey="ItemID")]
+		public EntitySet<Price> Prices
+		{
+			get
+			{
+				return this._Prices;
+			}
+			set
+			{
+				this._Prices.Assign(value);
+			}
+		}
+		
+		[Association(Name="Measurement_Item", Storage="_Measurement", ThisKey="BaseMeasurement", OtherKey="ID", IsForeignKey=true)]
+		public Measurement Measurement
+		{
+			get
+			{
+				return this._Measurement.Entity;
+			}
+			set
+			{
+				if ((this._Measurement.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._Measurement.Entity = value;
+					this.SendPropertyChanged("Measurement");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StockMovements(StockMovement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = this;
+		}
+		
+		private void detach_StockMovements(StockMovement entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = null;
+		}
+		
+		private void attach_Prices(Price entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = this;
+		}
+		
+		private void detach_Prices(Price entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = null;
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class Measurement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private string _Name;
+		
+		private string _Abbreviation;
+		
+		private EntitySet<MeasurementConversion> _Conversions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAbbreviationChanging(string value);
+    partial void OnAbbreviationChanged();
+    #endregion
+		
+		public Measurement()
+		{
+			this._Conversions = new EntitySet<MeasurementConversion>(new Action<MeasurementConversion>(this.attach_Conversions), new Action<MeasurementConversion>(this.detach_Conversions));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="nvarchar(50)", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Abbreviation", DbType="nvarchar(10)", CanBeNull=false)]
+		public string Abbreviation
+		{
+			get
+			{
+				return this._Abbreviation;
+			}
+			set
+			{
+				if ((this._Abbreviation != value))
+				{
+					this.OnAbbreviationChanging(value);
+					this.SendPropertyChanging();
+					this._Abbreviation = value;
+					this.SendPropertyChanged("Abbreviation");
+					this.OnAbbreviationChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Measurement_MeasurementConversion", Storage="_Conversions", ThisKey="ID", OtherKey="BaseId")]
+		public EntitySet<MeasurementConversion> Conversions
+		{
+			get
+			{
+				return this._Conversions;
+			}
+			set
+			{
+				this._Conversions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Conversions(MeasurementConversion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Base = this;
+		}
+		
+		private void detach_Conversions(MeasurementConversion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Base = null;
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class MeasurementConversion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.Guid _BaseId;
+		
+		private System.Guid _ConvertedId;
+		
+		private double _BaseValue;
+		
+		private double _ConvertedValue;
+		
+		private EntityRef<Measurement> _Base;
+		
+		private EntityRef<Measurement> _Converted;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnBaseIdChanging(System.Guid value);
+    partial void OnBaseIdChanged();
+    partial void OnConvertedIdChanging(System.Guid value);
+    partial void OnConvertedIdChanged();
+    partial void OnBaseValueChanging(double value);
+    partial void OnBaseValueChanged();
+    partial void OnConvertedValueChanging(double value);
+    partial void OnConvertedValueChanged();
+    #endregion
+		
+		public MeasurementConversion()
+		{
+			this._Base = default(EntityRef<Measurement>);
+			this._Converted = default(EntityRef<Measurement>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BaseId")]
+		public System.Guid BaseId
+		{
+			get
+			{
+				return this._BaseId;
+			}
+			set
+			{
+				if ((this._BaseId != value))
+				{
+					if (this._Base.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBaseIdChanging(value);
+					this.SendPropertyChanging();
+					this._BaseId = value;
+					this.SendPropertyChanged("BaseId");
+					this.OnBaseIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ConvertedId")]
+		public System.Guid ConvertedId
+		{
+			get
+			{
+				return this._ConvertedId;
+			}
+			set
+			{
+				if ((this._ConvertedId != value))
+				{
+					if (this._Converted.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnConvertedIdChanging(value);
+					this.SendPropertyChanging();
+					this._ConvertedId = value;
+					this.SendPropertyChanged("ConvertedId");
+					this.OnConvertedIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BaseValue")]
+		public double BaseValue
+		{
+			get
+			{
+				return this._BaseValue;
+			}
+			set
+			{
+				if ((this._BaseValue != value))
+				{
+					this.OnBaseValueChanging(value);
+					this.SendPropertyChanging();
+					this._BaseValue = value;
+					this.SendPropertyChanged("BaseValue");
+					this.OnBaseValueChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ConvertedValue")]
+		public double ConvertedValue
+		{
+			get
+			{
+				return this._ConvertedValue;
+			}
+			set
+			{
+				if ((this._ConvertedValue != value))
+				{
+					this.OnConvertedValueChanging(value);
+					this.SendPropertyChanging();
+					this._ConvertedValue = value;
+					this.SendPropertyChanged("ConvertedValue");
+					this.OnConvertedValueChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Measurement_MeasurementConversion", Storage="_Base", ThisKey="BaseId", OtherKey="ID", IsForeignKey=true)]
+		public Measurement Base
+		{
+			get
+			{
+				return this._Base.Entity;
+			}
+			set
+			{
+				Measurement previousValue = this._Base.Entity;
+				if (((previousValue != value) 
+							|| (this._Base.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Base.Entity = null;
+						previousValue.Conversions.Remove(this);
+					}
+					this._Base.Entity = value;
+					if ((value != null))
+					{
+						value.Conversions.Add(this);
+						this._BaseId = value.ID;
+					}
+					else
+					{
+						this._BaseId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Base");
+				}
+			}
+		}
+		
+		[Association(Name="Measurement_MeasurementConversion1", Storage="_Converted", ThisKey="ConvertedId", OtherKey="ID", IsForeignKey=true)]
+		public Measurement Converted
+		{
+			get
+			{
+				return this._Converted.Entity;
+			}
+			set
+			{
+				if ((this._Converted.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._Converted.Entity = value;
+					this.SendPropertyChanged("Converted");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class StockMovement : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.DateTime _Date;
+		
+		private double _OldStock;
+		
+		private double _NewStock;
+		
+		private double _Amount;
+		
+		private System.Guid _UserID;
+		
+		private string _Comment;
+		
+		private System.Nullable<System.Guid> _SaleDetailID;
+		
+		private System.Guid _ItemID;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<SaleDetail> _SaleDetail;
+		
+		private EntityRef<Item> _Item;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnOldStockChanging(double value);
+    partial void OnOldStockChanged();
+    partial void OnNewStockChanging(double value);
+    partial void OnNewStockChanged();
+    partial void OnAmountChanging(double value);
+    partial void OnAmountChanged();
+    partial void OnUserIDChanging(System.Guid value);
+    partial void OnUserIDChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    partial void OnSaleDetailIDChanging(System.Nullable<System.Guid> value);
+    partial void OnSaleDetailIDChanged();
+    partial void OnItemIDChanging(System.Guid value);
+    partial void OnItemIDChanged();
+    #endregion
+		
+		public StockMovement()
+		{
+			this._User = default(EntityRef<User>);
+			this._SaleDetail = default(EntityRef<SaleDetail>);
+			this._Item = default(EntityRef<Item>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OldStock")]
+		public double OldStock
+		{
+			get
+			{
+				return this._OldStock;
+			}
+			set
+			{
+				if ((this._OldStock != value))
+				{
+					this.OnOldStockChanging(value);
+					this.SendPropertyChanging();
+					this._OldStock = value;
+					this.SendPropertyChanged("OldStock");
+					this.OnOldStockChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NewStock")]
+		public double NewStock
+		{
+			get
+			{
+				return this._NewStock;
+			}
+			set
+			{
+				if ((this._NewStock != value))
+				{
+					this.OnNewStockChanging(value);
+					this.SendPropertyChanging();
+					this._NewStock = value;
+					this.SendPropertyChanged("NewStock");
+					this.OnNewStockChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Amount")]
+		public double Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", UpdateCheck=UpdateCheck.Never)]
+		public System.Guid UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Comment", DbType="nvarchar(1000)", CanBeNull=false)]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SaleDetailID")]
+		public System.Nullable<System.Guid> SaleDetailID
+		{
+			get
+			{
+				return this._SaleDetailID;
+			}
+			set
+			{
+				if ((this._SaleDetailID != value))
+				{
+					if (this._SaleDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleDetailID = value;
+					this.SendPropertyChanged("SaleDetailID");
+					this.OnSaleDetailIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemID")]
+		public System.Guid ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					if (this._Item.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_StockMovement", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				if ((this._User.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._User.Entity = value;
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="SaleDetail_StockMovement", Storage="_SaleDetail", ThisKey="SaleDetailID", OtherKey="ID", IsForeignKey=true)]
+		public SaleDetail SaleDetail
+		{
+			get
+			{
+				return this._SaleDetail.Entity;
+			}
+			set
+			{
+				SaleDetail previousValue = this._SaleDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._SaleDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SaleDetail.Entity = null;
+						previousValue.StockMovements.Remove(this);
+					}
+					this._SaleDetail.Entity = value;
+					if ((value != null))
+					{
+						value.StockMovements.Add(this);
+						this._SaleDetailID = value.ID;
+					}
+					else
+					{
+						this._SaleDetailID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("SaleDetail");
+				}
+			}
+		}
+		
+		[Association(Name="Item_StockMovement", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
+		public Item Item
+		{
+			get
+			{
+				return this._Item.Entity;
+			}
+			set
+			{
+				Item previousValue = this._Item.Entity;
+				if (((previousValue != value) 
+							|| (this._Item.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Item.Entity = null;
+						previousValue.StockMovements.Remove(this);
+					}
+					this._Item.Entity = value;
+					if ((value != null))
+					{
+						value.StockMovements.Add(this);
+						this._ItemID = value.ID;
+					}
+					else
+					{
+						this._ItemID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Item");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class Sale : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.DateTime _Date;
+		
+		private System.Guid _UserID;
+		
+		private double _Total;
+		
+		private EntitySet<SaleDetail> _Details;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnUserIDChanging(System.Guid value);
+    partial void OnUserIDChanged();
+    partial void OnTotalChanging(double value);
+    partial void OnTotalChanged();
+    #endregion
+		
+		public Sale()
+		{
+			this._Details = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_Details), new Action<SaleDetail>(this.detach_Details));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", UpdateCheck=UpdateCheck.Never)]
+		public System.Guid UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Total")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Sale_SaleDetail", Storage="_Details", ThisKey="ID", OtherKey="SaleID")]
+		public EntitySet<SaleDetail> Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				this._Details.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Details(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale = this;
+		}
+		
+		private void detach_Details(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale = null;
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class SaleDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.Guid _SaleID;
+		
+		private System.Guid _ItemID;
+		
+		private double _Amount;
+		
+		private System.Guid _PriceID;
+		
+		private double _Subtotal;
+		
+		private EntitySet<StockMovement> _StockMovements;
+		
+		private EntityRef<Sale> _Sale;
+		
+		private EntityRef<Item> _Item;
+		
+		private EntityRef<Price> _Price;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnSaleIDChanging(System.Guid value);
+    partial void OnSaleIDChanged();
+    partial void OnItemIDChanging(System.Guid value);
+    partial void OnItemIDChanged();
+    partial void OnAmountChanging(double value);
+    partial void OnAmountChanged();
+    partial void OnPriceIDChanging(System.Guid value);
+    partial void OnPriceIDChanged();
+    partial void OnSubtotalChanging(double value);
+    partial void OnSubtotalChanged();
+    #endregion
+		
+		public SaleDetail()
+		{
+			this._StockMovements = new EntitySet<StockMovement>(new Action<StockMovement>(this.attach_StockMovements), new Action<StockMovement>(this.detach_StockMovements));
+			this._Sale = default(EntityRef<Sale>);
+			this._Item = default(EntityRef<Item>);
+			this._Price = default(EntityRef<Price>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SaleID")]
+		public System.Guid SaleID
+		{
+			get
+			{
+				return this._SaleID;
+			}
+			set
+			{
+				if ((this._SaleID != value))
+				{
+					if (this._Sale.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleID = value;
+					this.SendPropertyChanged("SaleID");
+					this.OnSaleIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemID")]
+		public System.Guid ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					if (this._Item.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Amount")]
+		public double Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PriceID")]
+		public System.Guid PriceID
+		{
+			get
+			{
+				return this._PriceID;
+			}
+			set
+			{
+				if ((this._PriceID != value))
+				{
+					if (this._Price.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPriceIDChanging(value);
+					this.SendPropertyChanging();
+					this._PriceID = value;
+					this.SendPropertyChanged("PriceID");
+					this.OnPriceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Subtotal")]
+		public double Subtotal
+		{
+			get
+			{
+				return this._Subtotal;
+			}
+			set
+			{
+				if ((this._Subtotal != value))
+				{
+					this.OnSubtotalChanging(value);
+					this.SendPropertyChanging();
+					this._Subtotal = value;
+					this.SendPropertyChanged("Subtotal");
+					this.OnSubtotalChanged();
+				}
+			}
+		}
+		
+		[Association(Name="SaleDetail_StockMovement", Storage="_StockMovements", ThisKey="ID", OtherKey="SaleDetailID")]
+		public EntitySet<StockMovement> StockMovements
+		{
+			get
+			{
+				return this._StockMovements;
+			}
+			set
+			{
+				this._StockMovements.Assign(value);
+			}
+		}
+		
+		[Association(Name="Sale_SaleDetail", Storage="_Sale", ThisKey="SaleID", OtherKey="ID", IsForeignKey=true)]
+		public Sale Sale
+		{
+			get
+			{
+				return this._Sale.Entity;
+			}
+			set
+			{
+				Sale previousValue = this._Sale.Entity;
+				if (((previousValue != value) 
+							|| (this._Sale.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Sale.Entity = null;
+						previousValue.Details.Remove(this);
+					}
+					this._Sale.Entity = value;
+					if ((value != null))
+					{
+						value.Details.Add(this);
+						this._SaleID = value.ID;
+					}
+					else
+					{
+						this._SaleID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Sale");
+				}
+			}
+		}
+		
+		[Association(Name="Item_SaleDetail", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
+		public Item Item
+		{
+			get
+			{
+				return this._Item.Entity;
+			}
+			set
+			{
+				if ((this._Item.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._Item.Entity = value;
+					this.SendPropertyChanged("Item");
+				}
+			}
+		}
+		
+		[Association(Name="Price_SaleDetail", Storage="_Price", ThisKey="PriceID", OtherKey="ID", IsForeignKey=true)]
+		public Price Price
+		{
+			get
+			{
+				return this._Price.Entity;
+			}
+			set
+			{
+				Price previousValue = this._Price.Entity;
+				if (((previousValue != value) 
+							|| (this._Price.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Price.Entity = null;
+						previousValue.SaleDetails.Remove(this);
+					}
+					this._Price.Entity = value;
+					if ((value != null))
+					{
+						value.SaleDetails.Add(this);
+						this._PriceID = value.ID;
+					}
+					else
+					{
+						this._PriceID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Price");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StockMovements(StockMovement entity)
+		{
+			this.SendPropertyChanging();
+			entity.SaleDetail = this;
+		}
+		
+		private void detach_StockMovements(StockMovement entity)
+		{
+			this.SendPropertyChanging();
+			entity.SaleDetail = null;
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class Price : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.Guid _ItemID;
+		
+		private System.DateTime _Date;
+		
+		private double _Value;
+		
+		private EntitySet<SaleDetail> _SaleDetails;
+		
+		private EntityRef<Item> _Item;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnItemIDChanging(System.Guid value);
+    partial void OnItemIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnValueChanging(double value);
+    partial void OnValueChanged();
+    #endregion
+		
+		public Price()
+		{
+			this._SaleDetails = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_SaleDetails), new Action<SaleDetail>(this.detach_SaleDetails));
+			this._Item = default(EntityRef<Item>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ItemID")]
+		public System.Guid ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					if (this._Item.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Value")]
+		public double Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Price_SaleDetail", Storage="_SaleDetails", ThisKey="ID", OtherKey="PriceID")]
+		public EntitySet<SaleDetail> SaleDetails
+		{
+			get
+			{
+				return this._SaleDetails;
+			}
+			set
+			{
+				this._SaleDetails.Assign(value);
+			}
+		}
+		
+		[Association(Name="Item_Price", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
+		public Item Item
+		{
+			get
+			{
+				return this._Item.Entity;
+			}
+			set
+			{
+				Item previousValue = this._Item.Entity;
+				if (((previousValue != value) 
+							|| (this._Item.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Item.Entity = null;
+						previousValue.Prices.Remove(this);
+					}
+					this._Item.Entity = value;
+					if ((value != null))
+					{
+						value.Prices.Add(this);
+						this._ItemID = value.ID;
+					}
+					else
+					{
+						this._ItemID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Item");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SaleDetails(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Price = this;
+		}
+		
+		private void detach_SaleDetails(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Price = null;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-namespace Blackspot.Microgestion.Frontend
+namespace Blackspot.Microgestion.Frontend.Forms
 {
     partial class MainForm
     {
