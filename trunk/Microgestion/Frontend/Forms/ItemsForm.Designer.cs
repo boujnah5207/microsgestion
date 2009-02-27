@@ -1,6 +1,6 @@
 ﻿namespace Blackspot.Microgestion.Frontend.Forms
 {
-    partial class MeasurementsForm
+    partial class ItemsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(377, 235);
+            this.btnClose.Location = new System.Drawing.Point(685, 353);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 3;
@@ -57,7 +57,7 @@
             this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.Grid.Location = new System.Drawing.Point(12, 12);
@@ -65,7 +65,7 @@
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grid.Size = new System.Drawing.Size(359, 217);
+            this.Grid.Size = new System.Drawing.Size(667, 335);
             this.Grid.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -75,9 +75,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(374, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(682, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 217);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 335);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // btnAdd
@@ -104,17 +104,18 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "&Eliminar";
             // 
-            // MeasurementsForm
+            // ItemsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 273);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(800, 391);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.btnClose);
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            this.Name = "MeasurementsForm";
-            this.Text = "Unidades de Medida";
+            this.Name = "ItemsForm";
+            this.Text = "Artículos";
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

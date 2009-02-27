@@ -20,7 +20,7 @@
         <elementListCompartment Id="a90205c0-198c-470a-b57c-969930bd55f2" absoluteBounds="3.8899999999999997, 7.335, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.875 : 6.51050048828125); (4.875 : 6.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.875 : 6.51050048828125); (4.875 : 6.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/Role/Role_RoleAction" />
       <nodes>
         <classShapeMoniker Id="ed98ef5e-ffa7-4cea-8714-8c1d31defd8b" />
@@ -33,14 +33,14 @@
         <elementListCompartment Id="f3672275-2671-44f6-9069-9329a9611c88" absoluteBounds="3.8899999999999997, 3.835, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.875 : 2.87854248046875); (4.875 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.875 : 2.87854248046875); (4.875 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/User/User_UserRoles" />
       <nodes>
         <classShapeMoniker Id="091a6a0c-0e4a-4c58-9504-61dc8d1b70a3" />
         <classShapeMoniker Id="3ba6f21f-9a46-424a-a175-5ab4592edb74" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.875 : 5.25); (4.875 : 4.79984781901042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.875 : 5.25); (4.875 : 4.79984781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/Role/Role_UserRoles" />
       <nodes>
         <classShapeMoniker Id="ed98ef5e-ffa7-4cea-8714-8c1d31defd8b" />
@@ -92,7 +92,7 @@
         <elementListCompartment Id="c435ab6a-8427-426d-b674-2a8ec3da11e7" absoluteBounds="7.015, 4.335, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.875 : 2.87854248046875); (6.25 : 3.25354248046875); (6.25 : 4.99829223632812); (7 : 4.99829223632812)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.875 : 2.87854248046875); (6.25 : 3.25354248046875); (6.25 : 4.99829223632812); (7 : 4.99829223632812)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/User/User_StockMovement" />
       <nodes>
         <classShapeMoniker Id="091a6a0c-0e4a-4c58-9504-61dc8d1b70a3" />
@@ -124,7 +124,7 @@
         <classShapeMoniker Id="e0299b64-5b06-4a7b-b920-45f4cb3c9725" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 7.49367640950521); (9.29166666666667 : 7.49367640950521 : JumpStart); (9.45833333333333 : 7.49367640950521 : JumpEnd); (10.25 : 7.49367640950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(9 : 7.49367640950521); (10.25 : 7.49367640950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/Sale/Sale_SaleDetail" />
       <nodes>
         <classShapeMoniker Id="8520864f-7a28-42ce-bfc4-dff3779bcc43" />

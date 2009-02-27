@@ -16,6 +16,10 @@ namespace Blackspot.Microgestion.Frontend.Forms
         #region MDI Childs
 
         private UsersForm usersForm;
+        private RolesForm rolesForm;
+        private MeasurementsForm measurementsForm;
+        private ItemsForm itemsForm;
+
         private UsersForm UsersForm
         {
             get
@@ -26,7 +30,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 return usersForm;
             }
         }
-        private RolesForm rolesForm;
         private RolesForm RolesForm
         {
             get
@@ -37,7 +40,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 return rolesForm;
             }
         }
-        private MeasurementsForm measurementsForm;
         private MeasurementsForm MeasurementsForm
         {
             get
@@ -48,7 +50,17 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 return measurementsForm;
             }
         }
-        
+        public ItemsForm ItemsForm
+        {
+            get
+            {
+                if (itemsForm == null)
+                    itemsForm = new ItemsForm() { MdiParent = this };
+
+                return itemsForm;
+            }
+        }
+
         #endregion
 
         public MainForm()
@@ -103,6 +115,11 @@ namespace Blackspot.Microgestion.Frontend.Forms
         internal void ShowMeasurements()
         {
             this.MeasurementsForm.Show();
+        }
+
+        internal void ShowItems()
+        {
+            this.ItemsForm.Show();
         }
     }
 }

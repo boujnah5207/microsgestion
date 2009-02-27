@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\MeasurementService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\RoleActionService.cs" />

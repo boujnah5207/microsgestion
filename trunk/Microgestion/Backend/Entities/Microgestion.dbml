@@ -42,17 +42,17 @@
   <Table Name="" Member="Items">
     <Type Name="Item">
       <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="InternalCode" Type="System.String" CanBeNull="false" />
-      <Column Name="ExternalCode" Type="System.String" CanBeNull="false" />
+      <Column Name="InternalCode" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="ExternalCode" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
-      <Column Name="BaseMeasurement" Type="System.Guid" CanBeNull="false" />
+      <Column Name="BaseMeasurementID" Storage="_BaseMeasurement" Type="System.Guid" CanBeNull="false" />
       <Column Name="DefaultSalesAmount" Type="System.Double" CanBeNull="false" />
       <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
       <Column Name="ActualStock" Type="System.Double" CanBeNull="false" />
       <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
       <Association Name="Item_StockMovement" Member="StockMovements" ThisKey="ID" OtherKey="ItemID" Type="StockMovement" />
       <Association Name="Item_Price" Member="Prices" ThisKey="ID" OtherKey="ItemID" Type="Price" />
-      <Association Name="Measurement_Item" Member="Measurement" ThisKey="BaseMeasurement" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
+      <Association Name="Measurement_Item" Member="BaseMeasurement" Storage="_Measurement" ThisKey="BaseMeasurementID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="Measurements">

@@ -18,9 +18,13 @@ namespace Blackspot.Microgestion.Backend.Enumerations
         RoleDelete = 8,
         RoleEdit = 9,
         MeasurementsAdmin = 10,
-        MeasurementsAdd = 11,
-        MeasurementsDelete = 12,
-        MeasurementsEdit = 13,
+        MeasurementAdd = 11,
+        MeasurementDelete = 12,
+        MeasurementEdit = 13,
+        ItemsAdmin = 14,
+        ItemAdd = 15,
+        ItemDelete = 16,
+        ItemEdit = 17,
         ResetDB = 999
     }
 }

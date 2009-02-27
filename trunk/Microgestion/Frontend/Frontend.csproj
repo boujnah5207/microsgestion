@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ItemsFormController.cs" />
     <Compile Include="Controllers\MeasurementsFormController.cs" />
     <Compile Include="Forms\ConfirmPasswordForm.cs">
       <SubType>Form</SubType>
@@ -67,6 +68,18 @@
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
     <Compile Include="Extensions\ToolStripItemExtensions.cs" />
+    <Compile Include="Forms\ItemEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemEditor.Designer.cs">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ItemsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemsForm.Designer.cs">
+      <DependentUpon>ItemsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +139,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ConfirmPasswordForm.resx">
       <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemEditor.resx">
+      <DependentUpon>ItemEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemsForm.resx">
+      <DependentUpon>ItemsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

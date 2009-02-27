@@ -986,8 +986,8 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnExternalCodeChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnBaseMeasurementChanging(System.Guid value);
-    partial void OnBaseMeasurementChanged();
+    partial void OnBaseMeasurementIDChanging(System.Guid value);
+    partial void OnBaseMeasurementIDChanged();
     partial void OnDefaultSalesAmountChanging(double value);
     partial void OnDefaultSalesAmountChanged();
     partial void OnMovesStockChanging(bool value);
@@ -1026,7 +1026,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_InternalCode", CanBeNull=false)]
+		[Column(Storage="_InternalCode", DbType="nvarchar(50)", CanBeNull=false)]
 		public string InternalCode
 		{
 			get
@@ -1046,7 +1046,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_ExternalCode", CanBeNull=false)]
+		[Column(Storage="_ExternalCode", DbType="nvarchar(50)", CanBeNull=false)]
 		public string ExternalCode
 		{
 			get
@@ -1087,7 +1087,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		}
 		
 		[Column(Storage="_BaseMeasurement")]
-		public System.Guid BaseMeasurement
+		public System.Guid BaseMeasurementID
 		{
 			get
 			{
@@ -1101,11 +1101,11 @@ namespace Blackspot.Microgestion.Backend.Entities
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnBaseMeasurementChanging(value);
+					this.OnBaseMeasurementIDChanging(value);
 					this.SendPropertyChanging();
 					this._BaseMeasurement = value;
-					this.SendPropertyChanged("BaseMeasurement");
-					this.OnBaseMeasurementChanged();
+					this.SendPropertyChanged("BaseMeasurementID");
+					this.OnBaseMeasurementIDChanged();
 				}
 			}
 		}
@@ -1216,8 +1216,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Measurement_Item", Storage="_Measurement", ThisKey="BaseMeasurement", OtherKey="ID", IsForeignKey=true)]
-		public Measurement Measurement
+		[Association(Name="Measurement_Item", Storage="_Measurement", ThisKey="BaseMeasurementID", OtherKey="ID", IsForeignKey=true)]
+		public Measurement BaseMeasurement
 		{
 			get
 			{
@@ -1229,7 +1229,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 				{
 					this.SendPropertyChanging();
 					this._Measurement.Entity = value;
-					this.SendPropertyChanged("Measurement");
+					this.SendPropertyChanged("BaseMeasurement");
 				}
 			}
 		}

@@ -47,6 +47,10 @@ namespace Blackspot.Microgestion.Frontend
                     {
                         MainForm.Current.ShowMeasurements();
                     } break;
+                case SystemAction.ItemsAdmin:
+                    {
+                        MainForm.Current.ShowItems();
+                    } break;
                 default:
                     return;
             }

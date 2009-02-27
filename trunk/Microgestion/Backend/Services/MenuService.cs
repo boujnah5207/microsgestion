@@ -34,7 +34,8 @@ namespace Blackspot.Microgestion.Backend.Services
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ResetDB, Text = "&Resest DB", Order = 1 },
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.UsersAdmin, Text = "&Usuarios", Order = 2 },
                     new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.RolesAdmin, Text = "&Perfiles", Order = 3 },
-                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.MeasurementsAdmin, Text = "U&nidades de Medida", Order = 4 }
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.MeasurementsAdmin, Text = "U&nidades de Medida", Order = 4 },
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.ItemsAdmin, Text = "&Artículos", Order = 5 }
                 }
             });
 
