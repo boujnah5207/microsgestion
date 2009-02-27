@@ -24,7 +24,8 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            LogUser();
+            //LogUser();
+            UserService.LoggedInUser = UserService.GetAdminUser();
 
             ShowUserInfo();
 

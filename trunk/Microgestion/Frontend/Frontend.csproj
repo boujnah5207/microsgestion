@@ -79,6 +79,12 @@
     <Compile Include="Forms\LookupForm.Designer.cs">
       <DependentUpon>LookupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MeasurementEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MeasurementEditor.Designer.cs">
+      <DependentUpon>MeasurementEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MeasurementsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MeasurementEditor.resx">
+      <DependentUpon>MeasurementEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MeasurementsForm.resx">
       <DependentUpon>MeasurementsForm.cs</DependentUpon>

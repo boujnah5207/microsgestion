@@ -6,5 +6,6 @@
       <CodeCoverageItem binaryFile="Backend\bin\Blackspot.Microgestion.Backend.dll" pdbFile="Backend\bin\Blackspot.Microgestion.Backend.pdb" instrumentInPlace="true" />
     </Regular>
   </CodeCoverage>
+  <Timeouts runTimeout="1800000" testTimeout="300000" />
   <TestTypeSpecific />
 </TestRunConfiguration>

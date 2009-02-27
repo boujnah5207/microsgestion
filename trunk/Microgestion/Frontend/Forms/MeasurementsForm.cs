@@ -29,7 +29,15 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         private void InitializeBindings()
         {
-            
+            this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
+            this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Nombre" });
+            this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Abbreviation", HeaderText = "Abreviatura" });
+
+            Grid.DataSource = Controller.Measurements;
+
+            this.btnAdd.DataBindings.Add(new Binding("Visible", Controller, "AllowAdd"));
+            this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
+            this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
         }
 
         private void InitializeControlsHandlers()
@@ -39,7 +47,11 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 ((Form)s).Hide();
                 ((FormClosingEventArgs)e).Cancel = true;
             };
+            this.btnClose.Click += (s, e) => this.Close();
 
+            this.btnAdd.Click += (s, e) => Controller.AddNew();
+            this.btnDelete.Click += (s, e) => Controller.Delete();
+            this.btnEdit.Click += (s, e) => Controller.Edit();
         }
 
     }
