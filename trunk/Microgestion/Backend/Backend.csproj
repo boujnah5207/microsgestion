@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\IIdentificableEntity.cs" />
+    <Compile Include="Entities\IPersistible.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\Measurement.cs" />
     <Compile Include="Entities\MenuOption.cs" />

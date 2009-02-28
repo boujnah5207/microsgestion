@@ -7,7 +7,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class Role : IIdentificableEntity
+    public partial class Role : IPersistible
     {
         public void AddAction(SystemAction action)
         {
@@ -33,6 +33,12 @@ namespace Blackspot.Microgestion.Backend.Entities
         public override string ToString()
         {
             return this.Name;
+        }
+
+        public bool IsValid()
+        {
+            return
+                !String.IsNullOrEmpty(this.Name);
         }
     }
 }

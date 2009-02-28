@@ -35,9 +35,9 @@
             this.Grid = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,15 @@
             this.btnAdd.Text = "&Nuevo";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(3, 32);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(100, 23);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "&Modificar";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(3, 61);
@@ -115,6 +124,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(357, 258);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
@@ -122,19 +132,11 @@
             this.btnClose.Text = "&Cerrar";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(3, 32);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 23);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "&Modificar";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(472, 293);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.flowLayoutPanel1);

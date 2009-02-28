@@ -8,6 +8,7 @@ using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Enumerations;
 using Blackspot.Microgestion.Backend.Extensions;
 using Blackspot.Microgestion.Frontend.Forms;
+using Blackspot.Microgestion.Frontend.Extensions;
 using System.Windows.Forms;
 using System.Data.Linq;
 
@@ -22,50 +23,70 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            Roles = new BindingList<Role>(RoleService.GetAll());
+            try
+            {
+                Roles = new BindingList<Role>(RoleService.GetAll());
 
-            object[] items = (from a in EnumerationExtensions.GetSystemActions()
-                              select new SystemActionListBoxItem { Action = a }).ToArray();
-            Form.Actions.Items.AddRange(items);
+                object[] items = (from a in EnumerationExtensions.GetSystemActions()
+                                  select new SystemActionListBoxItem { Action = a }).ToArray();
+                Form.Actions.Items.AddRange(items);
 
-            Form.Grid.SelectionChanged += OnGridSelectionChanged;
-            Form.Actions.ItemCheck += OnActionsItemCheck;
+                Form.Grid.SelectionChanged += OnGridSelectionChanged;
+                Form.Actions.ItemCheck += OnActionsItemCheck;
 
-            base.InitializeForm();
-
+                base.InitializeForm();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         void OnActionsItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if ((e.CurrentValue == e.NewValue) ||
-                (Form.Grid.SelectedRows.Count != 1))
-                return;
-
-            Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
-            SystemAction action = ((SystemActionListBoxItem)Form.Actions.Items[e.Index]).Action;
-
-            if (e.NewValue == CheckState.Checked)
+            try
             {
-                role.AddAction(action);
+                if ((e.CurrentValue == e.NewValue) ||
+            (Form.Grid.SelectedRows.Count != 1))
+                    return;
+
+                Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
+                SystemAction action = ((SystemActionListBoxItem)Form.Actions.Items[e.Index]).Action;
+
+                if (e.NewValue == CheckState.Checked)
+                {
+                    role.AddAction(action);
+                }
+                else if (e.NewValue == CheckState.Unchecked)
+                {
+                    role.RemoveAction(action);
+                }
             }
-            else if (e.NewValue == CheckState.Unchecked)
+            catch (Exception ex)
             {
-                role.RemoveAction(action);
+                ex.ShowMessageBox();
             }
         }
 
         void OnGridSelectionChanged(object sender, EventArgs e)
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
-            for (int i = 0; i < Form.Actions.Items.Count; i++)
+            try
             {
-                var item = ((SystemActionListBoxItem)Form.Actions.Items[i]);
-                Form.Actions.SetItemChecked(
-                    Form.Actions.Items.IndexOf(item),
-                    role.Actions.Any(a => a.Action.Equals(item.Action)));
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
+
+                Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
+                for (int i = 0; i < Form.Actions.Items.Count; i++)
+                {
+                    var item = ((SystemActionListBoxItem)Form.Actions.Items[i]);
+                    Form.Actions.SetItemChecked(
+                        Form.Actions.Items.IndexOf(item),
+                        role.Actions.Any(a => a.Action.Equals(item.Action)));
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 
@@ -83,54 +104,74 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void AddNew()
         {
-            Role newRole = new Role();
+            try
+            {
+                Role newRole = new Role();
 
-            RoleEditor editor = new RoleEditor(newRole);
+                RoleEditor editor = new RoleEditor(newRole);
 
-            var result = editor.ShowDialog();
-            if (result == DialogResult.Cancel)
-                return;
+                var result = editor.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
 
-            Roles.Add(newRole);
-            Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
-            RoleService.Save(newRole);
+                RoleService.Save(newRole);
+                Roles.Add(newRole);
+                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal void Delete()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            if (UserAccepts(
-                "¿Desea eliminar el perfil seleccionado?",
-                "Eliminar perfil"))
+            try
             {
-                Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
-                RoleService.Delete(role);
-                Roles.Remove(role);
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
 
+                if (UserAccepts(
+                    "¿Desea eliminar el perfil seleccionado?",
+                    "Eliminar perfil"))
+                {
+                    Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
+                    RoleService.Delete(role);
+                    Roles.Remove(role);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 
         internal void Edit()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
-
-            string roleName = role.Name;
-
-            RoleEditor editor = new RoleEditor(role);
-
-            var result = editor.ShowDialog(Form);
-            if (result == DialogResult.Cancel)
+            try
             {
-                role.Name = roleName;
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
+
+                Role role = Form.Grid.SelectedRows[0].DataBoundItem as Role;
+
+                string roleName = role.Name;
+
+                RoleEditor editor = new RoleEditor(role);
+
+                var result = editor.ShowDialog(Form);
+                if (result == DialogResult.Cancel)
+                {
+                    role.Name = roleName;
+                }
+                else
+                {
+                    RoleService.Update(role);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                RoleService.Update(role);
+                ex.ShowMessageBox();
             }
         }
     }

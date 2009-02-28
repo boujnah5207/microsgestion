@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Services;
 using System.ComponentModel;
+using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -24,7 +25,14 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal virtual void SaveChanges()
         {
-            ServiceBase.SubmitChanges();
+            try
+            {
+                ServiceBase.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal virtual bool UserAccepts(string message, string title)

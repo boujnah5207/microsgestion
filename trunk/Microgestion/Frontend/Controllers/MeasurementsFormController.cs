@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Forms;
 using Blackspot.Microgestion.Backend.Entities;
-using System.ComponentModel;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Extensions;
-using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Enumerations;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -22,9 +23,16 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            Measurements = new BindingList<Measurement>(MeasurementService.GetAll());
+            try
+            {
+                Measurements = new BindingList<Measurement>(MeasurementService.GetAll());
 
-            base.InitializeForm();
+                base.InitializeForm();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         public bool AllowAdd { get { return UserService.CanPerform(SystemAction.MeasurementAdd); } set { } }
@@ -41,56 +49,76 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void AddNew()
         {
-            Measurement newMeasurement = new Measurement();
+            try
+            {
+                Measurement newMeasurement = new Measurement();
 
-            MeasurementEditor editor = new MeasurementEditor(newMeasurement);
+                MeasurementEditor editor = new MeasurementEditor(newMeasurement);
 
-            var result = editor.ShowDialog();
-            if (result == DialogResult.Cancel)
-                return;
+                var result = editor.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
 
-            Measurements.Add(newMeasurement);
-            Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
-            MeasurementService.Save(newMeasurement);
+                MeasurementService.Save(newMeasurement);
+                Measurements.Add(newMeasurement);
+                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal void Delete()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            if (UserAccepts(
-                "¿Desea eliminar la unidad seleccionada?",
-                "Eliminar Unidad de Medida"))
+            try
             {
-                Measurement measurement = Form.Grid.SelectedRows[0].DataBoundItem as Measurement;
-                MeasurementService.Delete(measurement);
-                Measurements.Remove(measurement);
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
 
+                if (UserAccepts(
+                    "¿Desea eliminar la unidad seleccionada?",
+                    "Eliminar Unidad de Medida"))
+                {
+                    Measurement measurement = Form.Grid.SelectedRows[0].DataBoundItem as Measurement;
+                    MeasurementService.Delete(measurement);
+                    Measurements.Remove(measurement);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 
         internal void Edit()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            Measurement measurement = Form.Grid.SelectedRows[0].DataBoundItem as Measurement;
-
-            string measurementName = measurement.Name;
-            string measurementAbbreviation = measurement.Abbreviation;
-
-            MeasurementEditor editor = new MeasurementEditor(measurement);
-
-            var result = editor.ShowDialog(Form);
-            if (result == DialogResult.Cancel)
+            try
             {
-                measurement.Name = measurementName;
-                measurement.Abbreviation = measurementAbbreviation;
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
+
+                Measurement measurement = Form.Grid.SelectedRows[0].DataBoundItem as Measurement;
+
+                string measurementName = measurement.Name;
+                string measurementAbbreviation = measurement.Abbreviation;
+
+                MeasurementEditor editor = new MeasurementEditor(measurement);
+
+                var result = editor.ShowDialog(Form);
+                if (result == DialogResult.Cancel)
+                {
+                    measurement.Name = measurementName;
+                    measurement.Abbreviation = measurementAbbreviation;
+                }
+                else
+                {
+                    MeasurementService.Update(measurement);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MeasurementService.Update(measurement);
+                ex.ShowMessageBox();
             }
         }
 

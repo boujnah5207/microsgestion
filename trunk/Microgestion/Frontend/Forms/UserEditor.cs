@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
@@ -20,39 +21,47 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         public UserEditor(User user)
         {
-            InitializeComponent();
-
-            this.User = user;
-            this.Roles = new BindingList<Role>(UserService.GetRoles(user));
-
-            this.txtName.DataBindings.Add(new Binding("Text", User, "Name"));
-            this.txtLastName.DataBindings.Add(new Binding("Text", User, "LastName"));
-            this.txtUsername.DataBindings.Add(new Binding("Text", User, "Username"));
-
-            this.lstRoles.DataSource = Roles;
-
-            this.btnRemoveRole.Click += (s, e) =>
+            try
             {
-                if (lstRoles.SelectedItem == null)
-                    return;
+                InitializeComponent();
 
-                Roles.Remove((Role)lstRoles.SelectedItem);
-            };
+                this.User = user;
+                this.Roles = new BindingList<Role>(UserService.GetRoles(user));
 
-            this.btnAddRole.Click += (s, e) =>
-            {
-                using (LookupForm<Role> lookup = new LookupForm<Role>())
+                this.txtName.DataBindings.Add(new Binding("Text", User, "Name"));
+                this.txtLastName.DataBindings.Add(new Binding("Text", User, "LastName"));
+                this.txtUsername.DataBindings.Add(new Binding("Text", User, "Username"));
+
+                this.lstRoles.DataSource = Roles;
+
+                this.btnRemoveRole.Click += (s, e) =>
                 {
-                    lookup.Filter = Roles;
-                    var dr = lookup.ShowDialog();
-                    if (dr != DialogResult.OK)
+                    if (lstRoles.SelectedItem == null)
                         return;
 
-                    Role role = lookup.SelectedItem;
-                    if (role != null)
-                        Roles.Add(role);
-                }
-            };
+                    Roles.Remove((Role)lstRoles.SelectedItem);
+                };
+
+                this.btnAddRole.Click += (s, e) =>
+                {
+                    using (LookupForm<Role> lookup = new LookupForm<Role>())
+                    {
+                        lookup.Filter = Roles;
+                        var dr = lookup.ShowDialog();
+                        if (dr != DialogResult.OK)
+                            return;
+
+                        Role role = lookup.SelectedItem;
+                        if (role != null)
+                            Roles.Add(role);
+                    }
+                };
+
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
     }
 }

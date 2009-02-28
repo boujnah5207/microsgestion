@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using Blackspot.Microgestion.Backend.Enumerations;
 using Blackspot.Microgestion.Frontend.Forms;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -21,9 +22,16 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            Users = new BindingList<User>(UserService.GetAll());
+            try
+            {
+                Users = new BindingList<User>(UserService.GetAll());
 
-            base.InitializeForm();
+                base.InitializeForm();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         public bool AllowAdd { get { return UserService.CanPerform(SystemAction.UserAdd); } set { } }
@@ -41,62 +49,83 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal void AddNew()
         {
-            User newUser = new User();
-
-            using (UserEditor editor = new UserEditor(newUser))
+            try
             {
-                var result = editor.ShowDialog();
-                if (result == DialogResult.Cancel)
-                    return;
+                User newUser = new User();
 
-                Users.Add(newUser);
-                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
-                UserService.Save(newUser, editor.Roles);
+                using (UserEditor editor = new UserEditor(newUser))
+                {
+                    var result = editor.ShowDialog();
+                    if (result == DialogResult.Cancel)
+                        return;
+
+                    UserService.Save(newUser, editor.Roles);
+                    Users.Add(newUser);
+                    Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 
         internal void Delete()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            if (UserAccepts(
-                "¿Desea eliminar el usuario seleccionado?",
-                "Eliminar usuario"))
+            try
             {
-                User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
-                UserService.Delete(user);
-                Users.Remove(user);
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
+
+                if (UserAccepts(
+                    "¿Desea eliminar el usuario seleccionado?",
+                    "Eliminar usuario"))
+                {
+                    User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
+                    UserService.Delete(user);
+                    Users.Remove(user);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 
 
         internal void Edit()
         {
-            if (Form.Grid.SelectedRows.Count != 1)
-                return;
-
-            User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
-
-            string userName = user.Name;
-            string userLastName = user.LastName;
-            string userUsername = user.Username;
-            string userPassword = user.Password;
-
-            using (UserEditor editor = new UserEditor(user))
+            try
             {
-                var result = editor.ShowDialog(Form);
-                if (result == DialogResult.Cancel)
+                if (Form.Grid.SelectedRows.Count != 1)
+                    return;
+
+                User user = Form.Grid.SelectedRows[0].DataBoundItem as User;
+
+                string userName = user.Name;
+                string userLastName = user.LastName;
+                string userUsername = user.Username;
+                string userPassword = user.Password;
+
+                using (UserEditor editor = new UserEditor(user))
                 {
-                    user.Name = userName;
-                    user.LastName = userLastName;
-                    user.Username = userUsername;
-                    user.Password = userPassword;
+                    var result = editor.ShowDialog(Form);
+                    if (result == DialogResult.Cancel)
+                    {
+                        user.Name = userName;
+                        user.LastName = userLastName;
+                        user.Username = userUsername;
+                        user.Password = userPassword;
+                    }
+                    else
+                    {
+                        UserService.Update(user, editor.Roles);
+                    }
                 }
-                else
-                {
-                    UserService.Update(user, editor.Roles);
-                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
     }

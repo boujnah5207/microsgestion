@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ItemsFormController.cs" />
     <Compile Include="Controllers\MeasurementsFormController.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Forms\ConfirmPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

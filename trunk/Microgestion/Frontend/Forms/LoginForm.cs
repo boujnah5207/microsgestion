@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Controllers;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Backend.Extensions;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
@@ -18,17 +19,25 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         public LoginForm()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            Controller = new LoginFormController(this);
+                Controller = new LoginFormController(this);
 
-            this.Load += (s, e) => Controller.InitializeForm();
-            this.FormClosing += (s, e) => { if (validateLogin) e.Cancel = !Controller.ValidateLogIn(); };
-            this.btnAccept.Click += (s, e) => validateLogin = true;
-            this.btnCancel.Click += (s, e) => validateLogin = false;
-            this.txtUsername.TextChanged += (s, e) => Controller.CheckUser();
+                this.Load += (s, e) => Controller.InitializeForm();
+                this.FormClosing += (s, e) => { if (validateLogin) e.Cancel = !Controller.ValidateLogIn(); };
+                this.btnAccept.Click += (s, e) => validateLogin = true;
+                this.btnCancel.Click += (s, e) => validateLogin = false;
+                this.txtUsername.TextChanged += (s, e) => Controller.CheckUser();
 
-            this.txtPassword.DataBindings.Add(new Binding("Enabled", Controller, "UserExists"));
+                this.txtPassword.DataBindings.Add(new Binding("Enabled", Controller, "UserExists"));
+
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
 

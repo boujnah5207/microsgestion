@@ -2018,6 +2018,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private EntitySet<SaleDetail> _Details;
 		
+		private EntityRef<User> _User;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2035,6 +2037,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		public Sale()
 		{
 			this._Details = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_Details), new Action<SaleDetail>(this.detach_Details));
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -2089,6 +2092,10 @@ namespace Blackspot.Microgestion.Backend.Entities
 			{
 				if ((this._UserID != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnUserIDChanging(value);
 					this.SendPropertyChanging();
 					this._UserID = value;
@@ -2128,6 +2135,24 @@ namespace Blackspot.Microgestion.Backend.Entities
 			set
 			{
 				this._Details.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Sale", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				if ((this._User.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._User.Entity = value;
+					this.SendPropertyChanged("User");
+				}
 			}
 		}
 		
@@ -2423,26 +2448,10 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 			set
 			{
-				Price previousValue = this._Price.Entity;
-				if (((previousValue != value) 
-							|| (this._Price.HasLoadedOrAssignedValue == false)))
+				if ((this._Price.Entity != value))
 				{
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Price.Entity = null;
-						previousValue.SaleDetails.Remove(this);
-					}
 					this._Price.Entity = value;
-					if ((value != null))
-					{
-						value.SaleDetails.Add(this);
-						this._PriceID = value.ID;
-					}
-					else
-					{
-						this._PriceID = default(System.Guid);
-					}
 					this.SendPropertyChanged("Price");
 				}
 			}
@@ -2495,8 +2504,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private double _Value;
 		
-		private EntitySet<SaleDetail> _SaleDetails;
-		
 		private EntityRef<Item> _Item;
 		
     #region Extensibility Method Definitions
@@ -2515,7 +2522,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		public Price()
 		{
-			this._SaleDetails = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_SaleDetails), new Action<SaleDetail>(this.detach_SaleDetails));
 			this._Item = default(EntityRef<Item>);
 			OnCreated();
 		}
@@ -2604,19 +2610,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Price_SaleDetail", Storage="_SaleDetails", ThisKey="ID", OtherKey="PriceID")]
-		public EntitySet<SaleDetail> SaleDetails
-		{
-			get
-			{
-				return this._SaleDetails;
-			}
-			set
-			{
-				this._SaleDetails.Assign(value);
-			}
-		}
-		
 		[Association(Name="Item_Price", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
 		public Item Item
 		{
@@ -2669,18 +2662,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_SaleDetails(SaleDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Price = this;
-		}
-		
-		private void detach_SaleDetails(SaleDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Price = null;
 		}
 	}
 }

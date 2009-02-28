@@ -24,25 +24,39 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            //LogUser();
-            UserService.LoggedInUser = UserService.GetAdminUser();
+            try
+            {
+                //LogUser();
+                UserService.LoggedInUser = UserService.GetAdminUser();
 
-            ShowUserInfo();
+                ShowUserInfo();
 
-            BuildMenu();
+                BuildMenu();
 
-            base.InitializeForm();
+                base.InitializeForm();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private void BuildMenu()
         {
-            IEnumerable<MenuOption> roots = MenuService.GetMenuOptions();
-            User user = UserService.LoggedInUser;
+            try
+            {
+                IEnumerable<MenuOption> roots = MenuService.GetMenuOptions();
+                User user = UserService.LoggedInUser;
 
-            var items = roots.CreateMenuItems();
-            items.RemoveEmptyItems();
+                var items = roots.CreateMenuItems();
+                items.RemoveEmptyItems();
 
-            this.Form.MainMenuStrip.Items.AddRange(items.ToArray());
+                this.Form.MainMenuStrip.Items.AddRange(items.ToArray());
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private void ShowUserInfo()

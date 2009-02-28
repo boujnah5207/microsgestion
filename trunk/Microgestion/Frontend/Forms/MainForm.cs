@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Frontend.Controllers;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
@@ -65,14 +66,22 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         public MainForm()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            Dispatcher = new MenuDispatcher(this);
-            Controller = new MainFormController(this);
+                Dispatcher = new MenuDispatcher(this);
+                Controller = new MainFormController(this);
 
-            this.Load += (s, e) => Controller.InitializeForm();
+                this.Load += (s, e) => Controller.InitializeForm();
 
-            Current = this;
+                Current = this;
+
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private MenuDispatcher Dispatcher { get; set; }

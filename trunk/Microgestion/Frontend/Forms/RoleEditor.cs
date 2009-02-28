@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
@@ -25,9 +26,9 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.txtName.DataBindings.Add(new Binding("Text", Role, "Name"));
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                ex.ShowMessageBox();
             }
         }
 

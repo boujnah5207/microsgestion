@@ -97,6 +97,7 @@
       <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Total" Type="System.Double" CanBeNull="false" />
       <Association Name="Sale_SaleDetail" Member="Details" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
+      <Association Name="User_Sale" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="SaleDetails">
@@ -119,7 +120,6 @@
       <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
       <Column Name="Value" Type="System.Double" CanBeNull="false" />
-      <Association Name="Price_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="PriceID" Type="SaleDetail" />
       <Association Name="Item_Price" Member="Item" ThisKey="ItemID" OtherKey="ID" Type="Item" IsForeignKey="true" />
     </Type>
   </Table>

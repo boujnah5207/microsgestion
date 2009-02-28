@@ -5,7 +5,18 @@ using System.Text;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class UserRoles : IIdentificableEntity
+    public partial class UserRoles : IPersistible
     {
+        #region IPersistible Members
+
+
+        public bool IsValid()
+        {
+            return
+                this.User != null &&
+                this.Role != null;
+        }
+
+        #endregion
     }
 }

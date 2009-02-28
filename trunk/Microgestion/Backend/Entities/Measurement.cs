@@ -5,11 +5,18 @@ using System.Text;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    partial class Measurement : IIdentificableEntity
+    partial class Measurement : IPersistible
     {
         public override string ToString()
         {
             return String.Format("{0} ({1})", this.Name, this.Abbreviation);
+        }
+
+        public bool IsValid()
+        {
+            return
+                !String.IsNullOrEmpty(this.Name) &&
+                !String.IsNullOrEmpty(this.Abbreviation);
         }
     }
 }

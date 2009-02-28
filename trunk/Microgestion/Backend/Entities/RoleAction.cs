@@ -6,7 +6,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class RoleAction : IIdentificableEntity
+    public partial class RoleAction : IPersistible
     {
         public SystemAction Action
         {
@@ -19,5 +19,16 @@ namespace Blackspot.Microgestion.Backend.Entities
                 this.ActionID = (int)value;
             }
         }
+
+        #region IPersistible Members
+
+
+        public bool IsValid()
+        {
+            return
+                this.Role != null;
+        }
+
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public class MenuOption : IIdentificableEntity
+    public class MenuOption
     {
         private List<MenuOption> childs = new List<MenuOption>();
 

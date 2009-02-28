@@ -7,6 +7,7 @@ using Blackspot.Microgestion.Backend.Entities;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Frontend.Forms;
+using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
@@ -32,78 +33,100 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         internal override void InitializeForm()
         {
-            Form.Username = UserService.LoggedInUser.Name;
+            try
+            {
+                Form.Username = UserService.LoggedInUser.Name;
 
-            base.InitializeForm();
+                base.InitializeForm();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal bool ValidateLogIn()
         {
-            string user = Form.Username;
-            string pass = Form.Password;
-
-            if (String.IsNullOrEmpty(user))
-            {
-                Form.SetStatusMessage("Ingrese su nombre de usuario.", true);
-
-                Form.FocusUsername();
-                return false;
-            }
-            else if (String.IsNullOrEmpty(pass))
-            {
-                Form.SetStatusMessage("Ingrese su contraseña.", true);
-                Form.FocusPassword(); 
-                return false;
-            }
-
             try
             {
-                return UserService.ValidateUser(user, pass);
-            }
-            catch (InvalidPasswordException ex)
-            {
-                Form.SetStatusMessage(ex.Message, true);
-                Form.FocusPassword();
-                return false;
-            }
-            catch (UserNotFoundException ex)
-            {
-                Form.SetStatusMessage(ex.Message, true);
-                Form.FocusUsername();
-                return false;
-            }
-            catch (MustConfirmPasswordException)
-            {
-                var confirm = new ConfirmPasswordForm();
-                var dr = confirm.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    if (pass.Equals(confirm.Password))
-                    {
-                        User u = UserService.GetUserByUsername(user);
-                        u.Password = pass;
-                        UserService.Update(u);
+                string user = Form.Username;
+                string pass = Form.Password;
 
-                        return UserService.ValidateUser(user, pass);
-                    }
+                if (String.IsNullOrEmpty(user))
+                {
+                    Form.SetStatusMessage("Ingrese su nombre de usuario.", true);
+
+                    Form.FocusUsername();
+                    return false;
+                }
+                else if (String.IsNullOrEmpty(pass))
+                {
+                    Form.SetStatusMessage("Ingrese su contraseña.", true);
+                    Form.FocusPassword();
+                    return false;
                 }
 
-                Form.SetStatusMessage("Contraseña invalida. Ingresar su nueva contraseña.", true);
-                Form.FocusPassword();
+                try
+                {
+                    return UserService.ValidateUser(user, pass);
+                }
+                catch (InvalidPasswordException ex)
+                {
+                    Form.SetStatusMessage(ex.Message, true);
+                    Form.FocusPassword();
+                    return false;
+                }
+                catch (UserNotFoundException ex)
+                {
+                    Form.SetStatusMessage(ex.Message, true);
+                    Form.FocusUsername();
+                    return false;
+                }
+                catch (MustConfirmPasswordException)
+                {
+                    var confirm = new ConfirmPasswordForm();
+                    var dr = confirm.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        if (pass.Equals(confirm.Password))
+                        {
+                            User u = UserService.GetUserByUsername(user);
+                            u.Password = pass;
+                            UserService.Update(u);
 
-                return false;
+                            return UserService.ValidateUser(user, pass);
+                        }
+                    }
+
+                    Form.SetStatusMessage("Contraseña invalida. Ingresar su nueva contraseña.", true);
+                    Form.FocusPassword();
+                }
             }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
+
+            return false;
         }
 
-        internal object CheckUser()
+        internal bool CheckUser()
         {
-            if (!UserService.CheckIfUserExists(Form.Username))
+            try
             {
-                UserExists = false;
-                return false;
+                if (!UserService.CheckIfUserExists(Form.Username))
+                {
+                    UserExists = false;
+                    return false;
+                }
+                UserExists = true;
+                Form.SetStatusMessage("Ingrese su contraseña");
             }
-            UserExists = true;
-            Form.SetStatusMessage("Ingrese su contraseña");
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
+
             return true;
         }
     }

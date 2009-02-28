@@ -6,7 +6,7 @@ using Blackspot.Microgestion.Backend.Services;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public partial class User : IIdentificableEntity
+    public partial class User : IPersistible
     {
         partial void OnCreated()
         {
@@ -50,6 +50,14 @@ namespace Blackspot.Microgestion.Backend.Entities
                 return "Anónimo";
             else
                 return String.Format("{0} {1} ({2})", this.Name, this.LastName, this.Username);
+        }
+
+        public bool IsValid()
+        {
+            return
+                !String.IsNullOrEmpty(this._Name) &&
+                !String.IsNullOrEmpty(this._Username) &&
+                !String.IsNullOrEmpty(this._LastName);
         }
     }
 }

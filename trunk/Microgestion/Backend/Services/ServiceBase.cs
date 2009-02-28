@@ -39,7 +39,7 @@ namespace Blackspot.Microgestion.Backend.Services
     }
 
     public class ServiceBase<T> : ServiceBase
-        where T : class, IIdentificableEntity
+        where T : class, IPersistible
     {
         public static T GetByID(Guid id)
         {
@@ -58,6 +58,9 @@ namespace Blackspot.Microgestion.Backend.Services
             if (instance.ID == Guid.Empty)
                 instance.ID = Guid.NewGuid();
 
+            if (!instance.IsValid())
+                throw new ArgumentException("La instancia que esta intentando salvar contiene datos inválidos.", "instance");
+
             DB.GetTable<T>().InsertOnSubmit(instance);
             
             SubmitChanges();
@@ -65,6 +68,10 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static void SaveAll(IEnumerable<T> collection)
         {
+            foreach (var item in collection)
+                if (!item.IsValid())
+                    throw new ArgumentException("Una de las instancias que esta intentando salvar contiene datos inválidos.", "instance");
+
             DB.GetTable<T>().InsertAllOnSubmit(collection);
 
             SubmitChanges();
@@ -91,6 +98,9 @@ namespace Blackspot.Microgestion.Backend.Services
         {
             if (instance.ID == Guid.Empty)
                 Save(instance);
+
+            if (!instance.IsValid())
+                throw new ArgumentException("La instancia que esta intentando salvar contiene datos inválidos.", "instance");
 
             SubmitChanges();
         }
