@@ -105,6 +105,12 @@
     <Compile Include="Forms\MeasurementsForm.Designer.cs">
       <DependentUpon>MeasurementsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PriceEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PriceEditor.Designer.cs">
+      <DependentUpon>PriceEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RoleEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MeasurementsForm.resx">
       <DependentUpon>MeasurementsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PriceEditor.resx">
+      <DependentUpon>PriceEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

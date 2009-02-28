@@ -49,6 +49,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.Grid.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "MovesStock", HeaderText = "Stock" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualStock", HeaderText = "Stock Actual" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "MinimumStock", HeaderText = "Stock Mínimo" });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CurrentPrice", HeaderText = "Precio" });
 
                 Grid.DataSource = Controller.Items;
 

@@ -102,16 +102,28 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
                 Item item = Form.Grid.SelectedRows[0].DataBoundItem as Item;
 
-                string measurementName = item.Name;
-                //string measurementAbbreviation = item.Abbreviation;
+                string itemName = item.Name;
+                Measurement itemBaseMeasurement = item.BaseMeasurement;
+                Price itemCurrentPrice = item.CurrentPrice;
+                Double itemDefaultSalesAmount = item.DefaultSalesAmount;
+                string itemExternalCode = item.ExternalCode;
+                string itemInternalCode = item.InternalCode;
+                double itemMinimumStock = item.MinimumStock;
+                bool itemMovesStock = item.MovesStock;
 
                 ItemEditor editor = new ItemEditor(item);
 
                 var result = editor.ShowDialog(Form);
                 if (result == DialogResult.Cancel)
                 {
-                    item.Name = measurementName;
-                    //item.Abbreviation = measurementAbbreviation;
+                    item.Name = itemName;
+                    item.BaseMeasurement = itemBaseMeasurement;
+                    item.CurrentPrice = itemCurrentPrice;
+                    item.DefaultSalesAmount = itemDefaultSalesAmount;
+                    item.ExternalCode = itemExternalCode;
+                    item.InternalCode = itemInternalCode;
+                    item.MinimumStock = item.MinimumStock;
+                    item.MovesStock = itemMovesStock;
                 }
                 else
                 {

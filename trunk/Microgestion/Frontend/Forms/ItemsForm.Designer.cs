@@ -52,7 +52,7 @@
             // 
             this.Grid.AllowUserToAddRows = false;
             this.Grid.AllowUserToDeleteRows = false;
-            this.Grid.AllowUserToResizeColumns = false;
+            this.Grid.AllowUserToOrderColumns = true;
             this.Grid.AllowUserToResizeRows = false;
             this.Grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)

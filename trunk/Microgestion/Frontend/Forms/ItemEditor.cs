@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Blackspot.Microgestion.Backend.Entities;
 using Blackspot.Microgestion.Frontend.Extensions;
+using Blackspot.Microgestion.Backend.Services;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
@@ -36,6 +37,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         private void InitializeHandlers()
         {
+            // Select Measurement
             this.btnLookupMeasurement.Click += (s, e) =>
             {
                 try
@@ -58,6 +60,34 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 }
             };
 
+            // Manage Prices
+            this.btnPrices.Click += (s, e) =>
+            {
+                try
+                {
+                    Double current = this.Item.CurrentPrice == null ? 0 : this.Item.CurrentPrice.Value;
+                    using (PriceEditor editor = new PriceEditor(current))
+                    {
+                        var dr = editor.ShowDialog();
+                        if (dr != DialogResult.OK)
+                            return;
+
+                        if (editor.NewValue != editor.CurrentValue)
+                        {
+                            Price newPrice = new Price
+                            {
+                                Date = DateTime.Now,
+                                Value = editor.NewValue
+                            };
+                            Item.CurrentPrice = newPrice;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.ShowMessageBox();
+                }
+            };
         }
 
         private void InitializeBindings()
@@ -68,6 +98,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.txtInternalCode.DataBindings.Add(new Binding("Text", Item, "InternalCode"));
                 this.txtExternalCode.DataBindings.Add(new Binding("Text", Item, "ExternalCode"));
                 this.txtBaseMeasurement.DataBindings.Add(new Binding("Text", Item, "BaseMeasurement"));
+                this.txtPrice.DataBindings.Add(new Binding("Text", Item, "CurrentPrice"));
                 this.txtDefaultSalesAmount.DataBindings.Add(new Binding("Text", Item, "DefaultSalesAmount"));
                 this.chkMovesStock.DataBindings.Add(new Binding("Checked", Item, "MovesStock"));
                 this.lblActualStock.DataBindings.Add(new Binding("Text", Item, "ActualStock"));

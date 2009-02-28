@@ -13,5 +13,10 @@ namespace Blackspot.Microgestion.Backend.Entities
                 this.Date != DateTime.MinValue &&
                 this.Item != null;
         }
+
+        public override string ToString()
+        {
+            return String.Format("{0:c}", this.Value);
+        }
     }
 }
