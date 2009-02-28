@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    public interface IIdentificableEntity
+    public interface IPersistible
     {
         Guid ID { get; set; }
+
+        Boolean IsValid();
     }
 }
