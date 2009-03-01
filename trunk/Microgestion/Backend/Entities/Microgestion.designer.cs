@@ -2526,7 +2526,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			OnCreated();
 		}
 		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Guid ID
 		{
 			get

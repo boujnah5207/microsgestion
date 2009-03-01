@@ -33,7 +33,7 @@ namespace Blackspot.Microgestion.Backend.Entities
             set
             {
                 var unsavedPrices = this.Prices.Where(p => p.ID == Guid.Empty).ToArray();
-                foreach (var p in this.Prices)
+                foreach (var p in unsavedPrices)
                     this.Prices.Remove(p);
 
                 value.Item = this;

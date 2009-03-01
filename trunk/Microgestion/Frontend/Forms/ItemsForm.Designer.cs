@@ -42,7 +42,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(685, 353);
+            this.btnClose.Location = new System.Drawing.Point(677, 332);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 3;
@@ -65,7 +65,7 @@
             this.Grid.Name = "Grid";
             this.Grid.ReadOnly = true;
             this.Grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grid.Size = new System.Drawing.Size(667, 335);
+            this.Grid.Size = new System.Drawing.Size(659, 314);
             this.Grid.TabIndex = 4;
             // 
             // flowLayoutPanel1
@@ -75,9 +75,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(682, 12);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(674, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 335);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 314);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // btnAdd
@@ -109,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(800, 391);
+            this.ClientSize = new System.Drawing.Size(792, 370);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.btnClose);

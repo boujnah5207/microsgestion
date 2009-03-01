@@ -22,5 +22,17 @@ namespace Blackspot.Microgestion.Frontend.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 400")]
+        public global::System.Drawing.Size ItemsFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["ItemsFormSize"]));
+            }
+            set {
+                this["ItemsFormSize"] = value;
+            }
+        }
     }
 }

@@ -116,7 +116,7 @@
   </Table>
   <Table Name="" Member="Prices">
     <Type Name="Price">
-      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
       <Column Name="Value" Type="System.Double" CanBeNull="false" />

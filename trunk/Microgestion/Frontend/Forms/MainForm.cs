@@ -109,6 +109,8 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 MessageBoxDefaultButton.Button2);
 
             e.Cancel = (result == DialogResult.No);
+
+            Properties.Settings.Default.Save();
         }
 
         internal void ShowUsers()
