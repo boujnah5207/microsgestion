@@ -51,6 +51,8 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
                 this.btnActions.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
 
+                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "RolesFormLocation"));
+                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "RolesFormSize"));
             }
             catch (Exception ex)
             {

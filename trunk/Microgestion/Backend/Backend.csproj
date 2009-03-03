@@ -86,6 +86,8 @@
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\UserRoleService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\ISearchable.cs" />
+    <Compile Include="Utils\Search.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entities\Microgestion.dbml">

@@ -75,6 +75,8 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
                 this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
 
+                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "UsersFormLocation"));
+                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "UsersFormSize"));
             }
             catch (Exception ex)
             {

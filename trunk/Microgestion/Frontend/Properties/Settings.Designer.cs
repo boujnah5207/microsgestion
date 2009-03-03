@@ -25,13 +25,133 @@ namespace Blackspot.Microgestion.Frontend.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("800, 400")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point MainFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["MainFormLocation"]));
+            }
+            set {
+                this["MainFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
+        public global::System.Drawing.Size MainFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainFormSize"]));
+            }
+            set {
+                this["MainFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point ItemsFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ItemsFormLocation"]));
+            }
+            set {
+                this["ItemsFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
         public global::System.Drawing.Size ItemsFormSize {
             get {
                 return ((global::System.Drawing.Size)(this["ItemsFormSize"]));
             }
             set {
                 this["ItemsFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point UsersFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["UsersFormLocation"]));
+            }
+            set {
+                this["UsersFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
+        public global::System.Drawing.Size UsersFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["UsersFormSize"]));
+            }
+            set {
+                this["UsersFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point RolesFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["RolesFormLocation"]));
+            }
+            set {
+                this["RolesFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
+        public global::System.Drawing.Size RolesFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["RolesFormSize"]));
+            }
+            set {
+                this["RolesFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point MeasurementsFormLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["MeasurementsFormLocation"]));
+            }
+            set {
+                this["MeasurementsFormLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
+        public global::System.Drawing.Size MeasurementsFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MeasurementsFormSize"]));
+            }
+            set {
+                this["MeasurementsFormSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point PriceEditorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["PriceEditorLocation"]));
+            }
+            set {
+                this["PriceEditorLocation"] = value;
             }
         }
     }

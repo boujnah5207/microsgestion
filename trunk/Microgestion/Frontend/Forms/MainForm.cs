@@ -77,6 +77,8 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
                 Current = this;
 
+                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "MainFormLocation"));
+                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "MainFormSize"));
             }
             catch (Exception ex)
             {
