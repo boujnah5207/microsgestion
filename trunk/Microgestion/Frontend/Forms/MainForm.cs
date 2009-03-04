@@ -20,6 +20,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         private RolesForm rolesForm;
         private MeasurementsForm measurementsForm;
         private ItemsForm itemsForm;
+        private StockMovementForm stockMovement;
 
         private UsersForm UsersForm
         {
@@ -61,6 +62,16 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 return itemsForm;
             }
         }
+        private StockMovementForm StockMovement
+        {
+            get
+            {
+                if (stockMovement == null)
+                    stockMovement = new StockMovementForm() { MdiParent = this };
+
+                return stockMovement;
+            }
+        }
 
         #endregion
 
@@ -79,6 +90,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
                 this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "MainFormLocation"));
                 this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "MainFormSize"));
+                this.DataBindings.Add(new Binding("WindowState", Properties.Settings.Default, "MainFormWindowState"));
             }
             catch (Exception ex)
             {
@@ -103,16 +115,23 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Esta seguro que desea salir?", 
-                "Saliendo...", 
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2);
+            try
+            {
+                DialogResult result = MessageBox.Show(
+                    "Esta seguro que desea salir?",
+                    "Saliendo...",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
 
-            e.Cancel = (result == DialogResult.No);
+                e.Cancel = (result == DialogResult.No);
 
-            Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal void ShowUsers()
@@ -133,6 +152,11 @@ namespace Blackspot.Microgestion.Frontend.Forms
         internal void ShowItems()
         {
             this.ItemsForm.Show();
+        }
+
+        internal void ShowStockMovement()
+        {
+            this.StockMovement.Show();
         }
     }
 }

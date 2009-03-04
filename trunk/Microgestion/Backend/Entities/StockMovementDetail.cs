@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    partial class StockMovement : IPersistible
+    partial class StockMovementDetail : IPersistible
     {
         #region IPersistible Members
 
@@ -13,8 +13,8 @@ namespace Blackspot.Microgestion.Backend.Entities
         public bool IsValid()
         {
             return
-                this.Date != DateTime.MinValue &&
-                this.User != null;
+                this.ItemID != Guid.Empty &&
+                this._StockMovementId != Guid.Empty;
         }
 
         #endregion

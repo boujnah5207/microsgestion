@@ -39,6 +39,16 @@ namespace Blackspot.Microgestion.Backend.Services
                 }
             });
 
+            // Operaciones
+            options.Add(new MenuOption
+            {
+                ID = Guid.NewGuid(), Action = SystemAction.Null, Text = "&Operaciones", Order = 3,
+                Childs =
+                {
+                    new MenuOption { ID = Guid.NewGuid(), Action = SystemAction.StockMovement, Text = "&Movimiento de Stock", Order = 0 }
+                }
+            });
+
             return options;
         }
 

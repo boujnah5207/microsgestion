@@ -112,6 +112,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PriceEditor";
+            this.ShowInTaskbar = false;
             this.Text = "Cambiar Precio";
             this.ResumeLayout(false);
             this.PerformLayout();

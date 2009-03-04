@@ -115,6 +115,7 @@
             this.Controls.Add(this.btnClose);
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "ItemsForm";
+            this.ShowInTaskbar = false;
             this.Text = "Artículos";
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);

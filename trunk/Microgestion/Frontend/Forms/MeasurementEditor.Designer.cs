@@ -112,6 +112,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MeasurementEditor";
+            this.ShowInTaskbar = false;
             this.Text = "Unidad de Medida";
             this.ResumeLayout(false);
             this.PerformLayout();

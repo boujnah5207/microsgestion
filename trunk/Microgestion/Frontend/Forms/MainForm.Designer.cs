@@ -72,6 +72,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
             this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
+            this.ShowInTaskbar = false;
             this.Text = "MicroGestion";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

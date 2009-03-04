@@ -164,7 +164,7 @@
             this.chkMovesStock.AutoSize = true;
             this.chkMovesStock.Location = new System.Drawing.Point(120, 172);
             this.chkMovesStock.Name = "chkMovesStock";
-            this.chkMovesStock.Size = new System.Drawing.Size(13, 12);
+            this.chkMovesStock.Size = new System.Drawing.Size(15, 14);
             this.chkMovesStock.TabIndex = 8;
             this.chkMovesStock.UseVisualStyleBackColor = true;
             // 
@@ -300,6 +300,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ItemEditor";
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Artículo";
             this.ResumeLayout(false);

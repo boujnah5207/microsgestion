@@ -12,7 +12,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class UsersForm : Form
+    public partial class UsersForm : Form, IRestorableForm
     {
         private UsersFormController Controller;
        
@@ -75,13 +75,26 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
                 this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
 
-                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "UsersFormLocation"));
-                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "UsersFormSize"));
             }
             catch (Exception ex)
             {
                 ex.ShowMessageBox();
             }
+        }
+
+        public string LocationSetting
+        {
+            get { return "UsersFormLocation"; }
+        }
+
+        public string SizeSetting
+        {
+            get { return "UsersFormSize"; }
+        }
+
+        public string WindowStateSetting
+        {
+            get { return "UsersFormWindowState"; }
         }
     }
 }

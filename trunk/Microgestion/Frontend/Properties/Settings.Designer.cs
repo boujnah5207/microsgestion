@@ -154,5 +154,65 @@ namespace Blackspot.Microgestion.Frontend.Properties {
                 this["PriceEditorLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Maximized")]
+        public global::System.Windows.Forms.FormWindowState MainFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["MainFormWindowState"]));
+            }
+            set {
+                this["MainFormWindowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState ItemsFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["ItemsFormWindowState"]));
+            }
+            set {
+                this["ItemsFormWindowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState UsersFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["UsersFormWindowState"]));
+            }
+            set {
+                this["UsersFormWindowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState RolesFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["RolesFormWindowState"]));
+            }
+            set {
+                this["RolesFormWindowState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState MeasurementsFormWindowState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["MeasurementsFormWindowState"]));
+            }
+            set {
+                this["MeasurementsFormWindowState"] = value;
+            }
+        }
     }
 }

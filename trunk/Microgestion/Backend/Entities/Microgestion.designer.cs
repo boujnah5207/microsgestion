@@ -62,6 +62,9 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void InsertPrice(Price instance);
     partial void UpdatePrice(Price instance);
     partial void DeletePrice(Price instance);
+    partial void InsertStockMovementDetail(StockMovementDetail instance);
+    partial void UpdateStockMovementDetail(StockMovementDetail instance);
+    partial void DeleteStockMovementDetail(StockMovementDetail instance);
     #endregion
 		
 		public MicrogestionDataContext(string connection) : 
@@ -173,6 +176,14 @@ namespace Blackspot.Microgestion.Backend.Entities
 			get
 			{
 				return this.GetTable<Price>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StockMovementDetail> StockMovementDetails
+		{
+			get
+			{
+				return this.GetTable<StockMovementDetail>();
 			}
 		}
 	}
@@ -968,9 +979,9 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private double _MinimumStock;
 		
-		private EntitySet<StockMovement> _StockMovements;
-		
 		private EntitySet<Price> _Prices;
+		
+		private EntitySet<StockMovementDetail> _StockMovementDetails;
 		
 		private EntityRef<Measurement> _Measurement;
 		
@@ -1000,8 +1011,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		public Item()
 		{
-			this._StockMovements = new EntitySet<StockMovement>(new Action<StockMovement>(this.attach_StockMovements), new Action<StockMovement>(this.detach_StockMovements));
 			this._Prices = new EntitySet<Price>(new Action<Price>(this.attach_Prices), new Action<Price>(this.detach_Prices));
+			this._StockMovementDetails = new EntitySet<StockMovementDetail>(new Action<StockMovementDetail>(this.attach_StockMovementDetails), new Action<StockMovementDetail>(this.detach_StockMovementDetails));
 			this._Measurement = default(EntityRef<Measurement>);
 			OnCreated();
 		}
@@ -1190,19 +1201,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Item_StockMovement", Storage="_StockMovements", ThisKey="ID", OtherKey="ItemID")]
-		public EntitySet<StockMovement> StockMovements
-		{
-			get
-			{
-				return this._StockMovements;
-			}
-			set
-			{
-				this._StockMovements.Assign(value);
-			}
-		}
-		
 		[Association(Name="Item_Price", Storage="_Prices", ThisKey="ID", OtherKey="ItemID")]
 		public EntitySet<Price> Prices
 		{
@@ -1213,6 +1211,19 @@ namespace Blackspot.Microgestion.Backend.Entities
 			set
 			{
 				this._Prices.Assign(value);
+			}
+		}
+		
+		[Association(Name="Item_StockMovementDetail", Storage="_StockMovementDetails", ThisKey="ID", OtherKey="ItemID")]
+		public EntitySet<StockMovementDetail> StockMovementDetails
+		{
+			get
+			{
+				return this._StockMovementDetails;
+			}
+			set
+			{
+				this._StockMovementDetails.Assign(value);
 			}
 		}
 		
@@ -1254,18 +1265,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		private void attach_StockMovements(StockMovement entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item = this;
-		}
-		
-		private void detach_StockMovements(StockMovement entity)
-		{
-			this.SendPropertyChanging();
-			entity.Item = null;
-		}
-		
 		private void attach_Prices(Price entity)
 		{
 			this.SendPropertyChanging();
@@ -1273,6 +1272,18 @@ namespace Blackspot.Microgestion.Backend.Entities
 		}
 		
 		private void detach_Prices(Price entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = null;
+		}
+		
+		private void attach_StockMovementDetails(StockMovementDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Item = this;
+		}
+		
+		private void detach_StockMovementDetails(StockMovementDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.Item = null;
@@ -1371,7 +1382,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Measurement_MeasurementConversion", Storage="_Conversions", ThisKey="ID", OtherKey="BaseId")]
+		[Association(Name="Measurement_MeasurementConversion", Storage="_Conversions", ThisKey="ID", OtherKey="BaseID")]
 		public EntitySet<MeasurementConversion> Conversions
 		{
 			get
@@ -1443,10 +1454,10 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnCreated();
     partial void OnIDChanging(System.Guid value);
     partial void OnIDChanged();
-    partial void OnBaseIdChanging(System.Guid value);
-    partial void OnBaseIdChanged();
-    partial void OnConvertedIdChanging(System.Guid value);
-    partial void OnConvertedIdChanged();
+    partial void OnBaseIDChanging(System.Guid value);
+    partial void OnBaseIDChanged();
+    partial void OnConvertedIDChanging(System.Guid value);
+    partial void OnConvertedIDChanged();
     partial void OnBaseValueChanging(double value);
     partial void OnBaseValueChanged();
     partial void OnConvertedValueChanging(double value);
@@ -1481,7 +1492,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		}
 		
 		[Column(Storage="_BaseId")]
-		public System.Guid BaseId
+		public System.Guid BaseID
 		{
 			get
 			{
@@ -1495,17 +1506,17 @@ namespace Blackspot.Microgestion.Backend.Entities
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnBaseIdChanging(value);
+					this.OnBaseIDChanging(value);
 					this.SendPropertyChanging();
 					this._BaseId = value;
-					this.SendPropertyChanged("BaseId");
-					this.OnBaseIdChanged();
+					this.SendPropertyChanged("BaseID");
+					this.OnBaseIDChanged();
 				}
 			}
 		}
 		
 		[Column(Storage="_ConvertedId")]
-		public System.Guid ConvertedId
+		public System.Guid ConvertedID
 		{
 			get
 			{
@@ -1519,11 +1530,11 @@ namespace Blackspot.Microgestion.Backend.Entities
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnConvertedIdChanging(value);
+					this.OnConvertedIDChanging(value);
 					this.SendPropertyChanging();
 					this._ConvertedId = value;
-					this.SendPropertyChanged("ConvertedId");
-					this.OnConvertedIdChanged();
+					this.SendPropertyChanged("ConvertedID");
+					this.OnConvertedIDChanged();
 				}
 			}
 		}
@@ -1568,7 +1579,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Measurement_MeasurementConversion", Storage="_Base", ThisKey="BaseId", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="Measurement_MeasurementConversion", Storage="_Base", ThisKey="BaseID", OtherKey="ID", IsForeignKey=true)]
 		public Measurement Base
 		{
 			get
@@ -1602,7 +1613,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="Measurement_MeasurementConversion1", Storage="_Converted", ThisKey="ConvertedId", OtherKey="ID", IsForeignKey=true)]
+		[Association(Name="Measurement_MeasurementConversion1", Storage="_Converted", ThisKey="ConvertedID", OtherKey="ID", IsForeignKey=true)]
 		public Measurement Converted
 		{
 			get
@@ -1651,25 +1662,15 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private System.DateTime _Date;
 		
-		private double _OldStock;
-		
-		private double _NewStock;
-		
-		private double _Amount;
-		
 		private System.Guid _UserID;
 		
 		private string _Comment;
 		
-		private System.Nullable<System.Guid> _SaleDetailID;
+		private int _InternalId = default(int);
 		
-		private System.Guid _ItemID;
+		private EntitySet<StockMovementDetail> _Details;
 		
 		private EntityRef<User> _User;
-		
-		private EntityRef<SaleDetail> _SaleDetail;
-		
-		private EntityRef<Item> _Item;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1679,27 +1680,16 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnIDChanged();
     partial void OnDateChanging(System.DateTime value);
     partial void OnDateChanged();
-    partial void OnOldStockChanging(double value);
-    partial void OnOldStockChanged();
-    partial void OnNewStockChanging(double value);
-    partial void OnNewStockChanged();
-    partial void OnAmountChanging(double value);
-    partial void OnAmountChanged();
     partial void OnUserIDChanging(System.Guid value);
     partial void OnUserIDChanged();
     partial void OnCommentChanging(string value);
     partial void OnCommentChanged();
-    partial void OnSaleDetailIDChanging(System.Nullable<System.Guid> value);
-    partial void OnSaleDetailIDChanged();
-    partial void OnItemIDChanging(System.Guid value);
-    partial void OnItemIDChanged();
     #endregion
 		
 		public StockMovement()
 		{
+			this._Details = new EntitySet<StockMovementDetail>(new Action<StockMovementDetail>(this.attach_Details), new Action<StockMovementDetail>(this.detach_Details));
 			this._User = default(EntityRef<User>);
-			this._SaleDetail = default(EntityRef<SaleDetail>);
-			this._Item = default(EntityRef<Item>);
 			OnCreated();
 		}
 		
@@ -1739,66 +1729,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._Date = value;
 					this.SendPropertyChanged("Date");
 					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_OldStock")]
-		public double OldStock
-		{
-			get
-			{
-				return this._OldStock;
-			}
-			set
-			{
-				if ((this._OldStock != value))
-				{
-					this.OnOldStockChanging(value);
-					this.SendPropertyChanging();
-					this._OldStock = value;
-					this.SendPropertyChanged("OldStock");
-					this.OnOldStockChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_NewStock")]
-		public double NewStock
-		{
-			get
-			{
-				return this._NewStock;
-			}
-			set
-			{
-				if ((this._NewStock != value))
-				{
-					this.OnNewStockChanging(value);
-					this.SendPropertyChanging();
-					this._NewStock = value;
-					this.SendPropertyChanged("NewStock");
-					this.OnNewStockChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Amount")]
-		public double Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
 				}
 			}
 		}
@@ -1847,51 +1777,25 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_SaleDetailID")]
-		public System.Nullable<System.Guid> SaleDetailID
+		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		private int InternalID
 		{
 			get
 			{
-				return this._SaleDetailID;
-			}
-			set
-			{
-				if ((this._SaleDetailID != value))
-				{
-					if (this._SaleDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSaleDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._SaleDetailID = value;
-					this.SendPropertyChanged("SaleDetailID");
-					this.OnSaleDetailIDChanged();
-				}
+				return this._InternalId;
 			}
 		}
 		
-		[Column(Storage="_ItemID")]
-		public System.Guid ItemID
+		[Association(Name="StockMovement_StockMovementDetail", Storage="_Details", ThisKey="ID", OtherKey="StockMovementID")]
+		public EntitySet<StockMovementDetail> Details
 		{
 			get
 			{
-				return this._ItemID;
+				return this._Details;
 			}
 			set
 			{
-				if ((this._ItemID != value))
-				{
-					if (this._Item.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._ItemID = value;
-					this.SendPropertyChanged("ItemID");
-					this.OnItemIDChanged();
-				}
+				this._Details.Assign(value);
 			}
 		}
 		
@@ -1909,74 +1813,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this.SendPropertyChanging();
 					this._User.Entity = value;
 					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		[Association(Name="SaleDetail_StockMovement", Storage="_SaleDetail", ThisKey="SaleDetailID", OtherKey="ID", IsForeignKey=true)]
-		public SaleDetail SaleDetail
-		{
-			get
-			{
-				return this._SaleDetail.Entity;
-			}
-			set
-			{
-				SaleDetail previousValue = this._SaleDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._SaleDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SaleDetail.Entity = null;
-						previousValue.StockMovements.Remove(this);
-					}
-					this._SaleDetail.Entity = value;
-					if ((value != null))
-					{
-						value.StockMovements.Add(this);
-						this._SaleDetailID = value.ID;
-					}
-					else
-					{
-						this._SaleDetailID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("SaleDetail");
-				}
-			}
-		}
-		
-		[Association(Name="Item_StockMovement", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
-		public Item Item
-		{
-			get
-			{
-				return this._Item.Entity;
-			}
-			set
-			{
-				Item previousValue = this._Item.Entity;
-				if (((previousValue != value) 
-							|| (this._Item.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Item.Entity = null;
-						previousValue.StockMovements.Remove(this);
-					}
-					this._Item.Entity = value;
-					if ((value != null))
-					{
-						value.StockMovements.Add(this);
-						this._ItemID = value.ID;
-					}
-					else
-					{
-						this._ItemID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Item");
 				}
 			}
 		}
@@ -2000,6 +1836,18 @@ namespace Blackspot.Microgestion.Backend.Entities
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Details(StockMovementDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.StockMovement = this;
+		}
+		
+		private void detach_Details(StockMovementDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.StockMovement = null;
+		}
 	}
 	
 	[Table(Name="")]
@@ -2015,6 +1863,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 		private System.Guid _UserID;
 		
 		private double _Total;
+		
+		private int _InternalId = default(int);
 		
 		private EntitySet<SaleDetail> _Details;
 		
@@ -2125,6 +1975,15 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
+		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		private int InternalID
+		{
+			get
+			{
+				return this._InternalId;
+			}
+		}
+		
 		[Association(Name="Sale_SaleDetail", Storage="_Details", ThisKey="ID", OtherKey="SaleID")]
 		public EntitySet<SaleDetail> Details
 		{
@@ -2207,7 +2066,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private double _Subtotal;
 		
-		private EntitySet<StockMovement> _StockMovements;
+		private EntitySet<StockMovementDetail> _StockMovementDetails;
 		
 		private EntityRef<Sale> _Sale;
 		
@@ -2235,7 +2094,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		public SaleDetail()
 		{
-			this._StockMovements = new EntitySet<StockMovement>(new Action<StockMovement>(this.attach_StockMovements), new Action<StockMovement>(this.detach_StockMovements));
+			this._StockMovementDetails = new EntitySet<StockMovementDetail>(new Action<StockMovementDetail>(this.attach_StockMovementDetails), new Action<StockMovementDetail>(this.detach_StockMovementDetails));
 			this._Sale = default(EntityRef<Sale>);
 			this._Item = default(EntityRef<Item>);
 			this._Price = default(EntityRef<Price>);
@@ -2374,16 +2233,16 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Association(Name="SaleDetail_StockMovement", Storage="_StockMovements", ThisKey="ID", OtherKey="SaleDetailID")]
-		public EntitySet<StockMovement> StockMovements
+		[Association(Name="SaleDetail_StockMovementDetail", Storage="_StockMovementDetails", ThisKey="ID", OtherKey="SaleDetailID")]
+		public EntitySet<StockMovementDetail> StockMovementDetails
 		{
 			get
 			{
-				return this._StockMovements;
+				return this._StockMovementDetails;
 			}
 			set
 			{
-				this._StockMovements.Assign(value);
+				this._StockMovementDetails.Assign(value);
 			}
 		}
 		
@@ -2477,13 +2336,13 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		private void attach_StockMovements(StockMovement entity)
+		private void attach_StockMovementDetails(StockMovementDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.SaleDetail = this;
 		}
 		
-		private void detach_StockMovements(StockMovement entity)
+		private void detach_StockMovementDetails(StockMovementDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.SaleDetail = null;
@@ -2640,6 +2499,298 @@ namespace Blackspot.Microgestion.Backend.Entities
 						this._ItemID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Item");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="")]
+	public partial class StockMovementDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private int _InternalId = default(int);
+		
+		private System.Guid _ItemID;
+		
+		private double _Amount;
+		
+		private System.Guid _StockMovementId;
+		
+		private System.Nullable<System.Guid> _SaleDetailId;
+		
+		private EntityRef<StockMovement> _StockMovement;
+		
+		private EntityRef<Item> _Item;
+		
+		private EntityRef<SaleDetail> _SaleDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnItemIDChanging(System.Guid value);
+    partial void OnItemIDChanged();
+    partial void OnAmountChanging(double value);
+    partial void OnAmountChanged();
+    partial void OnStockMovementIDChanging(System.Guid value);
+    partial void OnStockMovementIDChanged();
+    partial void OnSaleDetailIDChanging(System.Nullable<System.Guid> value);
+    partial void OnSaleDetailIDChanged();
+    #endregion
+		
+		public StockMovementDetail()
+		{
+			this._StockMovement = default(EntityRef<StockMovement>);
+			this._Item = default(EntityRef<Item>);
+			this._SaleDetail = default(EntityRef<SaleDetail>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
+		private int InternalID
+		{
+			get
+			{
+				return this._InternalId;
+			}
+		}
+		
+		[Column(Storage="_ItemID")]
+		public System.Guid ItemID
+		{
+			get
+			{
+				return this._ItemID;
+			}
+			set
+			{
+				if ((this._ItemID != value))
+				{
+					if (this._Item.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemID = value;
+					this.SendPropertyChanged("ItemID");
+					this.OnItemIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Amount")]
+		public double Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StockMovementId")]
+		public System.Guid StockMovementID
+		{
+			get
+			{
+				return this._StockMovementId;
+			}
+			set
+			{
+				if ((this._StockMovementId != value))
+				{
+					if (this._StockMovement.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStockMovementIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockMovementId = value;
+					this.SendPropertyChanged("StockMovementID");
+					this.OnStockMovementIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SaleDetailId")]
+		public System.Nullable<System.Guid> SaleDetailID
+		{
+			get
+			{
+				return this._SaleDetailId;
+			}
+			set
+			{
+				if ((this._SaleDetailId != value))
+				{
+					if (this._SaleDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleDetailId = value;
+					this.SendPropertyChanged("SaleDetailID");
+					this.OnSaleDetailIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="StockMovement_StockMovementDetail", Storage="_StockMovement", ThisKey="StockMovementID", OtherKey="ID", IsForeignKey=true)]
+		public StockMovement StockMovement
+		{
+			get
+			{
+				return this._StockMovement.Entity;
+			}
+			set
+			{
+				StockMovement previousValue = this._StockMovement.Entity;
+				if (((previousValue != value) 
+							|| (this._StockMovement.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StockMovement.Entity = null;
+						previousValue.Details.Remove(this);
+					}
+					this._StockMovement.Entity = value;
+					if ((value != null))
+					{
+						value.Details.Add(this);
+						this._StockMovementId = value.ID;
+					}
+					else
+					{
+						this._StockMovementId = default(System.Guid);
+					}
+					this.SendPropertyChanged("StockMovement");
+				}
+			}
+		}
+		
+		[Association(Name="Item_StockMovementDetail", Storage="_Item", ThisKey="ItemID", OtherKey="ID", IsForeignKey=true)]
+		public Item Item
+		{
+			get
+			{
+				return this._Item.Entity;
+			}
+			set
+			{
+				Item previousValue = this._Item.Entity;
+				if (((previousValue != value) 
+							|| (this._Item.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Item.Entity = null;
+						previousValue.StockMovementDetails.Remove(this);
+					}
+					this._Item.Entity = value;
+					if ((value != null))
+					{
+						value.StockMovementDetails.Add(this);
+						this._ItemID = value.ID;
+					}
+					else
+					{
+						this._ItemID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Item");
+				}
+			}
+		}
+		
+		[Association(Name="SaleDetail_StockMovementDetail", Storage="_SaleDetail", ThisKey="SaleDetailID", OtherKey="ID", IsForeignKey=true)]
+		public SaleDetail SaleDetail
+		{
+			get
+			{
+				return this._SaleDetail.Entity;
+			}
+			set
+			{
+				SaleDetail previousValue = this._SaleDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._SaleDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SaleDetail.Entity = null;
+						previousValue.StockMovementDetails.Remove(this);
+					}
+					this._SaleDetail.Entity = value;
+					if ((value != null))
+					{
+						value.StockMovementDetails.Add(this);
+						this._SaleDetailId = value.ID;
+					}
+					else
+					{
+						this._SaleDetailId = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("SaleDetail");
 				}
 			}
 		}

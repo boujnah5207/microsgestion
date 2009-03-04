@@ -192,6 +192,7 @@
             this.Controls.Add(this.txtLastName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "UserEditor";
+            this.ShowInTaskbar = false;
             this.Text = "Usuario";
             this.ResumeLayout(false);
             this.PerformLayout();

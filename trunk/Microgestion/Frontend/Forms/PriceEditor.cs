@@ -23,7 +23,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
             this.txtCurrent.DataBindings.Add(new Binding("Text", this, "CurrentValue"));
             this.txtNew.DataBindings.Add(new Binding("Text", this, "NewValue"));
 
-            this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "PriceEditorFormLocation"));
+            this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "PriceEditorLocation"));
         }
 
         public Double CurrentValue { get; set; }

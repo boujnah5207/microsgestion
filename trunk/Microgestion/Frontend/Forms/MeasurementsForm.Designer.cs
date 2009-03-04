@@ -115,6 +115,7 @@
             this.Controls.Add(this.btnClose);
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "MeasurementsForm";
+            this.ShowInTaskbar = false;
             this.Text = "Unidades de Medida";
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
