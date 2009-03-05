@@ -101,8 +101,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.txtPrice.DataBindings.Add(new Binding("Text", Item, "CurrentPrice"));
                 this.txtDefaultSalesAmount.DataBindings.Add(new Binding("Text", Item, "DefaultSalesAmount"));
                 this.chkMovesStock.DataBindings.Add(new Binding("Checked", Item, "MovesStock"));
-                this.lblActualStock.DataBindings.Add(new Binding("Text", Item, "ActualStock"));
-                this.lblMinimumStock.DataBindings.Add(new Binding("Text", Item, "MinimumStock"));
+                this.txtMinimumStock.DataBindings.Add(new Binding("Text", Item, "MinimumStock"));
 
             }
             catch (Exception ex)

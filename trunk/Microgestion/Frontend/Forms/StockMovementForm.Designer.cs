@@ -43,10 +43,10 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(705, 538);
+            this.btnClose.Location = new System.Drawing.Point(701, 538);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 0;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "&Cerrar";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
@@ -54,17 +54,17 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(624, 538);
+            this.btnSave.Location = new System.Drawing.Point(620, 538);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "&Guardar";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(36, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 2;
@@ -73,10 +73,10 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(59, 13);
+            this.lblDate.Location = new System.Drawing.Point(79, 13);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(115, 13);
-            this.lblDate.TabIndex = 3;
+            this.lblDate.TabIndex = 0;
             this.lblDate.Text = "Fecha de la Operación";
             // 
             // label2
@@ -84,20 +84,20 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Fecha:";
+            this.label2.Text = "Comentario:";
             // 
             // txtComments
             // 
             this.txtComments.AcceptsReturn = true;
             this.txtComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComments.Location = new System.Drawing.Point(62, 37);
+            this.txtComments.Location = new System.Drawing.Point(82, 37);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(718, 68);
-            this.txtComments.TabIndex = 5;
+            this.txtComments.Size = new System.Drawing.Size(698, 68);
+            this.txtComments.TabIndex = 1;
             // 
             // label3
             // 
@@ -118,7 +118,7 @@
             this.Grid.Location = new System.Drawing.Point(12, 141);
             this.Grid.Name = "Grid";
             this.Grid.Size = new System.Drawing.Size(764, 391);
-            this.Grid.TabIndex = 7;
+            this.Grid.TabIndex = 2;
             // 
             // StockMovementForm
             // 
@@ -153,6 +153,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView Grid;
+        internal System.Windows.Forms.DataGridView Grid;
     }
 }

@@ -34,7 +34,15 @@ namespace Blackspot.Microgestion.Frontend.Forms
                     ((Form)s).Hide();
                     ((FormClosingEventArgs)e).Cancel = true;
                 };
-                this.btnClose.Click += (s, e) => this.Close();
+                this.btnClose.Click += (s, e) =>
+                {
+                    Controller.CloseButtonPressed();
+                    this.Close();
+                };
+                this.btnSave.Click += (s, e) =>
+                {
+                    Controller.SaveButtonPressed();
+                };
             }
             catch (Exception ex)
             {
@@ -51,19 +59,36 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "InternalID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewComboBoxColumn { DataPropertyName = "ItemID", DataSource = Controller.Items, DisplayMember = "Name", ValueMember = "ID", HeaderText = "Artículo", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Amount", HeaderText = "Cantidad", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Item", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewComboBoxColumn
+                {
+                    DataPropertyName = "ItemID",
+                    DataSource = Controller.Items,
+                    DisplayMember = "Name",
+                    AutoComplete = true,
+                    FlatStyle = FlatStyle.Flat,
+                    ValueMember = "ID",
+                    HeaderText = "Artículo",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Amount", HeaderText = "Cantidad" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockMovementID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockDetailID", Visible = false });
-
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockMovement", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SaleDetail", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SaleDetailID", Visible = false });
 
                 this.Grid.DataSource = Controller.Details;
+                this.Grid.DataError += new DataGridViewDataErrorEventHandler(Grid_DataError);
             }
             catch (Exception ex)
             {
                 ex.ShowMessageBox();
             }
+        }
+
+        void Grid_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
 
 

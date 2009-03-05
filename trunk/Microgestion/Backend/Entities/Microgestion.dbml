@@ -48,7 +48,6 @@
       <Column Name="BaseMeasurementID" Storage="_BaseMeasurement" Type="System.Guid" CanBeNull="false" />
       <Column Name="DefaultSalesAmount" Type="System.Double" CanBeNull="false" />
       <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
-      <Column Name="ActualStock" Type="System.Double" CanBeNull="false" />
       <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
       <Association Name="Item_Price" Member="Prices" ThisKey="ID" OtherKey="ItemID" Type="Price" />
       <Association Name="Item_StockMovementDetail" Member="StockMovementDetails" ThisKey="ID" OtherKey="ItemID" Type="StockMovementDetail" />
@@ -80,7 +79,6 @@
       <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
       <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Comment" Type="System.String" DbType="nvarchar(1000)" CanBeNull="false" />
-      <Column Name="InternalID" Storage="_InternalId" AccessModifier="Private" AutoSync="Never" Type="System.Int32" IsReadOnly="true" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="StockMovement_StockMovementDetail" Member="Details" ThisKey="ID" OtherKey="StockMovementID" Type="StockMovementDetail" />
       <Association Name="User_StockMovement" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
     </Type>
@@ -121,8 +119,7 @@
   </Table>
   <Table Name="" Member="StockMovementDetails">
     <Type Name="StockMovementDetail">
-      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="InternalID" Storage="_InternalId" AccessModifier="Private" AutoSync="Never" Type="System.Int32" IsReadOnly="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
       <Column Name="Amount" Type="System.Double" CanBeNull="false" />
       <Column Name="StockMovementID" Storage="_StockMovementId" Type="System.Guid" CanBeNull="false" />

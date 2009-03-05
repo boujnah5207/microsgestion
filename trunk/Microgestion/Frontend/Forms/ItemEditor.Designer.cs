@@ -41,15 +41,13 @@
             this.txtDefaultSalesAmount = new System.Windows.Forms.TextBox();
             this.chkMovesStock = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblActualStock = new System.Windows.Forms.Label();
-            this.lblMinimumStock = new System.Windows.Forms.Label();
             this.txtBaseMeasurement = new System.Windows.Forms.TextBox();
             this.btnLookupMeasurement = new System.Windows.Forms.Button();
             this.btnPrices = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtMinimumStock = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -59,7 +57,7 @@
             this.btnCancel.Location = new System.Drawing.Point(407, 237);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 12;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "&Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -70,7 +68,7 @@
             this.btnAccept.Location = new System.Drawing.Point(326, 237);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 11;
+            this.btnAccept.TabIndex = 10;
             this.btnAccept.Text = "&Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
@@ -156,7 +154,7 @@
             this.txtDefaultSalesAmount.Location = new System.Drawing.Point(120, 116);
             this.txtDefaultSalesAmount.MaxLength = 50;
             this.txtDefaultSalesAmount.Name = "txtDefaultSalesAmount";
-            this.txtDefaultSalesAmount.Size = new System.Drawing.Size(362, 20);
+            this.txtDefaultSalesAmount.Size = new System.Drawing.Size(89, 20);
             this.txtDefaultSalesAmount.TabIndex = 5;
             // 
             // chkMovesStock
@@ -177,41 +175,14 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Mueve Stock:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 197);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Stock Actual:";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 223);
+            this.label8.Location = new System.Drawing.Point(11, 198);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 13);
             this.label8.TabIndex = 18;
             this.label8.Text = "Stock Mínimo:";
-            // 
-            // lblActualStock
-            // 
-            this.lblActualStock.AutoSize = true;
-            this.lblActualStock.Location = new System.Drawing.Point(117, 197);
-            this.lblActualStock.Name = "lblActualStock";
-            this.lblActualStock.Size = new System.Drawing.Size(28, 13);
-            this.lblActualStock.TabIndex = 9;
-            this.lblActualStock.Text = "0.00";
-            // 
-            // lblMinimumStock
-            // 
-            this.lblMinimumStock.AutoSize = true;
-            this.lblMinimumStock.Location = new System.Drawing.Point(117, 223);
-            this.lblMinimumStock.Name = "lblMinimumStock";
-            this.lblMinimumStock.Size = new System.Drawing.Size(28, 13);
-            this.lblMinimumStock.TabIndex = 10;
-            this.lblMinimumStock.Text = "0.00";
             // 
             // txtBaseMeasurement
             // 
@@ -268,6 +239,16 @@
             this.txtPrice.TabIndex = 6;
             this.txtPrice.TabStop = false;
             // 
+            // txtMinimumStock
+            // 
+            this.txtMinimumStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMinimumStock.Location = new System.Drawing.Point(120, 191);
+            this.txtMinimumStock.MaxLength = 50;
+            this.txtMinimumStock.Name = "txtMinimumStock";
+            this.txtMinimumStock.Size = new System.Drawing.Size(89, 20);
+            this.txtMinimumStock.TabIndex = 9;
+            // 
             // ItemEditor
             // 
             this.AcceptButton = this.btnAccept;
@@ -276,15 +257,13 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(494, 272);
             this.ControlBox = false;
+            this.Controls.Add(this.txtMinimumStock);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnPrices);
             this.Controls.Add(this.btnLookupMeasurement);
             this.Controls.Add(this.txtBaseMeasurement);
-            this.Controls.Add(this.lblMinimumStock);
-            this.Controls.Add(this.lblActualStock);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.chkMovesStock);
             this.Controls.Add(this.txtDefaultSalesAmount);
@@ -323,14 +302,12 @@
         private System.Windows.Forms.TextBox txtDefaultSalesAmount;
         private System.Windows.Forms.CheckBox chkMovesStock;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblActualStock;
-        private System.Windows.Forms.Label lblMinimumStock;
         private System.Windows.Forms.TextBox txtBaseMeasurement;
         private System.Windows.Forms.Button btnLookupMeasurement;
         private System.Windows.Forms.Button btnPrices;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtMinimumStock;
     }
 }

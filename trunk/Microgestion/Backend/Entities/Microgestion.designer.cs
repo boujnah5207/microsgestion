@@ -975,8 +975,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private bool _MovesStock;
 		
-		private double _ActualStock;
-		
 		private double _MinimumStock;
 		
 		private EntitySet<Price> _Prices;
@@ -1003,8 +1001,6 @@ namespace Blackspot.Microgestion.Backend.Entities
     partial void OnDefaultSalesAmountChanged();
     partial void OnMovesStockChanging(bool value);
     partial void OnMovesStockChanged();
-    partial void OnActualStockChanging(double value);
-    partial void OnActualStockChanged();
     partial void OnMinimumStockChanging(double value);
     partial void OnMinimumStockChanged();
     #endregion
@@ -1157,26 +1153,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this._MovesStock = value;
 					this.SendPropertyChanged("MovesStock");
 					this.OnMovesStockChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ActualStock")]
-		public double ActualStock
-		{
-			get
-			{
-				return this._ActualStock;
-			}
-			set
-			{
-				if ((this._ActualStock != value))
-				{
-					this.OnActualStockChanging(value);
-					this.SendPropertyChanging();
-					this._ActualStock = value;
-					this.SendPropertyChanged("ActualStock");
-					this.OnActualStockChanged();
 				}
 			}
 		}
@@ -1666,8 +1642,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private string _Comment;
 		
-		private int _InternalId = default(int);
-		
 		private EntitySet<StockMovementDetail> _Details;
 		
 		private EntityRef<User> _User;
@@ -1774,15 +1748,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this.SendPropertyChanged("Comment");
 					this.OnCommentChanged();
 				}
-			}
-		}
-		
-		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
-		private int InternalID
-		{
-			get
-			{
-				return this._InternalId;
 			}
 		}
 		
@@ -2532,8 +2497,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 		
 		private System.Guid _ID;
 		
-		private int _InternalId = default(int);
-		
 		private System.Guid _ItemID;
 		
 		private double _Amount;
@@ -2572,7 +2535,7 @@ namespace Blackspot.Microgestion.Backend.Entities
 			OnCreated();
 		}
 		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Guid ID
 		{
 			get
@@ -2589,15 +2552,6 @@ namespace Blackspot.Microgestion.Backend.Entities
 					this.SendPropertyChanged("ID");
 					this.OnIDChanged();
 				}
-			}
-		}
-		
-		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
-		private int InternalID
-		{
-			get
-			{
-				return this._InternalId;
 			}
 		}
 		
