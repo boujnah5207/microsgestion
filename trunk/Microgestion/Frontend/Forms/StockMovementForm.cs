@@ -11,7 +11,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class StockMovementForm : Form
+    public partial class StockMovementForm : Form, IRestorableForm
     {
         StockMovementController Controller { get; set; }
         
@@ -66,5 +66,24 @@ namespace Blackspot.Microgestion.Frontend.Forms
             }
         }
 
+
+        #region Miembros de IRestorableForm
+
+        public string LocationSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string SizeSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string WindowStateSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
     }
 }

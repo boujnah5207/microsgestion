@@ -12,7 +12,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Form, IRestorableForm
     {
         Boolean validateLogin = false;
         LoginFormController Controller { get; set; }
@@ -81,5 +81,24 @@ namespace Blackspot.Microgestion.Frontend.Forms
             this.txtPassword.Focus();
         }
 
+
+        #region Miembros de IRestorableForm
+
+        public string LocationSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string SizeSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string WindowStateSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
     }
 }

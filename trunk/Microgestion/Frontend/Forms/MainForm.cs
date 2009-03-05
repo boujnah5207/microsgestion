@@ -10,7 +10,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IRestorableForm
     {
         public static MainForm Current { get; private set; }
 
@@ -87,10 +87,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.Load += (s, e) => Controller.InitializeForm();
 
                 Current = this;
-
-                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "MainFormLocation"));
-                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "MainFormSize"));
-                this.DataBindings.Add(new Binding("WindowState", Properties.Settings.Default, "MainFormWindowState"));
             }
             catch (Exception ex)
             {
@@ -158,5 +154,24 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             this.StockMovement.Show();
         }
+
+        #region Miembros de IRestorableForm
+
+        public string LocationSetting
+        {
+            get { return "MainFormLocation"; }
+        }
+
+        public string SizeSetting
+        {
+            get { return "MainFormSize"; }
+        }
+
+        public string WindowStateSetting
+        {
+            get { return "MainFormWindowState"; }
+        }
+
+        #endregion
     }
 }

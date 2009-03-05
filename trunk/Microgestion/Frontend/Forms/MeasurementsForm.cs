@@ -11,7 +11,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class MeasurementsForm : Form
+    public partial class MeasurementsForm : Form, IRestorableForm
     {
         MeasurementsFormController Controller;
 
@@ -80,5 +80,24 @@ namespace Blackspot.Microgestion.Frontend.Forms
             }
         }
 
+
+        #region Miembros de IRestorableForm
+
+        public string LocationSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string SizeSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string WindowStateSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
     }
 }

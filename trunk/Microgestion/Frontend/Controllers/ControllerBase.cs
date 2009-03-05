@@ -6,17 +6,79 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Frontend.Extensions;
+using Blackspot.Microgestion.Frontend.Forms;
+using Blackspot.Microgestion.Frontend.Properties;
+using System.Drawing;
 
 namespace Blackspot.Microgestion.Frontend.Controllers
 {
     internal class ControllerBase<T> : INotifyPropertyChanged
-        where T: Form
+        where T: Form, IRestorableForm
     {
         protected ControllerBase() { }
 
         protected ControllerBase(T form)
         {
             Form = form;
+
+            RestoreSettings();
+
+            Form.LocationChanged += (s, e) => OnFormLocationChanged();
+            Form.SizeChanged += (s, e) => OnFormSizeChanged();
+            
+        }
+
+        private void RestoreSettings()
+        {
+            try
+            {
+                var settings = Settings.Default;
+
+                var windowState = settings.GetType().GetProperty(Form.WindowStateSetting);
+                var windowLocation = settings.GetType().GetProperty(Form.LocationSetting);
+                var windowSize = settings.GetType().GetProperty(Form.SizeSetting);
+
+                this.Form.WindowState = (FormWindowState)windowState.GetValue(settings, null);
+                this.Form.Size = (Size)windowSize.GetValue(settings, null);
+                this.Form.Location = (Point)windowLocation.GetValue(settings, null);
+            }
+            catch { }
+        }
+
+        protected virtual void OnFormLocationChanged()
+        {
+            try
+            {
+                var settings = Settings.Default;
+                var windowLocation = settings.GetType().GetProperty(Form.LocationSetting);
+                windowLocation.SetValue(settings, Form.Location, null);
+            }
+            catch { }
+        }
+
+        protected virtual void OnFormSizeChanged()
+        {
+            try
+            {
+                var settings = Settings.Default;
+                var windowState = settings.GetType().GetProperty(Form.WindowStateSetting);
+                var windowSize = settings.GetType().GetProperty(Form.SizeSetting);
+
+                windowSize.SetValue(settings, Form.Size, null);
+                windowState.SetValue(settings, Form.WindowState, null);
+            }
+            catch { }
+        }
+
+        protected virtual void OnFormStateChanged()
+        {
+            try
+            {
+                var settings = Settings.Default;
+                var setting = settings.GetType().GetProperty(Form.WindowStateSetting);
+                setting.SetValue(settings, Form.WindowState, null);
+            }
+            catch { }
         }
 
         protected T Form { get; set; }

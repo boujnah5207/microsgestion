@@ -121,6 +121,5 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 ex.ShowMessageBox();
             }
         }
-
     }
 }

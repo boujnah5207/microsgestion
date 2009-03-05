@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    internal interface IRestorableForm
+    public interface IRestorableForm
     {
         string LocationSetting { get; }
         string SizeSetting { get; }

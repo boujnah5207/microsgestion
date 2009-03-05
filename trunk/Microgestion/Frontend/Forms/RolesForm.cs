@@ -11,7 +11,7 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class RolesForm : Form
+    public partial class RolesForm : Form, IRestorableForm
     {
 
         RolesFormController Controller { get; set; }
@@ -81,5 +81,24 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 ex.ShowMessageBox();
             }
         }
+
+        #region Miembros de IRestorableForm
+
+        public string LocationSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string SizeSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string WindowStateSetting
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
     }
 }

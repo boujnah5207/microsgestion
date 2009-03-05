@@ -36,7 +36,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="MainFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
-      <Value Profile="(Default)">Maximized</Value>
+      <Value Profile="(Default)">Normal</Value>
     </Setting>
     <Setting Name="ItemsFormWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>

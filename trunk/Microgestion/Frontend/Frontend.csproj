@@ -57,9 +57,6 @@
     <Compile Include="Controllers\MeasurementsFormController.cs" />
     <Compile Include="Controllers\StockMovementController.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
-    <Compile Include="Forms\BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\ConfirmPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

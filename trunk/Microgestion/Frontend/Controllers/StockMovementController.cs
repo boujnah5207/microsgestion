@@ -28,5 +28,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
         public BindingList<StockMovementDetail> Details { get; set; }
         public BindingList<Item> Items { get; set; }
+
     }
 }
