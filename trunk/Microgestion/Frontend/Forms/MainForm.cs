@@ -66,7 +66,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             get
             {
-                if (stockMovement == null)
+                if (stockMovement == null || stockMovement.IsDisposed)
                     stockMovement = new StockMovementForm() { MdiParent = this };
 
                 return stockMovement;

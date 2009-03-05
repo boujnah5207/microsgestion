@@ -43,16 +43,21 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         }
         internal void SaveButtonPressed()
         {
-            StockMovement mov = new StockMovement
+            var notNullItems = Details.Where(d => d.Amount > 0).ToList();
+
+            if (notNullItems.Count > 0)
             {
-                UserID = UserService.LoggedInUser.ID,
-                Date = this.Date,
-                Comment = this.Comments
-            };
+                StockMovement mov = new StockMovement
+                {
+                    UserID = UserService.LoggedInUser.ID,
+                    Date = this.Date,
+                    Comment = this.Comments
+                };
 
-            mov.Details.AddRange(Details);
+                mov.Details.AddRange(notNullItems);
 
-            StockMovementService.Save(mov);
+                StockMovementService.Save(mov);
+            }
 
             ResetAll();
         }
