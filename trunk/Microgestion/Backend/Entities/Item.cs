@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Backend.Extensions;
 
 namespace Blackspot.Microgestion.Backend.Entities
 {
-    partial class Item : IPersistible
+    partial class Item : IPersistible, ISearchable
     {
         #region IPersistible Members
 
@@ -41,6 +42,12 @@ namespace Blackspot.Microgestion.Backend.Entities
 
                 PropertyChanged(this, new PropertyChangedEventArgs("CurrentPrice"));
             }
+        }
+
+
+        public string SearchString
+        {
+            get { return this.InternalCode + "|" + this.ExternalCode + "|" + this.Name; }
         }
 
     }

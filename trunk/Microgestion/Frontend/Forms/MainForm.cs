@@ -26,7 +26,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             get
             {
-                if (usersForm == null)
+                if (usersForm == null || usersForm.IsDisposed)
                     usersForm = new UsersForm() { MdiParent = this };
 
                 return usersForm;
@@ -36,7 +36,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             get
             {
-                if (rolesForm == null)
+                if (rolesForm == null || rolesForm.IsDisposed)
                     rolesForm = new RolesForm() { MdiParent = this };
 
                 return rolesForm;
@@ -46,7 +46,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             get
             {
-                if (measurementsForm == null)
+                if (measurementsForm == null || measurementsForm.IsDisposed)
                     measurementsForm = new MeasurementsForm() { MdiParent = this };
 
                 return measurementsForm;
@@ -56,7 +56,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             get
             {
-                if (itemsForm == null)
+                if (itemsForm == null || itemsForm.IsDisposed)
                     itemsForm = new ItemsForm() { MdiParent = this };
 
                 return itemsForm;

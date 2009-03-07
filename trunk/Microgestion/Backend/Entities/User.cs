@@ -55,9 +55,9 @@ namespace Blackspot.Microgestion.Backend.Entities
         public bool IsValid()
         {
             return
-                !String.IsNullOrEmpty(this._Name) &&
-                !String.IsNullOrEmpty(this._Username) &&
-                !String.IsNullOrEmpty(this._LastName);
+                !String.IsNullOrEmpty(this.Name) &&
+                !String.IsNullOrEmpty(this.Username) &&
+                !String.IsNullOrEmpty(this.LastName);
         }
     }
 }

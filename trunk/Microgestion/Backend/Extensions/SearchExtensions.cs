@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CT.Peperino.Common.SearchEngine
+namespace Blackspot.Microgestion.Backend.Extensions
 {
-	public static class TaskExtensions
+	public static class SearchExtensions
 	{
 		private static int IsRelevant<T>(IEnumerable<string> keywords, T item) where T : ISearchable
 		{
@@ -21,7 +21,7 @@ namespace CT.Peperino.Common.SearchEngine
 			return 1;
 		}
 
-		public static IEnumerable<T> FindTaskByRelevance<T> (this IList<T> elements, string input) 
+		public static IEnumerable<T> FindElementByRelevance<T> (this IEnumerable<T> elements, string input) 
 			where T : ISearchable
 		{
 			var keywords = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -32,7 +32,7 @@ namespace CT.Peperino.Common.SearchEngine
 			return Search.FindItems(keywords, elements, IsRelevant);
 		}
 
-		public static IEnumerable<T> FindTaskByRelevance<T>(this IList<T> elements, IEnumerable<string> keywords) 
+        public static IEnumerable<T> FindElementByRelevance<T>(this IEnumerable<T> elements, IEnumerable<string> keywords) 
 			where T : ISearchable
 		{
 			return Search.FindItems(keywords, elements, IsRelevant);
@@ -41,7 +41,7 @@ namespace CT.Peperino.Common.SearchEngine
 
 	public class Search
 	{
-		public static IEnumerable<T> FindItems<T>(IEnumerable<string> keywords, IList<T> elements, Func<IEnumerable<string>, T, int> RelevanceFunction)
+        public static IEnumerable<T> FindItems<T>(IEnumerable<string> keywords, IEnumerable<T> elements, Func<IEnumerable<string>, T, int> RelevanceFunction)
 		{
 			var query = from w in elements
 						let relevance = RelevanceFunction(keywords, w)
@@ -53,7 +53,7 @@ namespace CT.Peperino.Common.SearchEngine
 			return query;
 		}
 
-		public static IEnumerable<T> FindItems<T, W>(IEnumerable<W> keywords, IList<T> elements, Func<IEnumerable<W>, T, int> RelevanceFunction)
+		public static IEnumerable<T> FindItems<T, W>(IEnumerable<W> keywords, IEnumerable<T> elements, Func<IEnumerable<W>, T, int> RelevanceFunction)
 		{
 			var query = from w in elements
 						let relevance = RelevanceFunction(keywords, w)

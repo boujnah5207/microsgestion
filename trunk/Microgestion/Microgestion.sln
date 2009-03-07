@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{E447458B-98AB-4E93-94ED-E1743DA08BFD}"
+	ProjectSection(SolutionItems) = preProject
+		..\Support\ToDoList.txt = ..\Support\ToDoList.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{D0FF3027-86B7-4D5E-9556-C69030FF34A0}"
 EndProject
@@ -17,6 +20,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89BBB675-198F-4632-80F7-C9DDAB5D9E58}"
 EndProject
 Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "Database", "Database\Database.dbp", "{86043545-D7D2-4241-9EBC-4843D5D6DCCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Stock.Wpf", "Frontend.Stock.Wpf\Frontend.Stock.Wpf.csproj", "{C39A8DD0-2A39-433C-9935-8829790112EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Common", "Frontend.Common\Frontend.Common.csproj", "{F8991E4A-E8CD-46C7-9FE7-F1994536413D}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -39,6 +46,14 @@ Global
 		{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39A8DD0-2A39-433C-9935-8829790112EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39A8DD0-2A39-433C-9935-8829790112EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39A8DD0-2A39-433C-9935-8829790112EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39A8DD0-2A39-433C-9935-8829790112EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8991E4A-E8CD-46C7-9FE7-F1994536413D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8991E4A-E8CD-46C7-9FE7-F1994536413D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8991E4A-E8CD-46C7-9FE7-F1994536413D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8991E4A-E8CD-46C7-9FE7-F1994536413D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

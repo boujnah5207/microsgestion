@@ -62,11 +62,11 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             try
             {
-                this.FormClosing += (s, e) =>
-                {
-                    ((Form)s).Hide();
-                    ((FormClosingEventArgs)e).Cancel = true;
-                };
+                //this.FormClosing += (s, e) =>
+                //{
+                //    ((Form)s).Hide();
+                //    ((FormClosingEventArgs)e).Cancel = true;
+                //};
                 this.btnClose.Click += (s, e) => this.Close();
 
                 this.btnAdd.Click += (s, e) => Controller.AddNew();

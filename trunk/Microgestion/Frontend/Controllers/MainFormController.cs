@@ -26,8 +26,8 @@ namespace Blackspot.Microgestion.Frontend.Controllers
         {
             try
             {
-                //LogUser();
-                UserService.LoggedInUser = UserService.GetAdminUser();
+                LogUser();
+                //UserService.LoggedInUser = UserService.GetAdminUser();
 
                 ShowUserInfo();
 

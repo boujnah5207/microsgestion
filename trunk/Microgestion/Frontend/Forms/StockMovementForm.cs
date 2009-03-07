@@ -59,23 +59,26 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "InternalID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Item", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewComboBoxColumn
-                {
-                    DataPropertyName = "ItemID",
-                    DataSource = Controller.Items,
-                    DisplayMember = "Name",
-                    AutoComplete = true,
-                    FlatStyle = FlatStyle.Flat,
-                    ValueMember = "ID",
-                    HeaderText = "Artículo",
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Item", HeaderText="Artículo" });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ItemID", Visible = false });
+                //this.Grid.Columns.Add(new DataGridViewComboBoxColumn
+                //{
+                //    DataPropertyName = "ItemID",
+                //    DataSource = Controller.Items,
+                //    AutoComplete = true,
+                //    DisplayMember = "Name",
+                //    DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton,
+                //    FlatStyle = FlatStyle.Flat,
+                //    ValueMember = "ID",
+                //    HeaderText = "Artículo",
+                //    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                //});
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Amount", HeaderText = "Cantidad" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockMovementID", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "StockMovement", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SaleDetail", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SaleDetailID", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SearchString", Visible = false });
 
                 this.Grid.DataSource = Controller.Details;
                 this.Grid.DataError += new DataGridViewDataErrorEventHandler(Grid_DataError);
@@ -110,5 +113,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
         }
 
         #endregion
+
     }
 }

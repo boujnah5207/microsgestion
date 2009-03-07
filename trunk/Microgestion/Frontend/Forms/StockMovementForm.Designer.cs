@@ -34,8 +34,8 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtComments = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Grid = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,17 +96,8 @@
             this.txtComments.Location = new System.Drawing.Point(82, 37);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(698, 68);
+            this.txtComments.Size = new System.Drawing.Size(694, 39);
             this.txtComments.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Detalle:";
             // 
             // Grid
             // 
@@ -115,10 +106,19 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Location = new System.Drawing.Point(12, 141);
+            this.Grid.Location = new System.Drawing.Point(12, 163);
             this.Grid.Name = "Grid";
-            this.Grid.Size = new System.Drawing.Size(764, 391);
+            this.Grid.Size = new System.Drawing.Size(764, 369);
             this.Grid.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(13, 82);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(763, 75);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Nuevo Item";
             // 
             // StockMovementForm
             // 
@@ -127,8 +127,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(792, 573);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Grid);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblDate);
@@ -152,7 +152,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtComments;
-        private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.DataGridView Grid;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

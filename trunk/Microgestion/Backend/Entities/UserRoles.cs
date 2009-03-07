@@ -13,8 +13,8 @@ namespace Blackspot.Microgestion.Backend.Entities
         public bool IsValid()
         {
             return
-                this.User != null &&
-                this.Role != null;
+                this.UserID != Guid.Empty &&
+                this.RoleID != Guid.Empty;
         }
 
         #endregion
