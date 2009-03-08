@@ -18,6 +18,7 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
         {
             this.view = view;
             this.Date = DateTime.Now;
+            this.Items = new ObservableCollection<StockMovementItem>();
 
             //CommandBinding cmd = new CommandBinding(
             //    InsertItemCommand,
@@ -46,8 +47,17 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         internal void InsertItem()
         {
-            MessageBox.Show(
-                String.Format("{0} x {1}", this.ItemID, this.Amount));
+            if (ItemID != Guid.Empty)
+            {
+                Item item = ItemService.GetByID(ItemID);
+
+                Items.Add(new StockMovementItem
+                {
+                    ItemID = item.ID,
+                    Description = item.Name,
+                    Amount = this.Amount
+                });
+            }
         }
     }
 

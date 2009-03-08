@@ -4,7 +4,7 @@
         xmlns:local="clr-namespace:Blackspot.Microgestion.Frontend.Stock.Wpf.Views"
         xmlns:common="clr-namespace:Blackspot.Microgestion.Frontend.Common.Controls;assembly=Blackspot.Microgestion.Frontend.Common"
         Title="Movimientos de Stock"
-        Height="600" Width="600">
+        Height="600" Width="600" xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -123,7 +123,26 @@
         <GroupBox Grid.Row="2"
                   Header="Items"
                   Margin="3">
-            
+            <xcdg:DataGridControl Name="Grid" 
+                                  ReadOnly="True" 
+                                  IsDeleteCommandEnabled="True" 
+                                  SelectionMode="Single" 
+                                  NavigationBehavior="RowOnly" 
+                                  ItemScrollingBehavior="Immediate"
+                                  ItemsSource="{Binding Items}">
+                <xcdg:DataGridControl.Columns>
+                    <xcdg:Column FieldName="ItemID" ReadOnly="True" ShowInColumnChooser="False" Title="ItemID" Visible="False" />
+                    <xcdg:Column FieldName="Description" ReadOnly="True" Title="Descripción" Width="*"  />
+                    <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" />
+                </xcdg:DataGridControl.Columns>
+                <xcdg:DataGridControl.View>
+                    <xcdg:TableView>
+                        <xcdg:TableView.Theme>
+                            <xcdg:AeroNormalColorTheme />
+                        </xcdg:TableView.Theme>
+                    </xcdg:TableView>
+                </xcdg:DataGridControl.View>
+            </xcdg:DataGridControl>
         </GroupBox>
         <StackPanel Grid.Row="3" 
                     Orientation="Horizontal"
