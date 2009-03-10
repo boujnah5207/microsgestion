@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Entities;
 using System.Windows;
+using Blackspot.Microgestion.Backend.Enumerations;
 
 namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 {
@@ -20,14 +21,30 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
             this.Date = DateTime.Now;
             this.Items = new ObservableCollection<StockMovementItem>();
 
-            //CommandBinding cmd = new CommandBinding(
-            //    InsertItemCommand,
-            //    (s, e) => { },
-            //    (s, e) =>
-            //    {
-            //        e.CanExecute = this.ItemID != Guid.Empty &&
-            //                       this.Amount != 0;
-            //    });
+            //UserService.LoggedInUser = UserService.GetAdminUser();
+
+            CommandBinding cmdInsert = new CommandBinding(
+                InsertItemCommand,
+                (s, e) => InsertItem(),
+                (s, e) =>
+                {
+                    e.CanExecute = 
+                        UserService.CanPerform(SystemAction.StockMovement) &&
+                        this.ItemID != Guid.Empty &&
+                        this.Amount != 0;
+                });
+            CommandBinding cmdSave = new CommandBinding(
+                InsertItemCommand,
+                (s, e) => Save(),
+                (s, e) =>
+                {
+                    e.CanExecute =
+                        UserService.CanPerform(SystemAction.StockMovement) &&
+                        this.Items.Count > 0;
+                });
+
+            Application.Current.MainWindow.CommandBindings.Add(cmdInsert); 
+            Application.Current.MainWindow.CommandBindings.Add(cmdSave);
 
         }
 
@@ -38,7 +55,8 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
         public Guid ItemID { get; set; }
         public Double Amount { get; set; }
 
-        //public static RoutedCommand InsertItemCommand = new RoutedCommand();
+        public static RoutedCommand InsertItemCommand = new RoutedCommand();
+        public static RoutedCommand SaveCommand = new RoutedCommand();
 
         internal IList<Item> SearchItems(string text, int maxResults)
         {
@@ -47,21 +65,112 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         internal void InsertItem()
         {
-            if (ItemID != Guid.Empty)
-            {
-                Item item = ItemService.GetByID(ItemID);
+            if (!UserService.CanPerform(SystemAction.StockMovement))
+                return;
 
-                Items.Add(new StockMovementItem
+            if (ItemID != Guid.Empty && Amount != 0)
+            {
+                StockMovementItem alreadyInsertedItem = 
+                    Items.Where(i => i.ItemID.Equals(ItemID))
+                         .SingleOrDefault();
+
+                if (alreadyInsertedItem == null)
                 {
-                    ItemID = item.ID,
-                    Description = item.Name,
-                    Amount = this.Amount
-                });
+                    Item item = ItemService.GetByID(ItemID);
+
+                    Items.Add(new StockMovementItem
+                    {
+                        ItemID = item.ID,
+                        Description = item.Name,
+                        Amount = this.Amount
+                    });
+                }
+                else
+                {
+                    alreadyInsertedItem.Amount += this.Amount;
+                    Items.Remove(alreadyInsertedItem);
+                    Items.Add(alreadyInsertedItem);
+                }
+
+                ItemID = Guid.Empty;
+                Amount = 0;
+                view.txtAmount.Text = string.Empty;
+                view.txtSearchItem.Text = string.Empty;
+                view.txtSearchItem.Focus();
             }
+            else
+            {
+                view.txtSearchItem.SelectAll();
+                view.txtSearchItem.Focus();
+            }
+        }
+
+        internal void Cancel()
+        {
+            if (this.Items.Count > 0)
+            {
+                var dr = MessageBox.Show(
+                    "¿Está seguro que desea cancelar el movimiento?",
+                    "Cancelar Movimiento", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Question, 
+                    MessageBoxResult.No);
+                if (dr == MessageBoxResult.No)
+                    return;
+            }
+
+            ClearAll();
+        }
+
+        private void ClearAll()
+        {
+            this.Items.Clear();
+            this.ItemID = Guid.Empty;
+            this.Date = DateTime.Now;
+            this.Comments = string.Empty;
+            this.Amount = 0;
+            view.txtAmount.Text = string.Empty;
+            view.txtSearchItem.Text = string.Empty;
+            view.txtSearchItem.Focus();
+        }
+
+        internal void Save()
+        {
+            if (this.Items.Count > 0)
+            {
+                var dr = MessageBox.Show(
+                    "¿Confirma que desea guardar el movimiento?",
+                    "Confirmar Movimiento",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question,
+                    MessageBoxResult.No);
+                if (dr == MessageBoxResult.No)
+                    return;
+
+                StockMovement mov = new StockMovement
+                {
+                    Comment = this.Comments,
+                    Date = this.Date,
+                    UserID = UserService.LoggedInUser.ID
+                };
+
+                var details = from i in Items
+                              select new StockMovementDetail
+                                  {
+                                      ItemID = i.ItemID,
+                                      Amount = i.Amount
+                                  };
+                mov.Details.AddRange(details);
+
+                StockMovementService.Save(mov);
+
+            }
+
+            ClearAll();
         }
     }
 
-    public struct StockMovementItem
+    public class StockMovementItem
     {
         public Guid ItemID { get; set; }
         public String Description { get; set; }

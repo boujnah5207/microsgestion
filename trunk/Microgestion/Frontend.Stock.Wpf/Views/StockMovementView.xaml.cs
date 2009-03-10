@@ -40,19 +40,21 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
             this.txtSearchAutoComplete.SelectionChanged += (s, e) =>
             {
-               TextBoxAutoCompleteProvider ac = (TextBoxAutoCompleteProvider)s;
+                TextBoxAutoCompleteProvider ac = (TextBoxAutoCompleteProvider)s;
                 if (ac.SelectedValue == null)
+                {
+                    vm.ItemID = Guid.Empty;
                     return;
-                if (ac.SelectedValue is Guid)
+                }
+                else if (ac.SelectedValue is Guid)
                 {
                     vm.ItemID = (Guid)ac.SelectedValue;
                 }
             };
 
-            this.btnInsertItem.Click += (s, e) =>
-            {
-                vm.InsertItem();
-            };
+            //this.btnInsertItem.Click += (s, e) => vm.InsertItem();
+            this.btnCancel.Click += (s, e) => vm.Cancel();
+            //this.btnSave.Click += (s, e) => vm.Save();
 
             this.txtAmount.GotFocus += (s, e) =>
             {
@@ -73,7 +75,7 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                               );
 
             };
-            
+
             this.txtAmount.KeyUp += (s, e) =>
             {
                 double value = 0D;
@@ -90,7 +92,7 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                     else
                     {
                         this.txtAmount.Text = lastValueAmount;
-                        this.vm.Amount = Double.Parse(lastValueAmount);
+                        this.vm.Amount = String.IsNullOrEmpty(lastValueAmount) ? 0D : Double.Parse(lastValueAmount);
                         e.Handled = true;
                     }
 
@@ -99,13 +101,7 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                 }
             };
 
-            
-        }
 
-        void txtAmount_KeyUp(object sender, KeyEventArgs e)
-        {
-            throw new NotImplementedException();
         }
-
     }
 }

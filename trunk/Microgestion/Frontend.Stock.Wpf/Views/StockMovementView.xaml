@@ -46,8 +46,6 @@
                          Grid.Row="1"
                          Grid.Column="1"
                          TabIndex="99"
-                         BorderBrush="Gray"
-                         BorderThickness="1"
                          AcceptsReturn="True"
                          MaxLength="1000"
                          Height="30"
@@ -80,20 +78,19 @@
                            HorizontalAlignment="Right" />
 
                 <TextBox x:Name="txtSearchItem"
-                                            Grid.Row="0" Grid.Column="1" 
-                                            Height="20"
-                                            Margin="3"
-                                            TabIndex="0"
-                                            BorderBrush="Gray"
-                                            BorderThickness="1"
-                                            VerticalAlignment="Center" />
-                <common:TextBoxAutoCompleteProvider x:Name="txtSearchAutoComplete"
-                                                    Grid.Row="0" Grid.Column="1" 
-                                                    TargetControl="{Binding ElementName=txtSearchItem}"
-                                                    MinTypedCharacters="1"
-                                                    DisplayMemberPath="Name"
-                                                    SelectedValuePath="ID"
-                                                    Width="{Binding ElementName=txtSearchString, Path=Width}"/>
+                        Grid.Row="0" Grid.Column="1" 
+                        Height="20"
+                        Margin="3"
+                        TabIndex="0"
+                        VerticalAlignment="Center" />
+                <common:TextBoxAutoCompleteProvider 
+                    x:Name="txtSearchAutoComplete"
+                    Grid.Row="0" Grid.Column="1" 
+                    TargetControl="{Binding ElementName=txtSearchItem}"
+                    MinTypedCharacters="1"
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="ID"
+                    Width="{Binding ElementName=txtSearchString, Path=Width}"/>
                 <Grid Grid.Row="2" Grid.Column="1">
                     
                     <Grid.ColumnDefinitions>
@@ -102,17 +99,16 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     
-                    <TextBox Text="{Binding ElementName=DataContext, Path=Amount}"
+                    <TextBox Text="{Binding Amount}"
                              x:Name="txtAmount"
                              Grid.Column="0"
                              TabIndex="1"
                              Margin="3"
                              Width="150"
-                             BorderBrush="Gray"
-                             BorderThickness="1"
                              VerticalAlignment="Center" />
                     <!--Command="{x:Static local:StockMovementViewModel.InsertItemCommand}"-->
-                    <Button x:Name="btnInsertItem" Content="Ingresar"
+                    <Button Command="{x:Static local:StockMovementViewModel.InsertItemCommand}"
+                            Content="Ingresar"
                             Width="100"
                             Margin="3"
                             TabIndex="2"
@@ -147,11 +143,13 @@
         <StackPanel Grid.Row="3" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Content="Guardar" 
+            <Button Command="{x:Static local:StockMovementViewModel.SaveCommand}"
+                    Content="Guardar" 
                     Width="100" 
                     Margin="3" 
                     TabIndex="3"/>
-            <Button Content="Cancelar" 
+            <Button x:Name="btnCancel" 
+                    Content="Cancelar" 
                     Width="100" 
                     Margin="3" 
                     TabIndex="4" />
