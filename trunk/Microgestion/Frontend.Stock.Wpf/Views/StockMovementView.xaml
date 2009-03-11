@@ -106,7 +106,6 @@
                              Margin="3"
                              Width="150"
                              VerticalAlignment="Center" />
-                    <!--Command="{x:Static local:StockMovementViewModel.InsertItemCommand}"-->
                     <Button Command="{x:Static local:StockMovementViewModel.InsertItemCommand}"
                             Content="Ingresar"
                             Width="100"
