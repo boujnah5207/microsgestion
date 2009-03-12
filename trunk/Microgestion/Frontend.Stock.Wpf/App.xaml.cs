@@ -17,14 +17,8 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf
         {
             base.OnStartup(e);
 
-            LoginView login = new LoginView();
-            var result = login.ShowDialog();
-
-            if (result.HasValue && result.Value == true)
-            {
-                StockMovementView View = new StockMovementView();
-                View.Show();
-            }
+            StockMovementView View = new StockMovementView();
+            View.Show();
         }
     }
 }

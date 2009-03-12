@@ -7,18 +7,17 @@
         AllowsTransparency="True"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen">
-    <Window.Resources>
+    <!--<Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="DarkBlue" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="12" />
         </Style>
-    </Window.Resources>
-    <Border Background="AliceBlue"
-            BorderBrush="Blue"
-            BorderThickness="2"
-            Padding="10"
-            CornerRadius="15">
+    </Window.Resources>-->
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            Padding="1"
+            CornerRadius="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,7 +32,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Inicio de Sesión:"
+            <TextBlock Text="Inicio de Sesión"
                        Grid.Row="0"
                        Grid.ColumnSpan="2"
                        TextAlignment="Center"

@@ -30,6 +30,8 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
             vm = new StockMovementViewModel(this);
             DataContext = vm;
 
+            vm.Login();
+
             this.txtSearchItem.Focus();
 
             this.txtSearchAutoComplete.SearchMethod = delegate(string searchterm, int maxResults)
@@ -52,9 +54,7 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                 }
             };
 
-            //this.btnInsertItem.Click += (s, e) => vm.InsertItem();
             this.btnCancel.Click += (s, e) => vm.Cancel();
-            //this.btnSave.Click += (s, e) => vm.Save();
 
             this.txtAmount.GotFocus += (s, e) =>
             {
@@ -100,7 +100,6 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                         vm.InsertItem();
                 }
             };
-
 
         }
     }

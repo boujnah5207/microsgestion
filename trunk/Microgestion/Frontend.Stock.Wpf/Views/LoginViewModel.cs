@@ -39,8 +39,9 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                 {
                     e.CanExecute = true;
                 });
-            Application.Current.MainWindow.CommandBindings.Add(cmdAccept);
-            Application.Current.MainWindow.CommandBindings.Add(cmdCancel);
+
+            view.CommandBindings.Add(cmdAccept);
+            view.CommandBindings.Add(cmdCancel);
 
         }
 

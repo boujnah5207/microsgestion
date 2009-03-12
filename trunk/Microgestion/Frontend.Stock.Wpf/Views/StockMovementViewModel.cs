@@ -14,14 +14,20 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
     public class StockMovementViewModel
     {
         private StockMovementView view;
+        private const string CerrarSesion = "Cerrar Sesión";
+        private const string IniciarSesion = "Iniciar Sesión";
 
         public StockMovementViewModel(StockMovementView view)
         {
             this.view = view;
             this.Date = DateTime.Now;
             this.Items = new ObservableCollection<StockMovementItem>();
+            this.Username = UserService.LoggedInUser.GetUserInfo();
+            this.LoginText = IniciarSesion;
 
-            //UserService.LoggedInUser = UserService.GetAdminUser();
+            CommandBinding cmdLogin = new CommandBinding(
+                LoginCommand,
+                (s, e) => Login());
 
             CommandBinding cmdInsert = new CommandBinding(
                 InsertItemCommand,
@@ -43,18 +49,22 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                         this.Items.Count > 0;
                 });
 
-            Application.Current.MainWindow.CommandBindings.Add(cmdInsert); 
+            Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
+            Application.Current.MainWindow.CommandBindings.Add(cmdInsert);
             Application.Current.MainWindow.CommandBindings.Add(cmdSave);
 
         }
 
+        public string LoginText { get; set; }
+        public string Username { get; set; }
         public DateTime Date { get; set; }
-        public String Comments { get; set; }
+        public string Comments { get; set; }
         public ObservableCollection<StockMovementItem> Items { get; set; }
-        public String SearchItem { get; set; }
+        public string SearchItem { get; set; }
         public Guid ItemID { get; set; }
-        public Double Amount { get; set; }
+        public double Amount { get; set; }
 
+        public static RoutedCommand LoginCommand = new RoutedCommand();
         public static RoutedCommand InsertItemCommand = new RoutedCommand();
         public static RoutedCommand SaveCommand = new RoutedCommand();
 
@@ -167,6 +177,25 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
             }
 
             ClearAll();
+        }
+
+        internal void Login()
+        {
+            if (LoginText == IniciarSesion)
+            {
+                LoginView login = new LoginView();
+                if (login.ShowDialog() == true)
+                {
+                    this.Username = UserService.LoggedInUser.GetUserInfo();
+                    this.LoginText = CerrarSesion;
+                }
+            }
+            else
+            {
+                UserService.LoggedInUser = UserService.GetNullUser();
+                this.Username = UserService.LoggedInUser.GetUserInfo();
+                this.LoginText = IniciarSesion;
+            }
         }
     }
 

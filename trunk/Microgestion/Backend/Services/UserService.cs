@@ -124,6 +124,11 @@ namespace Blackspot.Microgestion.Backend.Services
             return AdminUser;
         }
 
+        public static User GetNullUser()
+        {
+            return NullUser;
+        }
+
         public static IList<Role> GetRoles(User user)
         {
             return user.UserRoles

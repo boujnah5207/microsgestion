@@ -9,11 +9,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <GroupBox Grid.Row="0"
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <TextBlock Text="{Binding Username}" />
+            <TextBlock Text=" | " />
+            <TextBlock>
+                <Hyperlink Command="{x:Static local:StockMovementViewModel.LoginCommand}">
+                    <TextBlock Text="{Binding LoginText}" />
+                </Hyperlink>
+            </TextBlock>                    
+            </StackPanel>
+        <GroupBox Grid.Row="1"
                   Header="Nuevo Movimiento de Stock:"
                   Margin="3">
             <Grid>
@@ -52,7 +64,7 @@
                          Margin="3"/>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="1" 
+        <GroupBox Grid.Row="2" 
                   Header="Agregar Nuevo Item:"
                   Margin="3">
             <Grid>
@@ -115,7 +127,7 @@
                 </Grid>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="2"
+        <GroupBox Grid.Row="3"
                   Header="Items"
                   Margin="3">
             <xcdg:DataGridControl Name="Grid" 
@@ -139,7 +151,7 @@
                 </xcdg:DataGridControl.View>
             </xcdg:DataGridControl>
         </GroupBox>
-        <StackPanel Grid.Row="3" 
+        <StackPanel Grid.Row="4" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Command="{x:Static local:StockMovementViewModel.SaveCommand}"
