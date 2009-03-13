@@ -4,7 +4,12 @@
         xmlns:local="clr-namespace:Blackspot.Microgestion.Frontend.Stock.Wpf.Views"
         xmlns:common="clr-namespace:Blackspot.Microgestion.Frontend.Common.Controls;assembly=Blackspot.Microgestion.Frontend.Common"
         Title="Movimientos de Stock"
-        Height="600" Width="600" xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid">
+        Height="800" Width="600" xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,11 +22,11 @@
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <TextBlock Text="{Binding Username}" />
+            <TextBlock Text="{Binding Username}" x:Name="txtUsername" />
             <TextBlock Text=" | " />
             <TextBlock>
                 <Hyperlink Command="{x:Static local:StockMovementViewModel.LoginCommand}">
-                    <TextBlock Text="{Binding LoginText}" />
+                    <TextBlock x:Name="txtLoginText" Text="{Binding LoginText}" Margin="0" />
                 </Hyperlink>
             </TextBlock>                    
             </StackPanel>
@@ -41,27 +46,23 @@
                 <TextBlock Text="Fecha:"
                        Grid.Row="0"
                        Grid.Column="0"
-                       Margin="3" 
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"/>
                 <TextBlock Text="{Binding Date}"
                        Grid.Row="0"
                        Grid.Column="1"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="3" />
+                       VerticalAlignment="Center" />
                 <TextBlock Text="Comentario:"
                        Grid.Row="1"
-                       Grid.Column="0"
-                       Margin="3" />
+                       Grid.Column="0" />
                 <TextBox Text="{Binding Comments}"
                          Grid.Row="1"
                          Grid.Column="1"
                          TabIndex="99"
                          AcceptsReturn="True"
                          MaxLength="1000"
-                         Height="30"
-                         Margin="3"/>
+                         Height="30" />
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="2" 
@@ -80,12 +81,10 @@
 
                 <TextBlock Text="Item:" 
                            Grid.Row="0" Grid.Column="0" 
-                           Margin="3" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Right" />
                 <TextBlock Text="Cantidad:" 
                            Grid.Row="2" Grid.Column="0" 
-                           Margin="3" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Right" />
 
@@ -136,14 +135,15 @@
                                   SelectionMode="Single" 
                                   NavigationBehavior="RowOnly" 
                                   ItemScrollingBehavior="Immediate"
-                                  ItemsSource="{Binding Items}">
+                                  ItemsSource="{Binding Items}"
+                                  HorizontalAlignment="Stretch">
                 <xcdg:DataGridControl.Columns>
                     <xcdg:Column FieldName="ItemID" ReadOnly="True" ShowInColumnChooser="False" Title="ItemID" Visible="False" />
                     <xcdg:Column FieldName="Description" ReadOnly="True" Title="Descripción" Width="*"  />
                     <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" />
                 </xcdg:DataGridControl.Columns>
                 <xcdg:DataGridControl.View>
-                    <xcdg:TableView>
+                    <xcdg:TableView AllowColumnChooser="False">
                         <xcdg:TableView.Theme>
                             <xcdg:AeroNormalColorTheme />
                         </xcdg:TableView.Theme>
@@ -153,7 +153,8 @@
         </GroupBox>
         <StackPanel Grid.Row="4" 
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    Margin="0,0,6,9">
             <Button Command="{x:Static local:StockMovementViewModel.SaveCommand}"
                     Content="Guardar" 
                     Width="100" 

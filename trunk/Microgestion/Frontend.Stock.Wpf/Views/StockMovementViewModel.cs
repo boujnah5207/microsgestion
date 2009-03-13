@@ -55,8 +55,33 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         }
 
-        public string LoginText { get; set; }
-        public string Username { get; set; }
+        private string loginText = string.Empty;
+        public string LoginText
+        {
+            get
+            {
+                return loginText;
+            }
+            set
+            {
+                loginText = value;
+                view.txtLoginText.Text = value;
+            }
+        }
+        private string username = string.Empty;
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                username = value;
+                view.txtUsername.Text = value;
+            }
+        }
+
         public DateTime Date { get; set; }
         public string Comments { get; set; }
         public ObservableCollection<StockMovementItem> Items { get; set; }

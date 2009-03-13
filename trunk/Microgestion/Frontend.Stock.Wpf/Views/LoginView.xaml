@@ -97,10 +97,12 @@
                         Command="{x:Static local:LoginViewModel.AcceptCommand}"
                         TabIndex="2"
                         Margin="3,9,3,9"
+                        IsDefault="True"
                         Width="75"/>
                 <Button Content="Cancelar"
                         Command="{x:Static local:LoginViewModel.CancelCommand}"
                         TabIndex="3"
+                        IsCancel="True"
                         Margin="3,9,5,9"
                         Width="75"/>
             </StackPanel>
