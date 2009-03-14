@@ -62,7 +62,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
 
                 ItemService.Save(newItem);
                 Items.Add(newItem);
-                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells[1];
+                Form.Grid.CurrentCell = Form.Grid.Rows[Form.Grid.Rows.Count - 1].Cells["Name"];
 
             }
             catch (Exception ex)
@@ -110,6 +110,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 string itemInternalCode = item.InternalCode;
                 double itemMinimumStock = item.MinimumStock;
                 bool itemMovesStock = item.MovesStock;
+                ItemType itemType = item.ItemType;
 
                 ItemEditor editor = new ItemEditor(item);
 
@@ -124,6 +125,7 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                     item.InternalCode = itemInternalCode;
                     item.MinimumStock = item.MinimumStock;
                     item.MovesStock = itemMovesStock;
+                    item.ItemType = itemType;
                 }
                 else
                 {

@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Blackspot.Microgestion.Frontend</RootNamespace>
-    <AssemblyName>Blackspot.Microgestion.Frontend</AssemblyName>
+    <AssemblyName>Microgestion.Administracion</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Images\Network.ico</ApplicationIcon>
@@ -53,9 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ItemTypesFormController.cs" />
     <Compile Include="Controllers\ItemsFormController.cs" />
     <Compile Include="Controllers\MeasurementsFormController.cs" />
-    <Compile Include="Controllers\StockMovementController.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Forms\ConfirmPasswordForm.cs">
       <SubType>Form</SubType>
@@ -70,6 +70,18 @@
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Extensions\MenuOptionExtensions.cs" />
     <Compile Include="Extensions\ToolStripItemExtensions.cs" />
+    <Compile Include="Forms\ItemTypeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemTypeEditor.Designer.cs">
+      <DependentUpon>ItemTypeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ItemTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemTypesForm.Designer.cs">
+      <DependentUpon>ItemTypesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\IRestorableForm.cs" />
     <Compile Include="Forms\ItemEditor.cs">
       <SubType>Form</SubType>
@@ -125,12 +137,6 @@
     <Compile Include="Forms\RolesForm.Designer.cs">
       <DependentUpon>RolesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\StockMovementForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StockMovementForm.Designer.cs">
-      <DependentUpon>StockMovementForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\UserEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,12 @@
     <EmbeddedResource Include="Forms\ConfirmPasswordForm.resx">
       <DependentUpon>ConfirmPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemTypeEditor.resx">
+      <DependentUpon>ItemTypeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemTypesForm.resx">
+      <DependentUpon>ItemTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemEditor.resx">
       <DependentUpon>ItemEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,9 +190,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PriceEditor.resx">
       <DependentUpon>PriceEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StockMovementForm.resx">
-      <DependentUpon>StockMovementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

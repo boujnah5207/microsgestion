@@ -51,9 +51,9 @@ namespace Blackspot.Microgestion.Frontend
                     {
                         MainForm.Current.ShowItems();
                     } break;
-                case SystemAction.StockMovement:
+                case SystemAction.ItemTypesAdmin:
                     {
-                        MainForm.Current.ShowStockMovement();
+                        MainForm.Current.ShowItemTypes();
                     } break;
                 default:
                     return;

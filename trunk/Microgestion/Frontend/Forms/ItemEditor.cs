@@ -60,6 +60,29 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 }
             };
 
+            // Select ItemType
+            this.btnLookupItemType.Click += (s, e) =>
+            {
+                try
+                {
+                    using (LookupForm<ItemType> lookup = new LookupForm<ItemType>())
+                    {
+                        var dr = lookup.ShowDialog();
+                        if (dr != DialogResult.OK)
+                            return;
+
+                        ItemType itemType = lookup.SelectedItem;
+                        if (itemType != null)
+                            Item.ItemType = itemType;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ex.ShowMessageBox();
+                }
+            };
+
             // Manage Prices
             this.btnPrices.Click += (s, e) =>
             {
@@ -98,6 +121,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.txtInternalCode.DataBindings.Add(new Binding("Text", Item, "InternalCode"));
                 this.txtExternalCode.DataBindings.Add(new Binding("Text", Item, "ExternalCode"));
                 this.txtBaseMeasurement.DataBindings.Add(new Binding("Text", Item, "BaseMeasurement"));
+                this.txtItemType.DataBindings.Add(new Binding("Text", Item, "ItemType"));
                 this.txtPrice.DataBindings.Add(new Binding("Text", Item, "CurrentPrice"));
                 this.txtDefaultSalesAmount.DataBindings.Add(new Binding("Text", Item, "DefaultSalesAmount"));
                 this.chkMovesStock.DataBindings.Add(new Binding("Checked", Item, "MovesStock"));

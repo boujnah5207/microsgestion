@@ -8,6 +8,7 @@ using Blackspot.Microgestion.Backend.Services;
 using Blackspot.Microgestion.Backend.Entities;
 using System.Windows;
 using Blackspot.Microgestion.Backend.Enumerations;
+using Blackspot.Microgestion.Frontend.Stock.Wpf.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 {
@@ -19,40 +20,46 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         public StockMovementViewModel(StockMovementView view)
         {
-            this.view = view;
-            this.Date = DateTime.Now;
-            this.Items = new ObservableCollection<StockMovementItem>();
-            this.Username = UserService.LoggedInUser.GetUserInfo();
-            this.LoginText = IniciarSesion;
+            try
+            {
+                this.view = view;
+                this.Date = DateTime.Now;
+                this.Items = new ObservableCollection<StockMovementItem>();
+                this.Username = UserService.LoggedInUser.GetUserInfo();
+                this.LoginText = IniciarSesion;
 
-            CommandBinding cmdLogin = new CommandBinding(
-                LoginCommand,
-                (s, e) => Login());
+                CommandBinding cmdLogin = new CommandBinding(
+                    LoginCommand,
+                    (s, e) => Login());
 
-            CommandBinding cmdInsert = new CommandBinding(
-                InsertItemCommand,
-                (s, e) => InsertItem(),
-                (s, e) =>
-                {
-                    e.CanExecute = 
-                        UserService.CanPerform(SystemAction.StockMovement) &&
-                        this.ItemID != Guid.Empty &&
-                        this.Amount != 0;
-                });
-            CommandBinding cmdSave = new CommandBinding(
-                InsertItemCommand,
-                (s, e) => Save(),
-                (s, e) =>
-                {
-                    e.CanExecute =
-                        UserService.CanPerform(SystemAction.StockMovement) &&
-                        this.Items.Count > 0;
-                });
+                CommandBinding cmdInsert = new CommandBinding(
+                    InsertItemCommand,
+                    (s, e) => InsertItem(),
+                    (s, e) =>
+                    {
+                        e.CanExecute =
+                            UserService.CanPerform(SystemAction.StockMovement) &&
+                            this.ItemID != Guid.Empty &&
+                            this.Amount != 0;
+                    });
+                CommandBinding cmdSave = new CommandBinding(
+                    InsertItemCommand,
+                    (s, e) => Save(),
+                    (s, e) =>
+                    {
+                        e.CanExecute =
+                            UserService.CanPerform(SystemAction.StockMovement) &&
+                            this.Items.Count > 0;
+                    });
 
-            Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
-            Application.Current.MainWindow.CommandBindings.Add(cmdInsert);
-            Application.Current.MainWindow.CommandBindings.Add(cmdSave);
-
+                Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
+                Application.Current.MainWindow.CommandBindings.Add(cmdInsert);
+                Application.Current.MainWindow.CommandBindings.Add(cmdSave);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private string loginText = string.Empty;
@@ -100,126 +107,161 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         internal void InsertItem()
         {
-            if (!UserService.CanPerform(SystemAction.StockMovement))
-                return;
-
-            if (ItemID != Guid.Empty && Amount != 0)
+            try
             {
-                StockMovementItem alreadyInsertedItem = 
-                    Items.Where(i => i.ItemID.Equals(ItemID))
-                         .SingleOrDefault();
+                if (!UserService.CanPerform(SystemAction.StockMovement))
+                    return;
 
-                if (alreadyInsertedItem == null)
+                if (ItemID != Guid.Empty && Amount != 0)
                 {
-                    Item item = ItemService.GetByID(ItemID);
+                    StockMovementItem alreadyInsertedItem =
+                        Items.Where(i => i.ItemID.Equals(ItemID))
+                             .SingleOrDefault();
 
-                    Items.Add(new StockMovementItem
+                    if (alreadyInsertedItem == null)
                     {
-                        ItemID = item.ID,
-                        Description = item.Name,
-                        Amount = this.Amount
-                    });
+                        Item item = ItemService.GetByID(ItemID);
+
+                        Items.Add(new StockMovementItem
+                        {
+                            ItemID = item.ID,
+                            Description = item.Name,
+                            Amount = this.Amount
+                        });
+                    }
+                    else
+                    {
+                        alreadyInsertedItem.Amount += this.Amount;
+                        Items.Remove(alreadyInsertedItem);
+                        Items.Add(alreadyInsertedItem);
+                    }
+
+                    ItemID = Guid.Empty;
+                    Amount = 0;
+                    view.txtAmount.Text = string.Empty;
+                    view.txtSearchItem.Text = string.Empty;
+                    view.txtSearchItem.Focus();
                 }
                 else
                 {
-                    alreadyInsertedItem.Amount += this.Amount;
-                    Items.Remove(alreadyInsertedItem);
-                    Items.Add(alreadyInsertedItem);
+                    view.txtSearchItem.SelectAll();
+                    view.txtSearchItem.Focus();
                 }
-
-                ItemID = Guid.Empty;
-                Amount = 0;
-                view.txtAmount.Text = string.Empty;
-                view.txtSearchItem.Text = string.Empty;
-                view.txtSearchItem.Focus();
             }
-            else
+            catch (Exception ex)
             {
-                view.txtSearchItem.SelectAll();
-                view.txtSearchItem.Focus();
+                ex.ShowMessageBox();
             }
         }
 
         internal void Cancel()
         {
-            if (this.Items.Count > 0)
+            try
             {
-                var dr = MessageBox.Show(
-                    "¿Está seguro que desea cancelar el movimiento?",
-                    "Cancelar Movimiento", 
-                    MessageBoxButton.YesNo, 
-                    MessageBoxImage.Question, 
-                    MessageBoxResult.No);
-                if (dr == MessageBoxResult.No)
-                    return;
-            }
+                if (this.Items.Count > 0)
+                {
+                    var dr = MessageBox.Show(
+                        "¿Está seguro que desea cancelar el movimiento?",
+                        "Cancelar Movimiento",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question,
+                        MessageBoxResult.No);
+                    if (dr == MessageBoxResult.No)
+                        return;
+                }
 
-            ClearAll();
+                ClearAll();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private void ClearAll()
         {
-            this.Items.Clear();
-            this.ItemID = Guid.Empty;
-            this.Date = DateTime.Now;
-            this.Comments = string.Empty;
-            this.Amount = 0;
-            view.txtAmount.Text = string.Empty;
-            view.txtSearchItem.Text = string.Empty;
-            view.txtSearchItem.Focus();
+            try
+            {
+                this.Items.Clear();
+                this.ItemID = Guid.Empty;
+                this.Date = DateTime.Now;
+                this.Comments = string.Empty;
+                this.Amount = 0;
+                view.txtAmount.Text = string.Empty;
+                view.txtSearchItem.Text = string.Empty;
+                view.txtSearchItem.Focus();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal void Save()
         {
-            if (this.Items.Count > 0)
+            try
             {
-                var dr = MessageBox.Show(
-                    "¿Confirma que desea guardar el movimiento?",
-                    "Confirmar Movimiento",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question,
-                    MessageBoxResult.No);
-                if (dr == MessageBoxResult.No)
-                    return;
-
-                StockMovement mov = new StockMovement
+                if (this.Items.Count > 0)
                 {
-                    Comment = this.Comments,
-                    Date = this.Date,
-                    UserID = UserService.LoggedInUser.ID
-                };
+                    var dr = MessageBox.Show(
+                        "¿Confirma que desea guardar el movimiento?",
+                        "Confirmar Movimiento",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question,
+                        MessageBoxResult.No);
+                    if (dr == MessageBoxResult.No)
+                        return;
 
-                var details = from i in Items
-                              select new StockMovementDetail
-                                  {
-                                      ItemID = i.ItemID,
-                                      Amount = i.Amount
-                                  };
-                mov.Details.AddRange(details);
+                    StockMovement mov = new StockMovement
+                    {
+                        Comment = this.Comments,
+                        Date = this.Date,
+                        UserID = UserService.LoggedInUser.ID
+                    };
 
-                StockMovementService.Save(mov);
+                    var details = from i in Items
+                                  select new StockMovementDetail
+                                      {
+                                          ItemID = i.ItemID,
+                                          Amount = i.Amount
+                                      };
+                    mov.Details.AddRange(details);
 
+                    StockMovementService.Save(mov);
+
+                }
+
+                ClearAll();
             }
-
-            ClearAll();
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         internal void Login()
         {
-            if (LoginText == IniciarSesion)
+            try
             {
-                LoginView login = new LoginView();
-                if (login.ShowDialog() == true)
+                if (LoginText == IniciarSesion)
                 {
+                    LoginView login = new LoginView();
+                    if (login.ShowDialog() == true)
+                    {
+                        this.Username = UserService.LoggedInUser.GetUserInfo();
+                        this.LoginText = CerrarSesion;
+                    }
+                }
+                else
+                {
+                    UserService.LoggedInUser = UserService.GetNullUser();
                     this.Username = UserService.LoggedInUser.GetUserInfo();
-                    this.LoginText = CerrarSesion;
+                    this.LoginText = IniciarSesion;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                UserService.LoggedInUser = UserService.GetNullUser();
-                this.Username = UserService.LoggedInUser.GetUserInfo();
-                this.LoginText = IniciarSesion;
+                ex.ShowMessageBox();
             }
         }
     }

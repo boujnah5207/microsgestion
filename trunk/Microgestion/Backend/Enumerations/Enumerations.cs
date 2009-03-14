@@ -26,6 +26,11 @@ namespace Blackspot.Microgestion.Backend.Enumerations
         ItemDelete = 16,
         ItemEdit = 17,
         StockMovement = 18,
+        Sales = 19,
+        ItemTypesAdmin = 20,
+        ItemTypeAdd = 21,
+        ItemTypeDelete = 22,
+        ItemTypeEdit = 23,
         ResetDB = 999
     }
 

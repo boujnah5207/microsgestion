@@ -11,17 +11,17 @@ using Blackspot.Microgestion.Frontend.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Forms
 {
-    public partial class MeasurementsForm : Form, IRestorableForm
+    public partial class ItemTypesForm : Form, IRestorableForm
     {
-        MeasurementsFormController Controller;
+        ItemTypesFormController Controller;
 
-        public MeasurementsForm()
+        public ItemTypesForm()
         {
             try
             {
                 InitializeComponent();
 
-                Controller = new MeasurementsFormController(this);
+                Controller = new ItemTypesFormController(this);
                 Controller.InitializeForm();
 
                 InitializeControlsHandlers();
@@ -41,16 +41,15 @@ namespace Blackspot.Microgestion.Frontend.Forms
             {
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Nombre" });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Abbreviation", HeaderText = "Abreviatura" });
 
-                Grid.DataSource = Controller.Measurements;
+                Grid.DataSource = Controller.ItemTypes;
 
                 this.btnAdd.DataBindings.Add(new Binding("Visible", Controller, "AllowAdd"));
                 this.btnDelete.DataBindings.Add(new Binding("Visible", Controller, "AllowDelete"));
                 this.btnEdit.DataBindings.Add(new Binding("Visible", Controller, "AllowEdit"));
 
-                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "MeasurementsFormLocation"));
-                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "MeasurementsFormSize"));
+                this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "ItemTypesFormLocation"));
+                this.DataBindings.Add(new Binding("Size", Properties.Settings.Default, "ItemTypesFormSize"));
             }
             catch (Exception ex)
             {
@@ -85,17 +84,17 @@ namespace Blackspot.Microgestion.Frontend.Forms
 
         public string LocationSetting
         {
-            get { return "MeasurementsFormLocation"; }
+            get { return "ItemTypesFormLocation"; }
         }
 
         public string SizeSetting
         {
-            get { return "MeasurementsFormSize"; }
+            get { return "ItemTypesFormSize"; }
         }
 
         public string WindowStateSetting
         {
-            get { return "MeasurementsFormWindowState"; }
+            get { return "ItemTypesFormWindowState"; }
         }
 
         #endregion

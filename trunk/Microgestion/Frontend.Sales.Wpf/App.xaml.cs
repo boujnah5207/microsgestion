@@ -4,10 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using Blackspot.Microgestion.Frontend.Stock.Wpf.Views;
-using Blackspot.Microgestion.Frontend.Stock.Wpf.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Stock.Wpf
+namespace Frontend.Sales.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

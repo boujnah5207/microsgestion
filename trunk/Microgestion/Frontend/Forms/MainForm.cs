@@ -20,7 +20,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
         private RolesForm rolesForm;
         private MeasurementsForm measurementsForm;
         private ItemsForm itemsForm;
-        private StockMovementForm stockMovement;
+        private ItemTypesForm itemTypesForm;
 
         private UsersForm UsersForm
         {
@@ -62,17 +62,16 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 return itemsForm;
             }
         }
-        private StockMovementForm StockMovement
+        public ItemTypesForm ItemTypesForm
         {
             get
             {
-                if (stockMovement == null || stockMovement.IsDisposed)
-                    stockMovement = new StockMovementForm() { MdiParent = this };
+                if (itemTypesForm == null || itemTypesForm.IsDisposed)
+                    itemTypesForm = new ItemTypesForm() { MdiParent = this };
 
-                return stockMovement;
+                return itemTypesForm;
             }
         }
-
         #endregion
 
         public MainForm()
@@ -150,9 +149,9 @@ namespace Blackspot.Microgestion.Frontend.Forms
             this.ItemsForm.Show();
         }
 
-        internal void ShowStockMovement()
+        internal void ShowItemTypes()
         {
-            this.StockMovement.Show();
+            this.ItemTypesForm.Show();
         }
 
         #region Miembros de IRestorableForm
@@ -173,5 +172,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
         }
 
         #endregion
+
     }
 }

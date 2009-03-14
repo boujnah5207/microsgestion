@@ -1,7 +1,7 @@
-﻿<Application x:Class="Blackspot.Microgestion.Frontend.Stock.Wpf.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Views/StockMovementView.xaml">
+﻿<Application x:Class="Frontend.Sales.Wpf.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="Views/SalesView.xaml">
     <Application.Resources>
         <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

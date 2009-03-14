@@ -48,16 +48,19 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtMinimumStock = new System.Windows.Forms.TextBox();
+            this.btnLookupItemType = new System.Windows.Forms.Button();
+            this.txtItemType = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(407, 237);
+            this.btnCancel.Location = new System.Drawing.Point(357, 257);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 13;
             this.btnCancel.Text = "&Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -65,10 +68,10 @@
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAccept.Location = new System.Drawing.Point(326, 237);
+            this.btnAccept.Location = new System.Drawing.Point(276, 257);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 10;
+            this.btnAccept.TabIndex = 12;
             this.btnAccept.Text = "&Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
@@ -79,7 +82,7 @@
             this.txtName.Location = new System.Drawing.Point(120, 12);
             this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(362, 20);
+            this.txtName.Size = new System.Drawing.Size(312, 20);
             this.txtName.TabIndex = 0;
             // 
             // label1
@@ -98,7 +101,7 @@
             this.txtInternalCode.Location = new System.Drawing.Point(120, 38);
             this.txtInternalCode.MaxLength = 50;
             this.txtInternalCode.Name = "txtInternalCode";
-            this.txtInternalCode.Size = new System.Drawing.Size(362, 20);
+            this.txtInternalCode.Size = new System.Drawing.Size(312, 20);
             this.txtInternalCode.TabIndex = 1;
             // 
             // label2
@@ -117,7 +120,7 @@
             this.txtExternalCode.Location = new System.Drawing.Point(120, 64);
             this.txtExternalCode.MaxLength = 50;
             this.txtExternalCode.Name = "txtExternalCode";
-            this.txtExternalCode.Size = new System.Drawing.Size(362, 20);
+            this.txtExternalCode.Size = new System.Drawing.Size(312, 20);
             this.txtExternalCode.TabIndex = 2;
             // 
             // label3
@@ -141,7 +144,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 119);
+            this.label5.Location = new System.Drawing.Point(11, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 13);
             this.label5.TabIndex = 13;
@@ -151,25 +154,25 @@
             // 
             this.txtDefaultSalesAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultSalesAmount.Location = new System.Drawing.Point(120, 116);
+            this.txtDefaultSalesAmount.Location = new System.Drawing.Point(120, 146);
             this.txtDefaultSalesAmount.MaxLength = 50;
             this.txtDefaultSalesAmount.Name = "txtDefaultSalesAmount";
-            this.txtDefaultSalesAmount.Size = new System.Drawing.Size(89, 20);
-            this.txtDefaultSalesAmount.TabIndex = 5;
+            this.txtDefaultSalesAmount.Size = new System.Drawing.Size(108, 20);
+            this.txtDefaultSalesAmount.TabIndex = 7;
             // 
             // chkMovesStock
             // 
             this.chkMovesStock.AutoSize = true;
-            this.chkMovesStock.Location = new System.Drawing.Point(120, 172);
+            this.chkMovesStock.Location = new System.Drawing.Point(120, 202);
             this.chkMovesStock.Name = "chkMovesStock";
-            this.chkMovesStock.Size = new System.Drawing.Size(15, 14);
-            this.chkMovesStock.TabIndex = 8;
+            this.chkMovesStock.Size = new System.Drawing.Size(13, 12);
+            this.chkMovesStock.TabIndex = 10;
             this.chkMovesStock.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 171);
+            this.label6.Location = new System.Drawing.Point(11, 201);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 16;
@@ -178,7 +181,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 198);
+            this.label8.Location = new System.Drawing.Point(11, 228);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 13);
             this.label8.TabIndex = 18;
@@ -193,14 +196,14 @@
             this.txtBaseMeasurement.MaxLength = 50;
             this.txtBaseMeasurement.Name = "txtBaseMeasurement";
             this.txtBaseMeasurement.ReadOnly = true;
-            this.txtBaseMeasurement.Size = new System.Drawing.Size(338, 20);
+            this.txtBaseMeasurement.Size = new System.Drawing.Size(288, 20);
             this.txtBaseMeasurement.TabIndex = 3;
             this.txtBaseMeasurement.TabStop = false;
             // 
             // btnLookupMeasurement
             // 
             this.btnLookupMeasurement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLookupMeasurement.Location = new System.Drawing.Point(458, 90);
+            this.btnLookupMeasurement.Location = new System.Drawing.Point(408, 90);
             this.btnLookupMeasurement.Name = "btnLookupMeasurement";
             this.btnLookupMeasurement.Size = new System.Drawing.Size(24, 20);
             this.btnLookupMeasurement.TabIndex = 4;
@@ -209,18 +212,18 @@
             // 
             // btnPrices
             // 
-            this.btnPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrices.Location = new System.Drawing.Point(458, 142);
+            this.btnPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrices.Location = new System.Drawing.Point(408, 172);
             this.btnPrices.Name = "btnPrices";
             this.btnPrices.Size = new System.Drawing.Size(24, 20);
-            this.btnPrices.TabIndex = 7;
+            this.btnPrices.TabIndex = 9;
             this.btnPrices.Text = "...";
             this.btnPrices.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 145);
+            this.label9.Location = new System.Drawing.Point(11, 175);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 19;
@@ -231,23 +234,55 @@
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPrice.Location = new System.Drawing.Point(120, 142);
+            this.txtPrice.Location = new System.Drawing.Point(120, 172);
             this.txtPrice.MaxLength = 50;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
-            this.txtPrice.Size = new System.Drawing.Size(338, 20);
-            this.txtPrice.TabIndex = 6;
+            this.txtPrice.Size = new System.Drawing.Size(288, 20);
+            this.txtPrice.TabIndex = 8;
             this.txtPrice.TabStop = false;
             // 
             // txtMinimumStock
             // 
             this.txtMinimumStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMinimumStock.Location = new System.Drawing.Point(120, 191);
+            this.txtMinimumStock.Location = new System.Drawing.Point(120, 221);
             this.txtMinimumStock.MaxLength = 50;
             this.txtMinimumStock.Name = "txtMinimumStock";
-            this.txtMinimumStock.Size = new System.Drawing.Size(89, 20);
-            this.txtMinimumStock.TabIndex = 9;
+            this.txtMinimumStock.Size = new System.Drawing.Size(108, 20);
+            this.txtMinimumStock.TabIndex = 11;
+            // 
+            // btnLookupItemType
+            // 
+            this.btnLookupItemType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLookupItemType.Location = new System.Drawing.Point(408, 118);
+            this.btnLookupItemType.Name = "btnLookupItemType";
+            this.btnLookupItemType.Size = new System.Drawing.Size(24, 20);
+            this.btnLookupItemType.TabIndex = 6;
+            this.btnLookupItemType.Text = "...";
+            this.btnLookupItemType.UseVisualStyleBackColor = true;
+            // 
+            // txtItemType
+            // 
+            this.txtItemType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtItemType.BackColor = System.Drawing.SystemColors.Window;
+            this.txtItemType.Location = new System.Drawing.Point(120, 118);
+            this.txtItemType.MaxLength = 50;
+            this.txtItemType.Name = "txtItemType";
+            this.txtItemType.ReadOnly = true;
+            this.txtItemType.Size = new System.Drawing.Size(288, 20);
+            this.txtItemType.TabIndex = 5;
+            this.txtItemType.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Rubro:";
             // 
             // ItemEditor
             // 
@@ -255,8 +290,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(494, 272);
+            this.ClientSize = new System.Drawing.Size(444, 292);
             this.ControlBox = false;
+            this.Controls.Add(this.btnLookupItemType);
+            this.Controls.Add(this.txtItemType);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtMinimumStock);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label9);
@@ -278,6 +316,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimumSize = new System.Drawing.Size(450, 300);
             this.Name = "ItemEditor";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -309,5 +348,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtMinimumStock;
+        private System.Windows.Forms.Button btnLookupItemType;
+        private System.Windows.Forms.TextBox txtItemType;
+        private System.Windows.Forms.Label label7;
     }
 }

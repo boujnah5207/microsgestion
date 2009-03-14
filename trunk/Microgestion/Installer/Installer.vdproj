@@ -16,13 +16,13 @@
         "Entry"
         {
         "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
-        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
+        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
-        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
+        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -57,7 +57,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6330B610DF128A41B7A732374853756"
+        "MsmKey" = "8:_C026B2522DD34D2F91547704FBE10590"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
         "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -65,6 +71,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -77,18 +101,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F6330B610DF128A41B7A732374853756"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -157,6 +169,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -279,14 +299,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6330B610DF128A41B7A732374853756"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C9E38D25C2803F6BF297744E56432D05"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Blackspot.Microgestion.Frontend.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F6330B610DF128A41B7A732374853756"
+                    "_C9E38D25C2803F6BF297744E56432D05"
                     {
                     "Name" = "8:Blackspot.Microgestion.Frontend.Common.dll"
                     "Attributes" = "3:512"
@@ -337,6 +357,28 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_200957CEBB9C49779BBB667C06A6E663"
+                    {
+                    "Name" = "8:BlackSpot"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_5749D5BA639E44EBB40DBB17259BF306"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_68BCEA749A154A1ABB6FDFFE36DDD073"
+                            {
+                            "Name" = "8:MicroGestion"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_DF0C5C051C374065A43CD2710E3232F5"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_A21EDA9BC7BA4E4CB3BB392E68F7B545"
@@ -367,7 +409,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MicroGestion"
         "ProductCode" = "8:{9836CDFC-0B48-4D6D-9543-4907CD0C0A2A}"
-        "PackageCode" = "8:{7BDBD115-5F8C-499E-8DE1-72AC1164A6E7}"
+        "PackageCode" = "8:{6A02334D-8947-4DC3-A47C-EBA13AF0A53F}"
         "UpgradeCode" = "8:{65CD3B11-74D8-434A-A46A-233039339ECF}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -486,21 +528,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_56CDEF8FD176490089DA6CA62F1DBE45"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_57FD3E5C02144AD3A3044C79EAEE15D1"
             {
-            "Name" = "8:Configuracion"
+            "Name" = "8:Administracion"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_63592E68C1904F3B93B956ABE3B3A315"
-            "Folder" = "8:_89D8764ECF1346FD9E060E8B78DC6250"
+            "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
             "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9B48E268E97B47189F10D20D8CE35EC4"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6CCBD359B688433E81A60F65EE297F4B"
             {
             "Name" = "8:Stock"
             "Arguments" = "8:"
@@ -509,7 +551,21 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_1518CF9CFB1848289D8BE53EC302305D"
-            "Folder" = "8:_89D8764ECF1346FD9E060E8B78DC6250"
+            "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
+            "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F5D60C62CD594F2F93F3382B6AE85AA5"
+            {
+            "Name" = "8:Ventas"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_C026B2522DD34D2F91547704FBE10590"
+            "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
             "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -915,7 +971,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1518CF9CFB1848289D8BE53EC302305D"
             {
-            "SourcePath" = "8:..\\Frontend.Stock.Wpf\\obj\\Debug\\Blackspot.Microgestion.Frontend.Stock.Wpf.exe"
+            "SourcePath" = "8:..\\Frontend.Stock.Wpf\\obj\\Release\\Microgestion.Stock.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -943,7 +999,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_63592E68C1904F3B93B956ABE3B3A315"
             {
-            "SourcePath" = "8:..\\Frontend\\obj\\Debug\\Blackspot.Microgestion.Frontend.exe"
+            "SourcePath" = "8:..\\Frontend\\obj\\Release\\Microgestion.Administracion.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -964,6 +1020,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C026B2522DD34D2F91547704FBE10590"
+            {
+            "SourcePath" = "8:..\\Frontend.Sales.Wpf\\obj\\Release\\Microgestion.Ventas.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{C871A283-F02A-4079-A584-7D2192EA4E01}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

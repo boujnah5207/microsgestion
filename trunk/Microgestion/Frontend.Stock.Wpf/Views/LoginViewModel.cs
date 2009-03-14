@@ -8,6 +8,7 @@ using System.Windows;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Backend.Extensions;
 using Blackspot.Microgestion.Backend.Entities;
+using Blackspot.Microgestion.Frontend.Stock.Wpf.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 {
@@ -20,29 +21,35 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
 
         public LoginViewModel(LoginView view)
         {
-            this.view = view;
-            this.ConfirmPasswordVisible = Visibility.Collapsed;
+            try
+            {
+                this.view = view;
+                this.ConfirmPasswordVisible = Visibility.Collapsed;
 
-            CommandBinding cmdAccept = new CommandBinding(
-                AcceptCommand,
-                (s, e) => Accept(),
-                (s, e) =>
-                {
-                    e.CanExecute =
-                        !String.IsNullOrEmpty(Username) &&
-                        !String.IsNullOrEmpty(Password);
-                });
-            CommandBinding cmdCancel = new CommandBinding(
-                CancelCommand,
-                (s, e) => Cancel(),
-                (s, e) =>
-                {
-                    e.CanExecute = true;
-                });
+                CommandBinding cmdAccept = new CommandBinding(
+                    AcceptCommand,
+                    (s, e) => Accept(),
+                    (s, e) =>
+                    {
+                        e.CanExecute =
+                            !String.IsNullOrEmpty(Username) &&
+                            !String.IsNullOrEmpty(Password);
+                    });
+                CommandBinding cmdCancel = new CommandBinding(
+                    CancelCommand,
+                    (s, e) => Cancel(),
+                    (s, e) =>
+                    {
+                        e.CanExecute = true;
+                    });
 
-            view.CommandBindings.Add(cmdAccept);
-            view.CommandBindings.Add(cmdCancel);
-
+                view.CommandBindings.Add(cmdAccept);
+                view.CommandBindings.Add(cmdCancel);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
         }
 
         private void Cancel()
@@ -98,6 +105,10 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
                 this.ConfirmPasswordVisible = Visibility.Visible;
                 view.FocusConfirmPassword();
                 return;
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
             }
         }
 

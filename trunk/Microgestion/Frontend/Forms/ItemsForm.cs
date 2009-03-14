@@ -40,7 +40,7 @@ namespace Blackspot.Microgestion.Frontend.Forms
             try
             {
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Nombre", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Name", HeaderText = "Nombre", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, Name="Name" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "InternalCode", HeaderText = "Código Interno" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ExternalCode", HeaderText = "Código Externo" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "BaseMeasurement", HeaderText = "Unidad de Medida" });
@@ -50,6 +50,9 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualStock", HeaderText = "Stock Actual" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "MinimumStock", HeaderText = "Stock Mínimo" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CurrentPrice", HeaderText = "Precio" });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ItemTypeID", Visible = false });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ItemType", HeaderText = "Rubro" });
+                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "SearchString", Visible = false });
 
                 Grid.DataSource = Controller.Items;
 

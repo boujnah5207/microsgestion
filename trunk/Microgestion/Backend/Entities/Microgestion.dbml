@@ -49,9 +49,11 @@
       <Column Name="DefaultSalesAmount" Type="System.Double" CanBeNull="false" />
       <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
       <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
+      <Column Member="ItemTypeID" Type="System.Guid" CanBeNull="false" />
       <Association Name="Item_Price" Member="Prices" ThisKey="ID" OtherKey="ItemID" Type="Price" />
       <Association Name="Item_StockMovementDetail" Member="StockMovementDetails" ThisKey="ID" OtherKey="ItemID" Type="StockMovementDetail" />
       <Association Name="Measurement_Item" Member="BaseMeasurement" Storage="_Measurement" ThisKey="BaseMeasurementID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
+      <Association Name="ItemType_Item" Member="ItemType" ThisKey="ItemTypeID" OtherKey="ID" Type="ItemType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="Measurements">
@@ -127,6 +129,13 @@
       <Association Name="StockMovement_StockMovementDetail" Member="StockMovement" ThisKey="StockMovementID" OtherKey="ID" Type="StockMovement" IsForeignKey="true" />
       <Association Name="Item_StockMovementDetail" Member="Item" ThisKey="ItemID" OtherKey="ID" Type="Item" IsForeignKey="true" />
       <Association Name="SaleDetail_StockMovementDetail" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ItemTypes">
+    <Type Name="ItemType">
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Association Name="ItemType_Item" Member="Items" ThisKey="ID" OtherKey="ItemTypeID" Type="Item" />
     </Type>
   </Table>
 </Database>
