@@ -2016,8 +2016,8 @@ namespace Blackspot.Microgestion.Backend.Entities
 			}
 		}
 		
-		[Column(Storage="_InternalId", IsDbGenerated=true, UpdateCheck=UpdateCheck.Never)]
-		private int InternalID
+		[Column(Storage="_InternalId", UpdateCheck=UpdateCheck.Never)]
+		public int InternalID
 		{
 			get
 			{

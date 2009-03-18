@@ -49,7 +49,7 @@
       <Column Name="DefaultSalesAmount" Type="System.Double" CanBeNull="false" />
       <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
       <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
-      <Column Member="ItemTypeID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ItemTypeID" Type="System.Guid" CanBeNull="false" />
       <Association Name="Item_Price" Member="Prices" ThisKey="ID" OtherKey="ItemID" Type="Price" />
       <Association Name="Item_StockMovementDetail" Member="StockMovementDetails" ThisKey="ID" OtherKey="ItemID" Type="StockMovementDetail" />
       <Association Name="Measurement_Item" Member="BaseMeasurement" Storage="_Measurement" ThisKey="BaseMeasurementID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
@@ -91,7 +91,7 @@
       <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
       <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Total" Type="System.Double" CanBeNull="false" />
-      <Column Name="InternalID" Storage="_InternalId" AccessModifier="Private" AutoSync="Never" Type="System.Int32" IsReadOnly="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InternalID" Storage="_InternalId" Type="System.Int32" IsReadOnly="true" CanBeNull="false" UpdateCheck="Always" />
       <Association Name="Sale_SaleDetail" Member="Details" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
       <Association Name="User_Sale" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
     </Type>

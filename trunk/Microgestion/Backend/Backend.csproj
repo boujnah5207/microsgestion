@@ -86,6 +86,7 @@
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\RoleActionService.cs" />
     <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\SaleService.cs" />
     <Compile Include="Services\ServiceBase.cs" />
     <Compile Include="Services\StockMovementService.cs" />
     <Compile Include="Services\UserRoleService.cs" />
