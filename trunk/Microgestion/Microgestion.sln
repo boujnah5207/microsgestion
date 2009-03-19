@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{E447458B-98AB-4E93-94ED-E1743DA08BFD}"
 	ProjectSection(SolutionItems) = preProject
 		..\Support\ToDoList.txt = ..\Support\ToDoList.txt
+		..\Support\Xceed.Wpf.Controls.dll = ..\Support\Xceed.Wpf.Controls.dll
+		..\Support\Xceed.Wpf.Controls.xml = ..\Support\Xceed.Wpf.Controls.xml
+		..\Support\Xceed.Wpf.DataGrid.dll = ..\Support\Xceed.Wpf.DataGrid.dll
+		..\Support\Xceed.Wpf.DataGrid.xml = ..\Support\Xceed.Wpf.DataGrid.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{D0FF3027-86B7-4D5E-9556-C69030FF34A0}"

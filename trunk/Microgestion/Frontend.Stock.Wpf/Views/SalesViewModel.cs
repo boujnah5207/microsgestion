@@ -101,7 +101,15 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
         internal IList<Item> SearchItems(string text, int maxResults)
         {
-            return ItemService.SearchItems(text, maxResults);
+            try
+            {
+                return ItemService.SearchItems(text, maxResults);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+                return new List<Item>();
+            }
         }
 
         internal void InsertItem()
@@ -141,8 +149,8 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
                     Total = CalculateTotal();
                     ItemID = Guid.Empty;
-                    Amount = 0;
-                    view.txtAmount.Text = string.Empty;
+                    Amount = 1;
+                    view.txtAmount.Text = "1";
                     view.txtSearchItem.Text = string.Empty;
                     view.txtSearchItem.Focus();
                 }
@@ -160,7 +168,15 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
         private double CalculateTotal()
         {
-            return Items.Sum(i => i.Subtotal);
+            try
+            {
+                return Items.Sum(i => i.Subtotal);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+                return 0;
+            }
         }
 
         internal void Cancel()
@@ -208,7 +224,15 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
         private int GetNextNumber()
         {
-            return SaleService.GetNextNumber();
+            try
+            {
+                return SaleService.GetNextNumber();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+                return 0;
+            }
         }
 
         internal void Save()
@@ -255,7 +279,6 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                 ex.ShowMessageBox();
             }
         }
-
 
         internal void Login()
         {

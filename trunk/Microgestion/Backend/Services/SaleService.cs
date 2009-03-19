@@ -12,7 +12,15 @@ namespace Blackspot.Microgestion.Backend.Services
 
         public static int GetNextNumber()
         {
-            return DB.Sales.Max(s => s.InternalID) + 1;
+
+            var max = (from s in DB.Sales
+                       orderby s.InternalID descending
+                       select s).FirstOrDefault();
+
+            if (max == null)
+                return 1;
+
+            return max.InternalID + 1;
         }
     }
 }
