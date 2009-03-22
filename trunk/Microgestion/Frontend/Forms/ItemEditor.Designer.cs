@@ -37,8 +37,6 @@
             this.txtExternalCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDefaultSalesAmount = new System.Windows.Forms.TextBox();
             this.chkMovesStock = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -141,38 +139,19 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Unidad de Medida:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 149);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Cantidad en Ventas:";
-            // 
-            // txtDefaultSalesAmount
-            // 
-            this.txtDefaultSalesAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultSalesAmount.Location = new System.Drawing.Point(120, 146);
-            this.txtDefaultSalesAmount.MaxLength = 50;
-            this.txtDefaultSalesAmount.Name = "txtDefaultSalesAmount";
-            this.txtDefaultSalesAmount.Size = new System.Drawing.Size(108, 20);
-            this.txtDefaultSalesAmount.TabIndex = 7;
-            // 
             // chkMovesStock
             // 
             this.chkMovesStock.AutoSize = true;
-            this.chkMovesStock.Location = new System.Drawing.Point(120, 202);
+            this.chkMovesStock.Location = new System.Drawing.Point(120, 176);
             this.chkMovesStock.Name = "chkMovesStock";
-            this.chkMovesStock.Size = new System.Drawing.Size(13, 12);
+            this.chkMovesStock.Size = new System.Drawing.Size(15, 14);
             this.chkMovesStock.TabIndex = 10;
             this.chkMovesStock.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 201);
+            this.label6.Location = new System.Drawing.Point(11, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 16;
@@ -181,7 +160,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 228);
+            this.label8.Location = new System.Drawing.Point(11, 202);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 13);
             this.label8.TabIndex = 18;
@@ -213,7 +192,7 @@
             // btnPrices
             // 
             this.btnPrices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrices.Location = new System.Drawing.Point(408, 172);
+            this.btnPrices.Location = new System.Drawing.Point(408, 146);
             this.btnPrices.Name = "btnPrices";
             this.btnPrices.Size = new System.Drawing.Size(24, 20);
             this.btnPrices.TabIndex = 9;
@@ -223,7 +202,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 175);
+            this.label9.Location = new System.Drawing.Point(11, 149);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 19;
@@ -234,7 +213,7 @@
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPrice.Location = new System.Drawing.Point(120, 172);
+            this.txtPrice.Location = new System.Drawing.Point(120, 146);
             this.txtPrice.MaxLength = 50;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
@@ -246,7 +225,7 @@
             // 
             this.txtMinimumStock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMinimumStock.Location = new System.Drawing.Point(120, 221);
+            this.txtMinimumStock.Location = new System.Drawing.Point(120, 195);
             this.txtMinimumStock.MaxLength = 50;
             this.txtMinimumStock.Name = "txtMinimumStock";
             this.txtMinimumStock.Size = new System.Drawing.Size(108, 20);
@@ -290,7 +269,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(444, 292);
+            this.ClientSize = new System.Drawing.Size(448, 298);
             this.ControlBox = false;
             this.Controls.Add(this.btnLookupItemType);
             this.Controls.Add(this.txtItemType);
@@ -304,8 +283,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.chkMovesStock);
-            this.Controls.Add(this.txtDefaultSalesAmount);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtExternalCode);
             this.Controls.Add(this.label3);
@@ -337,8 +314,6 @@
         private System.Windows.Forms.TextBox txtExternalCode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDefaultSalesAmount;
         private System.Windows.Forms.CheckBox chkMovesStock;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;

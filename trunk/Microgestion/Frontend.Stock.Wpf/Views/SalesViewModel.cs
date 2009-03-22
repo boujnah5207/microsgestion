@@ -9,10 +9,11 @@ using Blackspot.Microgestion.Frontend.Sales.Wpf.Extensions;
 using Blackspot.Microgestion.Backend.Enumerations;
 using System.Collections.ObjectModel;
 using Blackspot.Microgestion.Backend.Entities;
+using System.ComponentModel;
 
 namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 {
-    public class SalesViewModel
+    public class SalesViewModel : INotifyPropertyChanged
     {
         private SalesView view;
         private const string CerrarSesion = "Cerrar Sesión";
@@ -63,10 +64,31 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
         }
 
-        public int NextNumber { get; set; }
-        public DateTime Date { get; set; }
-
+        private DateTime date = DateTime.Now;
+        private int nextNumber = 0;
         private string loginText = string.Empty;
+        private string username = string.Empty;
+        private double total = 0D;
+        private double amount = 0D;
+
+        public DateTime Date
+        {
+            get { return date; }
+            set
+            {
+                date = value;
+                OnPropertyChanged("Date");
+            }
+        }
+        public int NextNumber
+        {
+            get { return nextNumber; }
+            set
+            {
+                nextNumber = value;
+                OnPropertyChanged("NextNumber");
+            }
+        }
         public string LoginText
         {
             get
@@ -76,10 +98,9 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             set
             {
                 loginText = value;
-                view.txtLoginText.Text = value;
+                OnPropertyChanged("LoginText");
             }
         }
-        private string username = string.Empty;
         public string Username
         {
             get
@@ -89,15 +110,37 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             set
             {
                 username = value;
-                view.txtUsername.Text = value;
+                OnPropertyChanged("Username");
+            }
+        }
+        public double Total
+        {
+            get
+            {
+                return this.total;
+            }
+            set
+            {
+                this.total = value;
+                OnPropertyChanged("Total");
+            }
+        }
+        public double Amount
+        {
+            get
+            {
+                return this.amount;
+            }
+            set
+            {
+                this.amount = value;
+                OnPropertyChanged("Amount");
             }
         }
 
         public ObservableCollection<SaleItem> Items { get; set; }
         public string SearchItem { get; set; }
         public Guid ItemID { get; set; }
-        public double Amount { get; set; }
-        public double Total { get; set; }
 
         internal IList<Item> SearchItems(string text, int maxResults)
         {
@@ -116,17 +159,8 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
         {
             try
             {
-                if (!UserService.CanPerform(SystemAction.StockMovement))
-                    return;
-
                 if (ItemID != Guid.Empty && Amount != 0)
                 {
-                    //SaleItem alreadyInsertedItem =
-                    //    Items.Where(i => i.ItemID.Equals(ItemID))
-                    //         .SingleOrDefault();
-
-                    //if (alreadyInsertedItem == null)
-                    //{
                     Item item = ItemService.GetByID(ItemID);
 
                     Items.Add(new SaleItem
@@ -139,18 +173,10 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                         PriceID = item.CurrentPrice.ID,
                         Subtotal = (item.CurrentPrice.Value * this.Amount)
                     });
-                    //}
-                    //else
-                    //{
-                    //    alreadyInsertedItem.Amount += this.Amount;
-                    //    Items.Remove(alreadyInsertedItem);
-                    //    Items.Add(alreadyInsertedItem);
-                    //}
 
                     Total = CalculateTotal();
                     ItemID = Guid.Empty;
                     Amount = 1;
-                    view.txtAmount.Text = "1";
                     view.txtSearchItem.Text = string.Empty;
                     view.txtSearchItem.Focus();
                 }
@@ -211,8 +237,8 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                 this.ItemID = Guid.Empty;
                 this.Date = DateTime.Now;
                 this.NextNumber = GetNextNumber();
-                this.Amount = 0;
-                view.txtAmount.Text = string.Empty;
+                this.Amount = 1;
+                this.Total = 0D;
                 view.txtSearchItem.Text = string.Empty;
                 view.txtSearchItem.Focus();
             }
@@ -254,12 +280,14 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                     {
                         Total = this.Total,
                         Date = this.Date,
-                        UserID = UserService.LoggedInUser.ID
+                        UserID = UserService.LoggedInUser.ID,
+                        InternalID = this.NextNumber
                     };
 
                     var details = from i in Items
                                   select new SaleDetail
                                   {
+                                      ID = Guid.NewGuid(),
                                       ItemID = i.ItemID,
                                       Amount = i.Amount,
                                       Subtotal = i.Subtotal,
@@ -306,6 +334,23 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             }
         }
 
+
+        #region INotifyPropertyChanged Members
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, e);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
     }
 
     public class SaleItem

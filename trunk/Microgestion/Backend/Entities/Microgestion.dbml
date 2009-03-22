@@ -46,7 +46,6 @@
       <Column Name="ExternalCode" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
       <Column Name="BaseMeasurementID" Storage="_BaseMeasurement" Type="System.Guid" CanBeNull="false" />
-      <Column Name="DefaultSalesAmount" Type="System.Double" CanBeNull="false" />
       <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
       <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
       <Column Name="ItemTypeID" Type="System.Guid" CanBeNull="false" />
@@ -91,14 +90,14 @@
       <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
       <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Total" Type="System.Double" CanBeNull="false" />
-      <Column Name="InternalID" Storage="_InternalId" Type="System.Int32" IsReadOnly="true" CanBeNull="false" UpdateCheck="Always" />
+      <Column Name="InternalID" Storage="_InternalId" Type="System.Int32" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Sale_SaleDetail" Member="Details" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
       <Association Name="User_Sale" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="SaleDetails">
     <Type Name="SaleDetail">
-      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="SaleID" Type="System.Guid" CanBeNull="false" />
       <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
       <Column Name="Amount" Type="System.Double" CanBeNull="false" />

@@ -105,6 +105,8 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                 }
             };
 
+            this.btnCancel.Click += (s, e) => vm.Cancel();
+
         }
     }
 }

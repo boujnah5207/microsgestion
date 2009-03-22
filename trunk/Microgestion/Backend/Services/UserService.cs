@@ -102,13 +102,19 @@ namespace Blackspot.Microgestion.Backend.Services
             if (user.Equals(AdminUser))
                 return true;
 
-            return user.UserRoles.Any
-                (
-                    ur => ur.Role.Actions.Any
-                        (
-                            a => a.Action == action
-                        )
-                );
+            //return user.UserRoles.Any
+            //    (
+            //        ur => ur.Role.Actions.Any
+            //            (
+            //                a => a.Action == action
+            //            )
+            //    );
+            foreach (var ur in user.UserRoles)
+                foreach (var a in ur.Role.Actions)
+                    if (a.Action.Equals(action))
+                        return true;
+
+            return false;
         }
 
         public static bool CheckIfUserExists(string username)

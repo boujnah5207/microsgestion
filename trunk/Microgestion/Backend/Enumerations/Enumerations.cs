@@ -82,6 +82,16 @@ namespace Blackspot.Microgestion.Backend.Enumerations
                     return "Modificar Artículo";
                 case SystemAction.StockMovement:
                     return "Movimiento de Stock";
+                case SystemAction.Sales:
+                    return "Ventas";
+                case SystemAction.ItemTypesAdmin:
+                    return "Administrar Rubros";
+                case SystemAction.ItemTypeAdd:
+                    return "Agregar Rubro";
+                case SystemAction.ItemTypeDelete:
+                    return "Eliminar Rubro";
+                case SystemAction.ItemTypeEdit:
+                    return "Modificar Rubro";
                 default:
                     return "Sin nombre";
             }

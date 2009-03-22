@@ -123,7 +123,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.txtBaseMeasurement.DataBindings.Add(new Binding("Text", Item, "BaseMeasurement"));
                 this.txtItemType.DataBindings.Add(new Binding("Text", Item, "ItemType"));
                 this.txtPrice.DataBindings.Add(new Binding("Text", Item, "CurrentPrice"));
-                this.txtDefaultSalesAmount.DataBindings.Add(new Binding("Text", Item, "DefaultSalesAmount"));
                 this.chkMovesStock.DataBindings.Add(new Binding("Checked", Item, "MovesStock"));
                 this.txtMinimumStock.DataBindings.Add(new Binding("Text", Item, "MinimumStock"));
 

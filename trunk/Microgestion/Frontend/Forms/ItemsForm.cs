@@ -45,7 +45,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ExternalCode", HeaderText = "Código Externo" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "BaseMeasurement", HeaderText = "Unidad de Medida" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "BaseMeasurementID", Visible = false });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DefaultSalesAmount", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "MovesStock", HeaderText = "Stock" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualStock", HeaderText = "Stock Actual" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "MinimumStock", HeaderText = "Stock Mínimo" });
@@ -73,11 +72,6 @@ namespace Blackspot.Microgestion.Frontend.Forms
         {
             try
             {
-                //this.FormClosing += (s, e) =>
-                //{
-                //    ((Form)s).Hide();
-                //    ((FormClosingEventArgs)e).Cancel = true;
-                //};
                 this.btnClose.Click += (s, e) => this.Close();
 
                 this.btnAdd.Click += (s, e) => Controller.AddNew();

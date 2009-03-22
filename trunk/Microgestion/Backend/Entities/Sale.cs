@@ -14,7 +14,8 @@ namespace Blackspot.Microgestion.Backend.Entities
         {
             return
                 this.Date != DateTime.MinValue &&
-                this.User != null;
+                this.UserID != Guid.Empty &&
+                this.InternalID != 0;
         }
 
         #endregion

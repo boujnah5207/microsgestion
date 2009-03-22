@@ -105,7 +105,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                 string itemName = item.Name;
                 Measurement itemBaseMeasurement = item.BaseMeasurement;
                 Price itemCurrentPrice = item.CurrentPrice;
-                Double itemDefaultSalesAmount = item.DefaultSalesAmount;
                 string itemExternalCode = item.ExternalCode;
                 string itemInternalCode = item.InternalCode;
                 double itemMinimumStock = item.MinimumStock;
@@ -120,7 +119,6 @@ namespace Blackspot.Microgestion.Frontend.Controllers
                     item.Name = itemName;
                     item.BaseMeasurement = itemBaseMeasurement;
                     item.CurrentPrice = itemCurrentPrice;
-                    item.DefaultSalesAmount = itemDefaultSalesAmount;
                     item.ExternalCode = itemExternalCode;
                     item.InternalCode = itemInternalCode;
                     item.MinimumStock = item.MinimumStock;
