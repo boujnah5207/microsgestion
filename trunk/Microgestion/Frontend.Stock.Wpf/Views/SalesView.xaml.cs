@@ -105,6 +105,21 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                 }
             };
 
+            this.KeyUp += (s, e) => 
+            {
+                if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.F2))
+                {
+                    this.txtAmount.Focus();
+                    this.txtAmount.SelectAll();
+                    e.Handled = true;
+                }
+                if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.F3))
+                {
+                    vm.RemoveLastItem();
+                    e.Handled = true;
+                }
+            };
+
             this.btnCancel.Click += (s, e) => vm.Cancel();
 
         }

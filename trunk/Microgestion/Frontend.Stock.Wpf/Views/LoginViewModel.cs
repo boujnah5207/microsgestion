@@ -8,9 +8,9 @@ using System.Windows;
 using Blackspot.Microgestion.Backend.Exceptions;
 using Blackspot.Microgestion.Backend.Extensions;
 using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Frontend.Stock.Wpf.Extensions;
+using Blackspot.Microgestion.Frontend.Sales.Wpf.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
+namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 {
     public class LoginViewModel
     {

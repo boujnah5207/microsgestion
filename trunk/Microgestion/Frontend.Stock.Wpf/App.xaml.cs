@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using Blackspot.Microgestion.Frontend.Stock.Wpf.Views;
-using Blackspot.Microgestion.Frontend.Stock.Wpf.Extensions;
 
 namespace Blackspot.Microgestion.Frontend.Stock.Wpf
 {

@@ -96,7 +96,8 @@
                          Grid.Row="0" Grid.Column="1"
                          TabIndex="99" Margin="3" Width="150"
                          HorizontalAlignment="Left"
-                         VerticalAlignment="Center" />
+                         VerticalAlignment="Center" 
+                         ToolTip="Presione F2 para modificar" />
 
                 <TextBox x:Name="txtSearchItem"
                         Grid.Row="1" Grid.Column="1" 
@@ -168,12 +169,18 @@
                         </xcdg:TableView>
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
-                <StackPanel Grid.Row="1"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Right">
-                    <TextBlock Foreground="Red" FontSize="18">Total: $</TextBlock>
-                    <TextBlock Foreground="Red" FontSize="18" Text="{Binding Total}" />
-                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo</TextBlock>
+                    <TextBlock Grid.Column="2" Foreground="Red" FontSize="18">Total: $</TextBlock>
+                    <TextBlock Grid.Column="3" Foreground="Red" FontSize="18" Text="{Binding Total}" />
+                </Grid>
             </Grid>
         </GroupBox>
         <!-- Botones -->

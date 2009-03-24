@@ -368,6 +368,25 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             }
         }
 
+        internal void RemoveLastItem()
+        {
+            SaleItem item = this.Items.LastOrDefault();
+            
+            if (item == null)
+                return;
+
+            var result = MessageBox.Show(
+                String.Format("¿Eliminar {0} x {1}?", item.Description, item.Amount),
+                "Eliminar Artículo",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.No);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            Items.Remove(item);
+        }
 
         #region INotifyPropertyChanged Members
 
@@ -385,6 +404,7 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
     }
 
     public class SaleItem
