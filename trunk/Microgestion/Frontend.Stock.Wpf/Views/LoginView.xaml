@@ -6,7 +6,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource blueBackground}">
     <!--<Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="DarkBlue" />
@@ -98,13 +99,13 @@
                         TabIndex="2"
                         Margin="3,9,3,9"
                         IsDefault="True"
-                        Width="75"/>
+                        Width="100"/>
                 <Button Content="Cancelar"
                         Command="{x:Static local:LoginViewModel.CancelCommand}"
                         TabIndex="3"
                         IsCancel="True"
                         Margin="3,9,5,9"
-                        Width="75"/>
+                        Width="100"/>
             </StackPanel>
             
             <TextBlock x:Name="lblMessage" 

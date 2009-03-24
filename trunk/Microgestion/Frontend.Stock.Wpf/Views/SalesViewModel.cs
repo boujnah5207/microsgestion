@@ -31,6 +31,10 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             this.LoginText = IniciarSesion;
 
             this.Items = new ObservableCollection<SaleItem>();
+            this.Items.CollectionChanged += (s, e) =>
+            {
+                UpdateTotal();
+            };
 
             ClearAll();
 
@@ -174,7 +178,6 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                         Subtotal = (item.CurrentPrice.Value * this.Amount)
                     });
 
-                    Total = CalculateTotal();
                     ItemID = Guid.Empty;
                     Amount = 1;
                     view.txtSearchItem.Text = string.Empty;
@@ -192,16 +195,15 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             }
         }
 
-        private double CalculateTotal()
+        private void UpdateTotal()
         {
             try
             {
-                return Items.Sum(i => i.Subtotal);
+                this.Total = Items.Sum(i => i.Subtotal);
             }
             catch (Exception ex)
             {
                 ex.ShowMessageBox();
-                return 0;
             }
         }
 
@@ -238,7 +240,6 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                 this.Date = DateTime.Now;
                 this.NextNumber = GetNextNumber();
                 this.Amount = 1;
-                this.Total = 0D;
                 view.txtSearchItem.Text = string.Empty;
                 view.txtSearchItem.Focus();
             }
@@ -276,6 +277,9 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                     if (dr == MessageBoxResult.No)
                         return;
 
+                    List<SaleDetail> saleDetail = new List<SaleDetail>();
+                    List<StockMovementDetail> stockDetail = new List<StockMovementDetail>();
+
                     Sale sale = new Sale
                     {
                         Total = this.Total,
@@ -284,19 +288,49 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                         InternalID = this.NextNumber
                     };
 
-                    var details = from i in Items
-                                  select new SaleDetail
-                                  {
-                                      ID = Guid.NewGuid(),
-                                      ItemID = i.ItemID,
-                                      Amount = i.Amount,
-                                      Subtotal = i.Subtotal,
-                                      PriceID = i.PriceID
-                                  };
+                    foreach (var i in Items)
+                    {
+                        SaleDetail detail = new SaleDetail
+                          {
+                              ID = Guid.NewGuid(),
+                              ItemID = i.ItemID,
+                              Amount = i.Amount,
+                              Subtotal = i.Subtotal,
+                              PriceID = i.PriceID
+                          };
+                        saleDetail.Add(detail);
+                    }
 
-                    sale.Details.AddRange(details);
+                    sale.Details.AddRange(saleDetail);
 
                     SaleService.Save(sale);
+
+                    foreach (var i in sale.Details)
+                    {
+                        if (i.Item.MovesStock)
+                        {
+                            stockDetail.Add(new StockMovementDetail
+                            {
+                                ItemID = i.ItemID,
+                                Amount = i.Amount,
+                                SaleDetailID = i.ID
+                            });
+                        }
+                    }
+
+                    if (stockDetail.Count > 0)
+                    {
+                        StockMovement stockMovement = new StockMovement
+                        {
+                            Date = DateTime.Now,
+                            Comment = String.Format("Generated from Sale #{0}", sale.InternalID),
+                            UserID = UserService.LoggedInUser.ID
+                        };
+
+                        stockMovement.Details.AddRange(stockDetail);
+
+                        StockMovementService.Save(stockMovement);
+                    }
 
                 }
 

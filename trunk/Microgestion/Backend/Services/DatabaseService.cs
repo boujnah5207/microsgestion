@@ -17,8 +17,6 @@ namespace Blackspot.Microgestion.Backend.Services
                 if (DB.DatabaseExists())
                     DB.DeleteDatabase();
 
-                dataContext = null; // force to create a new instance
-
                 DB.CreateDatabase();
             }
             catch (Exception ex)

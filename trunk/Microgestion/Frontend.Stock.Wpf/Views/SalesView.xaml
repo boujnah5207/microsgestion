@@ -4,12 +4,17 @@
         xmlns:local="clr-namespace:Blackspot.Microgestion.Frontend.Sales.Wpf.Views"
         xmlns:common="clr-namespace:Blackspot.Microgestion.Frontend.Common.Controls;assembly=Blackspot.Microgestion.Frontend.Common" 
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
-        Title="Ventas"
-        Height="600" Width="600">
+        Title="MicroGestion - Ventas"
+        Height="600" Width="600"
+        Background="{StaticResource blueBackground}">
     <Window.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="3" />
-        </Style>
+        <xcdg:CurrencyConverter x:Key="currencyConverter" />
+
+        <!--A cell content template that will be used for cell that contain currency value-->
+        <DataTemplate x:Key="currencyCellContentTemplate">
+            <TextBlock Text="{Binding Converter={StaticResource currencyConverter}}" />
+        </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -90,13 +95,11 @@
                 <TextBox Text="{Binding Amount}" x:Name="txtAmount"
                          Grid.Row="0" Grid.Column="1"
                          TabIndex="99" Margin="3" Width="150"
-                         IsTabStop="False"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Center" />
 
                 <TextBox x:Name="txtSearchItem"
                         Grid.Row="1" Grid.Column="1" 
-                        Height="20"
                         Margin="3"
                         TabIndex="0"
                         VerticalAlignment="Center" />
@@ -138,29 +141,38 @@
                                       NavigationBehavior="RowOnly" 
                                       ItemScrollingBehavior="Immediate"
                                       ItemsSource="{Binding Items}"
-                                      HorizontalAlignment="Stretch">
+                                      TabIndex="2"
+                                      HorizontalAlignment="Stretch" AllowDetailToggle="True" AutoCreateColumns="False">
                     <xcdg:DataGridControl.Columns>
                         <xcdg:Column FieldName="ItemID" ReadOnly="True" ShowInColumnChooser="False" Visible="False" />
                         <xcdg:Column FieldName="PriceID" ReadOnly="True" ShowInColumnChooser="False" Visible="False" />
                         <xcdg:Column FieldName="Description" ReadOnly="True" Title="Descripción" Width="*"  />
-                        <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="60" />
-                        <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="40" />
-                        <xcdg:Column FieldName="UnitPrice" ReadOnly="True" Title="Precio" Width="70" />
-                        <xcdg:Column FieldName="Subtotal" ReadOnly="True" Title="Subtotal" Width="70" />
+                        <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
+                        <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
+                        <xcdg:Column FieldName="UnitPrice" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
+                        <xcdg:Column FieldName="Subtotal" ReadOnly="True" Title="Subtotal" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
                     </xcdg:DataGridControl.Columns>
                     <xcdg:DataGridControl.View>
-                        <xcdg:TableView AllowColumnChooser="False">
+                        <xcdg:TableView AllowColumnChooser="False" FixedColumnCount="7" UseDefaultHeadersFooters="False">
                             <xcdg:TableView.Theme>
                                 <xcdg:AeroNormalColorTheme />
                             </xcdg:TableView.Theme>
+                            <xcdg:TableView.FixedHeaders>
+                                <DataTemplate>
+                                    <xcdg:GroupByControl Visibility="Collapsed" AllowSort="False" AllowGroupingModification="False" />
+                                </DataTemplate>
+                                <DataTemplate>
+                                    <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False"/>
+                                </DataTemplate>
+                            </xcdg:TableView.FixedHeaders>
                         </xcdg:TableView>
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
                 <StackPanel Grid.Row="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <TextBlock>Total: </TextBlock>
-                    <TextBlock FontWeight="Bold" Text="{Binding Total}" />
+                    <TextBlock Foreground="Red" FontSize="18">Total: $</TextBlock>
+                    <TextBlock Foreground="Red" FontSize="18" Text="{Binding Total}" />
                 </StackPanel>
             </Grid>
         </GroupBox>

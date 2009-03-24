@@ -16,7 +16,9 @@ namespace Blackspot.Microgestion.Backend.Entities
         public bool IsValid()
         {
             return
-                this.BaseMeasurement != null &&
+                this.BaseMeasurementID != null &&
+                this.ItemTypeID != null &&
+                this.CurrentPrice != null &&
                 this.Name != null;
         }
 
@@ -40,7 +42,8 @@ namespace Blackspot.Microgestion.Backend.Entities
                 value.Item = this;
                 this.Prices.Add(value);
 
-                PropertyChanged(this, new PropertyChangedEventArgs("CurrentPrice"));
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("CurrentPrice"));
             }
         }
 
