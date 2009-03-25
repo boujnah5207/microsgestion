@@ -4,8 +4,9 @@
         xmlns:local="clr-namespace:Blackspot.Microgestion.Frontend.Stock.Wpf.Views"
         xmlns:common="clr-namespace:Blackspot.Microgestion.Frontend.Common.Controls;assembly=Blackspot.Microgestion.Frontend.Common" 
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
-        Title="Movimientos de Stock"
-        Height="600" Width="600">
+        Title="MicroGestion - Stock"
+        Height="600" Width="600"
+        Background="{StaticResource blueBackground}">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="3" />
@@ -144,10 +145,18 @@
                     <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" />
                 </xcdg:DataGridControl.Columns>
                 <xcdg:DataGridControl.View>
-                    <xcdg:TableView AllowColumnChooser="False">
+                    <xcdg:TableView AllowColumnChooser="False" FixedColumnCount="7" UseDefaultHeadersFooters="False">
                         <xcdg:TableView.Theme>
                             <xcdg:AeroNormalColorTheme />
                         </xcdg:TableView.Theme>
+                        <xcdg:TableView.FixedHeaders>
+                            <DataTemplate>
+                                <xcdg:GroupByControl Visibility="Collapsed" AllowSort="False" AllowGroupingModification="False" />
+                            </DataTemplate>
+                            <DataTemplate>
+                                <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False"/>
+                            </DataTemplate>
+                        </xcdg:TableView.FixedHeaders>
                     </xcdg:TableView>
                 </xcdg:DataGridControl.View>
             </xcdg:DataGridControl>

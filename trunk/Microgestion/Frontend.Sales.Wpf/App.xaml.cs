@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Frontend.Sales.Wpf
+namespace Blackspot.Microgestion.Frontend.Sales.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml
