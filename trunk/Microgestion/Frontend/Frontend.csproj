@@ -12,7 +12,7 @@
     <AssemblyName>Microgestion.Administracion</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>Images\Network.ico</ApplicationIcon>
+    <ApplicationIcon>Settings_48.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -233,6 +233,8 @@
   <ItemGroup>
     <Content Include="Images\Finder.ico" />
     <Content Include="Images\Network.ico" />
+    <Content Include="Settings_32.ico" />
+    <Content Include="Settings_48.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

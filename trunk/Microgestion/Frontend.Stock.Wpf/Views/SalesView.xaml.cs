@@ -27,6 +27,8 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
         {
             InitializeComponent();
 
+            Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Sales_48.ico")); 
+
             vm = new SalesViewModel(this);
             DataContext = vm;
 

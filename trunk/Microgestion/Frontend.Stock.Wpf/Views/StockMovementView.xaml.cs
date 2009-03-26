@@ -30,6 +30,8 @@ namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
             {
                 InitializeComponent();
 
+                Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Stock_48.ico")); 
+
                 vm = new StockMovementViewModel(this);
                 DataContext = vm;
 
