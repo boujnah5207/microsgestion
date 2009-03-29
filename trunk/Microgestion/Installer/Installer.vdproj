@@ -51,7 +51,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_21058D9A73414ECCA204E1C108E9C68C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2BCC4DFA253F430FADD8E8174599411E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6CBEACB280674A5AB6C4B470BEF7CEB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -100,6 +118,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -119,12 +143,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -206,11 +224,6 @@
                     {
                     "Name" = "8:.NET Framework 3.5 SP1"
                     "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
-                    }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Sql.Server.Express.9.2"
-                    {
-                    "Name" = "8:SQL Server 2005 Express Edition SP2 (x86)"
-                    "ProductCode" = "8:Microsoft.Sql.Server.Express.9.2"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -308,6 +321,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21058D9A73414ECCA204E1C108E9C68C"
+            {
+            "SourcePath" = "8:..\\..\\Support\\ico\\Stock_32.ico"
+            "TargetName" = "8:Stock_32.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2BCC4DFA253F430FADD8E8174599411E"
+            {
+            "SourcePath" = "8:..\\..\\Support\\ico\\Settings_32.ico"
+            "TargetName" = "8:Settings_32.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CBEACB280674A5AB6C4B470BEF7CEB2"
+            {
+            "SourcePath" = "8:..\\..\\Support\\ico\\Sales_32.ico"
+            "TargetName" = "8:Sales_32.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A169E9F130DAC4CA633C489AE452B243"
@@ -451,10 +524,10 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MicroGestion"
         "ProductCode" = "8:{9836CDFC-0B48-4D6D-9543-4907CD0C0A2A}"
-        "PackageCode" = "8:{697E81A0-461F-46AB-BE06-5DE85B49E561}"
+        "PackageCode" = "8:{7254BB01-60DF-4F4C-BF95-D7A3BD726808}"
         "UpgradeCode" = "8:{65CD3B11-74D8-434A-A46A-233039339ECF}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
@@ -467,7 +540,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_6CBEACB280674A5AB6C4B470BEF7CEB2"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -581,7 +654,7 @@
             "Target" = "8:_63592E68C1904F3B93B956ABE3B3A315"
             "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
             "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Icon" = "8:"
+            "Icon" = "8:_2BCC4DFA253F430FADD8E8174599411E"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6CCBD359B688433E81A60F65EE297F4B"
@@ -595,7 +668,7 @@
             "Target" = "8:_1518CF9CFB1848289D8BE53EC302305D"
             "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
             "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Icon" = "8:"
+            "Icon" = "8:_21058D9A73414ECCA204E1C108E9C68C"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F5D60C62CD594F2F93F3382B6AE85AA5"
@@ -609,7 +682,7 @@
             "Target" = "8:_C026B2522DD34D2F91547704FBE10590"
             "Folder" = "8:_68BCEA749A154A1ABB6FDFFE36DDD073"
             "WorkingFolder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Icon" = "8:"
+            "Icon" = "8:_6CBEACB280674A5AB6C4B470BEF7CEB2"
             "Feature" = "8:"
             }
         }
