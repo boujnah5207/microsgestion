@@ -1,31 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Windows;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Frontend.Sales.Wpf.Extensions;
-using Blackspot.Microgestion.Backend.Enumerations;
+using System.ComponentModel;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Blackspot.Microgestion.Backend.Entities;
-using System.ComponentModel;
+using Blackspot.Microgestion.Backend.Services;
+using Blackspot.Microgestion.Backend.Enumerations;
+using Blackspot.Microgestion.Frontend.Common.Controls;
+using Blackspot.Microgestion.Frontend.Common.Extensions;
+using System.Timers;
 
 namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 {
     public class SalesViewModel : INotifyPropertyChanged
     {
-        private SalesView view;
-        private const string CerrarSesion = "Cerrar Sesión";
-        private const string IniciarSesion = "Iniciar Sesión";
-
-        public static RoutedCommand LoginCommand = new RoutedCommand();
-        public static RoutedCommand InsertItemCommand = new RoutedCommand();
-        public static RoutedCommand SaveCommand = new RoutedCommand();
-
         public SalesViewModel(SalesView view)
         {
             this.view = view;
+            this.view.Closing += (s, e) =>
+            {
+                var result = MessageBox.Show(
+                    "¿Confirma que desea salir?",
+                    "Salir",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question,
+                    MessageBoxResult.No);
+
+                e.Cancel = (result == MessageBoxResult.No);
+            };
+
+            this.internalTimer = new Timer(1000);
+            this.internalTimer.Elapsed += (s, e) => { this.Date = DateTime.Now; };
+            this.internalTimer.Start();
 
             this.Username = UserService.LoggedInUser.GetUserInfo();
             this.LoginText = IniciarSesion;
@@ -68,12 +77,20 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
 
         }
 
-        private DateTime date = DateTime.Now;
+        private Timer internalTimer;
+        private SalesView view;
+        private const string CerrarSesion = "Cerrar Sesión";
+        private const string IniciarSesion = "Iniciar Sesión";
+        private DateTime date;
         private int nextNumber = 0;
         private string loginText = string.Empty;
         private string username = string.Empty;
         private double total = 0D;
         private double amount = 0D;
+
+        public static RoutedCommand LoginCommand = new RoutedCommand();
+        public static RoutedCommand InsertItemCommand = new RoutedCommand();
+        public static RoutedCommand SaveCommand = new RoutedCommand();
 
         public DateTime Date
         {
@@ -237,7 +254,6 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
             {
                 this.Items.Clear();
                 this.ItemID = Guid.Empty;
-                this.Date = DateTime.Now;
                 this.NextNumber = GetNextNumber();
                 this.Amount = 1;
                 view.txtSearchItem.Text = string.Empty;
@@ -283,7 +299,7 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
                     Sale sale = new Sale
                     {
                         Total = this.Total,
-                        Date = this.Date,
+                        Date = DateTime.Now,
                         UserID = UserService.LoggedInUser.ID,
                         InternalID = this.NextNumber
                     };

@@ -14,7 +14,10 @@
         <DataTemplate x:Key="currencyCellContentTemplate">
             <TextBlock Text="{Binding Converter={StaticResource currencyConverter}}" />
         </DataTemplate>
-        
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="3" />
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
