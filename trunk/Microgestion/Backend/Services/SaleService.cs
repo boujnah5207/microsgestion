@@ -22,5 +22,13 @@ namespace Blackspot.Microgestion.Backend.Services
 
             return max.InternalID + 1;
         }
+
+        public static IEnumerable<SaleDetail> SearchSales(DateTime filterDateStart, DateTime filterDateFinish)
+        {
+            return DB.Sales
+                .Where(s => s.Date >= filterDateStart && s.Date <= filterDateFinish)
+                .SelectMany(s => s.Details)
+                .ToList();
+        }
     }
 }

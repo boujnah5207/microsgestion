@@ -31,6 +31,7 @@ namespace Blackspot.Microgestion.Backend.Enumerations
         ItemTypeAdd = 21,
         ItemTypeDelete = 22,
         ItemTypeEdit = 23,
+        SalesReport = 24,
         ResetDB = 999
     }
 
@@ -92,6 +93,8 @@ namespace Blackspot.Microgestion.Backend.Enumerations
                     return "Eliminar Rubro";
                 case SystemAction.ItemTypeEdit:
                     return "Modificar Rubro";
+                case SystemAction.SalesReport:
+                    return "Reporte de Ventas";
                 default:
                     return "Sin nombre";
             }

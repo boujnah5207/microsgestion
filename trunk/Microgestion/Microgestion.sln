@@ -33,6 +33,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Inst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Sales.Wpf", "Frontend.Sales.Wpf\Frontend.Sales.Wpf.csproj", "{C871A283-F02A-4079-A584-7D2192EA4E01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend.Reports.Wpf", "Frontend.Reports.Wpf\Frontend.Reports.Wpf.csproj", "{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Microgestion2.vsmdi
@@ -68,6 +70,10 @@ Global
 		{C871A283-F02A-4079-A584-7D2192EA4E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C871A283-F02A-4079-A584-7D2192EA4E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C871A283-F02A-4079-A584-7D2192EA4E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
