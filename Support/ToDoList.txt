@@ -1,0 +1,5 @@
+5/3/09: 
+No se actualizan los articulos de la grilla de movs. de stock.
+Agregar la columna codigo.
+Agilizar la navegacion de la grilla de movs. de stock.
+Error al intentar eliminar un articulo con la referencia a los precios.

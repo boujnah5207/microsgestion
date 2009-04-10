@@ -1,0 +1,64 @@
+﻿<Application x:Class="Frontend.Reports.Wpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:my="clr-namespace:Xceed.Wpf.Controls;assembly=Xceed.Wpf.Controls"
+             StartupUri="Views/ReportsView.xaml">
+    <Application.Resources>
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Blackspot.Microgestion.Frontend.Common;component/CommonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+        <LinearGradientBrush x:Key="blueBackground" StartPoint="1,0" EndPoint="1,1">
+            <GradientStop Color="AliceBlue" Offset="0.0" />
+            <GradientStop Color="LightBlue" Offset="0.3" />
+            <GradientStop Color="AliceBlue" Offset="0.9" />
+            <GradientStop Color="White" Offset="1.0" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="invertedBlueBackground" StartPoint="1,0" EndPoint="1,1">
+            <GradientStop Color="AliceBlue" Offset="0.2" />
+            <GradientStop Color="LightBlue" Offset="0.8" />
+            <GradientStop Color="AliceBlue" Offset="1.0" />
+        </LinearGradientBrush>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="my:DatePicker">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
+        <Style TargetType="Hyperlink">
+            <Setter Property="TextDecorations" Value="None" />
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="{StaticResource invertedBlueBackground}" />
+            <Setter Property="Opacity" Value="0.7" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </Application.Resources>
+</Application>
