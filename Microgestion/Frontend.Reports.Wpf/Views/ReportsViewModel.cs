@@ -9,12 +9,20 @@ using System.Windows.Input;
 using SysQ.Microgestion.Backend.Services;
 using SysQ.Microgestion.Backend.Enumerations;
 using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Frontend.Common.Controls;
+using SysQ.Microgestion.Frontend.Common.Extensions;
 
 namespace Frontend.Reports.Wpf.Views
 {
     public class ReportsViewModel : INotifyPropertyChanged
     {
         private ReportsView view;
+        private string loginText = string.Empty;
+        private string username = string.Empty;
+        private const string CerrarSesion = "Cerrar Sesión";
+        private const string IniciarSesion = "Iniciar Sesión";
+        public DateTime filterDateStart;
+        public DateTime filterDateFinish;
 
         public ReportsViewModel(ReportsView view)
         {
@@ -33,6 +41,9 @@ namespace Frontend.Reports.Wpf.Views
                 e.Cancel = (result == MessageBoxResult.No);
             };
 
+            this.Username = UserService.LoggedInUser.ToString();
+            this.LoginText = IniciarSesion;
+
             CommandBinding cmdSearchSales = new CommandBinding(
                 SearchCommand,
                 (s, e) => SearchSales(),
@@ -43,7 +54,12 @@ namespace Frontend.Reports.Wpf.Views
                         FilterDateFinish >= FilterDateStart;
                 });
 
+            CommandBinding cmdLogin = new CommandBinding(
+                LoginCommand,
+                (s, e) => Login());
+
             Application.Current.MainWindow.CommandBindings.Add(cmdSearchSales);
+            Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
 
             this.FilterDateStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1);
             this.FilterDateFinish = DateTime.Now;
@@ -52,10 +68,50 @@ namespace Frontend.Reports.Wpf.Views
         }
 
         public ObservableCollection<SaleRecord> SaleRecords { get; set; }
+        public DateTime FilterDateStart
+        {
+            get { return filterDateStart; }
+            set
+            {
+                this.filterDateStart = value;
+                OnPropertyChanged("FilterDateStart");
+            }
+        }
+        public DateTime FilterDateFinish
+        {
+            get { return filterDateFinish; }
+            set
+            {
+                this.filterDateFinish = value;
+                OnPropertyChanged("FilterDateFinish");
+            }
+        }
+        public string LoginText
+        {
+            get
+            {
+                return loginText;
+            }
+            set
+            {
+                loginText = value;
+                OnPropertyChanged("LoginText");
+            }
+        }
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                username = value;
+                OnPropertyChanged("Username");
+            }
+        }
 
-        public DateTime FilterDateStart { get; set; }
-        public DateTime FilterDateFinish { get; set; }
-
+        public static RoutedCommand LoginCommand = new RoutedCommand();
         public static RoutedCommand SearchCommand = new RoutedCommand();
 
         #region INotifyPropertyChanged Members
@@ -98,6 +154,31 @@ namespace Frontend.Reports.Wpf.Views
                 SaleRecords.Add(r);
         }
 
+        internal void Login()
+        {
+            try
+            {
+                if (LoginText == IniciarSesion)
+                {
+                    LoginView login = new LoginView();
+                    if (login.ShowDialog() == true)
+                    {
+                        this.Username = UserService.LoggedInUser.ToString();
+                        this.LoginText = CerrarSesion;
+                    }
+                }
+                else
+                {
+                    UserService.LoggedInUser = UserService.GetNullUser();
+                    this.Username = UserService.LoggedInUser.ToString();
+                    this.LoginText = IniciarSesion;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            }
+        }
 
     }
 

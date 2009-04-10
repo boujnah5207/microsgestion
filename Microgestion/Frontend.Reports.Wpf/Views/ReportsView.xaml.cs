@@ -28,6 +28,8 @@ namespace Frontend.Reports.Wpf.Views
             vm = new ReportsViewModel(this);
             DataContext = vm;
 
+            vm.Login();
+
             //this.grid.View.Headers.Add((DataTemplate)this.FindResource("tableViewHeader1"));
             this.grid.View.FixedFooters.Add((DataTemplate)this.FindResource("tableViewFixedFooter1"));
             this.grid.DefaultGroupConfiguration = (GroupConfiguration)this.FindResource("tableViewGroupConfiguration1");

@@ -30,42 +30,67 @@
 
                     <xcdg:SumFunction ResultPropertyName="SumOfSubtotal"
                                  SourcePropertyName="Subtotal" />
-                    
+
                 </xcdg:DataGridCollectionViewSource.StatFunctions>
             </xcdg:DataGridCollectionViewSource>
-
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="3" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
-        <TabControl HorizontalAlignment="Stretch" 
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Login -->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <TextBlock Text="{Binding Username}" x:Name="txtUsername" />
+            <TextBlock Text=" | " />
+            <TextBlock>
+                <Hyperlink Command="{x:Static local:ReportsViewModel.LoginCommand}" Focusable="False">
+                    <TextBlock x:Name="txtLoginText" Text="{Binding LoginText}" Margin="0" Focusable="False" />
+                </Hyperlink>
+                    </TextBlock>
+        </StackPanel>
+
+        <!-- Tabs -->
+
+        <TabControl Grid.Row="1" 
+                    HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
-        <TabItem Header="Ventas" Name="tabVentas">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                
-                <GroupBox Header="Filtros">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        
-                        <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <TextBlock>Fecha Desde:</TextBlock>
-                            <my:DatePicker SelectedDate="{Binding FilterDateStart}" x:Name="filterDateStart" />
-                            <TextBlock>Hasta:</TextBlock>
-                            <my:DatePicker SelectedDate="{Binding FilterDateFinish}" x:Name="filterDateFinish"  />
-                        </StackPanel>
-                        <Button Grid.Column="1"
+            <TabItem Header="Ventas" Name="tabVentas">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Grid.Row="0" Header="Filtros">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock>Fecha Desde:</TextBlock>
+                                <my:DatePicker SelectedDate="{Binding FilterDateStart}" x:Name="filterDateStart" />
+                                <TextBlock>Hasta:</TextBlock>
+                                <my:DatePicker SelectedDate="{Binding FilterDateFinish}" x:Name="filterDateFinish"  />
+                            </StackPanel>
+                            <Button Grid.Column="1"
                                 Command="{x:Static local:ReportsViewModel.SearchCommand}"
                                 Content="Buscar" />
-                    </Grid>
-                </GroupBox>
-                <GroupBox Header="Resultados"
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Resultados"
                           Grid.Row="1">
-                    <xcdg:DataGridControl Name="grid"
+                        <xcdg:DataGridControl Name="grid"
                                       ReadOnly="True" 
                                       IsDeleteCommandEnabled="True" 
                                       SelectionMode="Single" 
@@ -74,34 +99,35 @@
                                       ItemsSource="{Binding Source={StaticResource items}}"
                                       TabIndex="2"
                                       HorizontalAlignment="Stretch" AllowDetailToggle="True" AutoCreateColumns="False">
-                        <xcdg:DataGridControl.Columns>
-                            <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Numero" Width="80"  />
-                            <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" />
-                            <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="False" ShowInColumnChooser="True" />
-                            <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="False" ShowInColumnChooser="True" />
-                            <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="False" ShowInColumnChooser="True" />
-                            <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" />
-                            <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="*"  />
-                            <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
-                            <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
-                            <xcdg:Column FieldName="Price" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
-                            <xcdg:Column FieldName="Subtotal" ReadOnly="True" Title="Subtotal" Width="80" 
+                            <xcdg:DataGridControl.Columns>
+                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Numero" Width="80"  />
+                                <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" />
+                                <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="False" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="False" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="False" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" />
+                                <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="*"  />
+                                <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
+                                <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
+                                <xcdg:Column FieldName="Price" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
+                                <xcdg:Column FieldName="Subtotal" ReadOnly="True" Title="Subtotal" Width="80" 
                                          CellContentTemplate="{StaticResource currencyCellContentTemplate}"
                                          GroupValueTemplate="{StaticResource currencyCellContentTemplate}" />
-                        </xcdg:DataGridControl.Columns>
-                        <xcdg:DataGridControl.View>
-                            <xcdg:TableView>
-                                <xcdg:TableView.Theme>
-                                    <xcdg:AeroNormalColorTheme />
-                                </xcdg:TableView.Theme>
-                            </xcdg:TableView>
-                        </xcdg:DataGridControl.View>
-                    </xcdg:DataGridControl>
-                </GroupBox>
-            </Grid>
-        </TabItem>
-        <TabItem Header="Stock" Name="tabStock">
-            <Grid />
-        </TabItem>
-    </TabControl>
+                            </xcdg:DataGridControl.Columns>
+                            <xcdg:DataGridControl.View>
+                                <xcdg:TableView>
+                                    <xcdg:TableView.Theme>
+                                        <xcdg:AeroNormalColorTheme />
+                                    </xcdg:TableView.Theme>
+                                </xcdg:TableView>
+                            </xcdg:DataGridControl.View>
+                        </xcdg:DataGridControl>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stock" Name="tabStock">
+                <Grid />
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>
