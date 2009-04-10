@@ -3,9 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Extensions;
-using Blackspot.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Entities;
 
 namespace Backend.Tests
 {

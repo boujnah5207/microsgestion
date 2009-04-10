@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Blackspot.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Enumerations;
-using Blackspot.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Extensions;
 
 namespace Backend.Tests
 {

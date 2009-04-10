@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Blackspot.Microgestion.Backend.Exceptions
+namespace SysQ.Microgestion.Backend.Exceptions
 {
     public class MustConfirmPasswordException : Exception
     {

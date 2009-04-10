@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackspot.Microgestion.Backend.Entities
+namespace SysQ.Microgestion.Backend.Entities
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

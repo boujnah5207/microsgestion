@@ -1,4 +1,4 @@
-﻿namespace Blackspot.Microgestion.Frontend.Forms
+﻿namespace SysQ.Microgestion.Frontend.Forms
 {
     partial class LoginForm
     {

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Frontend.Forms;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Extensions;
-using Blackspot.Microgestion.Backend.Enumerations;
-using Blackspot.Microgestion.Frontend.Extensions;
+using SysQ.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Frontend.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Controllers
+namespace SysQ.Microgestion.Frontend.Controllers
 {
     internal class MeasurementsFormController : ControllerBase<MeasurementsForm>
     {

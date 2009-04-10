@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace Blackspot.Microgestion.Backend.Extensions
+namespace SysQ.Microgestion.Backend.Extensions
 {
     public static class StringExtensions
     {

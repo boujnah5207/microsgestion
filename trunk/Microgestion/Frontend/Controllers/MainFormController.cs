@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Frontend.Extensions;
-using Blackspot.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Frontend.Extensions;
+using SysQ.Microgestion.Frontend.Forms;
 
-namespace Blackspot.Microgestion.Frontend.Controllers
+namespace SysQ.Microgestion.Frontend.Controllers
 {
     internal class MainFormController: ControllerBase<MainForm>
     {

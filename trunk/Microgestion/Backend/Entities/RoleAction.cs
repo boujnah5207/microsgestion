@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Blackspot.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Enumerations;
 
-namespace Blackspot.Microgestion.Backend.Entities
+namespace SysQ.Microgestion.Backend.Entities
 {
     public partial class RoleAction : IPersistible
     {

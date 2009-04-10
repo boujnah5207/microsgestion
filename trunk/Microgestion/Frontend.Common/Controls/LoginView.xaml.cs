@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Blackspot.Microgestion.Frontend.Common.Controls
+namespace SysQ.Microgestion.Frontend.Common.Controls
 {
     /// <summary>
     /// Interaction logic for LoginView.xaml

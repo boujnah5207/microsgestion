@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Frontend.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Windows uE")]
+[assembly: AssemblyCompany("SysQ")]
 [assembly: AssemblyProduct("Frontend.Common")]
-[assembly: AssemblyCopyright("Copyright © Windows uE 2009")]
+[assembly: AssemblyCopyright("Copyright © SysQ 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

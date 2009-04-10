@@ -8,8 +8,8 @@
     <ProjectGuid>{C39A8DD0-2A39-433C-9935-8829790112EA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blackspot.Microgestion.Frontend.Stock.Wpf</RootNamespace>
-    <AssemblyName>Microgestion.Stock</AssemblyName>
+    <RootNamespace>SysQ.Microgestion.Frontend.Stock.Wpf</RootNamespace>
+    <AssemblyName>Stock</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

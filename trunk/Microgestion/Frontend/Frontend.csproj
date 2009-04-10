@@ -8,8 +8,8 @@
     <ProjectGuid>{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blackspot.Microgestion.Frontend</RootNamespace>
-    <AssemblyName>Microgestion.Administracion</AssemblyName>
+    <RootNamespace>SysQ.Microgestion.Frontend</RootNamespace>
+    <AssemblyName>Administracion</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Settings_48.ico</ApplicationIcon>

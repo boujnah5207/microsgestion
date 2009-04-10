@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Blackspot.Microgestion.Backend.Entities
+namespace SysQ.Microgestion.Backend.Entities
 {
     partial class StockMovement : IPersistible
     {

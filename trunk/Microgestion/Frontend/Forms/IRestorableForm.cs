@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Blackspot.Microgestion.Frontend.Forms
+namespace SysQ.Microgestion.Frontend.Forms
 {
     public interface IRestorableForm
     {
