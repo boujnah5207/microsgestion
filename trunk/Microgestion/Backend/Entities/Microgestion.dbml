@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Class="MicrogestionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Association Name="User_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="UserID" Type="UserRoles" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Roles">
+    <Type Name="Role">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Association Name="Role_RoleAction" Member="Actions" ThisKey="ID" OtherKey="RoleID" Type="RoleAction" />
+      <Association Name="Role_UserRoles" Member="UserRoles" AccessModifier="Internal" ThisKey="ID" OtherKey="RoleID" Type="UserRoles" />
+    </Type>
+  </Table>
+  <Table Name="" Member="RoleActions">
+    <Type Name="RoleAction">
+      <Column Name="RoleID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ActionID" AccessModifier="Private" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Association Name="Role_RoleAction" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="UserRoles">
+    <Type Name="UserRoles">
+      <Column Name="UserID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Timestamp" AutoSync="Never" Type="System.Data.Linq.Binary" CanBeNull="false" UpdateCheck="Always" IsVersion="true" />
+      <Association Name="User_UserRoles" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Role_UserRoles" Member="Role" ThisKey="RoleID" OtherKey="ID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Items">
+    <Type Name="Item">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="InternalCode" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="ExternalCode" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="BaseMeasurementID" Storage="_BaseMeasurement" Type="System.Guid" CanBeNull="false" />
+      <Column Name="MovesStock" Type="System.Boolean" CanBeNull="false" />
+      <Column Name="MinimumStock" Type="System.Double" CanBeNull="false" />
+      <Column Name="ItemTypeID" Type="System.Guid" CanBeNull="false" />
+      <Association Name="Item_Price" Member="Prices" ThisKey="ID" OtherKey="ItemID" Type="Price" />
+      <Association Name="Item_StockMovementDetail" Member="StockMovementDetails" ThisKey="ID" OtherKey="ItemID" Type="StockMovementDetail" />
+      <Association Name="Measurement_Item" Member="BaseMeasurement" Storage="_Measurement" ThisKey="BaseMeasurementID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
+      <Association Name="ItemType_Item" Member="ItemType" ThisKey="ItemTypeID" OtherKey="ID" Type="ItemType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Measurements">
+    <Type Name="Measurement">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Column Name="Abbreviation" Type="System.String" DbType="nvarchar(10)" CanBeNull="false" />
+      <Association Name="Measurement_MeasurementConversion" Member="Conversions" ThisKey="ID" OtherKey="BaseID" Type="MeasurementConversion" />
+    </Type>
+  </Table>
+  <Table Name="" Member="MeasurementConversions">
+    <Type Name="MeasurementConversion">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="BaseID" Storage="_BaseId" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ConvertedID" Storage="_ConvertedId" Type="System.Guid" CanBeNull="false" />
+      <Column Name="BaseValue" Type="System.Double" CanBeNull="false" />
+      <Column Name="ConvertedValue" Type="System.Double" CanBeNull="false" />
+      <Association Name="Measurement_MeasurementConversion" Member="Base" ThisKey="BaseID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
+      <Association Name="Measurement_MeasurementConversion1" Member="Converted" ThisKey="ConvertedID" OtherKey="ID" Type="Measurement" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="StockMovements">
+    <Type Name="StockMovement">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Comment" Type="System.String" DbType="nvarchar(1000)" CanBeNull="false" />
+      <Association Name="StockMovement_StockMovementDetail" Member="Details" ThisKey="ID" OtherKey="StockMovementID" Type="StockMovementDetail" />
+      <Association Name="User_StockMovement" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Sales">
+    <Type Name="Sale">
+      <Column Name="ID" AutoSync="OnInsert" Type="System.Guid" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Total" Type="System.Double" CanBeNull="false" />
+      <Column Name="InternalID" Storage="_InternalId" Type="System.Int32" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Sale_SaleDetail" Member="Details" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
+      <Association Name="User_Sale" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="SaleDetails">
+    <Type Name="SaleDetail">
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SaleID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" CanBeNull="false" />
+      <Column Name="PriceID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="Subtotal" Type="System.Double" CanBeNull="false" />
+      <Association Name="SaleDetail_StockMovementDetail" Member="StockMovementDetails" ThisKey="ID" OtherKey="SaleDetailID" Type="StockMovementDetail" />
+      <Association Name="Sale_SaleDetail" Member="Sale" ThisKey="SaleID" OtherKey="ID" Type="Sale" IsForeignKey="true" />
+      <Association Name="Item_SaleDetail" Member="Item" ThisKey="ItemID" OtherKey="ID" Type="Item" IsForeignKey="true" />
+      <Association Name="Price_SaleDetail" Member="Price" ThisKey="PriceID" OtherKey="ID" Type="Price" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Prices">
+    <Type Name="Price">
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="Value" Type="System.Double" CanBeNull="false" />
+      <Association Name="Item_Price" Member="Item" ThisKey="ItemID" OtherKey="ID" Type="Item" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="StockMovementDetails">
+    <Type Name="StockMovementDetail">
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ItemID" Type="System.Guid" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" CanBeNull="false" />
+      <Column Name="StockMovementID" Storage="_StockMovementId" Type="System.Guid" CanBeNull="false" />
+      <Column Name="SaleDetailID" Storage="_SaleDetailId" Type="System.Guid" CanBeNull="true" />
+      <Association Name="StockMovement_StockMovementDetail" Member="StockMovement" ThisKey="StockMovementID" OtherKey="ID" Type="StockMovement" IsForeignKey="true" />
+      <Association Name="Item_StockMovementDetail" Member="Item" ThisKey="ItemID" OtherKey="ID" Type="Item" IsForeignKey="true" />
+      <Association Name="SaleDetail_StockMovementDetail" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ItemTypes">
+    <Type Name="ItemType">
+      <Column Name="ID" Type="System.Guid" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(50)" CanBeNull="false" />
+      <Association Name="ItemType_Item" Member="Items" ThisKey="ID" OtherKey="ItemTypeID" Type="Item" />
+    </Type>
+  </Table>
+</Database>
