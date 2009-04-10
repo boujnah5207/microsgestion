@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Extensions;
 
-namespace Blackspot.Microgestion.Backend.Entities
+namespace SysQ.Microgestion.Backend.Entities
 {
     partial class Item : IPersistible, ISearchable
     {

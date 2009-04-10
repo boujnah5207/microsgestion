@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Blackspot.Microgestion.Backend.Extensions
+namespace SysQ.Microgestion.Backend.Extensions
 {
 	public static class SearchExtensions
 	{

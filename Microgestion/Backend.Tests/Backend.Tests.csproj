@@ -7,8 +7,8 @@
     <ProjectGuid>{4DC98081-F7B6-44AF-A730-F7C61E91E0B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Backend.Tests</RootNamespace>
-    <AssemblyName>Backend.Tests</AssemblyName>
+    <RootNamespace>SysQ.Microgestion.Backend.Tests</RootNamespace>
+    <AssemblyName>SysQ.Microgestion.Backend.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

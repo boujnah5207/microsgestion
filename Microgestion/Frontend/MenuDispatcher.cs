@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Blackspot.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Enumerations;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Frontend.Forms;
 
-namespace Blackspot.Microgestion.Frontend
+namespace SysQ.Microgestion.Frontend
 {
     internal class MenuDispatcher
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Enumerations;
 
-namespace Blackspot.Microgestion.Frontend.Extensions
+namespace SysQ.Microgestion.Frontend.Extensions
 {
     public static class MenuOptionExtensions
     {

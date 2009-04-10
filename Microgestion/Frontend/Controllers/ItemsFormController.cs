@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Blackspot.Microgestion.Frontend.Forms;
-using Blackspot.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Backend.Entities;
 using System.ComponentModel;
-using Blackspot.Microgestion.Backend.Enumerations;
-using Blackspot.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Services;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Frontend.Extensions;
+using SysQ.Microgestion.Frontend.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Controllers
+namespace SysQ.Microgestion.Frontend.Controllers
 {
     internal class ItemsFormController : ControllerBase<ItemsForm>
     {

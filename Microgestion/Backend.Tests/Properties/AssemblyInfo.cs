@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Backend.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Huddle Group S.A.")]
-[assembly: AssemblyProduct("Backend.Tests")]
-[assembly: AssemblyCopyright("Copyright © Huddle Group S.A. 2009")]
+[assembly: AssemblyCompany("SysQ")]
+[assembly: AssemblyProduct("SysQ.Backend.Tests")]
+[assembly: AssemblyCopyright("Copyright © SysQ 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

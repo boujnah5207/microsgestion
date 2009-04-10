@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Frontend.Stock.Wpf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Windows uE")]
+[assembly: AssemblyCompany("SysQ")]
 [assembly: AssemblyProduct("Frontend.Stock.Wpf")]
-[assembly: AssemblyCopyright("Copyright © Windows uE 2009")]
+[assembly: AssemblyCopyright("Copyright © SysQ 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

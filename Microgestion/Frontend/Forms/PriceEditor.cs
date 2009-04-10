@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Entities;
 
-namespace Blackspot.Microgestion.Frontend.Forms
+namespace SysQ.Microgestion.Frontend.Forms
 {
     public partial class PriceEditor : Form
     {

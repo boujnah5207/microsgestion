@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Properties {
+namespace SysQ.Microgestion.Frontend.Sales.Wpf.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Blackspot.Microgestion.Frontend.Sales.Wpf.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SysQ.Microgestion.Frontend.Sales.Wpf.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

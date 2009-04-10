@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Blackspot.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Services;
 using System.Windows;
-using Blackspot.Microgestion.Backend.Exceptions;
-using Blackspot.Microgestion.Backend.Extensions;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Frontend.Common.Extensions;
+using SysQ.Microgestion.Backend.Exceptions;
+using SysQ.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Frontend.Common.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Common.Controls
+namespace SysQ.Microgestion.Frontend.Common.Controls
 {
     public class LoginViewModel
     {

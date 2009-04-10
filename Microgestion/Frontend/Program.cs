@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Frontend.Forms;
 
-namespace Blackspot.Microgestion.Frontend
+namespace SysQ.Microgestion.Frontend
 {
     static class Program
     {

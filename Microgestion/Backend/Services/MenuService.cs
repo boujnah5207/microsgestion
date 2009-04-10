@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Enumerations;
 
-namespace Blackspot.Microgestion.Backend.Services
+namespace SysQ.Microgestion.Backend.Services
 {
     //public class MenuService : ServiceBase<MenuOption>
     public class MenuService

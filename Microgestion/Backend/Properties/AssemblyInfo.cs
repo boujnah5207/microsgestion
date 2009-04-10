@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Backend")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Huddle Group S.A.")]
+[assembly: AssemblyCompany("SysQ")]
 [assembly: AssemblyProduct("Backend")]
-[assembly: AssemblyCopyright("Copyright © Huddle Group S.A. 2009")]
+[assembly: AssemblyCopyright("Copyright © SysQ 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Backend.Tests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("SysQ.Microgestion.Backend.Tests")]

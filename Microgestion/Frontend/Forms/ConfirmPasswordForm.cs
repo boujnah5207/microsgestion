@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Extensions;
+using SysQ.Microgestion.Backend.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Forms
+namespace SysQ.Microgestion.Frontend.Forms
 {
     public partial class ConfirmPasswordForm : Form
     {

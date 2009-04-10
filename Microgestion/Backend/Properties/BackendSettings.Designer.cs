@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackspot.Microgestion.Backend.Properties {
+namespace SysQ.Microgestion.Backend.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

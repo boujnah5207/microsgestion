@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Enumerations;
-using Blackspot.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Entities;
 
 namespace Frontend.Reports.Wpf.Views
 {

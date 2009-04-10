@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Blackspot.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Entities;
 
-namespace Blackspot.Microgestion.Backend.Services
+namespace SysQ.Microgestion.Backend.Services
 {
     public class SaleService : ServiceBase<Sale>
     {

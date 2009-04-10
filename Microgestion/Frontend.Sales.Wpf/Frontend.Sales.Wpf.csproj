@@ -8,8 +8,8 @@
     <ProjectGuid>{C871A283-F02A-4079-A584-7D2192EA4E01}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blackspot.Microgestion.Frontend.Sales.Wpf</RootNamespace>
-    <AssemblyName>Microgestion.Ventas</AssemblyName>
+    <RootNamespace>SysQ.Microgestion.Frontend.Sales.Wpf</RootNamespace>
+    <AssemblyName>Ventas</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

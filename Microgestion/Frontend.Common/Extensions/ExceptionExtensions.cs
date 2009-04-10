@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Blackspot.Microgestion.Frontend.Common.Extensions
+namespace SysQ.Microgestion.Frontend.Common.Extensions
 {
     public static class ExceptionExtensions
     {

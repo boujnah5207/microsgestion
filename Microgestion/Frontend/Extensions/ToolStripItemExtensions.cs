@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Backend.Enumerations;
 
-namespace Blackspot.Microgestion.Frontend.Extensions
+namespace SysQ.Microgestion.Frontend.Extensions
 {
     public static class ToolStripItemExtensions
     {

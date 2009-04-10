@@ -10,11 +10,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Frontend.Common.Controls;
-using Blackspot.Microgestion.Frontend.Common.Extensions;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Frontend.Common.Controls;
+using SysQ.Microgestion.Frontend.Common.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Views
+namespace SysQ.Microgestion.Frontend.Stock.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for StockMovementView.xaml

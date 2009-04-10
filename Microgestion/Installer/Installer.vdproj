@@ -15,50 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
+        "MsmKey" = "8:_078B1B42BF1E4D05A5274CF8FA738DF1"
         "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
+        "MsmKey" = "8:_078B1B42BF1E4D05A5274CF8FA738DF1"
         "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
-        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
-        "OwnerKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0B27C482F8A0498D95FCA907CCA74E68"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_078B1B42BF1E4D05A5274CF8FA738DF1"
+        "OwnerKey" = "8:_3C40DF9D6F3B89DB91754CE2DBE38C10"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1C6E0DBA9E866A62D31DE91CE31FFCD5"
-        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1C6E0DBA9E866A62D31DE91CE31FFCD5"
-        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,6 +46,36 @@
         "Entry"
         {
         "MsmKey" = "8:_2BCC4DFA253F430FADD8E8174599411E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_38E7897245BDD94294C7ECF6A16D5EA6"
+        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_38E7897245BDD94294C7ECF6A16D5EA6"
+        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C40DF9D6F3B89DB91754CE2DBE38C10"
+        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C40DF9D6F3B89DB91754CE2DBE38C10"
+        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F77FEFE63254264AC01C5AE2D5CD2E2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,44 +99,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
-        "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
-        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
-        "OwnerKey" = "8:_1C6E0DBA9E866A62D31DE91CE31FFCD5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C026B2522DD34D2F91547704FBE10590"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
+        "MsmKey" = "8:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
         "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
+        "MsmKey" = "8:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
         "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
+        "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
+        "OwnerKey" = "8:_38E7897245BDD94294C7ECF6A16D5EA6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1518CF9CFB1848289D8BE53EC302305D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,37 +148,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C026B2522DD34D2F91547704FBE10590"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_63592E68C1904F3B93B956ABE3B3A315"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1C6E0DBA9E866A62D31DE91CE31FFCD5"
+        "OwnerKey" = "8:_3C40DF9D6F3B89DB91754CE2DBE38C10"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A169E9F130DAC4CA633C489AE452B243"
+        "OwnerKey" = "8:_078B1B42BF1E4D05A5274CF8FA738DF1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C9E38D25C2803F6BF297744E56432D05"
+        "OwnerKey" = "8:_38E7897245BDD94294C7ECF6A16D5EA6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_04B9129107C80970CDE6E7ED590CCB73"
+        "OwnerKey" = "8:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -285,71 +285,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_04B9129107C80970CDE6E7ED590CCB73"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_078B1B42BF1E4D05A5274CF8FA738DF1"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Blackspot.Microgestion.Backend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Xceed.Wpf.Controls, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_04B9129107C80970CDE6E7ED590CCB73"
+                    "_078B1B42BF1E4D05A5274CF8FA738DF1"
                     {
-                    "Name" = "8:Blackspot.Microgestion.Backend.dll"
+                    "Name" = "8:Xceed.Wpf.Controls.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Blackspot.Microgestion.Backend.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B27C482F8A0498D95FCA907CCA74E68"
-            {
-            "SourcePath" = "8:..\\Backend\\bin\\Blackspot.Microgestion.Backend.dll.config"
-            "TargetName" = "8:Blackspot.Microgestion.Backend.dll.config"
-            "Tag" = "8:"
-            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1C6E0DBA9E866A62D31DE91CE31FFCD5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Xceed.Wpf.DataGrid, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1C6E0DBA9E866A62D31DE91CE31FFCD5"
-                    {
-                    "Name" = "8:Xceed.Wpf.DataGrid.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Xceed.Wpf.DataGrid.dll"
+            "SourcePath" = "8:Xceed.Wpf.Controls.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -407,6 +356,88 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_38E7897245BDD94294C7ECF6A16D5EA6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SysQ.Microgestion.Frontend.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_38E7897245BDD94294C7ECF6A16D5EA6"
+                    {
+                    "Name" = "8:SysQ.Microgestion.Frontend.Common.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SysQ.Microgestion.Frontend.Common.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3C40DF9D6F3B89DB91754CE2DBE38C10"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Xceed.Wpf.DataGrid, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3C40DF9D6F3B89DB91754CE2DBE38C10"
+                    {
+                    "Name" = "8:Xceed.Wpf.DataGrid.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Xceed.Wpf.DataGrid.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F77FEFE63254264AC01C5AE2D5CD2E2"
+            {
+            "SourcePath" = "8:..\\Backend\\bin\\SysQ.Microgestion.Backend.dll.config"
+            "TargetName" = "8:SysQ.Microgestion.Backend.dll.config"
+            "Tag" = "8:"
+            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CBEACB280674A5AB6C4B470BEF7CEB2"
             {
             "SourcePath" = "8:..\\..\\Support\\ico\\Sales_32.ico"
@@ -427,51 +458,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A169E9F130DAC4CA633C489AE452B243"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EB3E2E83BFBDCCDBB94B882E4BD03D52"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Xceed.Wpf.Controls, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:SysQ.Microgestion.Backend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A169E9F130DAC4CA633C489AE452B243"
+                    "_EB3E2E83BFBDCCDBB94B882E4BD03D52"
                     {
-                    "Name" = "8:Xceed.Wpf.Controls.dll"
+                    "Name" = "8:SysQ.Microgestion.Backend.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Xceed.Wpf.Controls.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C9E38D25C2803F6BF297744E56432D05"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Blackspot.Microgestion.Frontend.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C9E38D25C2803F6BF297744E56432D05"
-                    {
-                    "Name" = "8:Blackspot.Microgestion.Frontend.Common.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Blackspot.Microgestion.Frontend.Common.dll"
+            "SourcePath" = "8:SysQ.Microgestion.Backend.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -518,7 +518,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_200957CEBB9C49779BBB667C06A6E663"
                     {
-                    "Name" = "8:BlackSpot"
+                    "Name" = "8:SysQ"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -568,7 +568,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MicroGestion"
         "ProductCode" = "8:{9836CDFC-0B48-4D6D-9543-4907CD0C0A2A}"
-        "PackageCode" = "8:{99E4E991-22AC-411F-BE44-92295612BB4D}"
+        "PackageCode" = "8:{1E9B504F-74C0-4D8A-A765-0C761BD85C09}"
         "UpgradeCode" = "8:{65CD3B11-74D8-434A-A46A-233039339ECF}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1130,7 +1130,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1518CF9CFB1848289D8BE53EC302305D"
             {
-            "SourcePath" = "8:..\\Frontend.Stock.Wpf\\obj\\Release\\Microgestion.Stock.exe"
+            "SourcePath" = "8:..\\Frontend.Stock.Wpf\\obj\\Release\\Stock.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -1158,7 +1158,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_63592E68C1904F3B93B956ABE3B3A315"
             {
-            "SourcePath" = "8:..\\Frontend\\obj\\Release\\Microgestion.Administracion.exe"
+            "SourcePath" = "8:..\\Frontend\\obj\\Release\\Administracion.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -1186,7 +1186,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_91B91CB83D7240208CB79B98C20E3092"
             {
-            "SourcePath" = "8:..\\Backend\\obj\\Release\\Blackspot.Microgestion.Backend.dll"
+            "SourcePath" = "8:..\\Backend\\obj\\Release\\SysQ.Microgestion.Backend.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"
@@ -1214,7 +1214,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C026B2522DD34D2F91547704FBE10590"
             {
-            "SourcePath" = "8:..\\Frontend.Sales.Wpf\\obj\\Release\\Microgestion.Ventas.exe"
+            "SourcePath" = "8:..\\Frontend.Sales.Wpf\\obj\\Release\\Ventas.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3CB585C5B63B4C12A5686BAE099E52D5"

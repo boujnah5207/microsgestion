@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Blackspot.Microgestion.Frontend.Controllers;
-using Blackspot.Microgestion.Frontend.Extensions;
+using SysQ.Microgestion.Frontend.Controllers;
+using SysQ.Microgestion.Frontend.Extensions;
 
-namespace Blackspot.Microgestion.Frontend.Forms
+namespace SysQ.Microgestion.Frontend.Forms
 {
     public partial class ItemsForm : Form, IRestorableForm
     {

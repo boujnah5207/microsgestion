@@ -6,7 +6,7 @@
     <Application.Resources>
         <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Blackspot.Microgestion.Frontend.Common;component/CommonStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SysQ.Microgestion.Frontend.Common;component/CommonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>-->
         <LinearGradientBrush x:Key="blueBackground" StartPoint="1,0" EndPoint="1,1">

@@ -7,7 +7,7 @@ using System.Collections;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 
-namespace Blackspot.Microgestion.Frontend.Common.Controls
+namespace SysQ.Microgestion.Frontend.Common.Controls
 {
     public delegate IEnumerable AutoCompleteEventHandler(string text, int maxResults);
 

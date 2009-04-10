@@ -6,14 +6,14 @@ using System.Windows;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Backend.Enumerations;
-using Blackspot.Microgestion.Frontend.Common.Controls;
-using Blackspot.Microgestion.Frontend.Common.Extensions;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Backend.Enumerations;
+using SysQ.Microgestion.Frontend.Common.Controls;
+using SysQ.Microgestion.Frontend.Common.Extensions;
 using System.Timers;
 
-namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
+namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
 {
     public class SalesViewModel : INotifyPropertyChanged
     {

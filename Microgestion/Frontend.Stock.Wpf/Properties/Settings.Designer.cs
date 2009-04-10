@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackspot.Microgestion.Frontend.Stock.Wpf.Properties {
+namespace SysQ.Microgestion.Frontend.Stock.Wpf.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

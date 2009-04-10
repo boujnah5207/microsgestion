@@ -8,8 +8,8 @@
     <ProjectGuid>{D0FF3027-86B7-4D5E-9556-C69030FF34A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blackspot.Microgestion.Backend</RootNamespace>
-    <AssemblyName>Blackspot.Microgestion.Backend</AssemblyName>
+    <RootNamespace>SysQ.Microgestion.Backend</RootNamespace>
+    <AssemblyName>SysQ.Microgestion.Backend</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>Full</TargetFrameworkSubset>

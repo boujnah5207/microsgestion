@@ -79,7 +79,7 @@
         <classShapeMoniker Id="f56fa83d-064a-4aa8-9f93-4259895bb387" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.75 : 3.13025024414063); (9.5 : 3.13025024414063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.75 : 3.13025024414063); (9.5 : 3.13025024414063)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/Measurement/Measurement_Item" />
       <nodes>
         <classShapeMoniker Id="14869a38-63e6-4618-9496-8fa840b4adc2" />
@@ -92,7 +92,7 @@
         <elementListCompartment Id="c435ab6a-8427-426d-b674-2a8ec3da11e7" absoluteBounds="7.515, 7.96, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.375 : 4.19284193306791); (7.03125 : 4.84909193306791); (7.03125 : 8.21242390950521); (7.5 : 8.21242390950521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.375 : 4.19284193306791); (7.03125 : 4.84909193306791); (7.03125 : 8.21242390950521); (7.5 : 8.21242390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/User/User_StockMovement" />
       <nodes>
         <classShapeMoniker Id="091a6a0c-0e4a-4c58-9504-61dc8d1b70a3" />
@@ -145,7 +145,7 @@
         <classShapeMoniker Id="f7370b28-d7d4-46c0-97b6-d7f40df0e92c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.34667354454627 : 4.25354248046875); (6.75 : 4.65686893592248); (6.75 : 10.4195975748698); (7.5 : 10.4195975748698)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.34667354454627 : 4.25354248046875); (6.75 : 4.65686893592248); (6.75 : 10.4195975748698); (7.5 : 10.4195975748698)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/User/User_Sale" />
       <nodes>
         <classShapeMoniker Id="091a6a0c-0e4a-4c58-9504-61dc8d1b70a3" />
@@ -165,7 +165,7 @@
         <classShapeMoniker Id="13c3fa82-02ca-46d1-b8da-1ebe56191ecc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 4.58223714192708); (8.5 : 5.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 4.58223714192708); (8.5 : 5.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/Item/Item_StockMovementDetail" />
       <nodes>
         <classShapeMoniker Id="589e84c7-6c1b-4361-a131-0ac1398f97de" />
@@ -185,7 +185,7 @@
         <elementListCompartment Id="4d3a81a4-87bf-4939-b176-2ccf798f517a" absoluteBounds="7.5150000000000006, 1.085, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.5 : 1.72115315755208); (8.5 : 2.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.5 : 1.72115315755208); (8.5 : 2.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MicrogestionDataContext/ItemType/ItemType_Item" />
       <nodes>
         <classShapeMoniker Id="922efc30-257b-4532-b160-dadaba4eafd4" />

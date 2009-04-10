@@ -10,10 +10,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Blackspot.Microgestion.Backend.Entities;
-using Blackspot.Microgestion.Frontend.Common.Controls;
+using SysQ.Microgestion.Backend.Entities;
+using SysQ.Microgestion.Frontend.Common.Controls;
 
-namespace Blackspot.Microgestion.Frontend.Sales.Wpf.Views
+namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for SalesView.xaml

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Blackspot.Microgestion.Frontend.Properties {
+namespace SysQ.Microgestion.Frontend.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Blackspot.Microgestion.Frontend.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Blackspot.Microgestion.Frontend.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SysQ.Microgestion.Frontend.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

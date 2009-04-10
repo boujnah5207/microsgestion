@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
-using Blackspot.Microgestion.Backend.Services;
-using Blackspot.Microgestion.Frontend.Extensions;
-using Blackspot.Microgestion.Frontend.Forms;
-using Blackspot.Microgestion.Frontend.Properties;
+using SysQ.Microgestion.Backend.Services;
+using SysQ.Microgestion.Frontend.Extensions;
+using SysQ.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Frontend.Properties;
 using System.Drawing;
 
-namespace Blackspot.Microgestion.Frontend.Controllers
+namespace SysQ.Microgestion.Frontend.Controllers
 {
     internal class ControllerBase<T> : INotifyPropertyChanged
         where T: Form, IRestorableForm
