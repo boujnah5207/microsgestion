@@ -328,7 +328,7 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                             stockDetail.Add(new StockMovementDetail
                             {
                                 ItemID = i.ItemID,
-                                Amount = i.Amount,
+                                Amount = i.Amount * -1,
                                 SaleDetailID = i.ID
                             });
                         }

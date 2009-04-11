@@ -89,7 +89,29 @@ namespace SysQ.Microgestion.Frontend.Stock.Wpf.Views
         private string username = string.Empty;
         private DateTime date;
         private double amount = 0D;
+        private bool isInput = true;
 
+
+        public bool IsOutput
+        {
+            get { return !isInput; }
+            set
+            {
+                isInput = !value;
+                OnPropertyChanged("IsOutput");
+            }
+        }
+
+        public bool IsInput
+        {
+            get { return isInput; }
+            set
+            {
+                isInput = value;
+                OnPropertyChanged("IsInput");
+            }
+        }
+        
         public string LoginText
         {
             get
@@ -226,6 +248,7 @@ namespace SysQ.Microgestion.Frontend.Stock.Wpf.Views
                 this.Date = DateTime.Now;
                 this.Comments = string.Empty;
                 this.Amount = 0;
+                this.IsInput = true;
                 view.txtAmount.Text = string.Empty;
                 view.txtSearchItem.Text = string.Empty;
                 view.txtSearchItem.Focus();
@@ -262,7 +285,7 @@ namespace SysQ.Microgestion.Frontend.Stock.Wpf.Views
                                   select new StockMovementDetail
                                       {
                                           ItemID = i.ItemID,
-                                          Amount = i.Amount
+                                          Amount = i.Amount * (this.IsInput ? 1 : -1)
                                       };
                     mov.Details.AddRange(details);
 
