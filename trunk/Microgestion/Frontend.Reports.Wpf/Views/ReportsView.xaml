@@ -43,6 +43,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Login -->
@@ -61,9 +62,10 @@
         <!-- Tabs -->
 
         <TabControl Grid.Row="1" 
+                    Name="tabs"
                     HorizontalAlignment="Stretch" 
                     VerticalAlignment="Stretch">
-            <TabItem Header="Ventas" Name="tabVentas">
+            <TabItem Header="Ventas" Name="tabSales">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -78,9 +80,9 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                <TextBlock>Fecha Desde:</TextBlock>
+                                <TextBlock VerticalAlignment="Center">Fecha Desde:</TextBlock>
                                 <my:DatePicker SelectedDate="{Binding FilterDateStart}" x:Name="filterDateStart" />
-                                <TextBlock>Hasta:</TextBlock>
+                                <TextBlock VerticalAlignment="Center">Hasta:</TextBlock>
                                 <my:DatePicker SelectedDate="{Binding FilterDateFinish}" x:Name="filterDateFinish"  />
                             </StackPanel>
                             <Button Grid.Column="1"
@@ -90,23 +92,25 @@
                     </GroupBox>
                     <GroupBox Header="Resultados"
                           Grid.Row="1">
-                        <xcdg:DataGridControl Name="grid"
-                                      ReadOnly="True" 
-                                      IsDeleteCommandEnabled="True" 
-                                      SelectionMode="Single" 
-                                      NavigationBehavior="RowOnly" 
-                                      ItemScrollingBehavior="Immediate"
-                                      ItemsSource="{Binding Source={StaticResource items}}"
-                                      TabIndex="2"
-                                      HorizontalAlignment="Stretch" AllowDetailToggle="True" AutoCreateColumns="False">
+                        <xcdg:DataGridControl Name="SalesGrid"
+                                              ReadOnly="True" 
+                                              IsDeleteCommandEnabled="False" 
+                                              SelectionMode="Single" 
+                                              NavigationBehavior="RowOnly" 
+                                              ItemScrollingBehavior="Immediate"
+                                              ItemsSource="{Binding Source={StaticResource items}}"
+                                              TabIndex="2"
+                                              HorizontalAlignment="Stretch" 
+                                              AllowDetailToggle="True"
+                                              AutoCreateColumns="False" EditTriggers="None">
                             <xcdg:DataGridControl.Columns>
-                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Numero" Width="80"  />
-                                <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" />
-                                <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="False" ShowInColumnChooser="True" />
-                                <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="False" ShowInColumnChooser="True" />
-                                <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="False" ShowInColumnChooser="True" />
-                                <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" />
-                                <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="*"  />
+                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Numero" Width="80" IsMainColumn="True" />
+                                <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" Visible="False" ShowInColumnChooser="True"  />
+                                <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" Visible="False" ShowInColumnChooser="True"  />
+                                <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
                                 <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
                                 <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
                                 <xcdg:Column FieldName="Price" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
@@ -129,5 +133,15 @@
                 <Grid />
             </TabItem>
         </TabControl>
+        
+        <!-- Footer -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="3">
+            <Button Grid.Column="2"
+                    Command="{x:Static local:ReportsViewModel.PrintCommand}"
+                    Content="Imprimir" />
+        </StackPanel>
     </Grid>
 </Window>
