@@ -39,6 +39,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -65,6 +66,11 @@
                          AcceptsReturn="True"
                          MaxLength="1000"
                          Height="30" />
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="3">
+                    <RadioButton GroupName="AltaBaja" Content="Alta de Stock" IsChecked="{Binding IsInput}" TabIndex="20" Margin="3" />
+                    <RadioButton GroupName="AltaBaja" Content="Baja de Stock" IsChecked="{Binding IsOutput}" TabIndex="21" Margin="3"  />
+                </StackPanel>
+
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="2" 
@@ -114,15 +120,16 @@
                     <TextBox Text="{Binding Amount}"
                              x:Name="txtAmount"
                              Grid.Column="0"
-                             TabIndex="1"
+                             TabIndex="10"
                              Margin="3"
                              Width="150"
                              VerticalAlignment="Center" />
+                   
                     <Button Command="{x:Static local:StockMovementViewModel.InsertItemCommand}"
                             Content="Ingresar"
                             Width="100"
                             Margin="3"
-                            TabIndex="2"
+                            TabIndex="30"
                             Grid.Column="2" />
                 </Grid>
             </Grid>
@@ -168,12 +175,12 @@
                     Content="Guardar" 
                     Width="100" 
                     Margin="3" 
-                    TabIndex="3"/>
+                    TabIndex="40"/>
             <Button x:Name="btnCancel" 
                     Content="Cancelar" 
                     Width="100" 
                     Margin="3" 
-                    TabIndex="4" />
+                    TabIndex="50" />
         </StackPanel>
     </Grid>
 </Window>
