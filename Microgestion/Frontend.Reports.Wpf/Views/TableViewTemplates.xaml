@@ -125,6 +125,22 @@
             </xcdg:GroupHeaderFooterItemTemplate>
         </xcdg:GroupConfiguration.Footers>
     </xcdg:GroupConfiguration>
+    
+    <xcdg:GroupConfiguration x:Key="tableViewGroupConfiguration2">
+        <xcdg:GroupConfiguration.Footers>
+            <!-- The groups will contain a StatRow visible even when the group 
+                 is collapsed. -->
+            <xcdg:GroupHeaderFooterItemTemplate VisibleWhenCollapsed="True">
+                <DataTemplate>
+                    <xcdg:StatRow>
+                        <xcdg:StatCell FieldName="Amount"
+                                       ResultPropertyName="SumOfAmount"
+                                       Style="{StaticResource tableViewTotalStatCellStyle}" />
+                    </xcdg:StatRow>
+                </DataTemplate>
+            </xcdg:GroupHeaderFooterItemTemplate>
+        </xcdg:GroupConfiguration.Footers>
+    </xcdg:GroupConfiguration>
 
     <!-- This template will be added to the TableView in code. -->
     <DataTemplate x:Key="tableViewFixedFooter1">
@@ -146,5 +162,22 @@
                            ResultPropertyName="SumOfSubtotal"/>
         </xcdg:StatRow>
     </DataTemplate>
+    <!-- This template will be added to the TableView in code. -->
+    <DataTemplate x:Key="tableViewFixedFooter2">
+        <xcdg:StatRow>
+            <xcdg:StatRow.Resources>
+                <Style TargetType="xcdg:StatCell"
+                   BasedOn="{StaticResource tableViewTotalStatCellStyle}"/>
+            </xcdg:StatRow.Resources>
 
+            <!-- Each StatCell has a default StatResultConverter assigned to it, 
+              allowing only a ConverterParameter that will format
+              the result to be specified. To improve its usage in XAML, the StatResultConverter's
+              parameter supports a simplified syntax of composite formatting. 
+              Refer to the documentation for more informations. -->
+            <xcdg:StatCell FieldName="Amount"
+                           ResultPropertyName="SumOfAmount" />
+        </xcdg:StatRow>
+    </DataTemplate>
+    
 </ResourceDictionary>

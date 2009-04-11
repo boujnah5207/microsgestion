@@ -15,15 +15,9 @@
                 <ResourceDictionary Source="TableViewTemplates.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <xcdg:DataGridCollectionViewSource x:Key="items"
+            <xcdg:DataGridCollectionViewSource x:Key="saleItems"
                                             Source="{Binding SaleRecords}">
-                <!--<xcdg:DataGridCollectionViewSource.GroupDescriptions>
-                    <xcdg:DataGridGroupDescription PropertyName="SupplierID" />
-                </xcdg:DataGridCollectionViewSource.GroupDescriptions>-->
 
-                <!-- Every StatFunction that will eventually be used with this data source HAS 
-                 to be declared here. StatFunctions are only supported by the 
-                 DataGridCollectionView and DataGridCollectionViewSource classes.-->
                 <xcdg:DataGridCollectionViewSource.StatFunctions>
                     <xcdg:SumFunction ResultPropertyName="SumOfAmount"
                                  SourcePropertyName="Amount" />
@@ -33,6 +27,17 @@
 
                 </xcdg:DataGridCollectionViewSource.StatFunctions>
             </xcdg:DataGridCollectionViewSource>
+
+            <xcdg:DataGridCollectionViewSource x:Key="stockMovementItems"
+                                            Source="{Binding StockMovementRecords}">
+
+                <xcdg:DataGridCollectionViewSource.StatFunctions>
+                    <xcdg:SumFunction ResultPropertyName="SumOfAmount"
+                                 SourcePropertyName="Amount" />
+
+                </xcdg:DataGridCollectionViewSource.StatFunctions>
+            </xcdg:DataGridCollectionViewSource>
+
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="3" />
             </Style>
@@ -98,7 +103,7 @@
                                               SelectionMode="Single" 
                                               NavigationBehavior="RowOnly" 
                                               ItemScrollingBehavior="Immediate"
-                                              ItemsSource="{Binding Source={StaticResource items}}"
+                                              ItemsSource="{Binding Source={StaticResource saleItems}}"
                                               TabIndex="2"
                                               HorizontalAlignment="Stretch" 
                                               AllowDetailToggle="True"
@@ -129,8 +134,66 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Stock" Name="tabStock">
-                <Grid />
+            <TabItem Header="Movimientos de Stock" Name="tabStock">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Grid.Row="0" Header="Filtros">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center">Fecha Desde:</TextBlock>
+                                <my:DatePicker SelectedDate="{Binding FilterSMDateStart}" x:Name="filterSMDateStart" />
+                                <TextBlock VerticalAlignment="Center">Hasta:</TextBlock>
+                                <my:DatePicker SelectedDate="{Binding FilterSMDateFinish}" x:Name="filterSMDateFinish"  />
+                            </StackPanel>
+                            <Button Grid.Column="1"
+                                Command="{x:Static local:ReportsViewModel.SearchCommand}"
+                                Content="Buscar" />
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Resultados"
+                          Grid.Row="1">
+                        <xcdg:DataGridControl Name="StockMovementsGrid"
+                                              ReadOnly="True" 
+                                              IsDeleteCommandEnabled="False" 
+                                              SelectionMode="Single" 
+                                              NavigationBehavior="RowOnly" 
+                                              ItemScrollingBehavior="Immediate"
+                                              ItemsSource="{Binding Source={StaticResource stockMovementItems}}"
+                                              TabIndex="2"
+                                              HorizontalAlignment="Stretch" 
+                                              AllowDetailToggle="True"
+                                              AutoCreateColumns="False" EditTriggers="None">
+                            <xcdg:DataGridControl.Columns>
+                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Venta Nro" Width="80" IsMainColumn="True" />
+                                <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" Visible="False" ShowInColumnChooser="True"  />
+                                <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="True" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" Visible="False" ShowInColumnChooser="True"  />
+                                <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
+                                <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Artículo" Width="150"  />
+                                <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
+                                <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
+                            </xcdg:DataGridControl.Columns>
+                            <xcdg:DataGridControl.View>
+                                <xcdg:TableView>
+                                    <xcdg:TableView.Theme>
+                                        <xcdg:AeroNormalColorTheme />
+                                    </xcdg:TableView.Theme>
+                                </xcdg:TableView>
+                            </xcdg:DataGridControl.View>
+                        </xcdg:DataGridControl>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
         

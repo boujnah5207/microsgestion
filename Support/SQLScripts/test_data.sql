@@ -1,10 +1,17 @@
 USE Microgestion
 
+DELETE FROM [Microgestion].[dbo].[StockMovementDetail]
+DELETE FROM [Microgestion].[dbo].[StockMovement]
+DELETE FROM [Microgestion].[dbo].[SaleDetail]
+DELETE FROM [Microgestion].[dbo].[Sale]
 DELETE FROM [Microgestion].[dbo].[Price]
 DELETE FROM [Microgestion].[dbo].[Item]
 DELETE FROM [Microgestion].[dbo].[ItemType]
 DELETE FROM [Microgestion].[dbo].[Measurement]
+DELETE FROM [Microgestion].[dbo].[UserRoles]
+DELETE FROM [Microgestion].[dbo].[RoleAction]
 DELETE FROM [Microgestion].[dbo].[User]
+DELETE FROM [Microgestion].[dbo].[Role]
 
 DECLARE @unId uniqueidentifier = newid()
 DECLARE @cigId uniqueidentifier = newid()
