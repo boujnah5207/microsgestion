@@ -11,6 +11,7 @@ using SysQ.Microgestion.Backend.Enumerations;
 using SysQ.Microgestion.Backend.Entities;
 using SysQ.Microgestion.Frontend.Common.Controls;
 using SysQ.Microgestion.Frontend.Common.Extensions;
+using Xceed.Wpf.DataGrid;
 
 namespace Frontend.Reports.Wpf.Views
 {
@@ -58,8 +59,23 @@ namespace Frontend.Reports.Wpf.Views
                 LoginCommand,
                 (s, e) => Login());
 
+            CommandBinding cmdPrint = new CommandBinding(
+                PrintCommand,
+                (s, e) => 
+                {
+                    DataGridControl dg = null;
+                    Print(view.SalesGrid);
+                },
+                (s, e) =>
+                {
+                    e.CanExecute =
+                        UserService.CanPerform(SystemAction.SalesReport) &&
+                        SaleRecords.Count > 0;
+                });
+                
             Application.Current.MainWindow.CommandBindings.Add(cmdSearchSales);
             Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
+            Application.Current.MainWindow.CommandBindings.Add(cmdPrint);
 
             this.FilterDateStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1);
             this.FilterDateFinish = DateTime.Now;
@@ -70,19 +86,34 @@ namespace Frontend.Reports.Wpf.Views
         public ObservableCollection<SaleRecord> SaleRecords { get; set; }
         public DateTime FilterDateStart
         {
-            get { return filterDateStart; }
+            get 
+            {
+                var d = view.filterDateStart.SelectedDate;
+                if (d.HasValue)
+                    filterDateStart = d.Value;
+                return filterDateStart; 
+            }
             set
             {
-                this.filterDateStart = value;
+                var d = value;
+                filterDateStart = new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
                 OnPropertyChanged("FilterDateStart");
             }
         }
         public DateTime FilterDateFinish
         {
-            get { return filterDateFinish; }
+            get
+            {
+                var d = view.filterDateFinish.SelectedDate;
+                if (d.HasValue)
+                    filterDateFinish = d.Value;
+                return filterDateFinish;
+            }
             set
             {
-                this.filterDateFinish = value;
+                var d = value;
+                filterDateFinish = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+
                 OnPropertyChanged("FilterDateFinish");
             }
         }
@@ -113,6 +144,7 @@ namespace Frontend.Reports.Wpf.Views
 
         public static RoutedCommand LoginCommand = new RoutedCommand();
         public static RoutedCommand SearchCommand = new RoutedCommand();
+        public static RoutedCommand PrintCommand = new RoutedCommand();
 
         #region INotifyPropertyChanged Members
 
@@ -178,6 +210,11 @@ namespace Frontend.Reports.Wpf.Views
             {
                 ex.ShowMessageBox();
             }
+        }
+
+        internal void Print(DataGridControl grid)
+        {
+            grid.Print("Reporte de Ventas", true, true);
         }
 
     }
