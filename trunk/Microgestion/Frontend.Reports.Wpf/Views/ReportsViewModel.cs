@@ -12,6 +12,7 @@ using SysQ.Microgestion.Backend.Entities;
 using SysQ.Microgestion.Frontend.Common.Controls;
 using SysQ.Microgestion.Frontend.Common.Extensions;
 using Xceed.Wpf.DataGrid;
+using System.Windows.Controls;
 
 namespace Frontend.Reports.Wpf.Views
 {
@@ -24,10 +25,14 @@ namespace Frontend.Reports.Wpf.Views
         private const string IniciarSesion = "Iniciar Sesión";
         public DateTime filterDateStart;
         public DateTime filterDateFinish;
+        public DateTime filterSMDateStart;
+        public DateTime filterSMDateFinish;
 
         public ReportsViewModel(ReportsView view)
         {
             this.SaleRecords = new ObservableCollection<SaleRecord>();
+            this.StockMovementRecords = new ObservableCollection<StockMovementRecord>();
+
             this.view = view;
 
             this.view.Closing += (s, e) =>
@@ -45,13 +50,20 @@ namespace Frontend.Reports.Wpf.Views
             this.Username = UserService.LoggedInUser.ToString();
             this.LoginText = IniciarSesion;
 
-            CommandBinding cmdSearchSales = new CommandBinding(
+            CommandBinding cmdSearch = new CommandBinding(
                 SearchCommand,
-                (s, e) => SearchSales(),
+                (s, e) =>
+                {
+                    TabItem tab = view.tabs.SelectedItem as TabItem;
+                    if (tab.Equals(view.tabSales))
+                        SearchSales();
+                    else if (tab.Equals(view.tabStock))
+                        SearchStockMovements();
+                },
                 (s, e) =>
                 {
                     e.CanExecute =
-                        UserService.CanPerform(SystemAction.SalesReport) &&
+                        UserService.CanPerform(SystemAction.Reports) &&
                         FilterDateFinish >= FilterDateStart;
                 });
 
@@ -63,17 +75,18 @@ namespace Frontend.Reports.Wpf.Views
                 PrintCommand,
                 (s, e) => 
                 {
-                    DataGridControl dg = null;
-                    Print(view.SalesGrid);
+                    TabItem tab = view.tabs.SelectedItem as TabItem;
+                    if (tab.Equals(view.tabSales))
+                        Print(view.SalesGrid);
+                    else if (tab.Equals(view.tabStock))
+                        Print(view.StockMovementsGrid);
                 },
                 (s, e) =>
                 {
-                    e.CanExecute =
-                        UserService.CanPerform(SystemAction.SalesReport) &&
-                        SaleRecords.Count > 0;
+                    e.CanExecute = UserService.CanPerform(SystemAction.Reports);
                 });
                 
-            Application.Current.MainWindow.CommandBindings.Add(cmdSearchSales);
+            Application.Current.MainWindow.CommandBindings.Add(cmdSearch);
             Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
             Application.Current.MainWindow.CommandBindings.Add(cmdPrint);
 
@@ -84,14 +97,16 @@ namespace Frontend.Reports.Wpf.Views
         }
 
         public ObservableCollection<SaleRecord> SaleRecords { get; set; }
+        public ObservableCollection<StockMovementRecord> StockMovementRecords { get; set; }
+
         public DateTime FilterDateStart
         {
-            get 
+            get
             {
                 var d = view.filterDateStart.SelectedDate;
                 if (d.HasValue)
                     filterDateStart = d.Value;
-                return filterDateStart; 
+                return filterDateStart;
             }
             set
             {
@@ -115,6 +130,39 @@ namespace Frontend.Reports.Wpf.Views
                 filterDateFinish = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
 
                 OnPropertyChanged("FilterDateFinish");
+            }
+        }
+        public DateTime FilterSMDateStart
+        {
+            get
+            {
+                var d = view.filterSMDateStart.SelectedDate;
+                if (d.HasValue)
+                    filterSMDateStart = d.Value;
+                return filterSMDateStart;
+            }
+            set
+            {
+                var d = value;
+                filterSMDateStart = new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+                OnPropertyChanged("FilterSMDateStart");
+            }
+        }
+        public DateTime FilterSMDateFinish
+        {
+            get
+            {
+                var d = view.filterSMDateFinish.SelectedDate;
+                if (d.HasValue)
+                    filterSMDateFinish = d.Value;
+                return filterSMDateFinish;
+            }
+            set
+            {
+                var d = value;
+                filterSMDateFinish = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+
+                OnPropertyChanged("FilterSMDateFinish");
             }
         }
         public string LoginText
@@ -175,6 +223,7 @@ namespace Frontend.Reports.Wpf.Views
                     InternalId = d.Sale.InternalID,
                     Date = d.Sale.Date,
                     Item = d.Item.Name,
+                    ItemType = d.Item.ItemType.Name,
                     Amount = d.Amount,
                     Measurement = d.Item.BaseMeasurement.Abbreviation,
                     Price = d.Price.Value,
@@ -184,6 +233,28 @@ namespace Frontend.Reports.Wpf.Views
 
             foreach (var r in records)
                 SaleRecords.Add(r);
+        }
+
+        private void SearchStockMovements()
+        {
+            StockMovementRecords.Clear();
+
+            IEnumerable<StockMovementDetail> stockMovementDetails = StockMovementService.SearchMovements(FilterSMDateStart, FilterSMDateFinish);
+
+            var records = stockMovementDetails
+                .Select(d => new StockMovementRecord
+                {
+                    InternalId = d.SaleDetail != null ? d.SaleDetail.Sale.InternalID : 0,
+                    Date = d.StockMovement.Date,
+                    Item = d.Item.Name,
+                    ItemType = d.Item.ItemType.Name,
+                    Amount = d.Amount,
+                    Measurement = d.Item.BaseMeasurement.Abbreviation,
+                    User = d.StockMovement.User.ToString()
+                });
+
+            foreach (var r in records)
+                StockMovementRecords.Add(r);
         }
 
         internal void Login()
@@ -228,9 +299,23 @@ namespace Frontend.Reports.Wpf.Views
         public int DateYear { get { return Date.Year; } }
         public string User { get; set; }
         public string Item { get; set; }
+        public string ItemType { get; set; }
         public string Measurement { get; set; }
         public double Amount { get; set; }
         public double Price { get; set; }
         public double Subtotal { get; set; }
+    }
+    public class StockMovementRecord
+    {
+        public int InternalId { get; set; }
+        public DateTime Date { get; set; }
+        public int DateDay { get { return Date.Day; } }
+        public int DateMonth { get { return Date.Month; } }
+        public int DateYear { get { return Date.Year; } }
+        public string User { get; set; }
+        public string Item { get; set; }
+        public string Measurement { get; set; }
+        public double Amount { get; set; }
+        public string ItemType { get; set; }
     }
 }

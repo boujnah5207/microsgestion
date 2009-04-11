@@ -31,6 +31,9 @@ namespace Frontend.Reports.Wpf.Views
             this.SalesGrid.View.FixedFooters.Add((DataTemplate)this.FindResource("tableViewFixedFooter1"));
             this.SalesGrid.DefaultGroupConfiguration = (GroupConfiguration)this.FindResource("tableViewGroupConfiguration1");
 
+            this.StockMovementsGrid.View.FixedFooters.Add((DataTemplate)this.FindResource("tableViewFixedFooter2"));
+            this.StockMovementsGrid.DefaultGroupConfiguration = (GroupConfiguration)this.FindResource("tableViewGroupConfiguration2");
+
             vm.Login();
         }
     }
