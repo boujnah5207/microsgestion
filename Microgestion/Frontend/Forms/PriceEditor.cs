@@ -21,12 +21,21 @@ namespace SysQ.Microgestion.Frontend.Forms
             this.CurrentValue = currentValue;
 
             this.txtCurrent.DataBindings.Add(new Binding("Text", this, "CurrentValue"));
-            this.txtNew.DataBindings.Add(new Binding("Text", this, "NewValue"));
 
             this.DataBindings.Add(new Binding("Location", Properties.Settings.Default, "PriceEditorLocation"));
+
         }
 
         public Double CurrentValue { get; set; }
-        public Double NewValue { get; set; }
+        public Double NewValue
+        {
+            get
+            {
+                double newValue = 0;
+                Double.TryParse(txtNew.Value.ToString(), out newValue);
+                return newValue;
+            }
+        }
+        
     }
 }

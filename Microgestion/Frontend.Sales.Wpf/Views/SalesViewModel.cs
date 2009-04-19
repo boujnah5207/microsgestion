@@ -339,7 +339,7 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                         StockMovement stockMovement = new StockMovement
                         {
                             Date = DateTime.Now,
-                            Comment = String.Format("Generated from Sale #{0}", sale.InternalID),
+                            Comment = String.Format("Generado desde la venta #{0}", sale.InternalID),
                             UserID = UserService.LoggedInUser.ID
                         };
 

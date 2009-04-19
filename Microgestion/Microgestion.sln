@@ -36,7 +36,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScripts", "SqlScripts", "{64037147-A915-4D4D-8DFE-4ACD6E04A1C2}"
 	ProjectSection(SolutionItems) = preProject
 		..\Support\SQLScripts\script_0000.sql = ..\Support\SQLScripts\script_0000.sql
-		..\Support\SQLScripts\test_data.sql = ..\Support\SQLScripts\test_data.sql
 	EndProjectSection
 EndProject
 Global

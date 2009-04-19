@@ -18,5 +18,41 @@ namespace SysQ.Microgestion.Backend.Services
                 .Take(maxResults)
                 .ToList();
         }
+
+        public static IList<ItemRecord> SearchItemRecords(Guid itemTypeFilter, Guid itemFilter)
+        {
+            var query = from s in DB.StockMovementDetails
+                        where (s.ID == itemFilter || itemFilter == Guid.Empty) &&
+                              (s.Item.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
+                        group s by s.ItemID into g
+                        orderby g.Key
+                        select new ItemRecord
+                        {
+                            Item = g.First().Item.Name,
+                            ItemType = g.First().Item.ItemType.Name,
+                            MinimumStock = g.First().Item.MinimumStock,
+                            ActualStock = g.Sum(s => s.Amount)
+                        };
+
+            return query.ToList();
+        }
+    }
+
+    public class ItemRecord
+    {
+        public string Item { get; set; }
+        public string ItemType { get; set; }
+        public double MinimumStock { get; set; }
+        public double ActualStock { get; set; }
+        public double MissingStock
+        {
+            get
+            {
+                if (ActualStock < MinimumStock)
+                    return (MinimumStock - ActualStock);
+
+                return 0;
+            }
+        }
     }
 }

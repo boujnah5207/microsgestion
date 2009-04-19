@@ -25,6 +25,8 @@ namespace Frontend.Reports.Wpf.Views
         {
             InitializeComponent();
 
+            Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Reports_48.ico")); 
+
             vm = new ReportsViewModel(this);
             DataContext = vm;
 

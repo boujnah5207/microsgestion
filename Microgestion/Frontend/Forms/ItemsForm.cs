@@ -46,7 +46,6 @@ namespace SysQ.Microgestion.Frontend.Forms
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "BaseMeasurement", HeaderText = "Unidad de Medida" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "BaseMeasurementID", Visible = false });
                 this.Grid.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "MovesStock", HeaderText = "Stock" });
-                this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ActualStock", HeaderText = "Stock Actual" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "MinimumStock", HeaderText = "Stock Mínimo" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CurrentPrice", HeaderText = "Precio" });
                 this.Grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "ItemTypeID", Visible = false });

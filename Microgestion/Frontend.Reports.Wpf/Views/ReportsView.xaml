@@ -109,7 +109,7 @@
                                               AllowDetailToggle="True"
                                               AutoCreateColumns="False" EditTriggers="None">
                             <xcdg:DataGridControl.Columns>
-                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Numero" Width="80" IsMainColumn="True" />
+                                <xcdg:Column FieldName="InternalId" ReadOnly="True" Title="Venta Nro" Width="80" IsMainColumn="True" />
                                 <xcdg:Column FieldName="Date" ReadOnly="True" Title="Fecha" Width="80" Visible="False" ShowInColumnChooser="True"  />
                                 <xcdg:Column FieldName="DateDay" ReadOnly="True" Title="Día" Width="60" Visible="True" ShowInColumnChooser="True" />
                                 <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="True" ShowInColumnChooser="True" />
@@ -117,6 +117,7 @@
                                 <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" Visible="False" ShowInColumnChooser="True"  />
                                 <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
                                 <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
+                                <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Rubro" Width="100" />
                                 <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
                                 <xcdg:Column FieldName="Price" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
                                 <xcdg:Column FieldName="Subtotal" ReadOnly="True" Title="Subtotal" Width="80" 
@@ -124,7 +125,15 @@
                                          GroupValueTemplate="{StaticResource currencyCellContentTemplate}" />
                             </xcdg:DataGridControl.Columns>
                             <xcdg:DataGridControl.View>
-                                <xcdg:TableView>
+                                <xcdg:TableView UseDefaultHeadersFooters="False">
+                                    <xcdg:TableView.FixedHeaders>
+                                        <DataTemplate>
+                                            <xcdg:HierarchicalGroupByControl xcdg:TableView.CanScrollHorizontally="False" NoGroupContent="Arrastre una columa aquí para agrupar por esa columa..." />
+                                        </DataTemplate>
+                                        <DataTemplate>
+                                            <xcdg:ColumnManagerRow />
+                                        </DataTemplate>
+                                    </xcdg:TableView.FixedHeaders>
                                     <xcdg:TableView.Theme>
                                         <xcdg:AeroNormalColorTheme />
                                     </xcdg:TableView.Theme>
@@ -179,13 +188,81 @@
                                 <xcdg:Column FieldName="DateMonth" ReadOnly="True" Title="Mes" Width="60" Visible="True" ShowInColumnChooser="True" />
                                 <xcdg:Column FieldName="DateYear" ReadOnly="True" Title="Año" Width="80" Visible="True" ShowInColumnChooser="True" />
                                 <xcdg:Column FieldName="User" ReadOnly="True" Title="Usuario" Width="150" Visible="False" ShowInColumnChooser="True"  />
+                                <xcdg:Column FieldName="Comment" ReadOnly="True" Title="Comentario" Width="150" Visible="False" ShowInColumnChooser="True"  />
                                 <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
-                                <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Artículo" Width="150"  />
+                                <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Rubro" Width="150"  />
                                 <xcdg:Column FieldName="Amount" ReadOnly="True" Title="Cantidad" Width="100" />
                                 <xcdg:Column FieldName="Measurement" ReadOnly="True" Title="Un." Width="60" />
                             </xcdg:DataGridControl.Columns>
                             <xcdg:DataGridControl.View>
-                                <xcdg:TableView>
+                                <xcdg:TableView UseDefaultHeadersFooters="False">
+                                    <xcdg:TableView.FixedHeaders>
+                                        <DataTemplate>
+                                            <xcdg:HierarchicalGroupByControl xcdg:TableView.CanScrollHorizontally="False" NoGroupContent="Arrastre una columna aquí para agrupar por esa columna..." />
+                                        </DataTemplate>
+                                        <DataTemplate>
+                                            <xcdg:ColumnManagerRow />
+                                        </DataTemplate>
+                                    </xcdg:TableView.FixedHeaders>
+                                    <xcdg:TableView.Theme>
+                                        <xcdg:AeroNormalColorTheme />
+                                    </xcdg:TableView.Theme>
+                                </xcdg:TableView>
+                            </xcdg:DataGridControl.View>
+                        </xcdg:DataGridControl>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Artículos" Name="tabItems">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Grid.Row="0" Header="Filtros">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="1"
+                                Command="{x:Static local:ReportsViewModel.SearchCommand}"
+                                Content="Buscar" />
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Resultados"
+                          Grid.Row="1">
+                        <xcdg:DataGridControl Name="ItemsGrid"
+                                              ReadOnly="True" 
+                                              IsDeleteCommandEnabled="False" 
+                                              SelectionMode="Single" 
+                                              NavigationBehavior="RowOnly" 
+                                              ItemScrollingBehavior="Immediate"
+                                              ItemsSource="{Binding ItemRecords}"
+                                              TabIndex="2"
+                                              HorizontalAlignment="Stretch" 
+                                              AllowDetailToggle="True"
+                                              AutoCreateColumns="False" EditTriggers="None">
+                            <xcdg:DataGridControl.Columns>
+                                <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
+                                <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Rubro" Width="150"  />
+                                <xcdg:Column FieldName="ActualStock" ReadOnly="True" Title="Stock Actual" Width="100" />
+                                <xcdg:Column FieldName="MinimumStock" ReadOnly="True" Title="Stock Mínimo" Width="100" />
+                                <xcdg:Column FieldName="MissingStock" ReadOnly="True" Title="Stock Faltante" Width="100" />
+                            </xcdg:DataGridControl.Columns>
+                            <xcdg:DataGridControl.View>
+                                <xcdg:TableView UseDefaultHeadersFooters="False">
+                                    <xcdg:TableView.FixedHeaders>
+                                        <DataTemplate>
+                                            <xcdg:HierarchicalGroupByControl xcdg:TableView.CanScrollHorizontally="False" NoGroupContent="Arrastre una columna aquí para agrupar por esa columna..." />
+                                        </DataTemplate>
+                                        <DataTemplate>
+                                            <xcdg:ColumnManagerRow />
+                                        </DataTemplate>
+                                    </xcdg:TableView.FixedHeaders>
                                     <xcdg:TableView.Theme>
                                         <xcdg:AeroNormalColorTheme />
                                     </xcdg:TableView.Theme>

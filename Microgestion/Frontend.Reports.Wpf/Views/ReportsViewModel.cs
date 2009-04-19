@@ -32,6 +32,7 @@ namespace Frontend.Reports.Wpf.Views
         {
             this.SaleRecords = new ObservableCollection<SaleRecord>();
             this.StockMovementRecords = new ObservableCollection<StockMovementRecord>();
+            this.ItemRecords = new ObservableCollection<ItemRecord>();
 
             this.view = view;
 
@@ -50,54 +51,14 @@ namespace Frontend.Reports.Wpf.Views
             this.Username = UserService.LoggedInUser.ToString();
             this.LoginText = IniciarSesion;
 
-            CommandBinding cmdSearch = new CommandBinding(
-                SearchCommand,
-                (s, e) =>
-                {
-                    TabItem tab = view.tabs.SelectedItem as TabItem;
-                    if (tab.Equals(view.tabSales))
-                        SearchSales();
-                    else if (tab.Equals(view.tabStock))
-                        SearchStockMovements();
-                },
-                (s, e) =>
-                {
-                    e.CanExecute =
-                        UserService.CanPerform(SystemAction.Reports) &&
-                        FilterDateFinish >= FilterDateStart;
-                });
-
-            CommandBinding cmdLogin = new CommandBinding(
-                LoginCommand,
-                (s, e) => Login());
-
-            CommandBinding cmdPrint = new CommandBinding(
-                PrintCommand,
-                (s, e) => 
-                {
-                    TabItem tab = view.tabs.SelectedItem as TabItem;
-                    if (tab.Equals(view.tabSales))
-                        Print(view.SalesGrid);
-                    else if (tab.Equals(view.tabStock))
-                        Print(view.StockMovementsGrid);
-                },
-                (s, e) =>
-                {
-                    e.CanExecute = UserService.CanPerform(SystemAction.Reports);
-                });
-                
-            Application.Current.MainWindow.CommandBindings.Add(cmdSearch);
-            Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
-            Application.Current.MainWindow.CommandBindings.Add(cmdPrint);
-
-            this.FilterDateStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1);
-            this.FilterDateFinish = DateTime.Now;
+            BindCommands();
 
             UserService.LoggedInUser = UserService.GetAdminUser();
         }
 
         public ObservableCollection<SaleRecord> SaleRecords { get; set; }
         public ObservableCollection<StockMovementRecord> StockMovementRecords { get; set; }
+        public ObservableCollection<ItemRecord> ItemRecords { get; set; }
 
         public DateTime FilterDateStart
         {
@@ -110,8 +71,7 @@ namespace Frontend.Reports.Wpf.Views
             }
             set
             {
-                var d = value;
-                filterDateStart = new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+                filterDateStart = value;
                 OnPropertyChanged("FilterDateStart");
             }
         }
@@ -126,8 +86,7 @@ namespace Frontend.Reports.Wpf.Views
             }
             set
             {
-                var d = value;
-                filterDateFinish = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+                filterDateFinish = value;
 
                 OnPropertyChanged("FilterDateFinish");
             }
@@ -143,8 +102,7 @@ namespace Frontend.Reports.Wpf.Views
             }
             set
             {
-                var d = value;
-                filterSMDateStart = new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+                filterSMDateStart = value;
                 OnPropertyChanged("FilterSMDateStart");
             }
         }
@@ -159,9 +117,7 @@ namespace Frontend.Reports.Wpf.Views
             }
             set
             {
-                var d = value;
-                filterSMDateFinish = new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
-
+                filterSMDateFinish = value;
                 OnPropertyChanged("FilterSMDateFinish");
             }
         }
@@ -211,6 +167,51 @@ namespace Frontend.Reports.Wpf.Views
 
         #endregion
 
+        private void BindCommands()
+        {
+            CommandBinding cmdSearch = new CommandBinding(
+                SearchCommand,
+                (s, e) =>
+                {
+                    TabItem tab = view.tabs.SelectedItem as TabItem;
+                    if (tab.Equals(view.tabSales))
+                        SearchSales();
+                    else if (tab.Equals(view.tabStock))
+                        SearchStockMovements();
+                    else if (tab.Equals(view.tabItems))
+                        SearchItems();
+                },
+                (s, e) =>
+                {
+                    e.CanExecute = UserService.CanPerform(SystemAction.Reports);
+                });
+
+            CommandBinding cmdLogin = new CommandBinding(
+                LoginCommand,
+                (s, e) => Login());
+
+            CommandBinding cmdPrint = new CommandBinding(
+                PrintCommand,
+                (s, e) =>
+                {
+                    TabItem tab = view.tabs.SelectedItem as TabItem;
+                    if (tab.Equals(view.tabSales))
+                        Print(view.SalesGrid);
+                    else if (tab.Equals(view.tabStock))
+                        Print(view.StockMovementsGrid);
+                    else if (tab.Equals(view.tabItems))
+                        Print(view.ItemsGrid);
+                },
+                (s, e) =>
+                {
+                    e.CanExecute = UserService.CanPerform(SystemAction.Reports);
+                });
+
+            Application.Current.MainWindow.CommandBindings.Add(cmdSearch);
+            Application.Current.MainWindow.CommandBindings.Add(cmdLogin);
+            Application.Current.MainWindow.CommandBindings.Add(cmdPrint);
+        }
+
         private void SearchSales()
         {
             SaleRecords.Clear();
@@ -246,6 +247,7 @@ namespace Frontend.Reports.Wpf.Views
                 {
                     InternalId = d.SaleDetail != null ? d.SaleDetail.Sale.InternalID : 0,
                     Date = d.StockMovement.Date,
+                    Comment = d.StockMovement.Comment,
                     Item = d.Item.Name,
                     ItemType = d.Item.ItemType.Name,
                     Amount = d.Amount,
@@ -255,6 +257,16 @@ namespace Frontend.Reports.Wpf.Views
 
             foreach (var r in records)
                 StockMovementRecords.Add(r);
+        }
+
+        private void SearchItems()
+        {
+            ItemRecords.Clear();
+
+            IList<ItemRecord> records = ItemService.SearchItemRecords(Guid.Empty, Guid.Empty);
+
+            foreach (var r in records)
+                ItemRecords.Add(r);
         }
 
         internal void Login()
@@ -312,10 +324,12 @@ namespace Frontend.Reports.Wpf.Views
         public int DateDay { get { return Date.Day; } }
         public int DateMonth { get { return Date.Month; } }
         public int DateYear { get { return Date.Year; } }
+        public string Comment { get; set; }
         public string User { get; set; }
         public string Item { get; set; }
         public string Measurement { get; set; }
         public double Amount { get; set; }
         public string ItemType { get; set; }
     }
+
 }

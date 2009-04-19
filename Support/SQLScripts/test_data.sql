@@ -13,11 +13,17 @@ DELETE FROM [Microgestion].[dbo].[RoleAction]
 DELETE FROM [Microgestion].[dbo].[User]
 DELETE FROM [Microgestion].[dbo].[Role]
 
-DECLARE @unId uniqueidentifier = newid()
-DECLARE @cigId uniqueidentifier = newid()
-DECLARE @mb10 uniqueidentifier = newid();
-DECLARE @mb20 uniqueidentifier = newid();
-DECLARE @mc20 uniqueidentifier = newid();
+DECLARE @unId uniqueidentifier
+DECLARE @cigId uniqueidentifier
+DECLARE @mb10 uniqueidentifier
+DECLARE @mb20 uniqueidentifier
+DECLARE @mc20 uniqueidentifier
+
+SET @unId = newid();
+SET @cigId = newid();
+SET @mb10 = newid();
+SET @mb20 = newid();
+SET @mc20 = newid();
 
 -- Unidades de Medida
 INSERT INTO [Microgestion].[dbo].[Measurement] ([ID],[Name],[Abbreviation]) VALUES (@unId,'Unidad/es','Un.')
@@ -32,11 +38,11 @@ INSERT INTO [Microgestion].[dbo].[Item]([ID],[InternalCode],[ExternalCode],[Name
      VALUES (@mc20,'987','987','Marlboro Comun 20',@unId,1,50,@cigId)
 -- Precios
 INSERT INTO [Microgestion].[dbo].[Price]([ID],[ItemID],[Date],[Value])
-     VALUES(NEWID(),@mb10,sysdatetime(),2.5)
+     VALUES(NEWID(),@mb10, getdate(),2.5)
 INSERT INTO [Microgestion].[dbo].[Price]([ID],[ItemID],[Date],[Value])
-     VALUES(NEWID(),@mb20,sysdatetime(),5.0)
+     VALUES(NEWID(),@mb20,getdate(),5.0)
 INSERT INTO [Microgestion].[dbo].[Price]([ID],[ItemID],[Date],[Value])
-     VALUES(NEWID(),@mc20,sysdatetime(),4.5)
+     VALUES(NEWID(),@mc20,getdate(),4.5)
 -- Usuarios
 INSERT INTO [Microgestion].[dbo].[User]([ID],[Username],[Password],[Name],[LastName])
      VALUES('{00000000-0000-0000-0000-000000000001}','admin','009b927906b97d1507451f45d795d55e','Administrador',NULL)
