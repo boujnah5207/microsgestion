@@ -1,0 +1,56 @@
+﻿<Window x:Class="SysQ.Microgestion.Frontend.Sales.Wpf.Views.ConfirmSaleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xcdc="clr-namespace:Xceed.Wpf.Controls;assembly=Xceed.Wpf.Controls"
+        Title="Confirmar Venta"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{StaticResource blueBackground}">
+    <Window.Resources>
+            <Style TargetType="xcdc:NumericTextBox">
+            <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            Padding="1"
+            CornerRadius="2">
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Importe:" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Pago:" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Vuelto:" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <xcdc:NumericTextBox 
+                    Grid.Row="1" Grid.Column="1" 
+                    x:Name="TxtPayment"
+                    Width="150"
+                    NumberStyles="Currency"
+                    HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch" 
+                    Margin="5" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="TxtTotal" Text="$ 0.00" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="TxtChange" Text="$ 0.00" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Red" FontSize="20" />
+
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Confirmar" Margin="5" Width="100" Name="BtnConfirm" />
+                <Button Content="Cancelar" Margin="5" Width="100" Name="BtnCancel" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

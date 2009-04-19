@@ -120,6 +120,11 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                     vm.RemoveLastItem();
                     e.Handled = true;
                 }
+                if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.F5))
+                {
+                    vm.Save();
+                    e.Handled = true;
+                }
             };
 
             this.btnCancel.Click += (s, e) => vm.Cancel();

@@ -180,7 +180,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     
-                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo</TextBlock>
+                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo | F5 - Confirmar Venta</TextBlock>
                     <TextBlock Grid.Column="2" Foreground="Red" FontSize="18">Total: $</TextBlock>
                     <TextBlock Grid.Column="3" Foreground="Red" FontSize="18" Text="{Binding Total}" />
                 </Grid>
@@ -192,7 +192,7 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,6,9">
             <Button Command="{x:Static local:SalesViewModel.SaveCommand}"
-                    Content="Guardar" 
+                    Content="Confirmar" 
                     Width="100" 
                     Margin="3" 
                     TabIndex="3"/>
