@@ -14,6 +14,8 @@ namespace SysQ.Microgestion.Frontend
         [STAThread]
         static void Main()
         {
+            Xceed.Editors.Licenser.LicenseKey = "EDN25-L4FC0-AGM08-LHXA";
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

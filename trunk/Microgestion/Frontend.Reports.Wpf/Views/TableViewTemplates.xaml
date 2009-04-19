@@ -82,25 +82,6 @@
         <TextBlock Text="{Binding Converter={StaticResource currencyConverter}}" />
     </DataTemplate>
 
-    <!-- StatFunction results can be "fetched" in any content control by using a 
-        binding on the StatContext property. This StatContext exposes, as properties, 
-        all the StatFunctions declared in the DataGridCollectionViewSource. 
-           
-        This template will be added to the TableView in code. -->
-    <DataTemplate x:Key="tableViewHeader1">
-        <Border Margin="4"
-              TextElement.FontSize="14"
-              TextElement.FontWeight="Bold"
-              xcdg:TableView.CanScrollHorizontally="False">
-            <StackPanel Orientation="Horizontal"
-                     ToolTip="Only products that have a reorder level of 5, 10, 15, or 20, and units on order of 0 will be counted.">
-                <TextBlock TextWrapping="Wrap"
-                       Text="Number of products to reorder : "/>
-                <TextBlock Text="{Binding RelativeSource={RelativeSource Self},Path=(xcdg:DataGridControl.StatContext).CountProductsToOrder}"/>
-            </StackPanel>
-        </Border>
-    </DataTemplate>
-
     <!-- A GroupConfiguration allows you to control the content (headers/footers) 
         and behavior of same-level groups. 
            
@@ -155,11 +136,14 @@
               the result to be specified. To improve its usage in XAML, the StatResultConverter's
               parameter supports a simplified syntax of composite formatting. 
               Refer to the documentation for more informations. -->
-            <xcdg:StatCell FieldName="Amount"
-                           ResultPropertyName="SumOfAmount" />
+            <!--<xcdg:StatCell FieldName="Amount"
+                           ResultPropertyName="SumOfAmount"
+                           Style="{StaticResource tableViewTotalStatCellStyle}" />-->
 
             <xcdg:StatCell FieldName="Subtotal"
-                           ResultPropertyName="SumOfSubtotal"/>
+                           ResultPropertyName="SumOfSubtotal"
+                           Style="{StaticResource tableViewTotalStatCellStyle}" 
+                           ContentTemplate="{StaticResource currencyCellContentTemplate}" />
         </xcdg:StatRow>
     </DataTemplate>
     <!-- This template will be added to the TableView in code. -->
@@ -175,8 +159,8 @@
               the result to be specified. To improve its usage in XAML, the StatResultConverter's
               parameter supports a simplified syntax of composite formatting. 
               Refer to the documentation for more informations. -->
-            <xcdg:StatCell FieldName="Amount"
-                           ResultPropertyName="SumOfAmount" />
+            <!--<xcdg:StatCell FieldName="Amount"
+                           ResultPropertyName="SumOfAmount" />-->
         </xcdg:StatRow>
     </DataTemplate>
     

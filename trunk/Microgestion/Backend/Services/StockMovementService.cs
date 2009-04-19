@@ -10,10 +10,12 @@ namespace SysQ.Microgestion.Backend.Services
     {
         private StockMovementService() { }
 
-        public static IEnumerable<StockMovementDetail> SearchMovements(DateTime fromDate, DateTime toDate)
+        public static IEnumerable<StockMovementDetail> SearchMovements(DateTime filterDateStart, DateTime filterDateFinish)
         {
+            var dateFinish = new DateTime(filterDateFinish.Year, filterDateFinish.Month, filterDateFinish.Day, 23, 59, 59);
+
             return DB.StockMovements
-                .Where(s => s.Date >= fromDate && s.Date <= toDate)
+                .Where(s => s.Date >= filterDateStart && s.Date <= dateFinish)
                 .SelectMany(s => s.Details)
                 .ToList();
         }

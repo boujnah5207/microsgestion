@@ -25,8 +25,11 @@ namespace SysQ.Microgestion.Backend.Services
 
         public static IEnumerable<SaleDetail> SearchSales(DateTime filterDateStart, DateTime filterDateFinish)
         {
+            var dateFinish = new DateTime(filterDateFinish.Year, filterDateFinish.Month, filterDateFinish.Day, 23, 59, 59);
+
             return DB.Sales
-                .Where(s => s.Date >= filterDateStart && s.Date <= filterDateFinish)
+                .Where(s => 
+                    s.Date >= filterDateStart && s.Date <= dateFinish)
                 .SelectMany(s => s.Details)
                 .ToList();
         }
