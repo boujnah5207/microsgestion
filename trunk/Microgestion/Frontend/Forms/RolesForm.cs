@@ -64,17 +64,13 @@ namespace SysQ.Microgestion.Frontend.Forms
         {
             try
             {
-                //this.FormClosing += (s, e) =>
-                //{
-                //    ((Form)s).Hide();
-                //    ((FormClosingEventArgs)e).Cancel = true;
-                //};
                 this.btnClose.Click += (s, e) => this.Close();
 
                 this.btnAdd.Click += (s, e) => Controller.AddNew();
                 this.btnDelete.Click += (s, e) => Controller.Delete();
                 this.btnEdit.Click += (s, e) => Controller.Edit();
-
+                this.btnCheckAll.Click += (s, e) => Controller.SelectAllActions(true);
+                this.btnUncheckAll.Click += (s, e) => Controller.SelectAllActions(false);
             }
             catch (Exception ex)
             {
@@ -100,5 +96,6 @@ namespace SysQ.Microgestion.Frontend.Forms
         }
 
         #endregion
+
     }
 }

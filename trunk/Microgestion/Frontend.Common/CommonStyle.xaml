@@ -31,7 +31,6 @@ xmlns:media="http://schemas.microsoft.com/netfx/2007/xaml/presentation, System.W
         <Setter Property="Margin" Value="3" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Background" Value="{StaticResource invertedBlueBackground}" />
-        <Setter Property="Opacity" Value="0.7" />
     </Style>
     <Style TargetType="Button">
         <Setter Property="FontFamily" Value="Tahoma, Verdana, Arial" />

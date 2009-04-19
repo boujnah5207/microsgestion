@@ -154,6 +154,15 @@ namespace SysQ.Microgestion.Frontend.Forms
             this.ItemTypesForm.Show();
         }
 
+        internal void CloseAllChilds()
+        {
+            UsersForm.Close();
+            RolesForm.Close();
+            MeasurementsForm.Close();
+            ItemsForm.Close();
+            ItemTypesForm.Close();
+        }
+
         #region Miembros de IRestorableForm
 
         public string LocationSetting
@@ -173,5 +182,10 @@ namespace SysQ.Microgestion.Frontend.Forms
 
         #endregion
 
+
+        internal void LogInOut()
+        {
+            Controller.LogInOut();
+        }
     }
 }

@@ -63,7 +63,12 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                 });
             CommandBinding cmdSave = new CommandBinding(
                 SaveCommand,
-                (s, e) => Save(),
+                (s, e) => 
+                {
+                    Save();
+                    view.txtSearchItem.Text = string.Empty;
+                    view.txtSearchItem.Focus();
+                },
                 (s, e) =>
                 {
                     e.CanExecute =
@@ -256,8 +261,6 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                 this.ItemID = Guid.Empty;
                 this.NextNumber = GetNextNumber();
                 this.Amount = 1;
-                view.txtSearchItem.Text = string.Empty;
-                view.txtSearchItem.Focus();
             }
             catch (Exception ex)
             {
