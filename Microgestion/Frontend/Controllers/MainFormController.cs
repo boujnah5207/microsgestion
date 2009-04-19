@@ -16,7 +16,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         public MainFormController(MainForm form)
             : base(form) { }
 
-        internal void LogUser()
+        private void LogUser()
         {
             LoginForm login = new LoginForm();
             login.ShowDialog();
@@ -26,12 +26,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         {
             try
             {
-                LogUser();
-                //UserService.LoggedInUser = UserService.GetAdminUser();
-
-                ShowUserInfo();
-
-                BuildMenu();
+                LogInOut();
 
                 base.InitializeForm();
             }
@@ -41,10 +36,27 @@ namespace SysQ.Microgestion.Frontend.Controllers
             }
         }
 
+        public void LogInOut()
+        {
+            if (UserService.LoggedInUser.ID == UserService.GetNullUser().ID)
+                LogUser();
+            else
+            {
+                UserService.LoggedInUser = UserService.GetNullUser();
+                Form.CloseAllChilds();
+            }
+
+            ShowUserInfo();
+
+            BuildMenu();
+        }
+
         private void BuildMenu()
         {
             try
             {
+                this.Form.MainMenuStrip.Items.Clear();
+
                 IEnumerable<MenuOption> roots = MenuService.GetMenuOptions();
                 User user = UserService.LoggedInUser;
 

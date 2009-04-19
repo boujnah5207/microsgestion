@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SysQ.Microgestion.Backend.Services;
 
 namespace SysQ.Microgestion.Backend.Enumerations
 {
@@ -32,7 +33,8 @@ namespace SysQ.Microgestion.Backend.Enumerations
         ItemTypeDelete = 22,
         ItemTypeEdit = 23,
         Reports = 24,
-        ResetDB = 999
+        LogInOut = 25,
+        ResetDB = 100001
     }
 
     public static class EnumerationExtensions
@@ -40,15 +42,15 @@ namespace SysQ.Microgestion.Backend.Enumerations
         public static bool RequireSecurity(this SystemAction action)
         {
             return (action != SystemAction.Null) &&
-                   (action != SystemAction.Exit);
+                   (action != SystemAction.Exit) &&
+                   (action != SystemAction.LogInOut) &&
+                   (action != SystemAction.ResetDB);
         }
 
         public static string GetDescription(this SystemAction action)
         {
             switch (action)
             {
-                case SystemAction.ResetDB:
-                    return "Reset DB";
                 case SystemAction.RolesAdmin:
                     return "Administrar Perfiles";
                 case SystemAction.RoleAdd:
@@ -95,6 +97,13 @@ namespace SysQ.Microgestion.Backend.Enumerations
                     return "Modificar Rubro";
                 case SystemAction.Reports:
                     return "Reportes";
+                case SystemAction.LogInOut:
+                    {
+                        if (UserService.LoggedInUser.ID != UserService.NullUser.ID)
+                            return "&Cerrar Sesión";
+                        else
+                            return "Iniciar Sesión";
+                    };
                 default:
                     return "Sin nombre";
             }

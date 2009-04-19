@@ -31,6 +31,14 @@ namespace SysQ.Microgestion.Frontend.Extensions
 
             ToolStripMenuItem item = new ToolStripMenuItem { Text = option.Text, Tag = option.Action };
 
+            if (option.Order == -1)
+            {
+                item.Visible = false;
+
+                if (option.Action == SystemAction.ResetDB)
+                    item.ShortcutKeys = Keys.Control | Keys.Alt | Keys.Shift | Keys.R;
+            }
+
             if (option.Action != SystemAction.Null)
             {
                 item.Click += (s, e) => MenuDispatcher.Dispatch((ToolStripMenuItem)s);

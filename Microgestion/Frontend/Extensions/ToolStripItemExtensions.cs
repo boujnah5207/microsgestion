@@ -16,7 +16,7 @@ namespace SysQ.Microgestion.Frontend.Extensions
             {
                 SystemAction action = (SystemAction)item.Tag;
 
-                if (action == SystemAction.Null && item.DropDownItems.Count == 0)
+                if (action == SystemAction.Null && !item.HasDropDownItems)
                     itemsToRemove.Add(item);
 
                 item.DropDownItems.RemoveEmptyItems();
@@ -33,7 +33,7 @@ namespace SysQ.Microgestion.Frontend.Extensions
                 ToolStripMenuItem menuItem = (ToolStripMenuItem)item;
                 SystemAction action = (SystemAction)menuItem.Tag;
 
-                if (action == SystemAction.Null && menuItem.DropDownItems.Count == 0)
+                if (action == SystemAction.Null && !menuItem.HasDropDownItems)
                     itemsToRemove.Add(menuItem);
             }
 

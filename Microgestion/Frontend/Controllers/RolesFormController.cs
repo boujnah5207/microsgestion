@@ -83,6 +83,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
                         Form.Actions.Items.IndexOf(item),
                         role.Actions.Any(a => a.Action.Equals(item.Action)));
                 }
+
             }
             catch (Exception ex)
             {
@@ -173,6 +174,12 @@ namespace SysQ.Microgestion.Frontend.Controllers
             {
                 ex.ShowMessageBox();
             }
+        }
+
+        internal void SelectAllActions(bool checkedState)
+        {
+            for (int i = 0; i < Form.Actions.Items.Count; i++)
+                Form.Actions.SetItemChecked(i, checkedState);
         }
     }
 

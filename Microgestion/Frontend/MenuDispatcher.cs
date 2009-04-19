@@ -30,10 +30,22 @@ namespace SysQ.Microgestion.Frontend
                     {
                         MainForm.Current.Close();
                     } break;
+                case SystemAction.LogInOut:
+                    {
+                        MainForm.Current.LogInOut();
+                    } break;
                 case SystemAction.ResetDB:
                     {
-                        DatabaseService.SetupDatabase();
-                        MessageBox.Show("OK");
+                        if (DialogResult.Yes == MessageBox.Show(
+                            "Usted está a punto de resetear la Base de Datos.\nSi elige continuar PERDERÁ TODOS LOS DATOS DE LA BASE.\n¿Está seguro que desea continuar?", 
+                            "Resetear Base de Datos", 
+                            MessageBoxButtons.YesNo, 
+                            MessageBoxIcon.Warning, 
+                            MessageBoxDefaultButton.Button2))
+                        {
+                            DatabaseService.SetupDatabase();
+                            MessageBox.Show("La Base de Datos fue reseteada.");
+                        }
                     } break;
                 case SystemAction.UsersAdmin:
                     {

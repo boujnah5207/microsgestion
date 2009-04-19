@@ -39,6 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Actions = new System.Windows.Forms.CheckedListBox();
+            this.btnCheckAll = new System.Windows.Forms.Button();
+            this.btnUncheckAll = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             this.SuspendLayout();
@@ -147,12 +149,34 @@
             this.Actions.Size = new System.Drawing.Size(301, 124);
             this.Actions.TabIndex = 6;
             // 
+            // btnCheckAll
+            // 
+            this.btnCheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCheckAll.Location = new System.Drawing.Point(12, 326);
+            this.btnCheckAll.Name = "btnCheckAll";
+            this.btnCheckAll.Size = new System.Drawing.Size(77, 23);
+            this.btnCheckAll.TabIndex = 7;
+            this.btnCheckAll.Text = "Marcar todas";
+            this.btnCheckAll.UseVisualStyleBackColor = true;
+            // 
+            // btnUncheckAll
+            // 
+            this.btnUncheckAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUncheckAll.Location = new System.Drawing.Point(95, 326);
+            this.btnUncheckAll.Name = "btnUncheckAll";
+            this.btnUncheckAll.Size = new System.Drawing.Size(97, 23);
+            this.btnUncheckAll.TabIndex = 8;
+            this.btnUncheckAll.Text = "Desmarcar todas";
+            this.btnUncheckAll.UseVisualStyleBackColor = true;
+            // 
             // RolesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(445, 361);
+            this.Controls.Add(this.btnUncheckAll);
+            this.Controls.Add(this.btnCheckAll);
             this.Controls.Add(this.Actions);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -183,5 +207,7 @@
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.CheckedListBox Actions;
         private System.Windows.Forms.Button btnActions;
+        private System.Windows.Forms.Button btnCheckAll;
+        private System.Windows.Forms.Button btnUncheckAll;
     }
 }
