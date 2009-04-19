@@ -284,13 +284,15 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
             {
                 if (this.Items.Count > 0)
                 {
-                    var dr = MessageBox.Show(
-                        "¿Confirma que desea guardar el movimiento?",
-                        "Confirmar Movimiento",
-                        MessageBoxButton.YesNo,
-                        MessageBoxImage.Question,
-                        MessageBoxResult.No);
-                    if (dr == MessageBoxResult.No)
+                    var confirm = new ConfirmSaleView
+                    {
+                        Owner = this.view,
+                        Total = this.Total,
+                        Payment = this.Total
+                    };
+
+                    var dr = confirm.ShowDialog();
+                    if (!dr.HasValue || dr.Value == false)
                         return;
 
                     List<SaleDetail> saleDetail = new List<SaleDetail>();
@@ -420,7 +422,6 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-
     }
 
     public class SaleItem
