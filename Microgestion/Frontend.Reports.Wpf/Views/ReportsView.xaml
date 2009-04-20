@@ -227,6 +227,26 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
+                            <StackPanel Grid.Column="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Rubro:" VerticalAlignment="Center" />
+                                    <ComboBox Name="ItemTypesFilter"
+                                              VerticalAlignment="Center" 
+                                              Width="150" 
+                                              ItemsSource="{Binding ItemTypesFilter}"
+                                              DisplayMemberPath="Value" />
+                                    <TextBlock Text=" Artículo:" VerticalAlignment="Center" />
+                                    <ComboBox Name="ItemsFilter"
+                                              VerticalAlignment="Center" 
+                                              Width="150" 
+                                              ItemsSource="{Binding ItemsFilter}"
+                                              DisplayMemberPath="Value" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Con Stock Faltante:" VerticalAlignment="Center" />
+                                    <CheckBox Name="OnlyMissingStock" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
                             <Button Grid.Column="1"
                                 Command="{x:Static local:ReportsViewModel.SearchCommand}"
                                 Content="Buscar" />
@@ -273,7 +293,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
         <!-- Footer -->
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
