@@ -19,10 +19,10 @@ namespace SysQ.Microgestion.Backend.Services
                 .ToList();
         }
 
-        public static IList<ItemRecord> SearchItemRecords(Guid itemTypeFilter, Guid itemFilter)
+        public static IList<ItemRecord> SearchItemRecords(Guid itemTypeFilter, Guid itemFilter, bool onlyMissingStock)
         {
             var query = from s in DB.StockMovementDetails
-                        where (s.ID == itemFilter || itemFilter == Guid.Empty) &&
+                        where (s.ItemID == itemFilter || itemFilter == Guid.Empty) &&
                               (s.Item.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
                         group s by s.ItemID into g
                         orderby g.Key
@@ -34,7 +34,21 @@ namespace SysQ.Microgestion.Backend.Services
                             ActualStock = g.Sum(s => s.Amount)
                         };
 
-            return query.ToList();
+            IList<ItemRecord> allRecords = query.ToList();
+
+            if (onlyMissingStock)
+                return allRecords.Where(i => i.MissingStock > 0 || !onlyMissingStock).ToList();
+
+            return allRecords;
+        }
+
+        public static IList<Item> GetAll(bool includeItemsWithoutStock)
+        {
+            var items = from i in DB.Items
+                        where (i.MovesStock || includeItemsWithoutStock)
+                        select i;
+
+            return items.ToList();
         }
     }
 

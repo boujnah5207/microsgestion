@@ -54,11 +54,16 @@ namespace Frontend.Reports.Wpf.Views
             BindCommands();
 
             UserService.LoggedInUser = UserService.GetAdminUser();
+
+            FillFilters();
+
         }
 
         public ObservableCollection<SaleRecord> SaleRecords { get; set; }
         public ObservableCollection<StockMovementRecord> StockMovementRecords { get; set; }
         public ObservableCollection<ItemRecord> ItemRecords { get; set; }
+        public ObservableCollection<KeyValuePair<Guid,String>> ItemsFilter { get; set; }
+        public ObservableCollection<KeyValuePair<Guid, String>> ItemTypesFilter { get; set; }
 
         public DateTime FilterDateStart
         {
@@ -262,11 +267,34 @@ namespace Frontend.Reports.Wpf.Views
         private void SearchItems()
         {
             ItemRecords.Clear();
+            Guid itemType = Guid.Empty;
+            Guid item = Guid.Empty;
+            bool onlyMissingStock = view.OnlyMissingStock.IsChecked.HasValue ? view.OnlyMissingStock.IsChecked.Value : false;
 
-            IList<ItemRecord> records = ItemService.SearchItemRecords(Guid.Empty, Guid.Empty);
+            if (view.ItemTypesFilter.SelectedValue != null)
+                itemType = ((KeyValuePair<Guid, string>)view.ItemTypesFilter.SelectedValue).Key;
+            if (view.ItemsFilter.SelectedValue != null)
+                item = ((KeyValuePair<Guid, string>)view.ItemsFilter.SelectedValue).Key;
+
+            IList<ItemRecord> records = ItemService.SearchItemRecords(itemType, item, onlyMissingStock);
 
             foreach (var r in records)
                 ItemRecords.Add(r);
+        }
+
+        private void FillFilters()
+        {
+            // ItemTypes Filter
+            this.ItemTypesFilter = new ObservableCollection<KeyValuePair<Guid, String>>();
+            ItemTypesFilter.Add(new KeyValuePair<Guid, string>(Guid.Empty, String.Empty));
+            foreach (var i in ItemTypeService.GetAll())
+                ItemTypesFilter.Add(new KeyValuePair<Guid, string>(i.ID, i.Name));
+
+            // Items Filter
+            this.ItemsFilter = new ObservableCollection<KeyValuePair<Guid, String>>();
+            ItemsFilter.Add(new KeyValuePair<Guid, string>(Guid.Empty, String.Empty));
+            foreach (var i in ItemService.GetAll())
+                ItemsFilter.Add(new KeyValuePair<Guid, string>(i.ID, i.Name));
         }
 
         internal void Login()
@@ -331,5 +359,4 @@ namespace Frontend.Reports.Wpf.Views
         public double Amount { get; set; }
         public string ItemType { get; set; }
     }
-
 }

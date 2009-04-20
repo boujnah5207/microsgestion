@@ -53,5 +53,10 @@ namespace SysQ.Microgestion.Backend.Entities
             get { return this.InternalCode + "|" + this.ExternalCode + "|" + this.Name; }
         }
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
     }
 }
