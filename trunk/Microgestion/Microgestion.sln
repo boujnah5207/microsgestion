@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScripts", "SqlScripts", 
 		..\Support\SQLScripts\script_0000.sql = ..\Support\SQLScripts\script_0000.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLoader", "DataLoader\DataLoader.csproj", "{CED5348E-40ED-41CB-AC73-385988E1B5F3}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Microgestion2.vsmdi
@@ -77,6 +79,10 @@ Global
 		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B78B76C-F3AD-415C-8B2C-354A8CCDB31B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED5348E-40ED-41CB-AC73-385988E1B5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED5348E-40ED-41CB-AC73-385988E1B5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED5348E-40ED-41CB-AC73-385988E1B5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED5348E-40ED-41CB-AC73-385988E1B5F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

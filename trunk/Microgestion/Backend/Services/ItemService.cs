@@ -50,6 +50,15 @@ namespace SysQ.Microgestion.Backend.Services
 
             return items.ToList();
         }
+
+        public static Item GetByName(string name)
+        {
+            var item = from i in DB.Items
+                       where i.Name == name
+                       select i;
+
+            return item.SingleOrDefault();
+        }
     }
 
     public class ItemRecord

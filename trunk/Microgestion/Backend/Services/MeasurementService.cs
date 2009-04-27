@@ -9,5 +9,14 @@ namespace SysQ.Microgestion.Backend.Services
     public class MeasurementService : ServiceBase<Measurement>
     {
         private MeasurementService() { }
+
+        public static Measurement GetByName(string name)
+        {
+            var measurement = from m in DB.Measurements
+                              where m.Name == name
+                              select m;
+
+            return measurement.SingleOrDefault();
+        }
     }
 }
