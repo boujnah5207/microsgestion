@@ -59,31 +59,40 @@ namespace SysQ.Microgestion.DataLoader
 
         private void ImportData()
         {
-            bool succeed = false;
-
-            using (TransactionScope scope = new TransactionScope())
+            try
             {
-                ImportMeasurements();
-                ImportItemTypes();
-                ImportItems();
+                bool succeed = false;
 
-                scope.Complete();
-                succeed = true;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    ImportMeasurements();
+                    ImportItemTypes();
+                    ImportItems();
+
+                    scope.Complete();
+                    succeed = true;
+                }
+
+                if (succeed)
+                    MessageBox.Show(
+                        "La carga de datos fue realizada con éxito.\nVerifique el resultado de cada item.",
+                        "Resultado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                else
+                    MessageBox.Show(
+                        "La carga de datos no pudo ser realizada.\nVerifique el resultado de cada item.",
+                        "Resultado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+
             }
-
-            if (succeed)
-                MessageBox.Show(
-                    "La carga de datos fue realizada con éxito.\nVerifique el resultado de cada item.",
-                    "Resultado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            else
-                MessageBox.Show(
-                    "La carga de datos no pudo ser realizada.\nVerifique el resultado de cada item.",
-                    "Resultado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox();
+            } 
+            
             Preview();
         }
 
@@ -119,6 +128,7 @@ namespace SysQ.Microgestion.DataLoader
                                 MovesStock = i.MovesStock.ToLower() == "si" ? true : false,
                                 CurrentPrice = new Price
                                 {
+                                    ID = Guid.NewGuid(),
                                     Date = DateTime.Now,
                                     Value = Double.Parse(i.Price)
                                 }
@@ -151,6 +161,8 @@ namespace SysQ.Microgestion.DataLoader
 
                 if (stockMovement.Details.Count > 0)
                     StockMovementService.Save(stockMovement);
+
+                scope.Complete();
             }
         }
 
@@ -189,6 +201,8 @@ namespace SysQ.Microgestion.DataLoader
                         i.Message = ex.Message;
                     }
                 }
+
+                scope.Complete();
             }
         }
 
@@ -229,6 +243,8 @@ namespace SysQ.Microgestion.DataLoader
                         m.Message = ex.Message;
                     }
                 }
+
+                scope.Complete();
             }
         }
 
