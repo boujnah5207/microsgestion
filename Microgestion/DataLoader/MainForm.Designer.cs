@@ -36,20 +36,14 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dgvItemTypes = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgvItems = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnPreview = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.dgvMeasurements = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.importStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemTypeRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.dgvMeasurements = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.symbolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +51,8 @@
             this.importStatusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.measurementRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.dgvItems = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.internalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +68,10 @@
             this.importStatusDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnPreview = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,10 +80,10 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemTypeRecordBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementRecordBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.importDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,123 +194,6 @@
             this.dgvItemTypes.Size = new System.Drawing.Size(364, 166);
             this.dgvItemTypes.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Rubros:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Unidades de Medida:";
-            // 
-            // dgvItems
-            // 
-            this.dgvItems.AllowUserToAddRows = false;
-            this.dgvItems.AllowUserToDeleteRows = false;
-            this.dgvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvItems.AutoGenerateColumns = false;
-            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn2,
-            this.itemNameDataGridViewTextBoxColumn,
-            this.internalCodeDataGridViewTextBoxColumn,
-            this.externalCodeDataGridViewTextBoxColumn,
-            this.itemTypeNameDataGridViewTextBoxColumn,
-            this.measurementNameDataGridViewTextBoxColumn,
-            this.measurementSimbolDataGridViewTextBoxColumn,
-            this.movesStockDataGridViewTextBoxColumn,
-            this.minimumStockDataGridViewTextBoxColumn,
-            this.actualStockDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.importDataGridViewCheckBoxColumn1,
-            this.importStatusDataGridViewTextBoxColumn2,
-            this.messageDataGridViewTextBoxColumn2});
-            this.dgvItems.DataSource = this.importDataBindingSource;
-            this.dgvItems.Location = new System.Drawing.Point(6, 21);
-            this.dgvItems.MultiSelect = false;
-            this.dgvItems.Name = "dgvItems";
-            this.dgvItems.ReadOnly = true;
-            this.dgvItems.RowHeadersVisible = false;
-            this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(750, 245);
-            this.dgvItems.TabIndex = 3;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Artículos:";
-            // 
-            // btnImport
-            // 
-            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImport.Location = new System.Drawing.Point(602, 531);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(97, 23);
-            this.btnImport.TabIndex = 4;
-            this.btnImport.Text = "Cargar Datos";
-            this.btnImport.UseVisualStyleBackColor = true;
-            // 
-            // btnPreview
-            // 
-            this.btnPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPreview.Location = new System.Drawing.Point(15, 531);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(117, 23);
-            this.btnPreview.TabIndex = 5;
-            this.btnPreview.Text = "Previsualizar Datos";
-            this.btnPreview.UseVisualStyleBackColor = true;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(705, 531);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 6;
-            this.btnExit.Text = "Salir";
-            this.btnExit.UseVisualStyleBackColor = true;
-            // 
-            // dgvMeasurements
-            // 
-            this.dgvMeasurements.AllowUserToAddRows = false;
-            this.dgvMeasurements.AllowUserToDeleteRows = false;
-            this.dgvMeasurements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvMeasurements.AutoGenerateColumns = false;
-            this.dgvMeasurements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMeasurements.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn1,
-            this.nameDataGridViewTextBoxColumn1,
-            this.symbolDataGridViewTextBoxColumn,
-            this.importDataGridViewCheckBoxColumn2,
-            this.importStatusDataGridViewTextBoxColumn1,
-            this.messageDataGridViewTextBoxColumn1});
-            this.dgvMeasurements.DataSource = this.measurementRecordBindingSource;
-            this.dgvMeasurements.Location = new System.Drawing.Point(6, 24);
-            this.dgvMeasurements.MultiSelect = false;
-            this.dgvMeasurements.Name = "dgvMeasurements";
-            this.dgvMeasurements.ReadOnly = true;
-            this.dgvMeasurements.RowHeadersVisible = false;
-            this.dgvMeasurements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMeasurements.Size = new System.Drawing.Size(373, 166);
-            this.dgvMeasurements.TabIndex = 3;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -352,6 +235,41 @@
             // itemTypeRecordBindingSource
             // 
             this.itemTypeRecordBindingSource.DataSource = typeof(SysQ.Microgestion.DataLoader.ItemTypeRecord);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Rubros:";
+            // 
+            // dgvMeasurements
+            // 
+            this.dgvMeasurements.AllowUserToAddRows = false;
+            this.dgvMeasurements.AllowUserToDeleteRows = false;
+            this.dgvMeasurements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvMeasurements.AutoGenerateColumns = false;
+            this.dgvMeasurements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMeasurements.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.symbolDataGridViewTextBoxColumn,
+            this.importDataGridViewCheckBoxColumn2,
+            this.importStatusDataGridViewTextBoxColumn1,
+            this.messageDataGridViewTextBoxColumn1});
+            this.dgvMeasurements.DataSource = this.measurementRecordBindingSource;
+            this.dgvMeasurements.Location = new System.Drawing.Point(6, 24);
+            this.dgvMeasurements.MultiSelect = false;
+            this.dgvMeasurements.Name = "dgvMeasurements";
+            this.dgvMeasurements.ReadOnly = true;
+            this.dgvMeasurements.RowHeadersVisible = false;
+            this.dgvMeasurements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMeasurements.Size = new System.Drawing.Size(373, 166);
+            this.dgvMeasurements.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -401,6 +319,49 @@
             // measurementRecordBindingSource
             // 
             this.measurementRecordBindingSource.DataSource = typeof(SysQ.Microgestion.DataLoader.MeasurementRecord);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Unidades de Medida:";
+            // 
+            // dgvItems
+            // 
+            this.dgvItems.AllowUserToAddRows = false;
+            this.dgvItems.AllowUserToDeleteRows = false;
+            this.dgvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvItems.AutoGenerateColumns = false;
+            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn2,
+            this.itemNameDataGridViewTextBoxColumn,
+            this.internalCodeDataGridViewTextBoxColumn,
+            this.externalCodeDataGridViewTextBoxColumn,
+            this.itemTypeNameDataGridViewTextBoxColumn,
+            this.measurementNameDataGridViewTextBoxColumn,
+            this.measurementSimbolDataGridViewTextBoxColumn,
+            this.movesStockDataGridViewTextBoxColumn,
+            this.minimumStockDataGridViewTextBoxColumn,
+            this.actualStockDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.importDataGridViewCheckBoxColumn1,
+            this.importStatusDataGridViewTextBoxColumn2,
+            this.messageDataGridViewTextBoxColumn2});
+            this.dgvItems.DataSource = this.importDataBindingSource;
+            this.dgvItems.Location = new System.Drawing.Point(6, 21);
+            this.dgvItems.MultiSelect = false;
+            this.dgvItems.Name = "dgvItems";
+            this.dgvItems.ReadOnly = true;
+            this.dgvItems.RowHeadersVisible = false;
+            this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvItems.Size = new System.Drawing.Size(750, 245);
+            this.dgvItems.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn2
             // 
@@ -508,6 +469,46 @@
             // 
             this.importDataBindingSource.DataSource = typeof(SysQ.Microgestion.DataLoader.ImportData);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Artículos:";
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.Location = new System.Drawing.Point(566, 531);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(133, 23);
+            this.btnImport.TabIndex = 4;
+            this.btnImport.Text = "Importar Datos!";
+            this.btnImport.UseVisualStyleBackColor = true;
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPreview.Location = new System.Drawing.Point(15, 531);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(117, 23);
+            this.btnPreview.TabIndex = 5;
+            this.btnPreview.Text = "Previsualizar Datos";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.Location = new System.Drawing.Point(705, 531);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.Text = "Salir";
+            this.btnExit.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,10 +535,10 @@
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurements)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemTypeRecordBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurements)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementRecordBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.importDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

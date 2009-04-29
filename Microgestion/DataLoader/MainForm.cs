@@ -10,6 +10,9 @@ using System.IO;
 using SysQ.Microgestion.Backend.Entities;
 using System.Collections.ObjectModel;
 using SysQ.Microgestion.Backend.Services;
+using System.Transactions;
+using SysQ.Microgestion.Frontend.Forms;
+using SysQ.Microgestion.Frontend.Extensions;
 
 namespace SysQ.Microgestion.DataLoader
 {
@@ -18,6 +21,10 @@ namespace SysQ.Microgestion.DataLoader
         public MainForm()
         {
             InitializeComponent();
+
+            Measurements = new List<Measurement>();
+            ItemTypes = new List<ItemType>();
+            Items = new List<Item>();
 
             this.btnOpenFile.Click += (s, e) => OpenFile();
             this.btnPreview.Click += (s, e) => Preview();
@@ -34,11 +41,195 @@ namespace SysQ.Microgestion.DataLoader
 
                 e.Cancel = (result == DialogResult.No);
             };
+
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
+
+            if (UserService.LoggedInUser.IsNullUser())
+            {
+                this.btnImport.Enabled = false;
+                this.btnOpenFile.Enabled = false;
+                this.btnPreview.Enabled = false;
+            }
         }
+
+        public List<Measurement> Measurements { get; set; }
+        public List<ItemType> ItemTypes { get; set; }
+        public List<Item> Items { get; set; }
 
         private void ImportData()
         {
-            
+            bool succeed = false;
+
+            using (TransactionScope scope = new TransactionScope())
+            {
+                ImportMeasurements();
+                ImportItemTypes();
+                ImportItems();
+
+                scope.Complete();
+                succeed = true;
+            }
+
+            if (succeed)
+                MessageBox.Show(
+                    "La carga de datos fue realizada con éxito.\nVerifique el resultado de cada item.",
+                    "Resultado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            else
+                MessageBox.Show(
+                    "La carga de datos no pudo ser realizada.\nVerifique el resultado de cada item.",
+                    "Resultado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+            Preview();
+        }
+
+        private void ImportItems()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                StockMovement stockMovement = new StockMovement
+                {
+                    ID = Guid.NewGuid(),
+                    Comment = "Inventario de Carga Masiva de Datos",
+                    Date = DateTime.Now,
+                    User = UserService.LoggedInUser
+                };
+
+                // Import Items
+                Items.Clear();
+                foreach (var i in importDataBindingSource.Cast<ImportData>())
+                {
+                    try
+                    {
+                        if (i.Import)
+                        {
+                            Item item = new Item
+                            {
+                                ID = Guid.NewGuid(),
+                                Name = i.ItemName,
+                                ItemType = ItemTypes.Where(it => it.Name == i.ItemTypeName).Single(),
+                                InternalCode = i.InternalCode,
+                                ExternalCode = i.ExternalCode,
+                                BaseMeasurement = Measurements.Where(m => m.Name == i.MeasurementName).Single(),
+                                MinimumStock = Double.Parse(i.MinimumStock),
+                                MovesStock = i.MovesStock.ToLower() == "si" ? true : false,
+                                CurrentPrice = new Price
+                                {
+                                    Date = DateTime.Now,
+                                    Value = Double.Parse(i.Price)
+                                }
+                            };
+
+                            ItemService.Save(item);
+
+                            i.ImportStatus = ImportStatus.Importado;
+
+                            Items.Add(item);
+
+                            stockMovement.Details.Add(new StockMovementDetail
+                            {
+                                ID = Guid.NewGuid(),
+                                Item = item,
+                                Amount = Double.Parse(i.ActualStock)
+                            });
+
+                            i.Import = false;
+                        }
+                        else
+                            Items.Add(ItemService.GetByName(i.ItemName));
+                    }
+                    catch (Exception ex)
+                    {
+                        i.ImportStatus = ImportStatus.Error;
+                        i.Message = ex.Message;
+                    }
+                }
+
+                if (stockMovement.Details.Count > 0)
+                    StockMovementService.Save(stockMovement);
+            }
+        }
+
+        private void ImportItemTypes()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                // Import ItemTypes
+                ItemTypes.Clear();
+                foreach (var i in itemTypeRecordBindingSource.Cast<ItemTypeRecord>())
+                {
+                    try
+                    {
+                        if (i.Import)
+                        {
+                            ItemType itemType = new ItemType
+                            {
+                                ID = Guid.NewGuid(),
+                                Name = i.Name
+                            };
+
+                            ItemTypeService.Save(itemType);
+
+                            i.ImportStatus = ImportStatus.Importado;
+
+                            ItemTypes.Add(itemType);
+
+                            i.Import = false;
+                        }
+                        else
+                            ItemTypes.Add(ItemTypeService.GetByName(i.Name));
+                    }
+                    catch (Exception ex)
+                    {
+                        i.ImportStatus = ImportStatus.Error;
+                        i.Message = ex.Message;
+                    }
+                }
+            }
+        }
+
+        private void ImportMeasurements()
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                //Import Measurements
+                Measurements.Clear();
+                foreach (var m in measurementRecordBindingSource.Cast<MeasurementRecord>())
+                {
+                    try
+                    {
+                        if (m.Import)
+                        {
+                            Measurement measurement = new Measurement
+                            {
+                                ID = Guid.NewGuid(),
+                                Name = m.Name,
+                                Abbreviation = m.Symbol
+                            };
+
+                            MeasurementService.Save(measurement);
+
+                            m.ImportStatus = ImportStatus.Importado;
+
+                            Measurements.Add(measurement);
+
+                            m.Import = false;
+                        }
+                        else
+                            Measurements.Add(MeasurementService.GetByName(m.Name));
+
+                    }
+                    catch (Exception ex)
+                    {
+                        m.ImportStatus = ImportStatus.Error;
+                        m.Message = ex.Message;
+                    }
+                }
+            }
         }
 
         private void LoadItemTypes()
@@ -163,7 +354,7 @@ namespace SysQ.Microgestion.DataLoader
                     Message = message
                 });
             };
-           
+
         }
 
         private void OpenFile()
@@ -183,7 +374,8 @@ namespace SysQ.Microgestion.DataLoader
                 return;
 
             this.txtFile.Text = dialog.FileName;
-            return;
+
+            Preview();
         }
 
     }

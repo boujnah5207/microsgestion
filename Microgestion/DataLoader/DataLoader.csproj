@@ -35,6 +35,10 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -93,6 +97,10 @@
     <ProjectReference Include="..\Backend\Backend.csproj">
       <Project>{D0FF3027-86B7-4D5E-9556-C69030FF34A0}</Project>
       <Name>Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frontend\Frontend.csproj">
+      <Project>{422E8B0E-3D8F-4B1E-BBF0-9DFB7A5039B8}</Project>
+      <Name>Frontend</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
