@@ -13,6 +13,7 @@ using SysQ.Microgestion.Backend.Services;
 using System.Transactions;
 using SysQ.Microgestion.Frontend.Forms;
 using SysQ.Microgestion.Frontend.Extensions;
+using System.Globalization;
 
 namespace SysQ.Microgestion.DataLoader
 {
@@ -27,7 +28,7 @@ namespace SysQ.Microgestion.DataLoader
             Items = new List<Item>();
 
             this.btnOpenFile.Click += (s, e) => OpenFile();
-            this.btnPreview.Click += (s, e) => Preview();
+            this.btnPreview.Click += (s, e) => LoadFileIntoDataSources();
             this.btnImport.Click += (s, e) => ImportData();
             this.btnExit.Click += (s, e) => this.Close();
             this.FormClosing += (s, e) =>
@@ -59,54 +60,43 @@ namespace SysQ.Microgestion.DataLoader
 
         private void ImportData()
         {
+            bool succeed = false;
+
             try
             {
-                bool succeed = false;
+                ImportMeasurements();
+                ImportItemTypes();
+                ImportItems();
 
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    ImportMeasurements();
-                    ImportItemTypes();
-                    ImportItems();
-
-                    scope.Complete();
-                    succeed = true;
-                }
-
-                if (succeed)
-                    MessageBox.Show(
-                        "La carga de datos fue realizada con éxito.\nVerifique el resultado de cada item.",
-                        "Resultado",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                else
-                    MessageBox.Show(
-                        "La carga de datos no pudo ser realizada.\nVerifique el resultado de cada item.",
-                        "Resultado",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-
+                succeed = true;
             }
             catch (Exception ex)
             {
                 ex.ShowMessageBox();
-            } 
-            
-            Preview();
+            }
+
+            if (succeed)
+                MessageBox.Show(
+                    "La carga de datos fue realizada con éxito.\nVerifique el resultado de cada item.",
+                    "Resultado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            else
+                MessageBox.Show(
+                    "La carga de datos no pudo ser realizada.\nVerifique el resultado de cada item.",
+                    "Resultado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+            RefreshGrids();
         }
 
         private void ImportItems()
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                StockMovement stockMovement = new StockMovement
-                {
-                    ID = Guid.NewGuid(),
-                    Comment = "Inventario de Carga Masiva de Datos",
-                    Date = DateTime.Now,
-                    User = UserService.LoggedInUser
-                };
+
+                List<StockDetailRecord> detail = new List<StockDetailRecord>();
 
                 // Import Items
                 Items.Clear();
@@ -116,6 +106,8 @@ namespace SysQ.Microgestion.DataLoader
                     {
                         if (i.Import)
                         {
+                            bool movesStock = i.MovesStock.ToLower().Trim() == "si" ? true : false;
+
                             Item item = new Item
                             {
                                 ID = Guid.NewGuid(),
@@ -124,13 +116,13 @@ namespace SysQ.Microgestion.DataLoader
                                 InternalCode = i.InternalCode,
                                 ExternalCode = i.ExternalCode,
                                 BaseMeasurement = Measurements.Where(m => m.Name == i.MeasurementName).Single(),
-                                MinimumStock = Double.Parse(i.MinimumStock),
-                                MovesStock = i.MovesStock.ToLower() == "si" ? true : false,
+                                MinimumStock = !String.IsNullOrEmpty(i.MinimumStock) ? Double.Parse(i.MinimumStock) : 0.0,
+                                MovesStock = movesStock,
                                 CurrentPrice = new Price
                                 {
                                     ID = Guid.NewGuid(),
                                     Date = DateTime.Now,
-                                    Value = Double.Parse(i.Price)
+                                    Value = !String.IsNullOrEmpty(i.Price) ? Double.Parse(i.Price) : 0.0
                                 }
                             };
 
@@ -140,12 +132,12 @@ namespace SysQ.Microgestion.DataLoader
 
                             Items.Add(item);
 
-                            stockMovement.Details.Add(new StockMovementDetail
-                            {
-                                ID = Guid.NewGuid(),
-                                Item = item,
-                                Amount = Double.Parse(i.ActualStock)
-                            });
+                            if (movesStock)
+                                detail.Add(new StockDetailRecord
+                                {
+                                    Item = item,
+                                    Amount = !String.IsNullOrEmpty(i.ActualStock) ? Double.Parse(i.ActualStock) : 0.0,
+                                });
 
                             i.Import = false;
                         }
@@ -159,8 +151,26 @@ namespace SysQ.Microgestion.DataLoader
                     }
                 }
 
-                if (stockMovement.Details.Count > 0)
+                if (detail.Count > 0)
+                {
+                    StockMovement stockMovement = new StockMovement
+                    {
+                        ID = Guid.NewGuid(),
+                        Comment = "Inventario de Carga Inicial de Datos",
+                        Date = DateTime.Now,
+                        User = UserService.LoggedInUser
+                    };
+                    foreach (var d in detail)
+                        stockMovement.Details.Add(new StockMovementDetail
+                        {
+                            ID = Guid.NewGuid(),
+                            Item = d.Item,
+                            Amount = d.Amount,
+                            StockMovement = stockMovement
+                        });
+
                     StockMovementService.Save(stockMovement);
+                }
 
                 scope.Complete();
             }
@@ -274,7 +284,7 @@ namespace SysQ.Microgestion.DataLoader
 
         }
 
-        private void Preview()
+        private void LoadFileIntoDataSources()
         {
             LoadDataToImport();
             LoadItemTypes();
@@ -349,7 +359,7 @@ namespace SysQ.Microgestion.DataLoader
                 Item item = ItemService.GetByName(values[0]);
 
                 Guid id = item == null ? Guid.Empty : item.ID;
-                String name = item == null ? values[0] : item.Name;
+                String name = item == null ? SanitizeName(values[0]) : item.Name;
                 String message = item == null ? string.Empty : "Ya Esite. No se importará";
 
                 this.importDataBindingSource.Add(new ImportData
@@ -358,7 +368,7 @@ namespace SysQ.Microgestion.DataLoader
                     ItemName = name,
                     InternalCode = values[1],
                     ExternalCode = values[2],
-                    ItemTypeName = values[3],
+                    ItemTypeName = values[3].ToUpper(),
                     MeasurementName = values[4],
                     MeasurementSimbol = values[5],
                     MovesStock = values[6],
@@ -366,11 +376,36 @@ namespace SysQ.Microgestion.DataLoader
                     ActualStock = values[8],
                     Price = values[9],
                     Import = (item == null),
-                    ImportStatus = ImportStatus.Preparado,
+                    ImportStatus = item == null ? ImportStatus.Preparado : ImportStatus.Ignorado,
                     Message = message
                 });
             };
 
+        }
+
+        private string SanitizeName(string name)
+        {
+            name = name.ToString(new CultureInfo("es-AR"));
+            name = name.ToUpperInvariant();
+            name = name.Replace(@"""""", @"""");
+            if (name.StartsWith(@"""") && name.EndsWith(@""""))
+            {
+                name = name.Remove(0, 1);
+                name = name.Remove(name.Length - 1, 1);
+            }
+
+            if (!name.IsNormalized())
+                name.Normalize();
+
+            // Replace bad characters
+            int index = name.IndexOf((char)65533);            
+            while(index != -1)
+            {
+                name = name.Remove(index, 1);
+                index = name.IndexOf((char)65533);
+            }
+
+            return name;
         }
 
         private void OpenFile()
@@ -391,9 +426,15 @@ namespace SysQ.Microgestion.DataLoader
 
             this.txtFile.Text = dialog.FileName;
 
-            Preview();
+            LoadFileIntoDataSources();
         }
 
+        private void RefreshGrids()
+        {
+            this.dgvItems.Refresh();
+            this.dgvItemTypes.Refresh();
+            this.dgvMeasurements.Refresh();
+        }
     }
 
     public enum ImportStatus
@@ -402,6 +443,12 @@ namespace SysQ.Microgestion.DataLoader
         Importado,
         Error,
         Ignorado
+    }
+
+    public class StockDetailRecord
+    {
+        public Item Item { get; set; }
+        public double Amount { get; set; }
     }
 
     public class MeasurementRecord
