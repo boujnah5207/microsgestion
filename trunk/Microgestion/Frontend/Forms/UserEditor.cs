@@ -46,7 +46,12 @@ namespace SysQ.Microgestion.Frontend.Forms
                 {
                     using (LookupForm<Role> lookup = new LookupForm<Role>())
                     {
-                        lookup.Filter = Roles;
+                        lookup.DataSource = RoleService
+                            .GetAll(r => r.Name)
+                            .Where(r => !Roles.Contains(r))
+                            .ToList();
+
+                        
                         var dr = lookup.ShowDialog();
                         if (dr != DialogResult.OK)
                             return;

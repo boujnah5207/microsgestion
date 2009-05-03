@@ -287,13 +287,13 @@ namespace Frontend.Reports.Wpf.Views
             // ItemTypes Filter
             this.ItemTypesFilter = new ObservableCollection<KeyValuePair<Guid, String>>();
             ItemTypesFilter.Add(new KeyValuePair<Guid, string>(Guid.Empty, String.Empty));
-            foreach (var i in ItemTypeService.GetAll())
+            foreach (var i in ItemTypeService.GetAll(i => i.Name))
                 ItemTypesFilter.Add(new KeyValuePair<Guid, string>(i.ID, i.Name));
 
             // Items Filter
             this.ItemsFilter = new ObservableCollection<KeyValuePair<Guid, String>>();
             ItemsFilter.Add(new KeyValuePair<Guid, string>(Guid.Empty, String.Empty));
-            foreach (var i in ItemService.GetAll())
+            foreach (var i in ItemService.GetAll(i => i.Name))
                 ItemsFilter.Add(new KeyValuePair<Guid, string>(i.ID, i.Name));
         }
 

@@ -17,6 +17,7 @@ namespace SysQ.Microgestion.Backend.Services
             return DB.StockMovements
                 .Where(s => s.Date >= filterDateStart && s.Date <= dateFinish)
                 .SelectMany(s => s.Details)
+                .OrderBy(s => s.StockMovement.Date)
                 .ToList();
         }
     }

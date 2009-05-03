@@ -25,7 +25,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         {
             try
             {
-                Items = new BindingList<Item>(ItemService.GetAll());
+                Items = new BindingList<Item>(ItemService.GetAll(i => i.Name));
 
                 base.InitializeForm();
 

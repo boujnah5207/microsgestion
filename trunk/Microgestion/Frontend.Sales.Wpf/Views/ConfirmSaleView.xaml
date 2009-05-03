@@ -48,8 +48,8 @@
 
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Confirmar" Margin="5" Width="100" Name="BtnConfirm" />
-                <Button Content="Cancelar" Margin="5" Width="100" Name="BtnCancel" />
+                <Button Content="Confirmar" Margin="5" Width="100" Name="BtnConfirm" IsDefault="True" />
+                <Button Content="Cancelar" Margin="5" Width="100" Name="BtnCancel" IsCancel="True" />
             </StackPanel>
         </StackPanel>
     </Border>

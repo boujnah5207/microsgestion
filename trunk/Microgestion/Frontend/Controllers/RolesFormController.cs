@@ -25,7 +25,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         {
             try
             {
-                Roles = new BindingList<Role>(RoleService.GetAll());
+                Roles = new BindingList<Role>(RoleService.GetAll(r => r.Name));
 
                 object[] items = (from a in EnumerationExtensions.GetSystemActions()
                                   select new SystemActionListBoxItem { Action = a }).ToArray();

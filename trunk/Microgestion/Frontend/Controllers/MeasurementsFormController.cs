@@ -25,7 +25,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         {
             try
             {
-                Measurements = new BindingList<Measurement>(MeasurementService.GetAll());
+                Measurements = new BindingList<Measurement>(MeasurementService.GetAll(m => m.Name));
 
                 base.InitializeForm();
             }

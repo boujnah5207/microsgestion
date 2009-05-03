@@ -46,6 +46,7 @@ namespace SysQ.Microgestion.Backend.Services
         {
             var items = from i in DB.Items
                         where (i.MovesStock || includeItemsWithoutStock)
+                        orderby i.Name
                         select i;
 
             return items.ToList();
