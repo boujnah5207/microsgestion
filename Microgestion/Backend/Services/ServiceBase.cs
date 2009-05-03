@@ -48,9 +48,11 @@ namespace SysQ.Microgestion.Backend.Services
                     select u).SingleOrDefault<T>();
         }
 
-        public static List<T> GetAll()
+        public static List<T> GetAll(Func<T, object> orderExpression)
         {
-            return DB.GetTable<T>().ToList();
+            return DB.GetTable<T>()
+                     .OrderBy(orderExpression)
+                     .ToList();
         }
 
         public static void Save(T instance)

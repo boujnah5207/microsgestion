@@ -89,7 +89,7 @@ namespace Backend.Tests
         public void GetAllUsersTest()
         {
             IEnumerable<User> users;
-            users = UserService.GetAll();
+            users = UserService.GetAll(u => u.Name);
 
             foreach (User u in users)
                 Assert.IsInstanceOfType(u, typeof(User));

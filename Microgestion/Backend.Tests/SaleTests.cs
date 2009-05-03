@@ -71,7 +71,7 @@ namespace Backend.Tests
         [TestMethod]
         public void SimpleSale()
         {
-            var items = ItemService.GetAll();
+            var items = ItemService.GetAll(i => i.Name);
             Assert.IsTrue(items.Count >= 3);
 
             Sale newSale = new Sale
@@ -130,7 +130,7 @@ namespace Backend.Tests
         [TestMethod]
         public void SaleWithStockMovement()
         {
-            var items = ItemService.GetAll();
+            var items = ItemService.GetAll(i => i.Name);
             Assert.IsTrue(items.Count >= 3);
 
             Sale newSale = new Sale

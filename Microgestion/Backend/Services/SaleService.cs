@@ -31,6 +31,7 @@ namespace SysQ.Microgestion.Backend.Services
                 .Where(s => 
                     s.Date >= filterDateStart && s.Date <= dateFinish)
                 .SelectMany(s => s.Details)
+                .OrderBy( s => s.Sale.InternalID )
                 .ToList();
         }
     }

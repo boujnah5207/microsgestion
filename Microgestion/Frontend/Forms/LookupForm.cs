@@ -19,24 +19,24 @@ namespace SysQ.Microgestion.Frontend.Forms
         {
             InitializeComponent();
 
-            this.Filter = new List<T>();
+            //this.Filter = new List<T>();
 
-            this.Load += (s, e) =>
-            {
-                try
-                {
-                    this.lstItems.DataSource =
-                        ServiceBase<T>
-                        .GetAll()
-                        .Where(i => !Filter.Contains(i))
-                        .ToList();
+            //this.Load += (s, e) =>
+            //{
+            //    try
+            //    {
+            //        this.lstItems.DataSource =
+            //            ServiceBase<T>
+            //            .GetAll()
+            //            .Where(i => !Filter.Contains(i))
+            //            .ToList();
 
-                }
-                catch (Exception ex)
-                {
-                    ex.ShowMessageBox();
-                }
-            };
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ex.ShowMessageBox();
+            //    }
+            //};
         }
 
         public T SelectedItem
@@ -47,6 +47,18 @@ namespace SysQ.Microgestion.Frontend.Forms
             }
         }
 
-        public IEnumerable<T> Filter { private get;  set; }
+        public object DataSource
+        {
+            get
+            {
+                return this.lstItems.DataSource;
+            }
+            set
+            {
+                this.lstItems.DataSource = value;
+            }
+        }
+
+        //public IEnumerable<T> Filter { private get;  set; }
     }
 }

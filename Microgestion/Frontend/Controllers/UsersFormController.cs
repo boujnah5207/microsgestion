@@ -24,7 +24,7 @@ namespace SysQ.Microgestion.Frontend.Controllers
         {
             try
             {
-                Users = new BindingList<User>(UserService.GetAll());
+                Users = new BindingList<User>(UserService.GetAll(u => u.Name));
 
                 base.InitializeForm();
             }

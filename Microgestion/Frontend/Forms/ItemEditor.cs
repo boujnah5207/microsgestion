@@ -44,6 +44,7 @@ namespace SysQ.Microgestion.Frontend.Forms
                 {
                     using (LookupForm<Measurement> lookup = new LookupForm<Measurement>())
                     {
+                        lookup.DataSource = MeasurementService.GetAll(m => m.Name).ToList();
                         var dr = lookup.ShowDialog();
                         if (dr != DialogResult.OK)
                             return;
@@ -67,6 +68,7 @@ namespace SysQ.Microgestion.Frontend.Forms
                 {
                     using (LookupForm<ItemType> lookup = new LookupForm<ItemType>())
                     {
+                        lookup.DataSource = ItemTypeService.GetAll(i => i.Name).ToList();
                         var dr = lookup.ShowDialog();
                         if (dr != DialogResult.OK)
                             return;
