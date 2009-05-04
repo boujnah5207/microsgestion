@@ -96,6 +96,7 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
         public static RoutedCommand LoginCommand = new RoutedCommand();
         public static RoutedCommand InsertItemCommand = new RoutedCommand();
         public static RoutedCommand SaveCommand = new RoutedCommand();
+        public static RoutedCommand FindItemCommand = new RoutedCommand();
 
         public DateTime Date
         {
@@ -204,6 +205,7 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                     Amount = 1;
                     view.txtSearchItem.Text = string.Empty;
                     view.txtSearchItem.Focus();
+                    view.txtSearchItem.SelectAll();
                 }
                 else
                 {
@@ -425,6 +427,11 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
+        internal void FindItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class SaleItem
