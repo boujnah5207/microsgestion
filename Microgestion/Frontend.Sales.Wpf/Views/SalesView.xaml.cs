@@ -125,6 +125,11 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
                     vm.Save();
                     e.Handled = true;
                 }
+                if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.F6))
+                {
+                    //vm.FindItem();
+                    e.Handled = true;
+                }
             };
 
             this.btnCancel.Click += (s, e) => vm.Cancel();

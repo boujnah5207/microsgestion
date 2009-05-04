@@ -267,11 +267,14 @@
                                               AllowDetailToggle="True"
                                               AutoCreateColumns="False" EditTriggers="None">
                             <xcdg:DataGridControl.Columns>
+                                <xcdg:Column FieldName="InternalCode" ReadOnly="True" Title="Código Interno" Width="100" Visible="False" ShowInColumnChooser="True" />
+                                <xcdg:Column FieldName="ExternalCode" ReadOnly="True" Title="Código Externo" Width="100" Visible="False" ShowInColumnChooser="True" />
                                 <xcdg:Column FieldName="Item" ReadOnly="True" Title="Artículo" Width="200"  />
                                 <xcdg:Column FieldName="ItemType" ReadOnly="True" Title="Rubro" Width="150"  />
                                 <xcdg:Column FieldName="ActualStock" ReadOnly="True" Title="Stock Actual" Width="100" />
                                 <xcdg:Column FieldName="MinimumStock" ReadOnly="True" Title="Stock Mínimo" Width="100" />
                                 <xcdg:Column FieldName="MissingStock" ReadOnly="True" Title="Stock Faltante" Width="100" />
+                                <xcdg:Column FieldName="Price" ReadOnly="True" Title="Precio" Width="80" CellContentTemplate="{StaticResource currencyCellContentTemplate}" />
                             </xcdg:DataGridControl.Columns>
                             <xcdg:DataGridControl.View>
                                 <xcdg:TableView UseDefaultHeadersFooters="False">

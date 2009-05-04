@@ -31,7 +31,22 @@ namespace SysQ.Microgestion.Backend.Entities
                 var price = (from p in this.Prices
                              orderby p.Date descending
                              select p).FirstOrDefault();
-                return price;
+                
+                if (price != null)
+                    return price;
+
+                // If an item has no price, an empty price is set. 
+                Price emptyPrice = new Price
+                {
+                    ID = Guid.NewGuid(),
+                    Item = this,
+                    Date = DateTime.Now,
+                    Value = 0
+                };
+                this.Prices.Add(emptyPrice);
+                ServiceBase.SubmitChanges();
+
+                return emptyPrice;
             }
             set
             {
@@ -58,5 +73,13 @@ namespace SysQ.Microgestion.Backend.Entities
             return this.Name;
         }
 
+        public string NameWithPrice
+        {
+            get
+            {
+                string result = string.Format("{0} ({1:C})", this.Name, this.CurrentPrice);
+                return result;
+            }
+        }
     }
 }

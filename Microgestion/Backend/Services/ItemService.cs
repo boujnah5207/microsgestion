@@ -21,20 +21,47 @@ namespace SysQ.Microgestion.Backend.Services
 
         public static IList<ItemRecord> SearchItemRecords(Guid itemTypeFilter, Guid itemFilter, bool onlyMissingStock)
         {
-            var query = from s in DB.StockMovementDetails
-                        where (s.ItemID == itemFilter || itemFilter == Guid.Empty) &&
-                              (s.Item.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
+            //var query = from s in DB.StockMovementDetails
+            //            where (s.ItemID == itemFilter || itemFilter == Guid.Empty) &&
+            //                  (s.Item.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
+            //            group s by s.ItemID into g
+            //            orderby g.Key
+            //            select new ItemRecord
+            //            {
+            //                Item = g.First().Item.Name,
+            //                ItemType = g.First().Item.ItemType.Name,
+            //                MinimumStock = g.First().Item.MinimumStock,
+            //                Price = g.First().Item.CurrentPrice.Value,
+            //                ActualStock = g.Sum(s => s.Amount)
+            //            };
+
+            var query = from i in DB.Items
+                        from s in i.StockMovementDetails
+                        where (i.ID == itemFilter || itemFilter == Guid.Empty) &&
+                              (i.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
                         group s by s.ItemID into g
                         orderby g.Key
-                        select new ItemRecord
+                        select new
                         {
-                            Item = g.First().Item.Name,
-                            ItemType = g.First().Item.ItemType.Name,
-                            MinimumStock = g.First().Item.MinimumStock,
+                            ItemID = g.Key,
                             ActualStock = g.Sum(s => s.Amount)
                         };
 
-            IList<ItemRecord> allRecords = query.ToList();
+            var records = from e in query
+                          from i in DB.Items
+                          where e.ItemID == i.ID
+                          select new ItemRecord
+                          {
+                              Item = i.Name,
+                              ItemType = i.ItemType.Name,
+                              MinimumStock = i.MinimumStock,
+                              InternalCode = i.InternalCode,
+                              ExternalCode = i.ExternalCode,
+                              Price = i.CurrentPrice.Value,
+                              ActualStock = e.ActualStock
+                          };
+
+            IList<ItemRecord> allRecords = records.ToList();
 
             if (onlyMissingStock)
                 return allRecords.Where(i => i.MissingStock > 0 || !onlyMissingStock).ToList();
@@ -66,6 +93,9 @@ namespace SysQ.Microgestion.Backend.Services
     {
         public string Item { get; set; }
         public string ItemType { get; set; }
+        public string InternalCode { get; set; }
+        public string ExternalCode { get; set; }
+        public double Price { get; set; }
         public double MinimumStock { get; set; }
         public double ActualStock { get; set; }
         public double MissingStock
