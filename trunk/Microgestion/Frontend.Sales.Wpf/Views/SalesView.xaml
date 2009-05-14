@@ -112,7 +112,7 @@
                     Grid.Row="1" Grid.Column="1" 
                     TargetControl="{Binding ElementName=txtSearchItem}"
                     MinTypedCharacters="1"
-                    DisplayMemberPath="NameWithPrice"
+                    DisplayMemberPath="Name"
                     Focusable="False"
                     IsTabStop="False"
                     SelectedValuePath="ID"
@@ -183,8 +183,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!--<TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo | F5 - Confirmar Venta | F6 - Consulta de Precios</TextBlock>-->
-                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo | F5 - Confirmar Venta</TextBlock>
+                    <TextBlock Grid.Column="0" FontSize="12" FontWeight="Normal">F3 - Borrar último artículo | F5 - Confirmar Venta | F6 - Consulta de Precios</TextBlock>
                     <TextBlock Grid.Column="2" Foreground="Red" FontSize="18">Total: $</TextBlock>
                     <TextBlock Grid.Column="3" Foreground="Red" FontSize="18" Text="{Binding Total}" />
                 </Grid>

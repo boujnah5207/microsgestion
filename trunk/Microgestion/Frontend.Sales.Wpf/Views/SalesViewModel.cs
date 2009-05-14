@@ -430,7 +430,13 @@ namespace SysQ.Microgestion.Frontend.Sales.Wpf.Views
 
         internal void FindItem()
         {
-            throw new NotImplementedException();
+            FindItemView find = new FindItemView();
+            if (find.ShowDialog() == true)
+            {
+                this.ItemID = find.SelectedItemId;
+                InsertItem();
+            }
+            return;
         }
     }
 
