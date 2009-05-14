@@ -73,13 +73,5 @@ namespace SysQ.Microgestion.Backend.Entities
             return this.Name;
         }
 
-        public string NameWithPrice
-        {
-            get
-            {
-                string result = string.Format("{0} ({1:C})", this.Name, this.CurrentPrice);
-                return result;
-            }
-        }
     }
 }

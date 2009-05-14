@@ -18,23 +18,26 @@ namespace SysQ.Microgestion.Backend.Services
                 .Take(maxResults)
                 .ToList();
         }
+        public static IEnumerable<ItemRecord> SearchItemRecords(string keyword)
+        {
+            var items = DB.Items
+                          .FindElementByRelevance(keyword)
+                          .Select(i => new ItemRecord
+                          {
+                              ItemId = i.ID,
+                              Item = i.Name,
+                              ItemType = i.ItemType.Name,
+                              MinimumStock = i.MinimumStock,
+                              InternalCode = i.InternalCode,
+                              ExternalCode = i.ExternalCode,
+                              Price = i.CurrentPrice.Value
+                          });
+
+            return items.ToList();
+        }
 
         public static IList<ItemRecord> SearchItemRecords(Guid itemTypeFilter, Guid itemFilter, bool onlyMissingStock)
         {
-            //var query = from s in DB.StockMovementDetails
-            //            where (s.ItemID == itemFilter || itemFilter == Guid.Empty) &&
-            //                  (s.Item.ItemTypeID == itemTypeFilter || itemTypeFilter == Guid.Empty)
-            //            group s by s.ItemID into g
-            //            orderby g.Key
-            //            select new ItemRecord
-            //            {
-            //                Item = g.First().Item.Name,
-            //                ItemType = g.First().Item.ItemType.Name,
-            //                MinimumStock = g.First().Item.MinimumStock,
-            //                Price = g.First().Item.CurrentPrice.Value,
-            //                ActualStock = g.Sum(s => s.Amount)
-            //            };
-
             var query = from i in DB.Items
                         from s in i.StockMovementDetails
                         where (i.ID == itemFilter || itemFilter == Guid.Empty) &&
@@ -91,6 +94,7 @@ namespace SysQ.Microgestion.Backend.Services
 
     public class ItemRecord
     {
+        public Guid ItemId { get; set; } 
         public string Item { get; set; }
         public string ItemType { get; set; }
         public string InternalCode { get; set; }
