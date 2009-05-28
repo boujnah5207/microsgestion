@@ -65,8 +65,12 @@
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Xceed.Wpf.Controls, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6" />
-    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6" />
+    <Reference Include="Xceed.Wpf.Controls, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6">
+      <HintPath>..\..\Support\Xceed.Wpf.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.9117.10090, Culture=neutral, PublicKeyToken=ba83ff368b7563c6">
+      <HintPath>..\..\Support\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
