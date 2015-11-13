@@ -1,0 +1,1 @@
+Es un sistema simple para administrar stock.
